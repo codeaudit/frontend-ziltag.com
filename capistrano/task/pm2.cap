@@ -16,13 +16,15 @@ namespace :pm2 do
 
   def restart_app
     within current_path do
-      execute fetch(:app_env), :pm2, :restart, fetch(:app_command)
+      execute :npm, :run, :build
+      execute :pm2, :restart, fetch(:app_command)
     end
   end
 
   def start_app
     within current_path do
-      execute fetch(:app_env), :pm2, :start, fetch(:app_command)
+      execute :npm, :run, :build
+      execute :pm2, :start, fetch(:app_command)
     end
   end
 

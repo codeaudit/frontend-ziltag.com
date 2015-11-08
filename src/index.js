@@ -30,4 +30,4 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 
 serve(app);
 
-app.listen(process.env.PORT);
+app.listen(process.env.NODE_PORT);

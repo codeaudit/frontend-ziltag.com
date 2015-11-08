@@ -11,8 +11,6 @@
 server "staging.ziltag.com", :user => "deploy", :roles => %w[app]
 set :branch, :master
 set :app_command, "dist/index.js"
-set :node_env, "staging"
-set :app_env, "NODE_ENV=STAGING PORT=2000"
 
 
 # role-based syntax

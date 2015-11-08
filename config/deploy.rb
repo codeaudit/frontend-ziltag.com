@@ -3,7 +3,10 @@ lock '3.4.0'
 
 set :application, 'frontend-ziltag.com'
 set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
-set :ssh_options, { forward_agent: true, keys: %w[~/.ssh/ziltag] }
+set :ssh_options, {
+  forward_agent: true,
+  keys: %w[~/.ssh/ziltag]
+}
 set :deploy_to, '/home/deploy/frontend'
 
 # Default branch is :master
