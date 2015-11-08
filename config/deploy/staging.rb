@@ -10,7 +10,6 @@
 
 server "staging.ziltag.com", :user => "deploy", :roles => %w[app]
 set :branch, :master
-set :app_command, "dist/index.js"
 
 
 # role-based syntax

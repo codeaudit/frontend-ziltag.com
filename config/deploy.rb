@@ -1,13 +1,14 @@
 # config valid only for current version of Capistrano
 lock '3.4.0'
 
-set :application, 'frontend-ziltag.com'
+set :application, 'frontend'
 set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
 set :ssh_options, {
   forward_agent: true,
   keys: %w[~/.ssh/ziltag]
 }
 set :deploy_to, '/home/deploy/frontend'
+set :app_command, 'dist/index.js'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
