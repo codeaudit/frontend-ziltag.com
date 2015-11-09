@@ -16,14 +16,12 @@ namespace :pm2 do
 
   def restart_app
     within current_path do
-      execute :npm, :run, :build
       execute :pm2, :restart, fetch(:application)
     end
   end
 
   def start_app
     within current_path do
-      execute :npm, :run, :build
       execute :pm2, :start, fetch(:app_command), '-i 0', '--name', fetch(:application)
     end
   end
