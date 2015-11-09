@@ -6,7 +6,7 @@ set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
 set :ssh_options, {
   forward_agent: true
 }
-set :linked_dirs, fetch(:linked_dirs, []).push(%w[node_modules dist])
+set :linked_dirs, fetch(:linked_dirs, []).push(['node_modules', 'dist'])
 set :deploy_to, '/home/deploy/frontend'
 set :app_command, 'dist/index.js'
 
