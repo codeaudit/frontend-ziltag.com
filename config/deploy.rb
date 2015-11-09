@@ -3,6 +3,7 @@ lock '3.4.0'
 
 set :application, 'frontend'
 set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
+set :scm, :gitcopy
 set :ssh_options, {
   forward_agent: true
 }
