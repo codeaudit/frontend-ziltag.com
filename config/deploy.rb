@@ -6,8 +6,8 @@ set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
 set :ssh_options, {
   forward_agent: true
 }
-set :deploy_via, :copy
 set :deploy_to, '/home/deploy/frontend'
+set :copy_files, ['node_modules', 'dist']
 set :app_command, 'dist/index.js'
 
 # Default branch is :master
