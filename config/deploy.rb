@@ -4,9 +4,9 @@ lock '3.4.0'
 set :application, 'frontend'
 set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
 set :ssh_options, {
-  forward_agent: true,
-  keys: %w[~/.ssh/ziltag]
+  forward_agent: true
 }
+set :linked_dirs, fetch(:linked_dirs, []).push(%w[node_modules dist])
 set :deploy_to, '/home/deploy/frontend'
 set :app_command, 'dist/index.js'
 
