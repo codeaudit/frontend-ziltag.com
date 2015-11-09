@@ -21,7 +21,6 @@ PLATFORMS
 
 DEPENDENCIES
   capistrano (~> 3.4.0)
-  capistrano-scm-gitcopy
 
 BUNDLED WITH
    1.10.6
