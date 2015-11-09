@@ -3,7 +3,7 @@ import React from 'react';
 
 var HelloMessage = React.createClass({
   render: function() {
-    return <div>Hello World! New Deployment!!</div>;
+    return <div>Hello World! New Deployment!</div>;
   }
 });
 
