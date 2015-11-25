@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:server && npm run build:client",
-    "build:server": "babel src/server.js --out-dir dist --ignore=client.js",
+    "build:server": "babel src --out-dir dist --ignore=client.js",
     "build:client": "webpack --config webpack/prod.config.babel.js",
     "serve": "NODE_ENV=dev NODE_PORT=2000 nodemon src/server.js --ignore src/client.js --exec babel-node",
     "start": "pm2 start dist -i 0 --name ziltag",

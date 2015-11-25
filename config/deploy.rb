@@ -7,7 +7,7 @@ set :ssh_options, {
   forward_agent: true
 }
 set :deploy_to, '/home/deploy/frontend'
-set :app_command, 'dist/index.js'
+set :app_command, 'dist/server.js'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
