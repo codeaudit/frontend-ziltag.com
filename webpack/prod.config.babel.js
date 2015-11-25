@@ -1,7 +1,7 @@
-import path from 'path';
-import webpack from 'webpack';
+import path from 'path'
+import webpack from 'webpack'
 
-import base_config from './base.config.babel';
+import base_config from './base.config.babel'
 
 
 module.exports = {
@@ -18,4 +18,4 @@ module.exports = {
     ...base_config.plugins,
     new webpack.optimize.UglifyJsPlugin()
   ]
-};
+}
