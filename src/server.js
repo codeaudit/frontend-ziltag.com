@@ -14,8 +14,6 @@ import createHistory from 'history/lib/createMemoryHistory'
 import effects from 'redux-effects'
 import fetch from 'redux-effects-fetch'
 
-import clientMiddleware from './middleware/clientMiddleware'
-import transitionMiddleware from './middleware/transitionMiddleware'
 import reducer from './reducer'
 import routes from './route'
 
