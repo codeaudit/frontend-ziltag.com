@@ -9,9 +9,9 @@
     "build:server": "babel src --out-dir dist --ignore=client.js",
     "build:client": "webpack --config webpack/prod.config.babel.js",
     "serve": "NODE_ENV=dev NODE_PORT=2000 nodemon src/server.js --ignore src/client.js --exec babel-node",
-    "start": "pm2 start dist/server.js -i 0 --name ziltag",
-    "stop": "pm2 delete ziltag",
-    "restart": "pm2 restart ziltag"
+    "start": "pm2 start dist/server.js -i 0 --name frontend",
+    "stop": "pm2 delete frontend",
+    "restart": "pm2 restart frontend"
   },
   "repository": {
     "type": "git",

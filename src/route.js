@@ -1,8 +1,8 @@
-import React from 'React';
-import Route from 'react-router';
+import React from 'React'
+import Route from 'react-router'
 
-import ZiltagMapPage from './page/ZiltagMapPage';
-import ZiltagPage from './page/ZiltagPage';
+import ZiltagMapPage from './page/ZiltagMapPage'
+import ZiltagPage from './page/ZiltagPage'
 
 
 export default (
@@ -12,4 +12,4 @@ export default (
 	  <Route path='/ziltags/:id' component={ZiltagPage}>
 	  </Route>
   </Route>
-);
+)
