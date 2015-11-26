@@ -18,6 +18,7 @@ namespace :pm2 do
     within current_path do
       execute :npm, :i
       execute :npm, :run, :build
+      exclude :pm2, :delete, fetch(:application)
       execute :pm2, :start, fetch(:app_command), '-i 0', '--name', fetch(:application)
     end
   end
