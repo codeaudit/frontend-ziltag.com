@@ -21,7 +21,7 @@ class BasePage extends Component {
         <div className='ziltag-base-page__head'>
           <Logo/>
         </div>
-          base test passed {children}
+          base test passed!! {children}
        </div>
     )
   }
