@@ -13,16 +13,22 @@ try {
 class BasePage extends Component {
   render() {
     const {
-      children
+      children,
+      user_info
     } = this.props
+
+    const {
+      avatar
+    } = user_info
 
     return (
       <div>
         <div className='ziltag-base-page__head'>
           <Logo/>
+          <img className='ziltag-base-page__avatar' src={avatar && avatar.thumb}/>
         </div>
-          base test passed {children}
-       </div>
+          {children}
+      </div>
     )
   }
 }
