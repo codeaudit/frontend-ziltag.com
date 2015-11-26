@@ -2,6 +2,7 @@ import path from 'path'
 
 import webpack from 'webpack'
 import cssnano from 'cssnano'
+import postcss_nesting from 'postcss-nesting'
 
 import {NODE_ENV} from '../env'
 
@@ -29,8 +30,9 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': {
-        NODE_ENV
-      }
+        NODE_ENV: `'${NODE_ENV}'`
+      },
+      __WEBPACK__: true
     })
   ],
   postcss: () => {
