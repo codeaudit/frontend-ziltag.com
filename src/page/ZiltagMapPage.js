@@ -1,5 +1,7 @@
-import React, {Component, PropTypes} from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
+import BasePage from '../component/BasePage'
 
 
 class ZiltagMapPage extends Component {
@@ -8,7 +10,7 @@ class ZiltagMapPage extends Component {
       router
     } = this.props
 
-    return <div>ZiltagMapPage {router.params.id}</div>
+    return <BasePage>ZiltagMapPage {router.params.id}</BasePage>
   }
 }
 
