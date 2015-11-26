@@ -3,14 +3,28 @@ import React, {Component} from 'react'
 import Logo from '../Logo'
 
 
-class BasePage extends Component {
-	render() {
-		const {
-			children
-		} = this.props
+try {
+  if (__WEBPACK__) {
+    require('./index.css')
+  }
+} catch (e) {}
 
-		return <div><Logo/>base {children}</div>
-	}
+
+class BasePage extends Component {
+  render() {
+    const {
+      children
+    } = this.props
+
+    return (
+      <div>
+        <div className='ziltag-base-page__head'>
+          <Logo/>
+        </div>
+          base {children}
+       </div>
+    )
+  }
 }
 
 export default BasePage
