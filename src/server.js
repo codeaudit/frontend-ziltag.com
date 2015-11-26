@@ -17,11 +17,13 @@ import fetch from 'redux-effects-fetch'
 import reducer from './reducer'
 import routes from './route'
 
+import {NODE_ENV, NODE_PORT, RAILS_TARGET} from '../env'
+
 
 const app = new Koa()
 const proxy = httpProxy.createProxyServer()
 
-if (process.env.NODE_ENV == 'dev') {
+if (NODE_ENV == 'dev') {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('koa-webpack-dev-middleware')
   const webpackHotMiddleware = require('koa-webpack-hot-middleware')
@@ -45,7 +47,7 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 app.use(async (ctx, next) => {
   if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
     proxy.web(ctx.req, ctx.res, {
-      target: 'http://localhost:3000'
+      target: RAILS_TARGET
     })
     ctx.respond = false
   } else {
@@ -72,4 +74,4 @@ app.use(async (ctx, next) => {
   }
 })
 
-app.listen(process.env.NODE_PORT)
+app.listen(NODE_PORT)

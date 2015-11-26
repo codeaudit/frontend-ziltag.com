@@ -1,6 +1,9 @@
-import path from 'path';
-import webpack from 'webpack';
-import cssnano from 'cssnano';
+import path from 'path'
+
+import webpack from 'webpack'
+import cssnano from 'cssnano'
+
+import {NODE_ENV} from '../env'
 
 
 module.exports = {
@@ -23,9 +26,14 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       'fetch': 'isomorphic-fetch'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV
+      }
     })
   ],
   postcss: () => {
-    return [postcss_nesting, cssnano];
+    return [postcss_nesting, cssnano]
   }
-};
+}
