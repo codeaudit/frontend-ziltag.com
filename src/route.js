@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 import Route from 'react-router'
 
 import ZiltagMapPage from './page/ZiltagMapPage'
