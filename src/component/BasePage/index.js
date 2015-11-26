@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import Logo from '../Logo'
+
 
 class BasePage extends Component {
 	render() {
@@ -7,7 +9,7 @@ class BasePage extends Component {
 			children
 		} = this.props
 
-		return <div>base {children}</div>
+		return <div><Logo/>base {children}</div>
 	}
 }
 
