@@ -10,7 +10,7 @@ try {
 
 class Logo extends Component {
   render() {
-    return <div className='ziltag-logo'>q</div>
+    return <div className='ziltag-logo'></div>
   }
 }
 
