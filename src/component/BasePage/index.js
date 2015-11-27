@@ -22,7 +22,7 @@ class BasePage extends Component {
     } = user_info
 
     return (
-      <div>
+      <div className='ziltag-base-page'>
         <div className='ziltag-base-page__head'>
           <Logo/>
           <img className='ziltag-base-page__avatar' src={avatar && avatar.thumb}/>

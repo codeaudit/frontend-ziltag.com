@@ -5,6 +5,7 @@ import {bind} from 'redux-effects'
 import {fetch} from 'redux-effects-fetch'
 
 import BasePage from '../component/BasePage'
+import AvatarMenu from '../component/AvatarMenu'
 
 import {RAILS_ADDR} from '../../env'
 
@@ -34,7 +35,11 @@ class ZiltagMapPage extends Component {
 
     console.log('user_info:', user_info)
 
-    return <BasePage user_info={user_info}>ZiltagMapPage {router.params.id}</BasePage>
+    return (
+      <BasePage user_info={user_info}>
+        <AvatarMenu/>
+      </BasePage>
+    )
   }
 }
 

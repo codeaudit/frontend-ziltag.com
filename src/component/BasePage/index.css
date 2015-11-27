@@ -3,10 +3,19 @@
 }
 
 .ziltag-base-page__avatar {
-	float: right;
 	width: 30px;
 	height: auto;
-	margin: 12px 16px;
 	border-radius: 50%;
 	cursor: pointer;
+}
+
+.ziltag-base-page .ziltag-base-page__avatar{
+	float: right;
+	margin: 12px 16px;
+}
+
+.ziltag-base-page .ziltag-base-page__avatar-menu {
+	position: absolute;
+	right: 17px;
+	top: 47px;
 }
