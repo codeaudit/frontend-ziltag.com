@@ -30,14 +30,14 @@ class ZiltagMapPage extends Component {
   render() {
     const {
       router,
-      user_info
+      user_info,
+      avatar_menu,
+      dispatch
     } = this.props
 
-    console.log('user_info:', user_info)
-
     return (
-      <BasePage user_info={user_info}>
-        <AvatarMenu/>
+      <BasePage dispatch={dispatch} user_info={user_info}>
+        <AvatarMenu style={{display: avatar_menu.avatar_menu_activated ? 'block' : 'none'}}/>
       </BasePage>
     )
   }

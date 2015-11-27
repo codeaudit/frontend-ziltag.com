@@ -11,7 +11,19 @@ function user_info(state={}, action) {
 	}
 }
 
+function avatar_menu(state={}, action) {
+	switch (action.type) {
+		case 'ACTIVATE_AVATAR_MENU':
+			return {avatar_menu_activated: true}
+		case 'DEACTIVATE_AVATAR_MENU':
+			return {avatar_menu_activated: false}
+		default:
+			return state
+	}
+}
+
 export default combineReducers({
   router: routerStateReducer,
-  user_info
+  user_info,
+  avatar_menu
 })

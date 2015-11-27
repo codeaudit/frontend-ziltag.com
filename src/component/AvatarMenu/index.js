@@ -17,7 +17,7 @@ const Item = (props) => (
 class AvatarMenu extends Component {
   render() {
     return (
-      <ul className='ziltag-base-page__avatar-menu'>
+      <ul style={this.props.style} className='ziltag-base-page__avatar-menu'>
         <Item>Setting</Item>
         <Item>Term of Use</Item>
         <Item>Privacy</Item>
