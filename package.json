@@ -4,6 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
+    "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run build:server && npm run build:client",
     "build:server": "babel src --out-dir dist --ignore=client.js",
