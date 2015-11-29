@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {createAction} from 'redux-actions'
 
 import Logo from '../Logo'
 
@@ -14,15 +13,13 @@ try {
 class BasePage extends Component {
   constructor(props) {
     super(props)
-    this.activate_avatar_menu = createAction('ACTIVATE_AVATAR_MENU')
-    this.deactivate_avatar_menu = createAction('DEACTIVATE_AVATAR_MENU')
   }
 
   render() {
     const {
       children,
       user_info,
-      dispatch
+      actors
     } = this.props
 
     const {
@@ -33,7 +30,7 @@ class BasePage extends Component {
       <div
         className='ziltag-base-page'
         onClick={() => {
-          dispatch(this.deactivate_avatar_menu())
+          actors.deactivate_avatar_menu()
         }}
       >
         <div className='ziltag-base-page__head'>
@@ -42,7 +39,7 @@ class BasePage extends Component {
             className='ziltag-base-page__avatar'
             src={avatar && avatar.thumb}
             onClick={(e) => {
-              dispatch(this.activate_avatar_menu())
+              actors.activate_avatar_menu()
               e.stopPropagation()
             }}
           />
