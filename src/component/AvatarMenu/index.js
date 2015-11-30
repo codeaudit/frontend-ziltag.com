@@ -17,8 +17,12 @@ const Item = (props) => (
 class AvatarMenu extends Component {
   render() {
     const {
-      style
+      activated
     } = this.props
+
+    const style = {
+      display: activated ? 'block' : 'none'
+    }
 
     return (
       <ul style={style} className='ziltag-base-page__avatar-menu'>

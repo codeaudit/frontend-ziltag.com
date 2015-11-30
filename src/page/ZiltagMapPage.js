@@ -35,7 +35,7 @@ class ZiltagMapPage extends Component {
         deactivate_avatar_menu={deactivate_avatar_menu}
         user_info={user_info}
       >
-        <AvatarMenu style={{display: avatar_menu.avatar_menu_activated ? 'block' : 'none'}}/>
+        <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
       </BasePage>
     )
   }
