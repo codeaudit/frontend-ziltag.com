@@ -24,8 +24,17 @@ class ZiltagMapPage extends Component {
       avatar_menu
     } = this.props
 
+    const {
+      activate_avatar_menu,
+      deactivate_avatar_menu
+    } = this.actors
+
     return (
-      <BasePage actors={this.actors} user_info={user_info}>
+      <BasePage
+        activate_avatar_menu={activate_avatar_menu}
+        deactivate_avatar_menu={deactivate_avatar_menu}
+        user_info={user_info}
+      >
         <AvatarMenu style={{display: avatar_menu.avatar_menu_activated ? 'block' : 'none'}}/>
       </BasePage>
     )

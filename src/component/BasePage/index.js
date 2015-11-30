@@ -19,7 +19,8 @@ class BasePage extends Component {
     const {
       children,
       user_info,
-      actors
+      activate_avatar_menu,
+      deactivate_avatar_menu
     } = this.props
 
     const {
@@ -30,7 +31,7 @@ class BasePage extends Component {
       <div
         className='ziltag-base-page'
         onClick={() => {
-          actors.deactivate_avatar_menu()
+          deactivate_avatar_menu()
         }}
       >
         <div className='ziltag-base-page__head'>
@@ -39,7 +40,7 @@ class BasePage extends Component {
             className='ziltag-base-page__avatar'
             src={avatar && avatar.thumb}
             onClick={(e) => {
-              actors.activate_avatar_menu()
+              activate_avatar_menu()
               e.stopPropagation()
             }}
           />
