@@ -1,0 +1,11 @@
+.ziltag-ziltag-map-prompt {
+  display: flex;
+  width: 145px;
+  height: 27px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, .54);
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+  font-size: 14px;
+  color: white;
+}
