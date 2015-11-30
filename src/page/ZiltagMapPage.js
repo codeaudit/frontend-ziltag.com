@@ -4,6 +4,8 @@ import {connect} from 'react-redux'
 
 import BasePage from '../component/BasePage'
 import AvatarMenu from '../component/AvatarMenu'
+import ZiltagMapLoginForm from '../component/ZiltagMapLoginForm'
+import ZiltagMapSignUpForm from '../component/ZiltagMapSignUpForm'
 import * as actors from '../actor'
 
 
@@ -36,6 +38,8 @@ class ZiltagMapPage extends Component {
         user_info={user_info}
       >
         <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
+        <ZiltagMapLoginForm/>
+        <ZiltagMapSignUpForm/>
       </BasePage>
     )
   }
