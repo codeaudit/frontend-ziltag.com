@@ -1,6 +1,18 @@
+.ziltag-ziltag-map {
+  position: relative;
+  width: 510px;
+  height: 340px;
+  margin: 12px 18px;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-map-src {
+  display: block;
+}
+
 .ziltag-ziltag-map-prompt {
   display: flex;
-  width: 145px;
+  width: 146px;
   height: 27px;
   align-items: center;
   justify-content: center;
@@ -8,4 +20,17 @@
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 14px;
   color: white;
+}
+
+.ziltag-ziltag-map .ziltag-ziltag-map-src {
+  position: relative;
+  z-index: 0;
+  margin: 0 auto;
+}
+
+.ziltag-ziltag-map .ziltag-ziltag-map-prompt {
+  position: relative;
+  z-index: 2;
+  top: -100%;
+  margin: 0 auto;
 }

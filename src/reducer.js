@@ -25,8 +25,7 @@ function avatar_menu(state={}, action) {
 function ziltag_map(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
-      console.log('action.payload:', action.payload)
-      return action.payload
+      return action.payload.value
     default:
       return state
   }
