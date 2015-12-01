@@ -25,3 +25,12 @@ export function get_ziltag_map(map_id) {
     credentials: 'include'
   }), ziltag_map_fetched)
 }
+
+export const ziltag_fetched = createAction('ZILTAG_FETCHED')
+
+export function get_ziltag(ziltag_id) {
+  const api = `${RAILS_ADDR}/api/v1/ziltags/${ziltag_id}`
+  return bind(fetch(api, {
+    credentials: 'include'
+  }), ziltag_fetched)
+}

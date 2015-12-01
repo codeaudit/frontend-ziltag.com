@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 
 import Logo from '../Logo'
+import AvatarMenu from '../AvatarMenu'
+import ZiltagMap from '../ZiltagMap'
 
 
 try {
@@ -19,6 +21,8 @@ class BasePage extends Component {
     const {
       children,
       user_info,
+      avatar_menu,
+      ziltag_map,
       activate_avatar_menu,
       deactivate_avatar_menu
     } = this.props
@@ -45,7 +49,9 @@ class BasePage extends Component {
             }}
           />
         </div>
-          {children}
+        <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
+        <ZiltagMap data={ziltag_map}/>
+        {children}
       </div>
     )
   }

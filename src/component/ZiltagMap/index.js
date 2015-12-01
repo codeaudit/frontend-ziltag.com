@@ -16,11 +16,6 @@ class ZiltagMap extends Component {
       data
     } = this.props
 
-    console.log(data)
-
-    data.width = 340
-    data.height = 340
-
     const ziltags = data.ziltags && data.ziltags.map(
       ziltag => {
         const enhanced_ziltag = Object.assign({}, ziltag)

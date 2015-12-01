@@ -31,9 +31,19 @@ function ziltag_map(state={}, action) {
   }
 }
 
+function current_ziltag(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_FETCHED':
+      return action.payload.value
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   user_info,
   avatar_menu,
-  ziltag_map
+  ziltag_map,
+  current_ziltag
 })
