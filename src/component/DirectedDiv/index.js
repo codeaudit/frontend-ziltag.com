@@ -12,7 +12,8 @@ try {
 class DirectedDiv extends Component {
   render() {
     const {
-      direction
+      direction,
+      children
     } = this.props
 
     return (
@@ -25,6 +26,7 @@ class DirectedDiv extends Component {
           })
         }
       >
+      {children}
       </div>
     )
   }
