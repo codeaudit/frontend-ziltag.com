@@ -6,11 +6,11 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag-map-src {
+.ziltag-ziltag-map__src {
   display: block;
 }
 
-.ziltag-ziltag-map-prompt {
+.ziltag-ziltag-map__prompt {
   display: flex;
   width: 146px;
   height: 27px;
@@ -22,15 +22,27 @@
   color: white;
 }
 
-.ziltag-ziltag-map .ziltag-ziltag-map-src {
+.ziltag-ziltag-map .ziltag-ziltag-map__src {
   position: relative;
   z-index: 0;
   margin: 0 auto;
 }
 
-.ziltag-ziltag-map .ziltag-ziltag-map-prompt {
+.ziltag-ziltag-map .ziltag-ziltag-map__prompt {
   position: relative;
   z-index: 2;
   top: -100%;
   margin: 0 auto;
+}
+
+.ziltag-ziltag-map .ziltag-ziltag-map__container {
+  position: relative;
+  z-index: 1;
+  top: -367px;
+  margin: 0 auto;
+}
+
+
+.ziltag-ziltag-map__container .ziltag-ziltag {
+  position: absolute;
 }
