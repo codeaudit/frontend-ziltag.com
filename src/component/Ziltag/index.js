@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
 import classNames from 'classnames'
 
 
@@ -12,6 +13,7 @@ try {
 class Ziltag extends Component {
   render() {
     const {
+      get_ziltag,
       data
     } = this.props
 
@@ -23,15 +25,17 @@ class Ziltag extends Component {
     }
 
     return (
-      <div
-        style={style}
-        className={
-          classNames({
-            'ziltag-ziltag': true,
-            'ziltag-ziltag--focused': data.focused
-          })
-        }
-      ></div>
+      <Link to={data.link} onClick={() => get_ziltag(data.id)}>
+        <div
+          style={style}
+          className={
+            classNames({
+              'ziltag-ziltag': true,
+              'ziltag-ziltag--focused': data.focused
+            })
+          }
+        ></div>
+      </Link>
     )
   }
 }

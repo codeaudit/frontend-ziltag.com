@@ -30,7 +30,8 @@ class ZiltagPage extends Component {
 
     const {
       activate_avatar_menu,
-      deactivate_avatar_menu
+      deactivate_avatar_menu,
+      get_ziltag
     } = this.actors
 
     const enhanced_ziltag_map = Object.assign({}, ziltag_map)
@@ -38,6 +39,8 @@ class ZiltagPage extends Component {
       enhanced_ziltag_map.ziltags = enhanced_ziltag_map.ziltags.map(ziltag => {
         if (ziltag.id == current_ziltag.id) {
           ziltag.focused = true
+        } else {
+          ziltag.focused = false
         }
         return ziltag
       })
@@ -50,6 +53,7 @@ class ZiltagPage extends Component {
         ziltag_map={enhanced_ziltag_map}
         activate_avatar_menu={activate_avatar_menu}
         deactivate_avatar_menu={deactivate_avatar_menu}
+        get_ziltag={get_ziltag}
       />
     )
   }
