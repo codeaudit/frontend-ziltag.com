@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 
 import Logo from '../Logo'
+import AvatarMenu from '../AvatarMenu'
+import ZiltagMap from '../ZiltagMap'
 
 
 try {
@@ -19,13 +21,24 @@ class BasePage extends Component {
     const {
       children,
       user_info,
+      avatar_menu,
+      ziltag_map,
       activate_avatar_menu,
-      deactivate_avatar_menu
+      deactivate_avatar_menu,
+      get_ziltag
     } = this.props
 
     const {
       avatar
     } = user_info
+
+    const enhanced_ziltag_map = Object.assign({}, ziltag_map)
+    if (ziltag_map.ziltags) {
+      enhanced_ziltag_map.ziltags = enhanced_ziltag_map.ziltags.map(ziltag => {
+        ziltag.link = `/ziltags/${ziltag.id}`
+        return ziltag
+      })
+    }
 
     return (
       <div
@@ -45,7 +58,9 @@ class BasePage extends Component {
             }}
           />
         </div>
-          {children}
+        <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
+        <ZiltagMap get_ziltag={get_ziltag} data={enhanced_ziltag_map}/>
+        {children}
       </div>
     )
   }

@@ -22,8 +22,28 @@ function avatar_menu(state={}, action) {
   }
 }
 
+function ziltag_map(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_MAP_FETCHED':
+      return action.payload.value
+    default:
+      return state
+  }
+}
+
+function current_ziltag(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_FETCHED':
+      return action.payload.value
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   user_info,
-  avatar_menu
+  avatar_menu,
+  ziltag_map,
+  current_ziltag
 })
