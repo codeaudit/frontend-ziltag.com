@@ -1,0 +1,32 @@
+.ziltag-directed-div {
+  position: relative;
+  width: 326px;
+  min-height: 60px;
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 5px #333;
+}
+
+.ziltag-directed-div::before {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  box-sizing: border-box;
+  border: 7px solid black;
+  border-color: transparent transparent white white;
+  transform-origin: 0 0;
+  box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+.ziltag-directed-div--right::before {
+  top: 20px;
+  left: 0;
+  transform: rotate(45deg);
+}
+
+.ziltag-directed-div--left::before {
+  top: 40px;
+  right: -14px;
+  transform: rotate(225deg);
+}
