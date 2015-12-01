@@ -13,7 +13,7 @@ try {
 class Ziltag extends Component {
   render() {
     const {
-      get_ziltag,
+      onClick,
       data
     } = this.props
 
@@ -25,7 +25,7 @@ class Ziltag extends Component {
     }
 
     return (
-      <Link to={data.link} onClick={() => get_ziltag(data.id)}>
+      <Link to={data.link} onClick={onClick}>
         <div
           style={style}
           className={

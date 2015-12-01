@@ -22,7 +22,7 @@ class ZiltagMap extends Component {
         const enhanced_ziltag = Object.assign({}, ziltag)
         enhanced_ziltag.x = ziltag.x * data.width
         enhanced_ziltag.y = ziltag.y * data.height
-        return <Ziltag get_ziltag={get_ziltag} data={enhanced_ziltag} key={ziltag.id}/>
+        return <Ziltag onClick={() => get_ziltag(ziltag.id)} data={enhanced_ziltag} key={ziltag.id}/>
       }
     )
 
