@@ -2,9 +2,9 @@ import { combineReducers } from 'redux'
 import { routerStateReducer } from 'redux-router'
 
 
-function user_info(state={}, action) {
+function current_user(state={}, action) {
   switch (action.type) {
-    case 'USER_INFO_FETCHED':
+    case 'CURRENT_USER_FETCHED':
       return action.payload.value
     default:
       return state
@@ -52,7 +52,7 @@ function current_ziltag(state={}, action) {
 
 export default combineReducers({
   router: routerStateReducer,
-  user_info,
+  current_user,
   avatar_menu,
   ziltag_map,
   current_ziltag

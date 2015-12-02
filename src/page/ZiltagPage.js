@@ -14,15 +14,15 @@ class ZiltagPage extends Component {
   }
 
   componentDidMount() {
-    this.actors.get_user_info()
-    this.actors.get_ziltag(this.props.router.params.id)
-    .then(resp => this.actors.get_ziltag_map(resp.payload.value.map_id))
+    this.actors.fetch_current_user()
+    this.actors.fetch_ziltag(this.props.router.params.id)
+    .then(resp => this.actors.fetch_ziltag_map(resp.payload.value.map_id))
   }
 
   render() {
     const {
       router,
-      user_info,
+      current_user,
       avatar_menu,
       current_ziltag,
       ziltag_map
@@ -31,7 +31,7 @@ class ZiltagPage extends Component {
     const {
       activate_avatar_menu,
       deactivate_avatar_menu,
-      get_ziltag,
+      fetch_ziltag,
       hover_on_ziltag,
       unhover_on_ziltag
     } = this.actors
@@ -50,12 +50,12 @@ class ZiltagPage extends Component {
 
     return (
       <BasePage
-        user_info={user_info}
+        current_user={current_user}
         avatar_menu={avatar_menu}
         ziltag_map={enhanced_ziltag_map}
         activate_avatar_menu={activate_avatar_menu}
         deactivate_avatar_menu={deactivate_avatar_menu}
-        get_ziltag={get_ziltag}
+        fetch_ziltag={fetch_ziltag}
         hover_on_ziltag={hover_on_ziltag}
         unhover_on_ziltag={unhover_on_ziltag}
       />

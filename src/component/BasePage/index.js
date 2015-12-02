@@ -16,19 +16,19 @@ class BasePage extends Component {
   render() {
     const {
       children,
-      user_info,
+      current_user,
       avatar_menu,
       ziltag_map,
       activate_avatar_menu,
       deactivate_avatar_menu,
-      get_ziltag,
+      fetch_ziltag,
       hover_on_ziltag,
       unhover_on_ziltag
     } = this.props
 
     const {
       avatar
-    } = user_info
+    } = current_user
 
     const enhanced_ziltag_map = Object.assign({}, ziltag_map)
     if (ziltag_map.ziltags) {
@@ -58,7 +58,7 @@ class BasePage extends Component {
         </div>
         <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
         <ZiltagMap
-          get_ziltag={get_ziltag}
+          fetch_ziltag={fetch_ziltag}
           hover_on_ziltag={hover_on_ziltag}
           unhover_on_ziltag={unhover_on_ziltag}
           data={enhanced_ziltag_map}

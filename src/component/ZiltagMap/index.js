@@ -15,7 +15,7 @@ try {
 class ZiltagMap extends Component {
   render() {
     const {
-      get_ziltag,
+      fetch_ziltag,
       hover_on_ziltag,
       unhover_on_ziltag,
       data
@@ -31,7 +31,7 @@ class ZiltagMap extends Component {
 
         return [
           <Ziltag
-            onClick={() => get_ziltag(ziltag.id)}
+            onClick={() => fetch_ziltag(ziltag.id)}
             onMouseEnter={() => hover_on_ziltag(ziltag.id)}
             onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
             data={enhanced_ziltag}
