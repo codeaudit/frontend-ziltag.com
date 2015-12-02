@@ -28,11 +28,11 @@ function ziltag_map(state={}, action) {
       return action.payload.value
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
-      const next_state = {...state}
+      const hover_state = {...state}
       const index = state.ziltags.findIndex((x) => x.id == action.payload)
-      next_state.ziltags[index].hovered = action.type == 'HOVER_ON_ZILTAG'
+      hover_state.ziltags[index].hovered = action.type == 'HOVER_ON_ZILTAG'
       ? true : false
-      return next_state
+      return hover_state
     default:
       return state
   }
