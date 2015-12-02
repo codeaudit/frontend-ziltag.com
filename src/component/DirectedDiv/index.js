@@ -13,11 +13,13 @@ class DirectedDiv extends Component {
   render() {
     const {
       direction,
+      style,
       children
     } = this.props
 
     return (
       <div
+        style={style}
         className={
           classNames({
             'ziltag-directed-div': true,
