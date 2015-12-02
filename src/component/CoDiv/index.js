@@ -13,9 +13,18 @@ class CoDiv extends Component {
   render() {
     const {
       direction,
-      style,
+      data,
       children
     } = this.props
+
+    const x_offset = direction == 'left' ? -350 : 36
+    const y_offset = -24
+
+    const style = {
+      position: 'absolute',
+      top: data.y + y_offset,
+      left: data.x + x_offset
+    }
 
     return (
       <div
