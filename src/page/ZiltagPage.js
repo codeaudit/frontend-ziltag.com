@@ -31,7 +31,9 @@ class ZiltagPage extends Component {
     const {
       activate_avatar_menu,
       deactivate_avatar_menu,
-      get_ziltag
+      get_ziltag,
+      hover_on_ziltag,
+      unhover_on_ziltag
     } = this.actors
 
     const enhanced_ziltag_map = Object.assign({}, ziltag_map)
@@ -54,6 +56,8 @@ class ZiltagPage extends Component {
         activate_avatar_menu={activate_avatar_menu}
         deactivate_avatar_menu={deactivate_avatar_menu}
         get_ziltag={get_ziltag}
+        hover_on_ziltag={hover_on_ziltag}
+        unhover_on_ziltag={unhover_on_ziltag}
       />
     )
   }

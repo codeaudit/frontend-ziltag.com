@@ -34,3 +34,6 @@ export function get_ziltag(ziltag_id) {
     credentials: 'include'
   }), ziltag_fetched)
 }
+
+export const hover_on_ziltag = createAction('HOVER_ON_ZILTAG')
+export const unhover_on_ziltag = createAction('UNHOVER_ON_ZILTAG')
