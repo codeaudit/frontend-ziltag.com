@@ -22,6 +22,7 @@ class CoDiv extends Component {
 
     const style = {
       position: 'absolute',
+      display: data.hovered ? 'block' : 'none',
       top: data.y + y_offset,
       left: data.x + x_offset
     }

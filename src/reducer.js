@@ -26,6 +26,16 @@ function ziltag_map(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
       return action.payload.value
+    case 'HOVER_ON_ZILTAG':
+      var next_state = Object.assign({}, state)
+      var index = state.ziltags.findIndex((x) => x.id == action.payload)
+      next_state.ziltags[index].hovered = true
+      return next_state
+    case 'UNHOVER_ON_ZILTAG':
+      var next_state = Object.assign({}, state)
+      var index = state.ziltags.findIndex((x) => x.id == action.payload)
+      next_state.ziltags[index].hovered = false
+      return next_state
     default:
       return state
   }

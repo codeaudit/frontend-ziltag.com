@@ -14,6 +14,8 @@ class Ziltag extends Component {
   render() {
     const {
       onClick,
+      onMouseEnter,
+      onMouseLeave,
       data
     } = this.props
 
@@ -34,7 +36,10 @@ class Ziltag extends Component {
               'ziltag-ziltag--focused': data.focused
             })
           }
-        ></div>
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        >
+        </div>
       </Link>
     )
   }
