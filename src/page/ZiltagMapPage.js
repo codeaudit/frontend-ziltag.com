@@ -15,30 +15,15 @@ class ZiltagMapPage extends Component {
   }
 
   componentDidMount() {
-    this.actors.get_user_info()
-    this.actors.get_ziltag_map(this.props.router.params.id)
+    this.actors.fetch_current_user()
+    this.actors.fetch_ziltag_map(this.props.router.params.id)
   }
 
   render() {
-    const {
-      router,
-      user_info,
-      avatar_menu,
-      ziltag_map
-    } = this.props
-
-    const {
-      activate_avatar_menu,
-      deactivate_avatar_menu
-    } = this.actors
-
     return (
       <BasePage
-        user_info={user_info}
-        avatar_menu={avatar_menu}
-        ziltag_map={ziltag_map}
-        activate_avatar_menu={activate_avatar_menu}
-        deactivate_avatar_menu={deactivate_avatar_menu}
+        {...this.props}
+        {...this.actors}
       >
         <ZiltagMapLoginForm/>
         <ZiltagMapSignUpForm/>

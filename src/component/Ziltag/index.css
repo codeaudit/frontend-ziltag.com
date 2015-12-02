@@ -9,6 +9,6 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag--focused {
+.ziltag-ziltag--activated {
   border: 5px solid rgba(238, 46, 36, .89);
 }
