@@ -33,7 +33,7 @@ class Ziltag extends Component {
           className={
             classNames({
               'ziltag-ziltag': true,
-              'ziltag-ziltag--focused': ziltag.focused
+              'ziltag-ziltag--activated': ziltag.activated
             })
           }
           onMouseEnter={onMouseEnter}
