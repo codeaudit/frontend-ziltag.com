@@ -13,10 +13,6 @@ try {
 
 
 class BasePage extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render() {
     const {
       children,
