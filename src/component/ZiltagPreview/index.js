@@ -11,12 +11,12 @@ try {
 class ZiltagPreview extends Component {
   render() {
     const {
-      data
+      ziltag
     } = this.props
 
     return (
       <div className='ziltag-ziltag-preview'>
-        {data.preview}
+        {ziltag.preview}
       </div>
     )
   }

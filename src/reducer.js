@@ -25,7 +25,23 @@ function avatar_menu(state={}, action) {
 function ziltag_map(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
-      return action.payload.value
+      const ziltag_map_state = action.payload.value
+      ziltag_map_state.ziltags = ziltag_map_state.ziltags.map(ziltag => {
+        ziltag.link = `/ziltags/${ziltag.id}`
+        return ziltag
+      })
+      return ziltag_map_state
+    case 'ZILTAG_FETCHED':
+      if (!state.ziltags) {
+        return state
+      }
+      const focus_state = {...state}
+      focus_state.ziltags = focus_state.ziltags.map(ziltag => {
+        ziltag.focused = ziltag.id == action.payload.value.id
+        ? true : false
+        return ziltag
+      })
+      return focus_state
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
       const hover_state = {...state}

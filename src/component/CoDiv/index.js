@@ -13,7 +13,7 @@ class CoDiv extends Component {
   render() {
     const {
       direction,
-      data,
+      ziltag,
       children
     } = this.props
 
@@ -22,9 +22,9 @@ class CoDiv extends Component {
 
     const style = {
       position: 'absolute',
-      display: data.hovered ? 'block' : 'none',
-      top: data.y + y_offset,
-      left: data.x + x_offset
+      display: ziltag.hovered ? 'block' : 'none',
+      top: ziltag.y + y_offset,
+      left: ziltag.x + x_offset
     }
 
     return (

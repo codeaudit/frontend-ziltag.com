@@ -16,24 +16,24 @@ class Ziltag extends Component {
       onClick,
       onMouseEnter,
       onMouseLeave,
-      data
+      ziltag
     } = this.props
 
     const radius = 6
 
     const style = {
-      top: data.y - radius,
-      left: data.x - radius,
+      top: ziltag.y - radius,
+      left: ziltag.x - radius,
     }
 
     return (
-      <Link to={data.link} onClick={onClick}>
+      <Link to={ziltag.link} onClick={onClick}>
         <div
           style={style}
           className={
             classNames({
               'ziltag-ziltag': true,
-              'ziltag-ziltag--focused': data.focused
+              'ziltag-ziltag--focused': ziltag.focused
             })
           }
           onMouseEnter={onMouseEnter}

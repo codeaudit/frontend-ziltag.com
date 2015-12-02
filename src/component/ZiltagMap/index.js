@@ -18,31 +18,31 @@ class ZiltagMap extends Component {
       fetch_ziltag,
       hover_on_ziltag,
       unhover_on_ziltag,
-      data
+      ziltag_map
     } = this.props
 
-    const ziltags = data.ziltags && data.ziltags.map(
+    const ziltags = ziltag_map.ziltags && ziltag_map.ziltags.map(
       ziltag => {
         const enhanced_ziltag = Object.assign({}, ziltag)
         const direction = ziltag.x < 0.5 ? 'right' : 'left'
 
-        enhanced_ziltag.x = ziltag.x * data.width
-        enhanced_ziltag.y = ziltag.y * data.height
+        enhanced_ziltag.x = ziltag.x * ziltag_map.width
+        enhanced_ziltag.y = ziltag.y * ziltag_map.height
 
         return [
           <Ziltag
             onClick={() => fetch_ziltag(ziltag.id)}
             onMouseEnter={() => hover_on_ziltag(ziltag.id)}
             onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
-            data={enhanced_ziltag}
+            ziltag={enhanced_ziltag}
             key={ziltag.id}
           />,
           <CoDiv
             direction={direction}
-            data={enhanced_ziltag}
+            ziltag={enhanced_ziltag}
             key={'p' + ziltag.id}
           >
-            <ZiltagPreview data={enhanced_ziltag}/>
+            <ZiltagPreview ziltag={enhanced_ziltag}/>
           </CoDiv>
         ]
       }
@@ -50,12 +50,12 @@ class ZiltagMap extends Component {
 
     return (
       <div className='ziltag-ziltag-map'>
-        <img className='ziltag-ziltag-map__src' src={data.src}/>
+        <img className='ziltag-ziltag-map__src' src={ziltag_map.src}/>
         <div className='ziltag-ziltag-map__prompt'>click anywhere to tag</div>
         <div
           style={{
-            width: data.width,
-            height: data.height
+            width: ziltag_map.width,
+            height: ziltag_map.height
           }}
           className='ziltag-ziltag-map__container'
         >

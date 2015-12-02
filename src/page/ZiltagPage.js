@@ -20,44 +20,10 @@ class ZiltagPage extends Component {
   }
 
   render() {
-    const {
-      router,
-      current_user,
-      avatar_menu,
-      current_ziltag,
-      ziltag_map
-    } = this.props
-
-    const {
-      activate_avatar_menu,
-      deactivate_avatar_menu,
-      fetch_ziltag,
-      hover_on_ziltag,
-      unhover_on_ziltag
-    } = this.actors
-
-    const enhanced_ziltag_map = Object.assign({}, ziltag_map)
-    if (ziltag_map.ziltags) {
-      enhanced_ziltag_map.ziltags = enhanced_ziltag_map.ziltags.map(ziltag => {
-        if (ziltag.id == current_ziltag.id) {
-          ziltag.focused = true
-        } else {
-          ziltag.focused = false
-        }
-        return ziltag
-      })
-    }
-
     return (
       <BasePage
-        current_user={current_user}
-        avatar_menu={avatar_menu}
-        ziltag_map={enhanced_ziltag_map}
-        activate_avatar_menu={activate_avatar_menu}
-        deactivate_avatar_menu={deactivate_avatar_menu}
-        fetch_ziltag={fetch_ziltag}
-        hover_on_ziltag={hover_on_ziltag}
-        unhover_on_ziltag={unhover_on_ziltag}
+        {...this.props}
+        {...this.actors}
       />
     )
   }
