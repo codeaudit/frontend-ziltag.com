@@ -18,9 +18,30 @@ class ZiltagMapSignUpForm extends Component {
 
     return (
       <div className='ziltag-ziltag-map-sign-up-form'>
-        <input onChange={onNameChange}/>
-        <input onChange={onEmailChange}/>
-        <div onClick={onSubmit}>POST</div>
+        <div className="interactive_dialog">
+          <div className="interactive_dialog__content">
+            <form className="auth-form">
+              <div className="auth-form__fields">
+                <div className="field">
+                  <input onChange={onNameChange} type="text" className="field__input" placeholder="Username" />
+                  <img src="username.png" className="field__icon" />
+                </div>
+                <div className="field">
+                  <input onChange={onEmailChange} type="text" className="field__input" placeholder="Email" />
+                  <img src="email.png" className="field__icon" />
+                </div>
+                <div className="auth-form__field" />
+              </div>
+              <div onClick={onSubmit} className="auth-form__action">Sign Up</div>
+              <div className="auth-form__footer">Signing up means you agree with our Terms and Privacy Policy.</div>
+            </form>
+          </div>
+          <div className="interactive_dialog__actions">
+            <div className="interactive_dialog__action--active">Sign up</div>
+            <div className="interactive_dialog__action">Login</div>
+            <div className="interactive_dialog__cancel">Cancel</div>
+          </div>
+        </div>
       </div>
     )
   }
