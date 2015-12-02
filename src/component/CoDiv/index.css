@@ -1,4 +1,4 @@
-.ziltag-directed-div {
+.ziltag-co-div {
   position: relative;
   width: 326px;
   min-height: 60px;
@@ -7,7 +7,7 @@
   box-shadow: 0 0 5px #333;
 }
 
-.ziltag-directed-div::before {
+.ziltag-co-div::before {
   content: '';
   position: absolute;
   width: 0;
@@ -19,13 +19,13 @@
   box-shadow: -3px 3px 3px 0 rgba(0, 0, 0, 0.12);
 }
 
-.ziltag-directed-div--right::before {
+.ziltag-co-div--right::before {
   top: 20px;
   left: 0;
   transform: rotate(45deg);
 }
 
-.ziltag-directed-div--left::before {
+.ziltag-co-div--left::before {
   top: 40px;
   right: -14px;
   transform: rotate(225deg);

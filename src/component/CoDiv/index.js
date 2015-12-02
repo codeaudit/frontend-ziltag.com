@@ -9,7 +9,7 @@ try {
 } catch (e) {}
 
 
-class DirectedDiv extends Component {
+class CoDiv extends Component {
   render() {
     const {
       direction,
@@ -22,9 +22,9 @@ class DirectedDiv extends Component {
         style={style}
         className={
           classNames({
-            'ziltag-directed-div': true,
-            'ziltag-directed-div--left': direction == 'left',
-            'ziltag-directed-div--right': direction == 'right'
+            'ziltag-co-div': true,
+            'ziltag-co-div--left': direction == 'left',
+            'ziltag-co-div--right': direction == 'right'
           })
         }
       >
@@ -34,4 +34,4 @@ class DirectedDiv extends Component {
   }
 }
 
-export default DirectedDiv
+export default CoDiv
