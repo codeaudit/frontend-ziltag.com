@@ -35,14 +35,21 @@
 }
 
 .ziltag-ziltag-map .ziltag-ziltag-map__prompt {
-  z-index: 2;
+  z-index: 4;
 }
 
 .ziltag-ziltag-map .ziltag-ziltag-map__container {
   z-index: 1;
 }
 
+.ziltag-ziltag-map__container .ziltag-ziltag, .ziltag-co-div {
+  position: absolute;
+}
 
 .ziltag-ziltag-map__container .ziltag-ziltag {
-  position: absolute;
+  z-index: 2;
+}
+
+.ziltag-ziltag-map__container .ziltag-co-div {
+  z-index: 3;
 }

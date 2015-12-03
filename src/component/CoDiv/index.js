@@ -21,7 +21,6 @@ class CoDiv extends Component {
     const y_offset = -24
 
     const style = {
-      position: 'absolute',
       display: ziltag.hovered ? 'block' : 'none',
       top: ziltag.y + y_offset,
       left: ziltag.x + x_offset
