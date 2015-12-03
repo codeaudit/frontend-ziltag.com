@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router'
 
 import Ziltag from '../Ziltag'
 import ZiltagPreview from '../ZiltagPreview'
@@ -34,13 +35,20 @@ class ZiltagMap extends Component {
         ? true : false
 
         return [
-          <Ziltag
-            onClick={() => fetch_ziltag(ziltag.id)}
-            onMouseEnter={() => hover_on_ziltag(ziltag.id)}
-            onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
-            ziltag={enhanced_ziltag}
-            key={ziltag.id}
-          />,
+          <Link
+            to={ziltag.link}
+            onClick={(e) => {
+              fetch_ziltag(ziltag.id)
+              e.stopPropagation()
+            }}
+          >
+            <Ziltag
+              onMouseEnter={() => hover_on_ziltag(ziltag.id)}
+              onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
+              ziltag={ziltag}
+              key={ziltag.id}
+            />
+          </Link>,
           <CoDiv
             direction={direction}
             ziltag={enhanced_ziltag}
