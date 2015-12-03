@@ -50,7 +50,7 @@ class BasePage extends Component {
           {...this.props}
         />
         <span className='ziltag-base-page__href'>
-          From <a href={ziltag_map.href}>{ziltag_map.host}</a>
+          From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
         </span>
         {children}
       </div>
