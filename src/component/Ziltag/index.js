@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router'
 import classNames from 'classnames'
 
 
@@ -19,28 +18,27 @@ class Ziltag extends Component {
       ziltag
     } = this.props
 
-    const radius = 6
+    const radius = 12
 
     const style = {
-      top: ziltag.y - radius,
-      left: ziltag.x - radius,
+      top: ziltag.y_px - radius,
+      left: ziltag.x_px - radius,
     }
 
     return (
-      <Link to={ziltag.link} onClick={onClick}>
-        <div
-          style={style}
-          className={
-            classNames({
-              'ziltag-ziltag': true,
-              'ziltag-ziltag--activated': ziltag.activated
-            })
-          }
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-        >
-        </div>
-      </Link>
+      <div
+        style={style}
+        className={
+          classNames({
+            'ziltag-ziltag': true,
+            'ziltag-ziltag--activated': ziltag.activated
+          })
+        }
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      >
+      </div>
     )
   }
 }

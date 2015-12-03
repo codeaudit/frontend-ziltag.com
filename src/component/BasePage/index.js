@@ -44,7 +44,7 @@ class BasePage extends Component {
             }}
           />
         </div>
-        <AvatarMenu activated={avatar_menu.avatar_menu_activated}/>
+        <AvatarMenu activated={avatar_menu.activated}/>
         <ZiltagMap
           {...this.props}
         />

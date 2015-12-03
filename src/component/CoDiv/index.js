@@ -12,18 +12,19 @@ try {
 class CoDiv extends Component {
   render() {
     const {
-      direction,
+      onClick,
       ziltag,
       children
     } = this.props
 
+    const direction = ziltag.x < 0.5 ? 'right' : 'left'
     const x_offset = direction == 'left' ? -350 : 36
     const y_offset = -24
 
     const style = {
-      display: ziltag.hovered ? 'block' : 'none',
-      top: ziltag.y + y_offset,
-      left: ziltag.x + x_offset
+      display: ziltag.co_div.activated ? 'block' : 'none',
+      top: ziltag.y_px + y_offset,
+      left: ziltag.x_px + x_offset
     }
 
     return (
@@ -36,6 +37,7 @@ class CoDiv extends Component {
             'ziltag-co-div--right': direction == 'right'
           })
         }
+        onClick={onClick}
       >
       {children}
       </div>

@@ -37,3 +37,6 @@ export function fetch_ziltag(ziltag_id) {
 
 export const hover_on_ziltag = createAction('HOVER_ON_ZILTAG')
 export const unhover_on_ziltag = createAction('UNHOVER_ON_ZILTAG')
+
+export const activate_ziltag_input = createAction('ACTIVATE_ZILTAG_INPUT')
+export const deactivate_ziltag_input = createAction('DEACTIVATE_ZILTAG_INPUT')
