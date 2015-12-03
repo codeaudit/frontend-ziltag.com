@@ -14,9 +14,9 @@ function current_user(state={}, action) {
 function avatar_menu(state={}, action) {
   switch (action.type) {
     case 'ACTIVATE_AVATAR_MENU':
-      return {avatar_menu_activated: true}
+      return {activated: true}
     case 'DEACTIVATE_AVATAR_MENU':
-      return {avatar_menu_activated: false}
+      return {activated: false}
     default:
       return state
   }
