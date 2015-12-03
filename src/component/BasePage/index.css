@@ -8,6 +8,16 @@
   cursor: pointer;
 }
 
+.ziltag-base-page__href {
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+  font-size: 11px;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ziltag-base-page__href a {
+  color: rgba(0, 0, 0, .87);
+}
+
 .ziltag-base-page .ziltag-base-page__avatar{
   float: right;
   margin: 12px 16px;
@@ -20,5 +30,9 @@
 }
 
 .ziltag-base-page .ziltag-ziltag-map {
-  margin: 12px 18px;
+  margin: 12px 18px 4px;
+}
+
+.ziltag-base-page .ziltag-base-page__href {
+  margin: 0 18px;
 }

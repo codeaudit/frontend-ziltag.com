@@ -5,7 +5,7 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag-map__src {
+.ziltag-ziltag-map__img {
   display: block;
 }
 
@@ -21,7 +21,7 @@
   color: white;
 }
 
-.ziltag-ziltag-map .ziltag-ziltag-map__src,
+.ziltag-ziltag-map .ziltag-ziltag-map__img,
 .ziltag-ziltag-map__prompt,
 .ziltag-ziltag-map__container {
   position: absolute;
@@ -30,8 +30,9 @@
   margin: auto;
 }
 
-.ziltag-ziltag-map .ziltag-ziltag-map__src {
+.ziltag-ziltag-map .ziltag-ziltag-map__img {
   z-index: 0;
+  width: 100%;
 }
 
 .ziltag-ziltag-map .ziltag-ziltag-map__prompt {
@@ -40,6 +41,10 @@
 
 .ziltag-ziltag-map .ziltag-ziltag-map__container {
   z-index: 1;
+}
+
+.ziltag-ziltag-map .ziltag-ziltag-map__href {
+  position: absolute;
 }
 
 .ziltag-ziltag-map__container .ziltag-ziltag, .ziltag-co-div {
