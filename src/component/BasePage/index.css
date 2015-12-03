@@ -1,22 +1,22 @@
 .ziltag-base-page__head {
-	border-bottom: 1px solid rgba(0, 0, 0, .12);
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
 .ziltag-base-page__avatar {
-	width: 30px;
-	border-radius: 50%;
-	cursor: pointer;
+  width: 30px;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .ziltag-base-page .ziltag-base-page__avatar{
-	float: right;
-	margin: 12px 16px;
+  float: right;
+  margin: 12px 16px;
 }
 
 .ziltag-base-page .ziltag-base-page__avatar-menu {
-	position: absolute;
-	right: 17px;
-	top: 47px;
+  position: absolute;
+  right: 17px;
+  top: 47px;
 }
 
 .ziltag-base-page .ziltag-ziltag-map {
