@@ -28,16 +28,18 @@ function ziltag_map(state={}, action) {
       const ziltag_map_state = action.payload.value
       ziltag_map_state.ziltags = ziltag_map_state.ziltags.map(ziltag => {
         ziltag.link = `/ziltags/${ziltag.id}`
+        ziltag.co_div = {activated: false}
         return ziltag
       })
       return ziltag_map_state
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
-      const hover_state = {...state}
+      const co_div_state = {...state}
       const index = state.ziltags.findIndex((x) => x.id == action.payload)
-      hover_state.ziltags[index].hovered = action.type == 'HOVER_ON_ZILTAG'
-      ? true : false
-      return hover_state
+      co_div_state.ziltags[index].co_div = {
+        activated: action.type == 'HOVER_ON_ZILTAG' ? true : false
+      }
+      return co_div_state
     default:
       return state
   }
