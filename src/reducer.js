@@ -31,17 +31,6 @@ function ziltag_map(state={}, action) {
         return ziltag
       })
       return ziltag_map_state
-    case 'ZILTAG_FETCHED':
-      if (!state.ziltags) {
-        return state
-      }
-      const activate_state = {...state}
-      activate_state.ziltags = activate_state.ziltags.map(ziltag => {
-        ziltag.activated = ziltag.id == action.payload.value.id
-        ? true : false
-        return ziltag
-      })
-      return activate_state
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
       const hover_state = {...state}
