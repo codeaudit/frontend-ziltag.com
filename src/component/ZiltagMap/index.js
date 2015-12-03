@@ -50,12 +50,22 @@ class ZiltagMap extends Component {
 
     return (
       <div className='ziltag-ziltag-map'>
-        <img className='ziltag-ziltag-map__src' src={ziltag_map.src}/>
-        <div className='ziltag-ziltag-map__prompt'>click anywhere to tag</div>
-        <div
+        <img
           style={{
             width: ziltag_map.width,
             height: ziltag_map.height
+          }}
+          className='ziltag-ziltag-map__src'
+          src={ziltag_map.src}
+        />
+        <div className='ziltag-ziltag-map__prompt'>
+          click anywhere to tag
+        </div>
+        <div
+          style={{
+            width: ziltag_map.width,
+            height: ziltag_map.height,
+
           }}
           className='ziltag-ziltag-map__container'
         >
