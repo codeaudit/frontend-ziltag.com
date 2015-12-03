@@ -18,6 +18,7 @@ class BasePage extends Component {
       children,
       current_user,
       avatar_menu,
+      ziltag_map,
       activate_avatar_menu,
       deactivate_avatar_menu
     } = this.props
@@ -48,6 +49,9 @@ class BasePage extends Component {
         <ZiltagMap
           {...this.props}
         />
+        <span className='ziltag-base-page__href'>
+          From <a href={ziltag_map.href}>{ziltag_map.host}</a>
+        </span>
         {children}
       </div>
     )

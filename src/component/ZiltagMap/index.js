@@ -80,13 +80,15 @@ class ZiltagMap extends Component {
     ]
 
     return (
-      <div className='ziltag-ziltag-map'>
+      <div
+        style={{
+          width: ziltag_map.width,
+          height: ziltag_map.height
+        }}
+        className='ziltag-ziltag-map'
+      >
         <img
-          style={{
-            width: ziltag_map.width,
-            height: ziltag_map.height
-          }}
-          className='ziltag-ziltag-map__src'
+          className='ziltag-ziltag-map__img'
           src={ziltag_map.src}
         />
         {
