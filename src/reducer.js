@@ -52,10 +52,22 @@ function current_ziltag(state={}, action) {
   }
 }
 
+function ziltag_input(state={}, action) {
+  switch (action.type) {
+    case 'ACTIVATE_ZILTAG_INPUT':
+      return {...action.payload, activated: true, co_div: {activated: true}}
+    case 'DEACTIVATE_ZILTAG_INPUT':
+      return {activated: false}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
   avatar_menu,
   ziltag_map,
-  current_ziltag
+  current_ziltag,
+  ziltag_input
 })
