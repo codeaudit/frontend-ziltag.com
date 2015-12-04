@@ -58,9 +58,18 @@ function current_ziltag(state={}, action) {
 function ziltag_input(state={}, action) {
   switch (action.type) {
     case 'ACTIVATE_ZILTAG_INPUT':
-      return {...action.payload, activated: true, co_div: {activated: true}}
+      return {
+        ...action.payload,
+        mode: 'ziltag',
+        activated: true,
+        co_div: {activated: true}
+      }
     case 'DEACTIVATE_ZILTAG_INPUT':
       return {activated: false}
+    case 'ZILTAG_INPUT_LOGIN':
+      return {...state, mode: 'login'}
+    case 'ZILTAG_INPUT_SIGN_UP':
+      return {...state, mode: 'sign_up'}
     case 'ZILTAG_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
     default:

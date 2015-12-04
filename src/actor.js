@@ -61,3 +61,7 @@ export function create_ziltag(map_id, x, y, content) {
 }
 
 export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
+
+export const ziltag_input_sign_up = createAction('ZILTAG_INPUT_SIGN_UP')
+export const ziltag_input_login = createAction('ZILTAG_INPUT_LOGIN')
+

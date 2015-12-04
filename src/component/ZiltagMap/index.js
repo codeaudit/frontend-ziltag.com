@@ -6,6 +6,8 @@ import CoDiv from '../CoDiv'
 import ZiltagPreview from '../ZiltagPreview'
 import ZiltagInput from '../ZiltagInput'
 import ZiltagMapWarn from '../ZiltagMapWarn'
+import ZiltagMapLoginForm from '../ZiltagMapLoginForm'
+import ZiltagMapSignUpForm from '../ZiltagMapSignUpForm'
 
 
 try {
@@ -25,6 +27,8 @@ class ZiltagMap extends Component {
       activate_ziltag_input,
       deactivate_ziltag_input,
       ziltag_input_changed,
+      ziltag_input_sign_up,
+      ziltag_input_login,
       create_ziltag,
       pushState,
       ziltag_map,
@@ -104,8 +108,18 @@ class ZiltagMap extends Component {
                   })
                 }}
               />
-            : <ZiltagMapWarn type='verification'/>
-          : <ZiltagMapWarn type='authentication'/>
+            : <ZiltagMapWarn
+                type='verify'
+              />
+          : ziltag_input.mode == 'login'
+          ? <ZiltagMapLoginForm/>
+          : ziltag_input.mode == 'sign_up'
+          ? <ZiltagMapSignUpForm/>
+          : <ZiltagMapWarn
+              login={ziltag_input_login}
+              sign_up={ziltag_input_sign_up}
+              type='auth'
+            />
         }
       </CoDiv>
     ]
