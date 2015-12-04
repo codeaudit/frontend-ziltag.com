@@ -48,6 +48,7 @@ function ziltag_map(state={}, action) {
 function current_ziltag(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_FETCHED':
+    case 'ZILTAG_CREATED':
       return action.payload.value
     default:
       return state
@@ -60,6 +61,8 @@ function ziltag_input(state={}, action) {
       return {...action.payload, activated: true, co_div: {activated: true}}
     case 'DEACTIVATE_ZILTAG_INPUT':
       return {activated: false}
+    case 'ZILTAG_INPUT_CHANGED':
+      return {...state, content: action.payload.target.value}
     default:
       return state
   }

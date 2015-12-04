@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
+import {pushState} from 'redux-router'
 
 import BasePage from '../component/BasePage'
 import ZiltagMapLoginForm from '../component/ZiltagMapLoginForm'
@@ -11,7 +12,7 @@ import * as actors from '../actor'
 class ZiltagMapPage extends Component {
   constructor(props) {
     super(props)
-    this.actors = bindActionCreators(actors, this.props.dispatch)
+    this.actors = bindActionCreators({...actors, pushState}, this.props.dispatch)
   }
 
   componentDidMount() {
