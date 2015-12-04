@@ -40,3 +40,24 @@ export const unhover_on_ziltag = createAction('UNHOVER_ON_ZILTAG')
 
 export const activate_ziltag_input = createAction('ACTIVATE_ZILTAG_INPUT')
 export const deactivate_ziltag_input = createAction('DEACTIVATE_ZILTAG_INPUT')
+
+export const ziltag_created = createAction('ZILTAG_CREATED')
+
+export function create_ziltag(map_id, x, y, content) {
+  const api = `${RAILS_ADDR}/api/v1/ziltags`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      ziltag: {
+        map_id, x, y, content
+      }
+    })
+  }), ziltag_created)
+}
+
+export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')

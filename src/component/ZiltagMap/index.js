@@ -2,8 +2,10 @@ import React, {Component} from 'react'
 import {Link} from 'react-router'
 
 import Ziltag from '../Ziltag'
-import ZiltagPreview from '../ZiltagPreview'
 import CoDiv from '../CoDiv'
+import ZiltagPreview from '../ZiltagPreview'
+import ZiltagInput from '../ZiltagInput'
+import ZiltagMapWarn from '../ZiltagMapWarn'
 
 
 try {
@@ -17,9 +19,14 @@ class ZiltagMap extends Component {
   render() {
     const {
       fetch_ziltag,
+      fetch_ziltag_map,
       hover_on_ziltag,
       unhover_on_ziltag,
       activate_ziltag_input,
+      deactivate_ziltag_input,
+      ziltag_input_changed,
+      create_ziltag,
+      pushState,
       ziltag_map,
       ziltag_input,
       current_ziltag,
@@ -79,9 +86,26 @@ class ZiltagMap extends Component {
         {
           current_user.usr
           ? current_user.usr.confirmed
-            ? 'input form'
-            : 'should verify'
-          : 'should login'
+            ? <ZiltagInput
+                onChange={ziltag_input_changed}
+                onSubmit={() => {
+                  const {
+                    map_id,
+                    x,
+                    y,
+                    content
+                  } = ziltag_input
+
+                  create_ziltag(map_id, x, y, content)
+                  .then((action) => {
+                    pushState(null, `/ziltags/${action.payload.value.id}`)
+                    fetch_ziltag_map(ziltag_map.id)
+                    deactivate_ziltag_input()
+                  })
+                }}
+              />
+            : <ZiltagMapWarn type='verification'/>
+          : <ZiltagMapWarn type='authentication'/>
         }
       </CoDiv>
     ]
@@ -122,7 +146,7 @@ class ZiltagMap extends Component {
               y_px > radius &&
               y_px <= ziltag_map.height - radius
             ) {
-              activate_ziltag_input({x_px, y_px, x, y})
+              activate_ziltag_input({x_px, y_px, x, y, map_id: ziltag_map.id})
               e.stopPropagation()
             }
           }}
