@@ -21,8 +21,9 @@ class ZiltagMap extends Component {
       unhover_on_ziltag,
       activate_ziltag_input,
       ziltag_map,
+      ziltag_input,
       current_ziltag,
-      ziltag_input
+      current_user
     } = this.props
 
     const ziltag_components = ziltag_map.ziltags && ziltag_map.ziltags.map(
@@ -75,7 +76,13 @@ class ZiltagMap extends Component {
         ziltag={ziltag_input}
         key='ziltag_input'
       >
-        ziltag_input
+        {
+          current_user.usr
+          ? current_user.usr.confirmed
+            ? 'input form'
+            : 'should verify'
+          : 'should login'
+        }
       </CoDiv>
     ]
 
@@ -116,6 +123,7 @@ class ZiltagMap extends Component {
               y_px <= ziltag_map.height - radius
             ) {
               activate_ziltag_input({x_px, y_px, x, y})
+              e.stopPropagation()
             }
           }}
         >
