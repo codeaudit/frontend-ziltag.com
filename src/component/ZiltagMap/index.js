@@ -116,6 +116,7 @@ class ZiltagMap extends Component {
               y_px <= ziltag_map.height - radius
             ) {
               activate_ziltag_input({x_px, y_px, x, y})
+              e.stopPropagation()
             }
           }}
         >

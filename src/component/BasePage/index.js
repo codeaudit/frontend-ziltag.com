@@ -20,7 +20,8 @@ class BasePage extends Component {
       avatar_menu,
       ziltag_map,
       activate_avatar_menu,
-      deactivate_avatar_menu
+      deactivate_avatar_menu,
+      deactivate_ziltag_input
     } = this.props
 
     const {
@@ -32,6 +33,7 @@ class BasePage extends Component {
         className='ziltag-base-page'
         onClick={() => {
           deactivate_avatar_menu()
+          deactivate_ziltag_input()
         }}
       >
         <div className='ziltag-base-page__head'>
