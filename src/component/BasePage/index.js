@@ -24,10 +24,6 @@ class BasePage extends Component {
       deactivate_ziltag_input
     } = this.props
 
-    const {
-      avatar
-    } = current_user
-
     return (
       <div
         className='ziltag-base-page'
@@ -40,7 +36,7 @@ class BasePage extends Component {
           <Logo/>
           <img
             className='ziltag-base-page__avatar'
-            src={avatar && avatar.thumb}
+            src={current_user.usr && current_user.usr.avatar}
             onClick={(e) => {
               activate_avatar_menu()
               e.stopPropagation()
