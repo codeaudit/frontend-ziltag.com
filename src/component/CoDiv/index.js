@@ -18,8 +18,8 @@ class CoDiv extends Component {
     } = this.props
 
     const direction = ziltag.x < 0.5 ? 'right' : 'left'
-    const x_offset = direction == 'left' ? -350 : 36
-    const y_offset = -24
+    const x_offset = direction == 'left' ? -356 : 30
+    const y_offset = -30
 
     const style = {
       display: ziltag.co_div.activated ? 'block' : 'none',
