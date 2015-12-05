@@ -1,4 +1,6 @@
 import React, {Component} from 'react'
+import ZiltagMapAuthentication from '../ZiltagMapAuthentication'
+import ZiltagMapVerification from '../ZiltagMapVerification'
 
 
 class ZiltagMapWarn extends Component {
@@ -7,9 +9,16 @@ class ZiltagMapWarn extends Component {
       type
     } = this.props
 
-    return (
-      <div>ZiltagMapWarn\'s placeholder</div>
-    )
+    switch(type){
+    case 'authentication':
+      return <ZiltagMapAuthentication />
+      break
+    case 'verification':
+      return <ZiltagMapVerification />
+      break
+    default:
+      return console.error(`Unknown Type: ${type}`)
+    }
   }
 }
 
