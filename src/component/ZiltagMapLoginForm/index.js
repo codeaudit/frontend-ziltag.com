@@ -12,8 +12,8 @@ class ZiltagMapLoginForm extends Component {
 
     return (
       <AuthDialog select="login">
-        <TextField onChange={onUserChange} name="login" placeholder="Email or Username" src="./email.png" />
-        <TextField onChange={onPasswordChange} name="password" placeholder="Password" src="./password.png" />
+        <TextField onChange={onUserChange} name="login" placeholder="Email or Username" icon="email" />
+        <TextField onChange={onPasswordChange} name="password" placeholder="Password" icon="password" />
         <div onClick={onSubmit} className="auth-dialog__submit">Login</div>
         <div className="auth-dialog__footer auth-dialog__footer--blue"><a href="#">Forget password?</a></div>
       </AuthDialog>
