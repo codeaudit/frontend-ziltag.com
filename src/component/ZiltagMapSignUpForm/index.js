@@ -8,8 +8,8 @@ class ZiltagMapSignUpForm extends Component {
       <ZiltagMapAuthDialog select="sign-up">
         <ZiltagMapTextField name="username" placeholder="Username" icon="username" />
         <ZiltagMapTextField name="email" placeholder="Email" icon="email" />
-        <div className="auth-dialog__submit">Sign Up</div>
-        <div className="auth-dialog__footer">Signing up means you agree with our <a href="/term_of_service" target="_blank">Terms</a> and <a href="/privacy_policy" target="_blank">Privacy Policy.</a></div>
+        <div className="ziltag-ziltag-map-auth-dialog__submit">Sign Up</div>
+        <div className="ziltag-ziltag-map-auth-dialog__footer">Signing up means you agree with our <a href="/term_of_service" target="_blank">Terms</a> and <a href="/privacy_policy" target="_blank">Privacy Policy.</a></div>
       </ZiltagMapAuthDialog>
     )
   }

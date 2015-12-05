@@ -10,14 +10,14 @@ try {
 class ZiltagMapAuthDialog extends React.Component {
   render(){
     return(
-      <div className="auth-dialog">
-        <div className="auth-dialog__content">
+      <div className="ziltag-ziltag-map-auth-dialog">
+        <div className="ziltag-ziltag-map-auth-dialog__content">
           {this.props.children}
         </div>
-        <div className="auth-dialog__actions">
-          <div className={classNames('auth-dialog__action', {'auth-dialog__action--active': this.props.select == 'sign-up'})}>Sign Up</div>
-          <div className={classNames('auth-dialog__action', {'auth-dialog__action--active': this.props.select == 'login'})}>Login</div>
-          <div className="auth-dialog__cancel">Cancel</div>
+        <div className="ziltag-ziltag-map-auth-dialog__actions">
+          <div className={classNames('ziltag-ziltag-map-auth-dialog__action', {'ziltag-ziltag-map-auth-dialog__action--active': this.props.select == 'sign-up'})}>Sign Up</div>
+          <div className={classNames('ziltag-ziltag-map-auth-dialog__action', {'ziltag-ziltag-map-auth-dialog__action--active': this.props.select == 'login'})}>Login</div>
+          <div className="ziltag-ziltag-map-auth-dialog__cancel">Cancel</div>
         </div>
       </div>
     )

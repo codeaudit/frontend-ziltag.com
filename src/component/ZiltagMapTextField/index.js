@@ -13,8 +13,8 @@ class ZiltagMapTextField extends React.Component {
   render(){
     let {icon, ...inputAttrs} = this.props
     return(
-      <div className="text-field">
-        <input type="text" className={classNames('text-field__input', `text-field__input--${icon}`)} {...inputAttrs}/>
+      <div className="ziltag-ziltag-map-text-field">
+        <input type="text" className={classNames('ziltag-ziltag-map-text-field__input', `ziltag-ziltag-map-text-field__input--${icon}`)} {...inputAttrs}/>
       </div>
     )
   }

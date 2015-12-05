@@ -8,8 +8,8 @@ class ZiltagMapLoginForm extends Component {
       <AuthDialog select="login">
         <TextField name="login" placeholder="Email or Username" icon="email" />
         <TextField name="password" placeholder="Password" icon="password" />
-        <div className="auth-dialog__submit">Login</div>
-        <div className="auth-dialog__footer auth-dialog__footer--blue"><a href="#">Forget password?</a></div>
+        <div className="ziltag-ziltag-map-auth-dialog__submit">Login</div>
+        <div className="ziltag-ziltag-map-auth-dialog__footer ziltag-ziltag-map-auth-dialog__footer--blue"><a href="#">Forget password?</a></div>
       </AuthDialog>
     )
   }
