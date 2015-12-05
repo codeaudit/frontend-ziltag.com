@@ -8,7 +8,7 @@ try {
 } catch (e) {}
 
 
-class TextField extends React.Component {
+class ZiltagMapTextField extends React.Component {
   render(){
     let {src, ...inputAttrs} = this.props
     return(
@@ -16,8 +16,8 @@ class TextField extends React.Component {
         <img src={src} className="text-field__image" />
         <input type="text" className="text-field__input" {...inputAttrs}/>
       </div>
-    );
+    )
   }
 }
 
-export default TextField
+export default ZiltagMapTextField
