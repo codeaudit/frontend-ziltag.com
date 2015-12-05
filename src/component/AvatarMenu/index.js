@@ -9,7 +9,7 @@ try {
 
 
 const Item = (props) => (
-  <li className='ziltag-base-page__avatar-menu-item'>
+  <li onClick={props.onClick} className='ziltag-base-page__avatar-menu-item'>
     {props.children}
   </li>
 )
@@ -17,7 +17,8 @@ const Item = (props) => (
 class AvatarMenu extends Component {
   render() {
     const {
-      activated
+      activated,
+      logout
     } = this.props
 
     const style = {
@@ -30,7 +31,7 @@ class AvatarMenu extends Component {
         <Item>Term of Use</Item>
         <Item>Privacy</Item>
         <hr/>
-        <Item>Logout</Item>
+        <Item onClick={logout}>Logout</Item>
       </ul>
     )
   }

@@ -21,7 +21,8 @@ class BasePage extends Component {
       ziltag_map,
       activate_avatar_menu,
       deactivate_avatar_menu,
-      deactivate_ziltag_input
+      deactivate_ziltag_input,
+      current_user_logout
     } = this.props
 
     return (
@@ -35,6 +36,9 @@ class BasePage extends Component {
         <div className='ziltag-base-page__head'>
           <Logo/>
           <img
+            style={{
+              display: current_user.usr ? 'inline' : 'none'
+            }}
             className='ziltag-base-page__avatar'
             src={current_user.usr && current_user.usr.avatar}
             onClick={(e) => {
@@ -43,7 +47,7 @@ class BasePage extends Component {
             }}
           />
         </div>
-        <AvatarMenu activated={avatar_menu.activated}/>
+        <AvatarMenu logout={current_user_logout} activated={avatar_menu.activated}/>
         <ZiltagMap
           {...this.props}
         />
