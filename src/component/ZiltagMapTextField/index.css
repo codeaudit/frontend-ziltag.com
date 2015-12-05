@@ -1,18 +1,24 @@
 .text-field {
   border-bottom: 1px solid rgba(0, 0, 0, 0.26);
 }
-.text-field__image {
-  vertical-align: middle;
-  width: 20px;
-  height: 20px;
-}
 .text-field__input {
   font-family: Roboto-Regular, sans-serif;
   font-weight: normal;
-  padding-left: 20px;
+  padding-left: 40px;
   font-size: 12px;
   border-width: 0;
   line-height: 32px;
+  background-position: 0 center;
+  background-repeat: no-repeat;
+}
+.text-field__input--username{
+  background-image: url(username.png);
+}
+.text-field__input--email{
+  background-image: url(email.png);
+}
+.text-field__input--password{
+  background-image: url(password.png);
 }
 .text-field__input:focus {
   outline: 0;

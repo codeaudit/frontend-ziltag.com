@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import classNames from 'classnames/bind'
 
 
 try {
@@ -10,11 +11,10 @@ try {
 
 class ZiltagMapTextField extends React.Component {
   render(){
-    let {src, ...inputAttrs} = this.props
+    let {icon, ...inputAttrs} = this.props
     return(
       <div className="text-field">
-        <img src={src} className="text-field__image" />
-        <input type="text" className="text-field__input" {...inputAttrs}/>
+        <input type="text" className={classNames('text-field__input', `text-field__input--${icon}`)} {...inputAttrs}/>
       </div>
     )
   }
