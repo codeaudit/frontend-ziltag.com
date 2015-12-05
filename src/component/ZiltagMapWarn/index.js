@@ -10,14 +10,14 @@ class ZiltagMapWarn extends Component {
     } = this.props
 
     switch(type){
-    case 'authentication':
-      return <ZiltagMapAuthentication />
-      break
-    case 'verification':
-      return <ZiltagMapVerification />
-      break
-    default:
-      return console.error(`Unknown Type: ${type}`)
+      case 'authentication':
+        return <ZiltagMapAuthentication />
+        break
+      case 'verification':
+        return <ZiltagMapVerification />
+        break
+      default:
+        return console.error(`Unknown Type: ${type}`)
     }
   }
 }
