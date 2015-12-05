@@ -65,3 +65,11 @@ export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
 export const ziltag_input_sign_up = createAction('ZILTAG_INPUT_SIGN_UP')
 export const ziltag_input_login = createAction('ZILTAG_INPUT_LOGIN')
 
+export const current_user_logged_out = createAction('CURRENT_USER_LOGGED_OUT')
+
+export function current_user_logout() {
+  const api = `${RAILS_ADDR}/api/v1/sign_out`
+  return bind(fetch(api, {
+    credentials: 'include'
+  }), current_user_logged_out)
+}

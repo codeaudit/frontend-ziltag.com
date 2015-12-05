@@ -6,6 +6,8 @@ function current_user(state={}, action) {
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
       return action.payload.value
+    case 'CURRENT_USER_LOGGED_OUT':
+      return {}
     default:
       return state
   }
