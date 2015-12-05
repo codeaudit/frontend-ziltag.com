@@ -18,14 +18,14 @@ class ZiltagMapAuthDialog extends React.Component {
     } = this.props
 
     switch(select){
-    case 'sign-up':
-      var content = <ZiltagMapSignUpForm />
-      break
-    case 'login':
-      var content = <ZiltagMapLoginForm />
-      break
-    default:
-      console.error(`Unknown Property: ${select}`)
+      case 'sign-up':
+        var content = <ZiltagMapSignUpForm />
+        break
+      case 'login':
+        var content = <ZiltagMapLoginForm />
+        break
+      default:
+        console.error(`Unknown Property: ${select}`)
     }
 
     return(
