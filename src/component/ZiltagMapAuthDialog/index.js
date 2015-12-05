@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
 import classNames from 'classnames/bind'
+import ZiltagMapDialog from '../ZiltagMapDialog'
+import ZiltagMapAuthActions from '../ZiltagMapAuthActions'
+import ZiltagMapLoginForm from '../ZiltagMapLoginForm'
+import ZiltagMapSignUpForm from '../ZiltagMapSignUpForm'
 
 try {
   if (__WEBPACK__) {
@@ -9,19 +13,29 @@ try {
 
 class ZiltagMapAuthDialog extends React.Component {
   render(){
+    const {
+      select
+    } = this.props
+
+    switch(select){
+    case 'sign-up':
+      var content = <ZiltagMapSignUpForm />
+      break
+    case 'login':
+      var content = <ZiltagMapLoginForm />
+      break
+    default:
+      console.error(`Unknown Property: ${select}`)
+    }
+
     return(
-      <div className="ziltag-ziltag-map-auth-dialog">
-        <div className="ziltag-ziltag-map-auth-dialog__content">
-          {this.props.children}
-        </div>
-        <div className="ziltag-ziltag-map-auth-dialog__actions">
-          <div className={classNames('ziltag-ziltag-map-auth-dialog__action', {'ziltag-ziltag-map-auth-dialog__action--active': this.props.select == 'sign-up'})}>Sign Up</div>
-          <div className={classNames('ziltag-ziltag-map-auth-dialog__action', {'ziltag-ziltag-map-auth-dialog__action--active': this.props.select == 'login'})}>Login</div>
-          <div className="ziltag-ziltag-map-auth-dialog__cancel">Cancel</div>
-        </div>
-      </div>
+      <ZiltagMapDialog content={content} side={<ZiltagMapAuthActions select={select}/>} />
     )
   }
+}
+
+ZiltagMapAuthActions.defaultProps = {
+  select: 'sign-up'
 }
 
 export default ZiltagMapAuthDialog
