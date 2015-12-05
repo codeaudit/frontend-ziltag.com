@@ -1,0 +1,50 @@
+.auth-dialog {
+  display: flex;
+}
+.auth-dialog__content {
+  flex-basis: 100%;
+}
+.auth-dialog__actions {
+  border-left: 1px solid;
+  text-align: center;
+  flex-shrink: 0;
+  flex-basis: 50px;
+  position: relative;
+  margin-left: 30px;
+}
+.auth-dialog__action {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 10px;
+}
+.auth-dialog__action--active {
+  color: #EE2E24;
+}
+.auth-dialog__cancel {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto-Medium, sans-serif;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.auth-dialog__submit {
+  font-family: Roboto-Medium, sans-serif;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.auth-dialog__footer {
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 8px;
+  color: black;
+  margin-top: 15px;
+}
+.auth-dialog__footer a {
+  text-decoration: underline;
+  color: black;
+}
+.auth-dialog__footer--blue a{
+  color: #008BF3;
+}

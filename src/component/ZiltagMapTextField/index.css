@@ -1,0 +1,19 @@
+.text-field {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.26);
+}
+.text-field__image {
+  vertical-align: middle;
+  width: 20px;
+  height: 20px;
+}
+.text-field__input {
+  font-family: Roboto-Regular, sans-serif;
+  font-weight: normal;
+  padding-left: 20px;
+  font-size: 12px;
+  border-width: 0;
+  line-height: 32px;
+}
+.text-field__input:focus {
+  outline: 0;
+}

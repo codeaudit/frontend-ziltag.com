@@ -1,12 +1,6 @@
 import React, {Component} from 'react'
-
-
-try {
-  if (__WEBPACK__) {
-    require('./index.css')
-  }
-} catch (e) {}
-
+import AuthDialog from '../ZiltagMapAuthDialog'
+import TextField from '../ZiltagMapTextField'
 
 class ZiltagMapLoginForm extends Component {
   render() {
@@ -17,32 +11,12 @@ class ZiltagMapLoginForm extends Component {
     } = this.props
 
     return (
-      <div className='ziltag-ziltag-map-login-form'>
-        <div className="interactive_dialog">
-          <div className="interactive_dialog__content">
-            <form className="auth-form">
-              <div className="auth-form__fields">
-                <div className="field">
-                  <input onChange={onUserChange} type="text" className="field__input" placeholder="Email" />
-                  <img src="email.png" className="field__icon" />
-                </div>
-                <div className="field">
-                  <input onChange={onPasswordChange} type="text" className="field__input" placeholder="Password" />
-                  <img src="password.png" className="field__icon" />
-                </div>
-                <div className="auth-form__field" />
-              </div>
-              <div onClick={onSubmit} className="auth-form__action">Login</div>
-              <div className="auth-form__footer">forget password?</div>
-            </form>
-          </div>
-          <div className="interactive_dialog__actions">
-            <div className="interactive_dialog__action">Sign up</div>
-            <div className="interactive_dialog__action--active">Login</div>
-            <div className="interactive_dialog__cancel">Cancel</div>
-          </div>
-        </div>
-      </div>
+      <AuthDialog select="login">
+        <TextField onChange={onUserChange} name="login" placeholder="Email or Username" src="./email.png" />
+        <TextField onChange={onPasswordChange} name="password" placeholder="Password" src="./password.png" />
+        <div onClick={onSubmit} className="auth-dialog__submit">Login</div>
+        <div className="auth-dialog__footer auth-dialog__footer--blue"><a href="#">Forget password?</a></div>
+      </AuthDialog>
     )
   }
 }
