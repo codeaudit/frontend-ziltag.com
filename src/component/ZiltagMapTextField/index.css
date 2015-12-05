@@ -1,7 +1,7 @@
-.text-field {
+.ziltag-ziltag-map-text-field {
   border-bottom: 1px solid rgba(0, 0, 0, 0.26);
 }
-.text-field__input {
+.ziltag-ziltag-map-text-field__input {
   font-family: Roboto-Regular, sans-serif;
   font-weight: normal;
   padding-left: 40px;
@@ -11,15 +11,15 @@
   background-position: 0 center;
   background-repeat: no-repeat;
 }
-.text-field__input--username{
+.ziltag-ziltag-map-text-field__input--username{
   background-image: url(username.png);
 }
-.text-field__input--email{
+.ziltag-ziltag-map-text-field__input--email{
   background-image: url(email.png);
 }
-.text-field__input--password{
+.ziltag-ziltag-map-text-field__input--password{
   background-image: url(password.png);
 }
-.text-field__input:focus {
+.ziltag-ziltag-map-text-field__input:focus {
   outline: 0;
 }
