@@ -11,8 +11,8 @@ class ZiltagMapAuthentication extends Component {
   render() {
     let side = (
       <div>
-        <div className="ziltag_map_authentication__action" onClick={this.props.onSignUpClick} >Sign Up</div>
-        <div className="ziltag_map_authentication__action" onClick={this.props.onLoginClick} >Login</div>
+        <div className="ziltag_map_authentication__action" onClick={this.props.sign_up} >Sign Up</div>
+        <div className="ziltag_map_authentication__action" onClick={this.props.login} >Login</div>
       </div>
     )
     return (

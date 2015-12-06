@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ZiltagMapAuthDialog from '../ZiltagMapAuthDialog'
+import ZiltagMapAuthentication from '../ZiltagMapAuthentication'
 import ZiltagMapVerification from '../ZiltagMapVerification'
 
 
@@ -12,44 +13,44 @@ class ZiltagMapWarn extends Component {
       resend
     } = this.props
 
-    // const auth_warn = (
-    //   <div>
-    //     should login or sign up
-    //     <div onClick={sign_up}>Sign Up</div>
-    //     <div onClick={login}>Login</div>
-    //   </div>
-    // )
+    const auth_warn = (
+      <div>
+        should login or sign up
+        <div onClick={sign_up}>Sign Up</div>
+        <div onClick={login}>Login</div>
+      </div>
+    )
 
-    // const verify_warn = (
-    //   <div>
-    //     should verify
-    //     <div onClick={resend}>
-    //       Resend Email
-    //     </div>
-    //   </div>
-    // )
+    const verify_warn = (
+      <div>
+        should verify
+        <div onClick={resend}>
+          Resend Email
+        </div>
+      </div>
+    )
 
-    // return (
-    //   <div className='ziltag-ziltag-map-warn'>
-    //     {
-    //       type == 'auth'
-    //       ? auth_warn
-    //       : type == 'verify'
-    //       ? verify_warn
-    //       : ''
-    //     }
-    //   </div>
-    // )
-    switch(type){
-      case 'authentication':
-        return <ZiltagMapAuthDialog />
-        break
-      case 'verification':
-        return <ZiltagMapVerification />
-        break
-      default:
-        return console.error(`Unknown Type: ${type}`)
-    }
+    return (
+      <div className='ziltag-ziltag-map-warn'>
+        {
+          type == 'auth'
+          ? <ZiltagMapAuthentication sign_up={sign_up} login={login}/>
+          : type == 'verify'
+          ? <ZiltagMapVerification resend={resend}/>
+          : ''
+        }
+      </div>
+    )
+    // switch(type){
+    //   case 'auth':
+    //     return <ZiltagMapAuthDialog/>
+    //     break
+    //   case 'verify':
+    //     return <ZiltagMapVerification/>
+    //     break
+    //   default:
+    //     return <div>{`Unknown Type: ${type}`}</div>
+    // }
   }
 }
 
