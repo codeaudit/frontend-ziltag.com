@@ -20,7 +20,7 @@ class ZiltagMapPage extends Component {
 
   render() {
     return (
-      <BasePagegit
+      <BasePage
         {...this.props}
         {...this.actors}
       />
