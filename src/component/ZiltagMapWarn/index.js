@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import ZiltagMapAuthDialog from '../ZiltagMapAuthDialog'
+import ZiltagMapAuthentication from '../ZiltagMapAuthentication'
+import ZiltagMapVerification from '../ZiltagMapVerification'
 
 
 class ZiltagMapWarn extends Component {
@@ -31,13 +34,23 @@ class ZiltagMapWarn extends Component {
       <div className='ziltag-ziltag-map-warn'>
         {
           type == 'auth'
-          ? auth_warn
+          ? <ZiltagMapAuthentication sign_up={sign_up} login={login}/>
           : type == 'verify'
-          ? verify_warn
+          ? <ZiltagMapVerification resend={resend}/>
           : ''
         }
       </div>
     )
+    // switch(type){
+    //   case 'auth':
+    //     return <ZiltagMapAuthDialog/>
+    //     break
+    //   case 'verify':
+    //     return <ZiltagMapVerification/>
+    //     break
+    //   default:
+    //     return <div>{`Unknown Type: ${type}`}</div>
+    // }
   }
 }
 

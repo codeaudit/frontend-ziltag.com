@@ -4,3 +4,4 @@ dist/*
 vendor/*
 .bundle/config
 env.js
+.DS_Store

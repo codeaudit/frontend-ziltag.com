@@ -1,12 +1,6 @@
 import React, {Component} from 'react'
-
-
-try {
-  if (__WEBPACK__) {
-    require('./index.css')
-  }
-} catch (e) {}
-
+import ZiltagMapTextField from '../ZiltagMapTextField'
+import ZiltagMapAuthContent from '../ZiltagMapAuthContent'
 
 class ZiltagMapLoginForm extends Component {
   render() {
@@ -17,10 +11,11 @@ class ZiltagMapLoginForm extends Component {
     } = this.props
 
     return (
-      <div className='ziltag-ziltag-map-login-form'>
-        <input onChange={onUserChange}/>
-        <input onChange={onPasswordChange}/>
-        <div onClick={onSubmit}>POST</div>
+      <div>
+        <ZiltagMapTextField onChange={onUserChange} name="login" placeholder="Email or Username" icon="email" />
+        <ZiltagMapTextField onChange={onPasswordChange} name="password" placeholder="Password" icon="password" />
+        <div onClick={onSubmit} className="ziltag-ziltag-map-auth-content__submit">Login</div>
+        <div className="ziltag-ziltag-map-auth-content__footer ziltag-ziltag-map-auth-content__footer--blue"><a href="#">Forget password?</a></div>
       </div>
     )
   }

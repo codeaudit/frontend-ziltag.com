@@ -1,0 +1,22 @@
+.ziltag-ziltag-map-auth-actions{
+  text-align: center;
+}
+.ziltag-ziltag-map-auth-actions__action {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 10px;
+  cursor: pointer;
+}
+.ziltag-ziltag-map-auth-actions__action--active {
+  color: #EE2E24;
+}
+.ziltag-ziltag-map-auth-actions__cancel {
+  color: rgba(0, 0, 0, 0.87);
+  font-family: Roboto-Medium, sans-serif;
+  font-size: 14px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}

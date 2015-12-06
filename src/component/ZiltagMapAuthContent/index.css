@@ -1,0 +1,19 @@
+.ziltag-ziltag-map-auth-content__submit {
+  font-family: Roboto-Medium, sans-serif;
+  font-size: 14px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+.ziltag-ziltag-map-auth-content__footer {
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 8px;
+  color: black;
+  margin-top: 15px;
+}
+.ziltag-ziltag-map-auth-content__footer a {
+  text-decoration: underline;
+  color: black;
+}
+.ziltag-ziltag-map-auth-content__footer--blue a{
+  color: #008BF3;
+}

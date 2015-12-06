@@ -1,0 +1,13 @@
+.ziltag-ziltag-map-dialog {
+  display: flex;
+}
+.ziltag-ziltag-map-dialog__content {
+  flex-basis: 100%;
+}
+.ziltag-ziltag-map-dialog__side {
+  border-left: 1px solid;
+  flex-shrink: 0;
+  flex-basis: 50px;
+  margin-left: 30px;
+  position: relative;
+}
