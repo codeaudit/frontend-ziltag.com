@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import ZiltagMapAuthentication from '../ZiltagMapAuthentication'
+import ZiltagMapAuthDialog from '../ZiltagMapAuthDialog'
 import ZiltagMapVerification from '../ZiltagMapVerification'
 
 
@@ -42,7 +42,7 @@ class ZiltagMapWarn extends Component {
     // )
     switch(type){
       case 'authentication':
-        return <ZiltagMapAuthentication />
+        return <ZiltagMapAuthDialog />
         break
       case 'verification':
         return <ZiltagMapVerification />
