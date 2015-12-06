@@ -15,6 +15,7 @@ class ZiltagMapAuthentication extends Component {
         <div className="ziltag_map_authentication__action" onClick={this.props.login} >Login</div>
       </div>
     )
+
     return (
       <ZiltagMapDialog className="ziltag_map_authentication" side={side}>
         <div className="ziltag_map_authentication__message">Oops! You need to have an account to post a tag.</div>
