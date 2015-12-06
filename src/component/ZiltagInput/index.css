@@ -1,0 +1,15 @@
+.ziltag-ziltag-input{
+  color: rgba(0, 0, 0, 0.26);
+  font-family: Roboto-Regular, sans-serif;
+  font-size: 12px;
+}
+.ziltag-ziltag-input__input{
+  border-width: 0;
+}
+.ziltag-ziltag-input__input:focus{
+  outline: 0;
+}
+.ziltag-ziltag-input__submit{
+  cursor: pointer;
+  text-align: center;
+}
