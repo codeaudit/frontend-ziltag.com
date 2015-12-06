@@ -22,6 +22,7 @@ class ZiltagMap extends Component {
     const {
       fetch_ziltag,
       fetch_ziltag_map,
+      fetch_current_user,
       hover_on_ziltag,
       unhover_on_ziltag,
       activate_ziltag_input,
@@ -29,10 +30,18 @@ class ZiltagMap extends Component {
       ziltag_input_changed,
       ziltag_input_sign_up,
       ziltag_input_login,
+      current_user_login,
+      current_user_sign_up,
+      login_form_user_changed,
+      login_form_password_changed,
+      sign_up_form_name_changed,
+      sign_up_form_email_changed,
       create_ziltag,
       pushState,
       ziltag_map,
       ziltag_input,
+      login_form,
+      sign_up_form,
       current_ziltag,
       current_user
     } = this.props
@@ -101,7 +110,7 @@ class ZiltagMap extends Component {
                   } = ziltag_input
 
                   create_ziltag(map_id, x, y, content)
-                  .then((action) => {
+                  .then(() => {
                     pushState(null, `/ziltags/${action.payload.value.id}`)
                     fetch_ziltag_map(ziltag_map.id)
                     deactivate_ziltag_input()
@@ -112,9 +121,39 @@ class ZiltagMap extends Component {
                 type='verify'
               />
           : ziltag_input.mode == 'login'
-          ? <ZiltagMapLoginForm/>
+          ? <ZiltagMapLoginForm
+              onUserChange={login_form_user_changed}
+              onPasswordChange={login_form_password_changed}
+              onSubmit={() => {
+                const {
+                  user,
+                  password
+                } = login_form
+
+                current_user_login(user, password)
+                .then(() => {
+                  fetch_current_user()
+                  deactivate_ziltag_input()
+                })
+              }}
+            />
           : ziltag_input.mode == 'sign_up'
-          ? <ZiltagMapSignUpForm/>
+          ? <ZiltagMapSignUpForm
+              onNameChange={sign_up_form_name_changed}
+              onEmailChange={sign_up_form_email_changed}
+              onSubmit={() => {
+                const {
+                  name,
+                  email
+                } = sign_up_form
+
+                current_user_sign_up(name, email)
+                .then(() => {
+                  fetch_current_user()
+                  deactivate_ziltag_input()
+                })
+              }}
+            />
           : <ZiltagMapWarn
               login={ziltag_input_login}
               sign_up={ziltag_input_sign_up}
