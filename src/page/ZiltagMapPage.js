@@ -4,9 +4,6 @@ import {bindActionCreators} from 'redux'
 import {pushState} from 'redux-router'
 
 import BasePage from '../component/BasePage'
-import ZiltagMapAuthDialog from '../component/ZiltagMapAuthDialog'
-import ZiltagMapVerification from '../component/ZiltagMapVerification'
-import ZiltagMapAuthentication from '../component/ZiltagMapAuthentication'
 import * as actors from '../actor'
 
 
@@ -27,10 +24,6 @@ class ZiltagMapPage extends Component {
         {...this.props}
         {...this.actors}
       >
-        <ZiltagMapAuthDialog select="login"/>
-        <ZiltagMapAuthDialog select="sign-up" />
-        <ZiltagMapVerification />
-        <ZiltagMapAuthentication />
       </BasePage>
     )
   }
