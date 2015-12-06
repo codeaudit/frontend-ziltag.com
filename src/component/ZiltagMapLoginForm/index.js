@@ -10,8 +10,6 @@ class ZiltagMapLoginForm extends Component {
       onSubmit
     } = this.props
 
-    console.log('onSubmit:', onSubmit)
-
     return (
       <div>
         <ZiltagMapTextField onChange={onUserChange} name="login" placeholder="Email or Username" icon="email" />
