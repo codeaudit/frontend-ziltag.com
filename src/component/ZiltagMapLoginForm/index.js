@@ -11,11 +11,16 @@ try {
 class ZiltagMapLoginForm extends Component {
   render() {
     const {
-
+      onUserChange,
+      onPasswordChange,
+      onSubmit
     } = this.props
 
     return (
       <div className='ziltag-ziltag-map-login-form'>
+        <input onChange={onUserChange}/>
+        <input onChange={onPasswordChange}/>
+        <div onClick={onSubmit}>POST</div>
       </div>
     )
   }

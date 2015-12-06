@@ -73,3 +73,49 @@ export function current_user_logout() {
     credentials: 'include'
   }), current_user_logged_out)
 }
+
+export const current_user_logged_in = createAction('CURRENT_USER_LOGGED_IN')
+
+export function current_user_login(user, password) {
+  const api = `${RAILS_ADDR}/api/v1/sign_in`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        login: user,
+        password
+      }
+    })
+  }), current_user_logged_in)
+}
+
+export const current_user_signed_up = createAction('CURRENT_USER_SIGNED_UP')
+
+export function current_user_sign_up(name, email) {
+  const api = `${RAILS_ADDR}/api/v1/users`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      user: {
+        username: name,
+        email
+      }
+    })
+  }), current_user_signed_up)
+}
+
+export const login_form_user_changed = createAction('LOGIN_FORM_USER_CHANGED')
+export const login_form_password_changed = createAction('LOGIN_FORM_PASSWORD_CHANGED')
+
+export const sign_up_form_name_changed = createAction('SIGN_UP_FORM_NAME_CHANGED')
+export const sign_up_form_email_changed = createAction('SIGN_UP_FORM_EMAIL_CHANGED')

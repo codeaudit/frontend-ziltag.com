@@ -5,6 +5,7 @@ import { routerStateReducer } from 'redux-router'
 function current_user(state={}, action) {
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
+    case 'CURRENT_USER_LOGGED_IN':
       return action.payload.value
     case 'CURRENT_USER_LOGGED_OUT':
       return {}
@@ -79,11 +80,37 @@ function ziltag_input(state={}, action) {
   }
 }
 
+function sign_up_form(state={}, action) {
+  switch (action.type) {
+    case 'SIGN_UP_FORM_NAME_CHANGED':
+      return {...state, name: action.payload.target.value}
+    case 'SIGN_UP_FORM_EMAIL_CHANGED':
+      return {...state, email: action.payload.target.value}
+    default:
+      return state
+  }
+}
+
+function login_form(state={}, action) {
+  switch (action.type) {
+    case 'LOGIN_FORM_USER_CHANGED':
+      console.log('reducer.js:', action.payload.target.value)
+      return {...state, user: action.payload.target.value}
+    case 'LOGIN_FORM_PASSWORD_CHANGED':
+      console.log('reducer.js:', action.payload.target.value)
+      return {...state, password: action.payload.target.value}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
   avatar_menu,
   ziltag_map,
   current_ziltag,
-  ziltag_input
+  ziltag_input,
+  sign_up_form,
+  login_form
 })
