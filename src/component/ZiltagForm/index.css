@@ -27,11 +27,11 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag-form-col0 {
+.ziltag-ziltag-form__col0 {
   width: 226px;
 }
 
-.ziltag-ziltag-form-col1 {
+.ziltag-ziltag-form__col1 {
   position: absolute;
   right: 0;
   height: 100%;
