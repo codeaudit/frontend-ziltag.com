@@ -1,0 +1,90 @@
+.ziltag-ziltag-form {
+  position: relative;
+  display: flex;
+  cursor: default;
+}
+
+.ziltag-ziltag-form input {
+  display: block;
+  width: 195px;
+  line-height: 30px;
+  border: 0;
+  outline: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, .26);
+  margin-bottom: 8px;
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+  font-size: 12px;
+}
+
+.ziltag-ziltag-form input[type='name'] {
+  background: 0 50% url(username.png) no-repeat;
+}
+
+.ziltag-ziltag-form input[type='email'] {
+  background: 0 50% url(email.png) no-repeat;
+}
+
+.ziltag-ziltag-form input[type='password'] {
+  background: 0 50% url(password.png) no-repeat;
+}
+
+.ziltag-ziltag-form input[type='name'],
+.ziltag-ziltag-form input[type='email'],
+.ziltag-ziltag-form input[type='password'] {
+  padding-left: 30px;
+}
+
+.ziltag-ziltag-form nav {
+  width: 59px;
+  height: 100%;
+  line-height: 20px;
+  border-left: 1px solid black;
+  text-align: center;
+}
+
+.ziltag-ziltag-form__link {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-form__link--activated {
+  color: rgb(244, 70, 47);
+}
+
+.ziltag-ziltag-form__link[type='cancel'] {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-form footer h1 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+  margin: 12px 0;
+}
+
+.ziltag-ziltag-form footer p {
+  font-size: 8px;
+  color: rgba(0, 0, 0, .54);
+}
+
+.ziltag-ziltag-form footer a {
+  color: rgb(0, 139, 243);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-form-col0 {
+  width: 226px;
+}
+
+.ziltag-ziltag-form-col1 {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
