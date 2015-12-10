@@ -115,6 +115,7 @@ class ZiltagMap extends Component {
                     deactivate_ziltag_input()
                   })
                 }}
+                ziltag_input={ziltag_input}
               />
             : <ZiltagMapDialog>
                 <p>
