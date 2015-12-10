@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import ZiltagMapDialog from '../ZiltagMapDialog'
+import classNames from 'classnames'
+
 
 try {
   if (__WEBPACK__) {
@@ -7,34 +8,27 @@ try {
   }
 } catch (e) {}
 
+
 class ZiltagInput extends Component {
   render() {
     const {
       onChange,
-      onSubmit
+      onSubmit,
+      ziltag_input
     } = this.props
-
-    let viewProps = {
-      content: (
-        <input
-          onChange={onChange}
-          className='ziltag-ziltag-input__input'
-          placeholder='Your text here'
-        />
-      ),
-      side: (
-        <div
-          onClick={onSubmit}
-          className='ziltag-ziltag-input__submit'
-        >
-          POST
-        </div>
-      )
-    }
 
     return (
       <div className='ziltag-ziltag-input'>
-        <ZiltagMapDialog {...viewProps} />
+        <textarea onChange={onChange} placeholder='Your text here'/>
+        <div
+          onClick={onSubmit}
+          className={classNames({
+            'ziltag-ziltag-input__post': true,
+            'ziltag-ziltag-input__post--activated': ziltag_input.content
+          })}
+        >
+          Post
+        </div>
       </div>
     )
   }
