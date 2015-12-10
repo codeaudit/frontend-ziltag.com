@@ -33,11 +33,11 @@ class ZiltagForm extends Component {
 
     return (
       <div className='ziltag-ziltag-form'>
-        <div className='ziltag-ziltag-form-col0'>
+        <div className='ziltag-ziltag-form__col0'>
           {group['input']}
           {group['footer']}
         </div>
-        <div className='ziltag-ziltag-form-col1'>
+        <div className='ziltag-ziltag-form__col1'>
           {group['nav']}
         </div>
       </div>

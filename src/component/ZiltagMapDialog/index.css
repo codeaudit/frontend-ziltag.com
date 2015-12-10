@@ -1,13 +1,34 @@
 .ziltag-ziltag-map-dialog {
-  display: flex;
-}
-.ziltag-ziltag-map-dialog__content {
-  flex-basis: 100%;
-}
-.ziltag-ziltag-map-dialog__side {
-  border-left: 1px solid;
-  flex-shrink: 0;
-  flex-basis: 50px;
-  margin-left: 30px;
   position: relative;
+  display: flex;
+  cursor: default;
+}
+
+.ziltag-ziltag-map-dialog__col0 {
+  width: 226px;
+}
+
+.ziltag-ziltag-map-dialog__col1 {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
+.ziltag-ziltag-map-dialog nav {
+  width: 59px;
+  height: 100%;
+  line-height: 20px;
+  border-left: 1px solid black;
+  text-align: center;
+}
+
+.ziltag-ziltag-map-dialog p {
+  font-size: 10px;
+  line-height: 15px;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-map-dialog p strong {
+  font-size: 12px;
+  font-weight: 500;
 }
