@@ -4,6 +4,39 @@
   cursor: default;
 }
 
+.ziltag-ziltag-form__link {
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-form__link--activated {
+  color: rgb(244, 70, 47);
+}
+
+.ziltag-ziltag-form__link[type='cancel'] {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-form__submit {
+  cursor: pointer;
+}
+
+.ziltag-ziltag-form-col0 {
+  width: 226px;
+}
+
+.ziltag-ziltag-form-col1 {
+  position: absolute;
+  right: 0;
+  height: 100%;
+}
+
 .ziltag-ziltag-form input {
   display: block;
   width: 195px;
@@ -42,30 +75,12 @@
   text-align: center;
 }
 
-.ziltag-ziltag-form__link {
-  font-size: 10px;
-  cursor: pointer;
-}
-
-.ziltag-ziltag-form__link--activated {
-  color: rgb(244, 70, 47);
-}
-
-.ziltag-ziltag-form__link[type='cancel'] {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, .87);
-}
-
 .ziltag-ziltag-form footer h1 {
   font-size: 14px;
   font-weight: 500;
   color: rgba(0, 0, 0, .87);
   margin: 12px 0;
+  cursor: pointer;
 }
 
 .ziltag-ziltag-form footer p {
@@ -77,14 +92,4 @@
   color: rgb(0, 139, 243);
   text-decoration: underline;
   cursor: pointer;
-}
-
-.ziltag-ziltag-form-col0 {
-  width: 226px;
-}
-
-.ziltag-ziltag-form-col1 {
-  position: absolute;
-  right: 0;
-  height: 100%;
 }
