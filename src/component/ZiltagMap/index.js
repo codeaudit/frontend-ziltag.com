@@ -139,9 +139,9 @@ class ZiltagMap extends Component {
               <input type='email' placeholder='Email'/>
               <input type='password' placeholder='Password'/>
               <nav>
-                <div className='ziltag-ziltag-form__link'>Sign Up</div>
-                <div className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Login</div>
-                <div className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
+                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Login</div>
+                <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
                 <h1>Login</h1>
@@ -168,9 +168,9 @@ class ZiltagMap extends Component {
               <input type='name' placeholder='Username'/>
               <input type='email' placeholder='Email'/>
               <nav>
-                <div className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
-                <div className='ziltag-ziltag-form__link'>Login</div>
-                <div className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
+                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link'>Login</div>
+                <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
                 <h1>Sign Up</h1>
