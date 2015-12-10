@@ -21,7 +21,11 @@ class ZiltagInput extends Component {
       <div className='ziltag-ziltag-input'>
         <textarea onChange={onChange} placeholder='Your text here'/>
         <div
-          onClick={onSubmit}
+          onClick={() => {
+            if (ziltag_input.content) {
+              onSubmit()
+            }
+          }}
           className={classNames({
             'ziltag-ziltag-input__post': true,
             'ziltag-ziltag-input__post--activated': ziltag_input.content
