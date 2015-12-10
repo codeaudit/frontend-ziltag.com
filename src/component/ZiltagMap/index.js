@@ -5,7 +5,7 @@ import Ziltag from '../Ziltag'
 import CoDiv from '../CoDiv'
 import ZiltagPreview from '../ZiltagPreview'
 import ZiltagInput from '../ZiltagInput'
-import ZiltagMapWarn from '../ZiltagMapWarn'
+import ZiltagMapDialog from '../ZiltagMapDialog'
 import ZiltagForm from '../ZiltagForm'
 
 
@@ -116,9 +116,16 @@ class ZiltagMap extends Component {
                   })
                 }}
               />
-            : <ZiltagMapWarn
-                type='verify'
-              />
+            : <ZiltagMapDialog>
+                <p>
+                  <strong>Please verify your account to post a tag.</strong>
+                  <br/>
+                  Haven’t receive confirmation email?
+                </p>
+                <nav>
+                  <div className='ziltag-ziltag-form__link'>Resend Email</div>
+                </nav>
+              </ZiltagMapDialog>
           : ziltag_input.mode == 'login'
           ? <ZiltagForm>
               <input onChange={login_form_user_changed} type='email' placeholder='Email'/>
@@ -177,11 +184,15 @@ class ZiltagMap extends Component {
                 <p>Signing up means you agree with our <a>Terms</a> and <a>Privacy Policy</a>.</p>
               </footer>
             </ZiltagForm>
-          : <ZiltagMapWarn
-              login={ziltag_input_login}
-              sign_up={ziltag_input_sign_up}
-              type='auth'
-            />
+          : <ZiltagMapDialog>
+              <p>
+                <strong>Oops! You need to have an account to post a tag.</strong>
+              </p>
+              <nav>
+                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
+                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link'>Login</div>
+              </nav>
+            </ZiltagMapDialog>
         }
       </CoDiv>
     ]
