@@ -6,8 +6,7 @@ import CoDiv from '../CoDiv'
 import ZiltagPreview from '../ZiltagPreview'
 import ZiltagInput from '../ZiltagInput'
 import ZiltagMapWarn from '../ZiltagMapWarn'
-import ZiltagMapLoginForm from '../ZiltagMapLoginForm'
-import ZiltagMapSignUpForm from '../ZiltagMapSignUpForm'
+import ZiltagForm from '../ZiltagForm'
 
 
 try {
@@ -121,7 +120,7 @@ class ZiltagMap extends Component {
                 type='verify'
               />
           : ziltag_input.mode == 'login'
-          ? <ZiltagMapLoginForm
+          ? <ZiltagForm
               onUserChange={login_form_user_changed}
               onPasswordChange={login_form_password_changed}
               onSubmit={() => {
@@ -136,9 +135,21 @@ class ZiltagMap extends Component {
                   deactivate_ziltag_input()
                 })
               }}
-            />
+            >
+              <input type='email' placeholder='Email'/>
+              <input type='password' placeholder='Password'/>
+              <nav>
+                <div className='ziltag-ziltag-form__link'>Sign Up</div>
+                <div className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Login</div>
+                <div className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+              </nav>
+              <footer>
+                <h1>Login</h1>
+                <p><a>Forget password?</a></p>
+              </footer>
+            </ZiltagForm>
           : ziltag_input.mode == 'sign_up'
-          ? <ZiltagMapSignUpForm
+          ? <ZiltagForm
               onNameChange={sign_up_form_name_changed}
               onEmailChange={sign_up_form_email_changed}
               onSubmit={() => {
@@ -153,7 +164,19 @@ class ZiltagMap extends Component {
                   deactivate_ziltag_input()
                 })
               }}
-            />
+            >
+              <input type='name' placeholder='Username'/>
+              <input type='email' placeholder='Email'/>
+              <nav>
+                <div className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
+                <div className='ziltag-ziltag-form__link'>Login</div>
+                <div className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+              </nav>
+              <footer>
+                <h1>Sign Up</h1>
+                <p>Signing up means you agree with our <a>Terms</a> and <a>Privacy Policy</a>.</p>
+              </footer>
+            </ZiltagForm>
           : <ZiltagMapWarn
               login={ziltag_input_login}
               sign_up={ziltag_input_sign_up}
