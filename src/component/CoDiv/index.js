@@ -14,17 +14,23 @@ class CoDiv extends Component {
     const {
       onClick,
       ziltag,
+      ziltag_map,
       children
     } = this.props
 
     const direction = ziltag.x < 0.5 ? 'right' : 'left'
-    const x_offset = direction == 'left' ? -356 : 30
+    const x_offset = 30
     const y_offset = -30
 
     const style = {
       display: ziltag.co_div.activated ? 'block' : 'none',
-      top: ziltag.y_px + y_offset,
-      left: ziltag.x_px + x_offset
+      top: ziltag.y_px + y_offset
+    }
+
+    if (direction == 'left') {
+      style.right = ziltag_map.width - ziltag.x_px + x_offset
+    } else if (direction == 'right') {
+      style.left = ziltag.x_px + x_offset
     }
 
     return (
