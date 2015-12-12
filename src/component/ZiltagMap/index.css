@@ -59,12 +59,19 @@
   z-index: 3;
 }
 
+.ziltag-co-div .ziltag-ziltag-preview,
 .ziltag-co-div .ziltag-ziltag-form,
 .ziltag-co-div .ziltag-ziltag-input,
 .ziltag-co-div .ziltag-ziltag-map-dialog {
   width: 311px;
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   margin: 6px 0 6px 15px;
+}
+
+.ziltag-co-div .ziltag-ziltag-preview {
+  width: 298px;
+  height: 38px;
+  margin: 11px 14px;
 }
 
 .ziltag-co-div .ziltag-ziltag-input {

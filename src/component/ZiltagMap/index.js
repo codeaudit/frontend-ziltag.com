@@ -47,8 +47,6 @@ class ZiltagMap extends Component {
 
     const ziltag_components = ziltag_map.ziltags && ziltag_map.ziltags.map(
       ziltag => {
-        const direction = ziltag.x < 0.5 ? 'right' : 'left'
-
         ziltag.x_px = ziltag.x * ziltag_map.width
         ziltag.y_px = ziltag.y * ziltag_map.height
 
@@ -72,6 +70,7 @@ class ZiltagMap extends Component {
           </Link>,
           <CoDiv
             ziltag={ziltag}
+            ziltag_map={ziltag_map}
             key={'p' + ziltag.id}
           >
             <ZiltagPreview ziltag={ziltag}/>
@@ -93,6 +92,7 @@ class ZiltagMap extends Component {
           e.stopPropagation()
         }}
         ziltag={ziltag_input}
+        ziltag_map={ziltag_map}
         key='ziltag_input'
       >
         {
