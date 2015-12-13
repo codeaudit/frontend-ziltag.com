@@ -54,7 +54,7 @@ function current_ziltag(state={}, action) {
     case 'ZILTAG_CREATED':
       return action.payload.value
     case 'ZILTAG_COMMENT_CREATED':
-      return {...state, comments: [...state.comments, action.payload.value]}
+      return {...state, comments: [action.payload.value, ...state.comments]}
     default:
       return state
   }
