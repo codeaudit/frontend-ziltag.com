@@ -1,7 +1,8 @@
 .ziltag-ziltag-comment {
   display: flex;
   background: white;
-  padding: 16px 30px 0 20px;
+  padding: 15px 30px 0 17px;
+  border-radius: 3px;
 }
 
 .ziltag-ziltag-comment__user-avatar {
