@@ -5,6 +5,10 @@
   border-radius: 3px;
 }
 
+.ziltag-ziltag-comment:last-of-type {
+  padding-bottom: 15px;
+}
+
 .ziltag-ziltag-comment__user-avatar {
   width: 40px;
   height: 40px;
