@@ -1,0 +1,64 @@
+.ziltag-ziltag-page {
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+.ziltag-ziltag-page__op {
+  display: flex;
+  height: 56px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.ziltag-ziltag-page__op-avatar {
+  display: block;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.ziltag-ziltag-page__op-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ziltag-ziltag-page__op-prompt {
+  font-size: 12px;
+  font-weight: lighter;
+  color: rgba(0, 0, 0, .54);
+}
+
+.ziltag-ziltag-page__close {
+  width: 20px;
+  background: top center url(close.png) no-repeat;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-page__share {
+  width: 20px;
+  background: bottom center url(share.png) no-repeat;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-page__op .ziltag-ziltag-page__op-right {
+  height: 100%;
+  margin-left: auto;
+}
+
+.ziltag-ziltag-page__op .ziltag-ziltag-page__op-left {
+  position: relative;
+  left: 10px;
+}
+
+.ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-prompt {
+  position: relative;
+  top: 8px;
+}
+
+.ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-name {
+  position: relative;
+  top: 16px;
+}
+
+.ziltag-ziltag-page__op-right .ziltag-ziltag-page__close,
+.ziltag-ziltag-page__op-right, .ziltag-ziltag-page__share {
+  height: 50%;
+}
