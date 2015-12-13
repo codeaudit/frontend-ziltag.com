@@ -1,0 +1,28 @@
+.ziltag-ziltag-comment {
+  display: flex;
+  background: white;
+  padding: 16px 30px 0 20px;
+}
+
+.ziltag-ziltag-comment__user-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.ziltag-ziltag-comment__user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+  line-height: 22px;
+}
+
+.ziltag-ziltag-comment__content {
+  font-size: 13px;
+  color: rgba(0, 0, 0, .87);
+  line-height: 20px;
+}
+
+.ziltag-ziltag-comment .ziltag-ziltag-comment__user-avatar {
+  margin-right: 10px;
+}

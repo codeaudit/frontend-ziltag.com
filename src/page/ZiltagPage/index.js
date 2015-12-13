@@ -5,6 +5,7 @@ import {pushState} from 'redux-router'
 
 import BasePage from '../../component/BasePage'
 import ZiltagContent from '../../component/ZiltagContent'
+import ZiltagComment from '../../component/ZiltagComment'
 import * as actors from '../../actor'
 
 
@@ -32,6 +33,12 @@ class ZiltagPage extends Component {
     const {
       current_ziltag
     } = this.props
+
+    if (current_ziltag.comments) {
+      var comment_components = current_ziltag.comments.map(
+        comment => <ZiltagComment {...comment} key={comment.id}/>
+      )
+    }
 
     return (
       <div className='ziltag-ziltag-page'>
@@ -63,6 +70,8 @@ class ZiltagPage extends Component {
             {...this.props}
             {...this.actors}
           />
+          <h2>Components</h2>
+          {comment_components}
         </BasePage>
       </div>
     )

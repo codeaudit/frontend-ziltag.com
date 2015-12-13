@@ -58,3 +58,13 @@ body {
 .ziltag-base-page-main__col1 .ziltag-ziltag-page__op {
   margin-bottom: 14px;
 }
+
+.ziltag-base-page-main__col1 .ziltag-ziltag-content {
+  margin-bottom: 30px;
+}
+
+.ziltag-base-page-main__col1 h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+}
