@@ -18,12 +18,12 @@
 }
 
 .ziltag-ziltag-content .ziltag-ziltag-content__text {
-  margin-bottom: 6px;
+  margin-bottom: 21px;
 }
 
 .ziltag-ziltag-content .ziltag-ziltag-content__row {
   position: absolute;
-  bottom: 0;
+  bottom: 15px;
 }
 
 .ziltag-ziltag-content__row .ziltag-ziltag-content__edit-operator{
