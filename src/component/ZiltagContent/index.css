@@ -1,6 +1,31 @@
 .ziltag-ziltag-content {
+  position: relative;
   min-height: 100px;
   padding: 15px 17px;
   background: white;
   border-radius: 3px;
+}
+
+.ziltag-ziltag-content__row {
+  display: flex;
+}
+
+.ziltag-ziltag-content__edit-operator {
+  font-size: 10px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__text {
+  margin-bottom: 6px;
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__row {
+  position: absolute;
+  bottom: 0;
+}
+
+.ziltag-ziltag-content__row .ziltag-ziltag-content__edit-operator{
+  margin-right: 16px;
 }

@@ -75,18 +75,19 @@ class ZiltagPage extends Component {
             </div>
           </div>
           <ZiltagContent
-            {...this.props}
-            {...this.actors}
+            content={current_ziltag.content}
+            author={current_ziltag.usr}
+            {...current_user}
           />
           <h2>Comments</h2>
           <ZiltagCommentInput
+            {...current_user}
             onChange={ziltag_comment_input_changed}
             onSubmit={() => {
               create_ziltag_comment(
                 current_ziltag.id, ziltag_comment_input.content
               )
             }}
-            user={current_user.usr}
             ziltag_comment_input={ziltag_comment_input}
           />
           {comment_components}
