@@ -6,6 +6,7 @@ import {pushState} from 'redux-router'
 import BasePage from '../../component/BasePage'
 import ZiltagContent from '../../component/ZiltagContent'
 import ZiltagComment from '../../component/ZiltagComment'
+import ZiltagCommentInput from '../../component/ZiltagCommentInput'
 import * as actors from '../../actor'
 
 
@@ -31,8 +32,15 @@ class ZiltagPage extends Component {
 
   render() {
     const {
-      current_ziltag
+      current_ziltag,
+      current_user,
+      ziltag_comment_input
     } = this.props
+
+    const {
+      ziltag_comment_input_changed,
+      create_ziltag_comment
+    } = this.actors
 
     if (current_ziltag.comments) {
       var comment_components = current_ziltag.comments.map(
@@ -71,6 +79,16 @@ class ZiltagPage extends Component {
             {...this.actors}
           />
           <h2>Comments</h2>
+          <ZiltagCommentInput
+            onChange={ziltag_comment_input_changed}
+            onSubmit={() => {
+              create_ziltag_comment(
+                current_ziltag.id, ziltag_comment_input.content
+              )
+            }}
+            user={current_user.usr}
+            ziltag_comment_input={ziltag_comment_input}
+          />
           {comment_components}
         </BasePage>
       </div>

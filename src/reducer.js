@@ -53,6 +53,8 @@ function current_ziltag(state={}, action) {
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
       return action.payload.value
+    case 'ZILTAG_COMMENT_CREATED':
+      return {...state, comments: [...state.comments, action.payload.value]}
     default:
       return state
   }
@@ -74,6 +76,15 @@ function ziltag_input(state={}, action) {
     case 'ZILTAG_INPUT_SIGN_UP':
       return {...state, mode: 'sign_up'}
     case 'ZILTAG_INPUT_CHANGED':
+      return {...state, content: action.payload.target.value}
+    default:
+      return state
+  }
+}
+
+function ziltag_comment_input(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_COMMENT_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
     default:
       return state
@@ -111,6 +122,7 @@ export default combineReducers({
   ziltag_map,
   current_ziltag,
   ziltag_input,
+  ziltag_comment_input,
   sign_up_form,
   login_form
 })
