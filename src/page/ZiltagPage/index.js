@@ -70,7 +70,7 @@ class ZiltagPage extends Component {
             {...this.props}
             {...this.actors}
           />
-          <h2>Components</h2>
+          <h2>Comments</h2>
           {comment_components}
         </BasePage>
       </div>
