@@ -39,10 +39,6 @@ body {
   top: 47px;
 }
 
-.ziltag-base-page .ziltag-base-page__href {
-  margin: 0 18px;
-}
-
 .ziltag-base-page-main {
   display: flex;
 }
@@ -53,6 +49,10 @@ body {
 
 .ziltag-base-page .ziltag-base-page-main {
   margin: 16px;
+}
+
+.ziltag-base-page-main__col0 .ziltag-ziltag-map {
+  margin-bottom: 4px;
 }
 
 .ziltag-base-page-main__col1 .ziltag-ziltag-page__op {
