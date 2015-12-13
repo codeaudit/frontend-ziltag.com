@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux'
 import {pushState} from 'redux-router'
 
 import BasePage from '../../component/BasePage'
+import ZiltagContent from '../../component/ZiltagContent'
 import * as actors from '../../actor'
 
 
@@ -58,6 +59,10 @@ class ZiltagPage extends Component {
               </div>
             </div>
           </div>
+          <ZiltagContent
+            {...this.props}
+            {...this.actors}
+          />
         </BasePage>
       </div>
     )

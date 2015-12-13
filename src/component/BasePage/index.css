@@ -54,3 +54,7 @@ body {
 .ziltag-base-page .ziltag-base-page-main {
   margin: 16px;
 }
+
+.ziltag-base-page-main__col1 .ziltag-ziltag-page__op {
+  margin-bottom: 14px;
+}
