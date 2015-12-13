@@ -1,0 +1,45 @@
+.ziltag-ziltag-comment-input {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 3px;
+  padding: 15px 15px 15px 17px;
+}
+
+.ziltag-ziltag-comment-input textarea {
+  width: 540px;
+  height: 16px;
+  padding: 0;
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+  font-size: 13px;
+  line-height: 20px;
+  color: rgba(0, 0, 0, .87);
+  border: 0;
+  outline: 0;
+  resize: none;
+}
+
+.ziltag-ziltag-comment-input__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.ziltag-ziltag-comment-input__post {
+  width: 70px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(0, 0, 0, .26);
+  border-left: 1px solid rgba(0, 0, 0, .26);
+  cursor: pointer;
+}
+
+.ziltag-ziltag-comment-input__post--activated {
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+  border-left: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-comment-input .ziltag-ziltag-comment-input__avatar{
+  margin-right: 20px;
+}

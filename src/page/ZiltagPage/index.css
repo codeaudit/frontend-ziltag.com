@@ -62,3 +62,7 @@
 .ziltag-ziltag-page__op-right, .ziltag-ziltag-page__share {
   height: 50%;
 }
+
+.ziltag-base-page-main__col1 .ziltag-ziltag-comment-input {
+  margin-bottom: 10px;
+}

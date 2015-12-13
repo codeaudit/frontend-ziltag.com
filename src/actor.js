@@ -61,6 +61,26 @@ export function create_ziltag(map_id, x, y, content) {
 }
 
 export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
+export const ziltag_comment_input_changed = createAction('ZILTAG_COMMENT_INPUT_CHANGED')
+
+export const ziltag_comment_created = createAction('ZILTAG_COMMENT_CREATED')
+
+export function create_ziltag_comment(ziltag_id, content) {
+  const api = `${RAILS_ADDR}/api/v1/comments`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'post',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      comment: {
+        ziltag_id, content
+      }
+    })
+  }), ziltag_comment_created)
+}
 
 export const ziltag_input_sign_up = createAction('ZILTAG_INPUT_SIGN_UP')
 export const ziltag_input_login = createAction('ZILTAG_INPUT_LOGIN')
