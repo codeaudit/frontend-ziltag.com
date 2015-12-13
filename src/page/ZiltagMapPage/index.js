@@ -3,8 +3,8 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {pushState} from 'redux-router'
 
-import BasePage from '../component/BasePage'
-import * as actors from '../actor'
+import BasePage from '../../component/BasePage'
+import * as actors from '../../actor'
 
 
 class ZiltagMapPage extends Component {

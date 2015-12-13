@@ -1,4 +1,14 @@
+body {
+  margin: 0;
+  background: rgb(249, 249, 249);
+}
+
+.ziltag-base-page {
+  height: 100%;
+}
+
 .ziltag-base-page__head {
+  background: white;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
@@ -29,10 +39,32 @@
   top: 47px;
 }
 
-.ziltag-base-page .ziltag-ziltag-map {
-  margin: 12px 18px 4px;
-}
-
 .ziltag-base-page .ziltag-base-page__href {
   margin: 0 18px;
+}
+
+.ziltag-base-page-main {
+  display: flex;
+}
+
+.ziltag-base-page-main__col0, .ziltag-base-page-main__col1 {
+  width: 50%;
+}
+
+.ziltag-base-page .ziltag-base-page-main {
+  margin: 16px;
+}
+
+.ziltag-base-page-main__col1 .ziltag-ziltag-page__op {
+  margin-bottom: 14px;
+}
+
+.ziltag-base-page-main__col1 .ziltag-ziltag-content {
+  margin-bottom: 30px;
+}
+
+.ziltag-base-page-main__col1 h2 {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
 }

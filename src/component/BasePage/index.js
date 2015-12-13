@@ -48,13 +48,19 @@ class BasePage extends Component {
           />
         </div>
         <AvatarMenu logout={current_user_logout} activated={avatar_menu.activated}/>
-        <ZiltagMap
-          {...this.props}
-        />
-        <span className='ziltag-base-page__href'>
-          From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
-        </span>
-        {children}
+        <div className='ziltag-base-page-main'>
+          <div className='ziltag-base-page-main__col0'>
+            <ZiltagMap
+              {...this.props}
+            />
+            <span className='ziltag-base-page__href'>
+              From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
+            </span>
+          </div>
+          <div className='ziltag-base-page-main__col1'>
+            {children}
+          </div>
+        </div>
       </div>
     )
   }
