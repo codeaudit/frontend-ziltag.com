@@ -60,8 +60,8 @@ export function create_ziltag(map_id, x, y, content) {
   }), ziltag_created)
 }
 
-export const ziltag_activate_editor = createAction('ZILTAG_ACTIVATE_EDITOR')
-export const ziltag_deactivate_editor = createAction('ZILTAG_DEACTIVATE_EDITOR')
+export const activate_ziltag_editor = createAction('ACTIVATE_ZILTAG_EDITOR')
+export const deactivate_ziltag_editor = createAction('DEACTIVATE_ZILTAG_EDITOR')
 
 export const ziltag_edited = createAction('ZILTAG_EDITED')
 
@@ -82,9 +82,32 @@ export function edit_ziltag(ziltag_id, content) {
   }), ziltag_edited)
 }
 
+export const activate_ziltag_comment_editor = createAction('ACTIVATE_ZILTAG_COMMENT_EDITOR')
+export const deactivate_ziltag_comment_editor = createAction('DEACTIVATE_ZILTAG_COMMENT_EDITOR')
+
+export const ziltag_comment_edited = createAction('ZILTAG_COMMENT_EDITED')
+
+export function edit_ziltag_comment(comment_id, content) {
+  const api = `${RAILS_ADDR}/api/v1/comments/${comment_id}`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'put',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      comment: {
+        content
+      }
+    })
+  }), ziltag_comment_edited)
+}
+
 export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
 export const ziltag_editor_changed = createAction('ZILTAG_EDITOR_CHANGED')
 export const ziltag_comment_input_changed = createAction('ZILTAG_COMMENT_INPUT_CHANGED')
+export const ziltag_comment_editor_changed = createAction('ZILTAG_COMMENT_EDITOR_CHANGED')
 
 export const ziltag_comment_created = createAction('ZILTAG_COMMENT_CREATED')
 

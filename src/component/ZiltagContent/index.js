@@ -19,8 +19,8 @@ class ZiltagContent extends Component {
       usr,
       ziltag_editor,
       onChange,
-      ziltag_activate_editor,
-      ziltag_deactivate_editor,
+      activate_ziltag_editor,
+      deactivate_ziltag_editor,
       edit_ziltag
     } = this.props
 
@@ -29,7 +29,7 @@ class ZiltagContent extends Component {
         <div className='ziltag-ziltag-content__row'>
           <div
             className='ziltag-ziltag-content__edit-operator'
-            onClick={ziltag_activate_editor}
+            onClick={activate_ziltag_editor}
           >
             Edit
           </div>
@@ -60,7 +60,7 @@ class ZiltagContent extends Component {
           >
             <div
               className='ziltag-ziltag-content__edit-operator'
-              onClick={ziltag_deactivate_editor}
+              onClick={deactivate_ziltag_editor}
             >
               Cancel
             </div>

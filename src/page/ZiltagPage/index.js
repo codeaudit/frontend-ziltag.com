@@ -40,12 +40,28 @@ class ZiltagPage extends Component {
     const {
       ziltag_comment_input_changed,
       create_ziltag_comment,
-      ziltag_editor_changed
+      ziltag_editor_changed,
+      ziltag_comment_editor_changed
     } = this.actors
 
     if (current_ziltag.comments) {
       var comment_components = current_ziltag.comments.map(
-        comment => <ZiltagComment {...comment} key={comment.id}/>
+        comment => (
+          <ZiltagComment
+            {...this.props}
+            {...this.actors}
+            {...comment}
+            {...current_user}
+            author={comment.usr}
+            onChange={e => {
+              ziltag_comment_editor_changed({
+                ...e,
+                id: comment.id
+              })
+            }}
+            key={comment.id}
+          />
+        )
       )
     }
 
