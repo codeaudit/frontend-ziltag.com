@@ -45,6 +45,7 @@ class ZiltagContent extends Component {
             'ziltag-ziltag-content__text',
             'ziltag-ziltag-content__text--editing'
           )}
+          autoFocus
           onChange={onChange}
           defaultValue={content}
         />
