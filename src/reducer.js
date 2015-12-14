@@ -68,6 +68,16 @@ function current_ziltag(state={}, action) {
       return {...state, mode: 'read'}
     case 'ZILTAG_EDITED':
       return action.payload.value
+    case 'ZILTAG_COMMENT_EDITED':
+      const comment_edited_state = {...state}
+      var index = state.comments.findIndex(
+        x => x.id == action.payload.value.id
+      )
+      comment_edited_state.comments[index] = {
+        ...state.comments[index],
+        content: action.payload.value.content
+      }
+      return comment_edited_state
     default:
       return state
   }
@@ -113,6 +123,34 @@ function ziltag_comment_input(state={}, action) {
   }
 }
 
+function ziltag_comment_editors(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_COMMENT_EDITOR_CHANGED':
+      const edited_state = {...state}
+      edited_state[action.payload.id] = {
+        ...edited_state[action.payload.id],
+        content: action.payload.target.value
+      }
+      return edited_state
+    case 'ACTIVATE_ZILTAG_COMMENT_EDITOR':
+      const activated_state = {...state}
+      activated_state[action.payload] = {
+        ...activated_state[action.payload]
+      }
+      activated_state[action.payload].mode = 'edit'
+      return activated_state
+    case 'DEACTIVATE_ZILTAG_COMMENT_EDITOR':
+      const deactivated_state = {...state}
+      deactivated_state[action.payload] = {
+        ...deactivated_state[action.payload]
+      }
+      deactivated_state[action.payload].mode = 'read'
+      return deactivated_state
+    default:
+      return state
+  }
+}
+
 function sign_up_form(state={}, action) {
   switch (action.type) {
     case 'SIGN_UP_FORM_NAME_CHANGED':
@@ -144,6 +182,7 @@ export default combineReducers({
   ziltag_input,
   ziltag_editor,
   ziltag_comment_input,
+  ziltag_comment_editors,
   sign_up_form,
   login_form
 })

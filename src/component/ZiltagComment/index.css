@@ -22,10 +22,48 @@
   line-height: 22px;
 }
 
-.ziltag-ziltag-comment__content {
+.ziltag-ziltag-comment__text {
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 13px;
-  color: rgba(0, 0, 0, .87);
   line-height: 20px;
+  color: rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-comment__text--editing {
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+}
+
+.ziltag-ziltag-comment__row {
+  display: flex;
+}
+
+.ziltag-ziltag-comment__edit-operator {
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-comment__edit-operator--confirm {
+  font-weight: 500;
+  padding-left: 16px;
+  border-left: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-comment .ziltag-ziltag-comment__main {
+  width: 100%;
+}
+
+.ziltag-ziltag-comment__main .ziltag-ziltag-comment__text {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.ziltag-ziltag-comment__row .ziltag-ziltag-comment__edit-operator {
+  margin-right: 16px;
 }
 
 .ziltag-ziltag-comment .ziltag-ziltag-comment__user-avatar {

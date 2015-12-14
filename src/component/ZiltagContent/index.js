@@ -60,7 +60,7 @@ class ZiltagContent extends Component {
           >
             <div
               className='ziltag-ziltag-content__edit-operator'
-              onClick={ziltag_deactivate_editor}
+              onClick={deactivate_ziltag_editor}
             >
               Cancel
             </div>
