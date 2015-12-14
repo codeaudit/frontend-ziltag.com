@@ -51,6 +51,10 @@ body {
   margin: 20px;
 }
 
+.ziltag-base-page__head .ziltag-logo {
+  margin: 12px 20px;
+}
+
 .ziltag-base-page-main__col0 .ziltag-ziltag-map {
   margin-bottom: 4px;
 }
