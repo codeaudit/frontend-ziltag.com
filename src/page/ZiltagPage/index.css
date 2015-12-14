@@ -5,7 +5,7 @@
 .ziltag-ziltag-page__op {
   display: flex;
   height: 56px;
-  padding-bottom: 14px;
+  padding: 0 8px 14px;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
 }
 
