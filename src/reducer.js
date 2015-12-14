@@ -62,9 +62,9 @@ function current_ziltag(state={}, action) {
       return action.payload.value
     case 'ZILTAG_COMMENT_CREATED':
       return {...state, comments: [action.payload.value, ...state.comments]}
-    case 'ZILTAG_ACTIVATE_EDITOR':
+    case 'ACTIVATE_ZILTAG_EDITOR':
       return {...state, mode: 'edit'}
-    case 'ZILTAG_DEACTIVATE_EDITOR':
+    case 'DEACTIVATE_ZILTAG_EDITOR':
       return {...state, mode: 'read'}
     case 'ZILTAG_EDITED':
       return action.payload.value

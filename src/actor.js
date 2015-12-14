@@ -60,8 +60,8 @@ export function create_ziltag(map_id, x, y, content) {
   }), ziltag_created)
 }
 
-export const ziltag_activate_editor = createAction('ZILTAG_ACTIVATE_EDITOR')
-export const ziltag_deactivate_editor = createAction('ZILTAG_DEACTIVATE_EDITOR')
+export const activate_ziltag_editor = createAction('ACTIVATE_ZILTAG_EDITOR')
+export const deactivate_ziltag_editor = createAction('DEACTIVATE_ZILTAG_EDITOR')
 
 export const ziltag_edited = createAction('ZILTAG_EDITED')
 
