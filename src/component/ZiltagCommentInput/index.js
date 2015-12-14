@@ -14,7 +14,7 @@ class ZiltagCommentInput extends Component {
     const {
       onChange,
       onSubmit,
-      user,
+      usr,
       ziltag_comment_input
     } = this.props
 
@@ -22,7 +22,7 @@ class ZiltagCommentInput extends Component {
       <div className='ziltag-ziltag-comment-input'>
         <img
           className='ziltag-ziltag-comment-input__avatar'
-          src={user && user.avatar}
+          src={usr && usr.avatar}
         />
         <textarea onChange={onChange} placeholder='Your text here'/>
         <div

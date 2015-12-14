@@ -1,6 +1,62 @@
 .ziltag-ziltag-content {
+  position: relative;
   min-height: 100px;
   padding: 15px 17px;
   background: white;
   border-radius: 3px;
+}
+
+.ziltag-ziltag-content__text {
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.ziltag-ziltag-content__text--editing {
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  resize: none;
+}
+
+.ziltag-ziltag-content__row {
+  display: flex;
+}
+
+.ziltag-ziltag-content__edit-operator {
+  font-size: 12px;
+  font-weight: 500;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-content__edit-operator--confirm {
+  font-weight: 500;
+  padding-left: 16px;
+  border-left: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__text {
+  margin-bottom: 21px;
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__text--editing {
+  width: 100%;
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__row {
+  position: absolute;
+  width: 100%;
+  bottom: 15px;
+}
+
+.ziltag-ziltag-content__row .ziltag-ziltag-content__edit-operator {
+  margin-right: 16px;
+}
+
+.ziltag-ziltag-content .ziltag-ziltag-content__row--editing {
+  justify-content: flex-end;
+  right: 0;
 }

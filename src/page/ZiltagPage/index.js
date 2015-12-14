@@ -39,7 +39,8 @@ class ZiltagPage extends Component {
 
     const {
       ziltag_comment_input_changed,
-      create_ziltag_comment
+      create_ziltag_comment,
+      ziltag_editor_changed
     } = this.actors
 
     if (current_ziltag.comments) {
@@ -77,16 +78,20 @@ class ZiltagPage extends Component {
           <ZiltagContent
             {...this.props}
             {...this.actors}
+            {...current_ziltag}
+            {...current_user}
+            author={current_ziltag.usr}
+            onChange={ziltag_editor_changed}
           />
           <h2>Comments</h2>
           <ZiltagCommentInput
+            {...current_user}
             onChange={ziltag_comment_input_changed}
             onSubmit={() => {
               create_ziltag_comment(
                 current_ziltag.id, ziltag_comment_input.content
               )
             }}
-            user={current_user.usr}
             ziltag_comment_input={ziltag_comment_input}
           />
           {comment_components}
