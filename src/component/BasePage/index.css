@@ -30,12 +30,12 @@ body {
 
 .ziltag-base-page .ziltag-base-page__avatar{
   float: right;
-  margin: 12px 15px;
+  margin: 12px 23px;
 }
 
 .ziltag-base-page .ziltag-base-page__avatar-menu {
   position: absolute;
-  right: 8px;
+  right: 16px;
   top: 47px;
 }
 
