@@ -47,10 +47,20 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag-comment__edit-operator--confirm {
-  font-weight: 500;
-  padding-left: 16px;
-  border-left: 1px solid rgba(0, 0, 0, .87);
+.ziltag-ziltag-comment__edit-operator:not(:last-of-type) {
+  padding-right: 16px;
+  border-right: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-comment__edit-operator--warn {
+  color: rgb(238, 46, 36);
+  text-decoration: none;
+  cursor: default;
+}
+
+.ziltag-ziltag-comment__edit-operator--warn:first-of-type {
+  padding-right: 0;
+  border-right: 0;
 }
 
 .ziltag-ziltag-comment .ziltag-ziltag-comment__main {
