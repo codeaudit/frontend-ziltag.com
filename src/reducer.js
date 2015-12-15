@@ -78,6 +78,13 @@ function current_ziltag(state={}, action) {
         content: action.payload.value.content
       }
       return comment_edited_state
+    case 'ZILTAG_COMMENT_DELETED':
+      const comment_deleted_state = {...state}
+      var index = state.comments.findIndex(
+        x => x.id == action.payload
+      )
+      comment_deleted_state.comments.splice(index)
+      return comment_deleted_state
     default:
       return state
   }
@@ -132,20 +139,34 @@ function ziltag_comment_editors(state={}, action) {
         content: action.payload.target.value
       }
       return edited_state
-    case 'ACTIVATE_ZILTAG_COMMENT_EDITOR':
-      const activated_state = {...state}
-      activated_state[action.payload] = {
-        ...activated_state[action.payload]
+    case 'ACTIVATE_ZILTAG_COMMENT_EDIT_MODE':
+      const activated_edit_state = {...state}
+      activated_edit_state[action.payload] = {
+        ...state[action.payload]
       }
-      activated_state[action.payload].mode = 'edit'
-      return activated_state
-    case 'DEACTIVATE_ZILTAG_COMMENT_EDITOR':
-      const deactivated_state = {...state}
-      deactivated_state[action.payload] = {
-        ...deactivated_state[action.payload]
+      activated_edit_state[action.payload].mode = 'edit'
+      return activated_edit_state
+    case 'DEACTIVATE_ZILTAG_COMMENT_EDIT_MODE':
+      const deactivated_edit_state = {...state}
+      deactivated_edit_state[action.payload] = {
+        ...state[action.payload]
       }
-      deactivated_state[action.payload].mode = 'read'
-      return deactivated_state
+      deactivated_edit_state[action.payload].mode = 'read'
+      return deactivated_edit_state
+    case 'ACTIVATE_ZILTAG_COMMENT_DELETE_MODE':
+      const activated_delete_state = {...state}
+      activated_delete_state[action.payload] = {
+        ...state[action.payload]
+      }
+      activated_delete_state[action.payload].mode = 'delete'
+      return activated_delete_state
+    case 'DEACTIVATE_ZILTAG_COMMENT_DELETE_MODE':
+      const deactivated_delete_state = {...state}
+      deactivated_delete_state[action.payload] = {
+        ...state[action.payload]
+      }
+      deactivated_delete_state[action.payload].mode = 'read'
+      return deactivated_delete_state
     default:
       return state
   }

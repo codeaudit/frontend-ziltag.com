@@ -82,10 +82,14 @@ export function edit_ziltag(ziltag_id, content) {
   }), ziltag_edited)
 }
 
-export const activate_ziltag_comment_editor = createAction('ACTIVATE_ZILTAG_COMMENT_EDITOR')
-export const deactivate_ziltag_comment_editor = createAction('DEACTIVATE_ZILTAG_COMMENT_EDITOR')
+export const activate_ziltag_comment_edit_mode = createAction('ACTIVATE_ZILTAG_COMMENT_EDIT_MODE')
+export const deactivate_ziltag_comment_edit_mode = createAction('DEACTIVATE_ZILTAG_COMMENT_EDIT_MODE')
+
+export const activate_ziltag_comment_delete_mode = createAction('ACTIVATE_ZILTAG_COMMENT_DELETE_MODE')
+export const deactivate_ziltag_comment_delete_mode = createAction('DEACTIVATE_ZILTAG_COMMENT_DELETE_MODE')
 
 export const ziltag_comment_edited = createAction('ZILTAG_COMMENT_EDITED')
+export const ziltag_comment_deleted = createAction('ZILTAG_COMMENT_DELETED')
 
 export function edit_ziltag_comment(comment_id, content) {
   const api = `${RAILS_ADDR}/api/v1/comments/${comment_id}`
@@ -102,6 +106,14 @@ export function edit_ziltag_comment(comment_id, content) {
       }
     })
   }), ziltag_comment_edited)
+}
+
+export function delete_ziltag_comment(comment_id) {
+  const api = `${RAILS_ADDR}/api/v1/comments/${comment_id}`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'delete'
+  }), () => ziltag_comment_deleted(comment_id))
 }
 
 export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
