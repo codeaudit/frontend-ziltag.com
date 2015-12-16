@@ -194,6 +194,21 @@ function login_form(state={}, action) {
   }
 }
 
+function pseudo_comment(state={}, action) {
+  switch (action.type) {
+    case 'ACTIVATE_PSEUDO_COMMENT':
+      return {...state, mode: 'read'}
+    case 'DEACTIVATE_PSEUDO_COMMENT':
+      return {...state, mode: null}
+    case 'PSEUDO_COMMENT_SIGN_UP':
+      return {...state, mode: 'sign_up'}
+    case 'PSEUDO_COMMENT_LOGIN':
+      return {...state, mode: 'login'}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
@@ -205,5 +220,6 @@ export default combineReducers({
   ziltag_comment_input,
   ziltag_comment_editors,
   sign_up_form,
-  login_form
+  login_form,
+  pseudo_comment
 })

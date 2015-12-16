@@ -7,6 +7,7 @@ import BasePage from '../../component/BasePage'
 import ZiltagContent from '../../component/ZiltagContent'
 import ZiltagComment from '../../component/ZiltagComment'
 import ZiltagCommentInput from '../../component/ZiltagCommentInput'
+import PseudoComment from '../../component/PseudoComment'
 import * as actors from '../../actor'
 
 
@@ -34,7 +35,8 @@ class ZiltagPage extends Component {
     const {
       current_ziltag,
       current_user,
-      ziltag_comment_input
+      ziltag_comment_input,
+      pseudo_comment
     } = this.props
 
     const {
@@ -62,6 +64,31 @@ class ZiltagPage extends Component {
             key={comment.id}
           />
         )
+      )
+    }
+
+    if (pseudo_comment.mode) {
+      var comment_input_area = (
+        <PseudoComment
+          {...this.props}
+          {...this.actors}
+          {...ziltag_comment_input}
+          {...pseudo_comment}
+        />
+      )
+    } else {
+      var comment_input_area = (
+        <ZiltagCommentInput
+          {...this.props}
+          {...this.actors}
+          {...current_user}
+          onChange={ziltag_comment_input_changed}
+          onSubmit={() => {
+            create_ziltag_comment(
+              current_ziltag.id, ziltag_comment_input.content
+            )
+          }}
+        />
       )
     }
 
@@ -100,16 +127,7 @@ class ZiltagPage extends Component {
             onChange={ziltag_editor_changed}
           />
           <h2>Comments</h2>
-          <ZiltagCommentInput
-            {...current_user}
-            onChange={ziltag_comment_input_changed}
-            onSubmit={() => {
-              create_ziltag_comment(
-                current_ziltag.id, ziltag_comment_input.content
-              )
-            }}
-            ziltag_comment_input={ziltag_comment_input}
-          />
+          {comment_input_area}
           {comment_components}
         </BasePage>
       </div>
