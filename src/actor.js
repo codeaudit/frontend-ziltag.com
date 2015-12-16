@@ -197,3 +197,9 @@ export const login_form_password_changed = createAction('LOGIN_FORM_PASSWORD_CHA
 
 export const sign_up_form_name_changed = createAction('SIGN_UP_FORM_NAME_CHANGED')
 export const sign_up_form_email_changed = createAction('SIGN_UP_FORM_EMAIL_CHANGED')
+
+export const activate_pseudo_comment = createAction('ACTIVATE_PSEUDO_COMMENT')
+export const deactivate_pseudo_comment = createAction('DEACTIVATE_PSEUDO_COMMENT')
+
+export const pseudo_comment_sign_up = createAction('PSEUDO_COMMENT_SIGN_UP')
+export const pseudo_comment_login = createAction('PSEUDO_COMMENT_LOGIN')

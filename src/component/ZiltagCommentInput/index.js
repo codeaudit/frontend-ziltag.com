@@ -15,7 +15,8 @@ class ZiltagCommentInput extends Component {
       onChange,
       onSubmit,
       usr,
-      ziltag_comment_input
+      ziltag_comment_input,
+      activate_pseudo_comment
     } = this.props
 
     return (
@@ -27,8 +28,12 @@ class ZiltagCommentInput extends Component {
         <textarea onChange={onChange} placeholder='Your text here'/>
         <div
           onClick={() => {
-            if (ziltag_comment_input.content) {
-              onSubmit()
+            if (usr) {
+              if (ziltag_comment_input.content) {
+                onSubmit()
+              }
+            } else {
+              activate_pseudo_comment()
             }
           }}
           className={classNames({
