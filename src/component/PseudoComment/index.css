@@ -48,7 +48,7 @@
 }
 
 /*
-TODO: ZiltagForm on CoDiv and PseudoComment should use same layout style.
+TODO: ZiltagForm on CoDiv and PseudoComment should use unified layout style.
 */
 .ziltag-pseudo-comment .ziltag-ziltag-form nav {
   height: 100%;
