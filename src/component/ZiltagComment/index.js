@@ -1,6 +1,8 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
 
+import Avatar from '../Avatar'
+
 
 try {
   if (__WEBPACK__) {
@@ -137,7 +139,7 @@ class ZiltagComment extends Component {
 
     return (
       <div className='ziltag-ziltag-comment'>
-        <img
+        <Avatar
           className='ziltag-ziltag-comment__user-avatar' src={author.avatar}
         />
         <div className='ziltag-ziltag-comment__main'>

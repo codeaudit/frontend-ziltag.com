@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import Logo from '../Logo'
+import Avatar from '../Avatar'
 import AvatarMenu from '../AvatarMenu'
 import ZiltagMap from '../ZiltagMap'
 
@@ -35,7 +36,7 @@ class BasePage extends Component {
       >
         <div className='ziltag-base-page__head'>
           <Logo/>
-          <img
+          <Avatar
             style={{
               display: current_user.usr ? 'inline' : 'none'
             }}

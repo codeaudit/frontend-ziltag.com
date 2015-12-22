@@ -14,6 +14,7 @@ body {
 
 .ziltag-base-page__avatar {
   width: 30px;
+  height: 30px;
   border-radius: 50%;
   cursor: pointer;
 }

@@ -10,8 +10,8 @@
 }
 
 .ziltag-ziltag-page__op-avatar {
-  display: block;
-  height: 100%;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
 }
 
