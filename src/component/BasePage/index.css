@@ -36,6 +36,7 @@ body {
 
 .ziltag-base-page .ziltag-base-page__avatar-menu {
   position: absolute;
+  z-index: 1;
   right: 16px;
   top: 47px;
 }
