@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
 
+import Avatar from '../Avatar'
+
 
 try {
   if (__WEBPACK__) {
@@ -17,7 +19,10 @@ class ZiltagPreview extends Component {
     return (
       <div className='ziltag-ziltag-preview'>
         {ziltag.preview}
-        <img className='ziltag-ziltag-preview__avatar' src={ziltag.usr.avatar}/>
+        <Avatar
+          className='ziltag-ziltag-preview__avatar'
+          src={ziltag.usr.avatar}
+        />
       </div>
     )
   }
