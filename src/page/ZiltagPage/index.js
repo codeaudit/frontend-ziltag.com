@@ -8,6 +8,7 @@ import ZiltagContent from '../../component/ZiltagContent'
 import ZiltagComment from '../../component/ZiltagComment'
 import ZiltagCommentInput from '../../component/ZiltagCommentInput'
 import PseudoComment from '../../component/PseudoComment'
+import Avatar from '../../component/Avatar'
 import * as actors from '../../actor'
 
 
@@ -99,7 +100,7 @@ class ZiltagPage extends Component {
           {...this.actors}
         >
           <div className='ziltag-ziltag-page__op'>
-            <img
+            <Avatar
               className='ziltag-ziltag-page__op-avatar'
               src={current_ziltag.usr && current_ziltag.usr.avatar}
             />

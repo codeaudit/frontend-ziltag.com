@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ZiltagForm from '../ZiltagForm'
+import Avatar from '../Avatar'
 
 
 try {
@@ -93,7 +94,7 @@ class PseudoComment extends Component {
     } else if (mode == 'read') {
       var component = (
         <div className='ziltag-pseudo-comment'>
-          <img className='ziltag-pseudo-comment__user-avatar'/>
+          <Avatar className='ziltag-pseudo-comment__user-avatar'/>
           <div className='ziltag-pseudo-comment__main'>
             <div className='ziltag-pseudo-comment__text'>
               {content}
