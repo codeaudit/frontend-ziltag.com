@@ -11,13 +11,11 @@ try {
 
 class Avatar extends Component {
   render() {
-    const {
-      src,
-      className
-    } = this.props
-
     return (
-      <img className={classNames(className, 'ziltag-avatar')} src={src}/>
+      <img
+        {...this.props}
+        className={classNames(this.props.className, 'ziltag-avatar')}
+      />
     )
   }
 }
