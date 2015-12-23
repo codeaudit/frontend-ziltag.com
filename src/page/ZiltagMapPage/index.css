@@ -1,0 +1,53 @@
+.ziltag-ziltag-map-page {
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+.ziltag-ziltag-map-page__ziltag {
+  display: flex;
+  height: 120px;
+  background: white;
+  border-radius: 3px;
+  padding: 15px 17px 0;
+}
+
+.ziltag-ziltag-map-page__ziltag:last-of-type {
+  padding: 15px 17px;
+}
+
+.ziltag-ziltag-map-page__ziltag--activated {
+  background: rgba(0, 0, 0, .12);
+}
+
+.ziltag-ziltag-map-page__heading {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, .12);
+}
+
+.ziltag-ziltag-map-page__ziltag-user-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+.ziltag-ziltag-map-page__ziltag-user-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, .87);
+  line-height: 22px;
+}
+
+.ziltag-ziltag-map-page__ziltag-content {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.ziltag-ziltag-map-page .ziltag-ziltag-map-page__ziltag {
+  margin-bottom: 14px;
+}
+
+.ziltag-ziltag-map-page .ziltag-ziltag-map-page__heading {
+  margin: 17px 0 14px;
+}
+
+.ziltag-ziltag-map-page__ziltag .ziltag-ziltag-map-page__ziltag-user-avatar {
+  margin-right: 10px;
+}

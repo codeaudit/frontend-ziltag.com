@@ -40,7 +40,7 @@ function ziltag_map(state={}, action) {
       const co_div_state = {...state}
       var index = state.ziltags.findIndex(x => x.id == action.payload)
       co_div_state.ziltags[index].co_div = {
-        activated: action.type == 'HOVER_ON_ZILTAG' ? true : false
+        activated: action.type == 'HOVER_ON_ZILTAG' ? true : true
       }
       return co_div_state
     case 'ZILTAG_EDITED':
