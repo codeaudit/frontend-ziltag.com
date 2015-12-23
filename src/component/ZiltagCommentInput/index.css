@@ -1,4 +1,5 @@
 .ziltag-ziltag-comment-input {
+  position: relative;
   display: flex;
   align-items: center;
   background: white;
@@ -42,4 +43,9 @@
 
 .ziltag-ziltag-comment-input .ziltag-ziltag-comment-input__avatar{
   margin-right: 10px;
+}
+
+.ziltag-ziltag-comment-input .ziltag-ziltag-comment-input__post {
+  position: absolute;
+  bottom: 26px;
 }

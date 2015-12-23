@@ -21,7 +21,15 @@ class ZiltagCommentInput extends Component {
       activate_pseudo_comment
     } = this.props
 
-    console.log('ziltag_comment_input.content', ziltag_comment_input.content)
+    if (ziltag_comment_input.content) {
+      var line_count = Math.ceil(ziltag_comment_input.content.length / 42)
+    } else {
+      var line_count = 1
+    }
+
+    const textarea_style = {
+      height: 20 * line_count
+    }
 
     return (
       <div className='ziltag-ziltag-comment-input'>
@@ -30,6 +38,7 @@ class ZiltagCommentInput extends Component {
           src={usr && usr.avatar}
         />
         <textarea
+          style={textarea_style}
           onChange={onChange}
           value={ziltag_comment_input.content || ''}
           placeholder='Your text here'
