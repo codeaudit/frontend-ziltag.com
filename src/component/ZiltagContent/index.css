@@ -31,8 +31,7 @@
   cursor: pointer;
 }
 
-.ziltag-ziltag-content__edit-operator--confirm {
-  font-weight: 500;
+.ziltag-ziltag-content__edit-operator:last-of-type {
   padding-left: 16px;
   border-left: 1px solid rgba(0, 0, 0, .87);
 }
@@ -58,4 +57,12 @@
 .ziltag-ziltag-content .ziltag-ziltag-content__row--editing {
   justify-content: flex-end;
   right: 0;
+}
+
+.ziltag-ziltag-content__row--editing .ziltag-ziltag-content__edit-operator {
+  font-weight: normal;
+}
+
+.ziltag-ziltag-content__row--editing .ziltag-ziltag-content__edit-operator--confirm {
+  font-weight: 500;
 }

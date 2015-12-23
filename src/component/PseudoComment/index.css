@@ -1,12 +1,15 @@
 .ziltag-pseudo-comment {
+  position: relative;
   display: flex;
+  min-height: 100px;
   background: white;
-  padding: 15px 17px 0;
+  padding: 15px 0 15px 17px;
   border-radius: 3px;
 }
 
 .ziltag-pseudo-comment__text {
-  font-size: 13px;
+  width: calc(100% - 60px);
+  font-size: 14px;
   line-height: 20px;
   color: rgba(0, 0, 0, .26);
 }
@@ -17,7 +20,45 @@
 }
 
 .ziltag-pseudo-comment__main strong {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: rgb(238, 46, 36);
+}
+
+.ziltag-pseudo-comment__main .ziltag-pseudo-comment__text {
+  margin-bottom: 4px;
+}
+
+.ziltag-pseudo-comment .ziltag-pseudo-comment__user-avatar {
+  margin-right: 10px;
+}
+
+.ziltag-pseudo-comment nav {
+  position: absolute;
+  right: 0;
+  width: 59px;
+  height: calc(100% - 30px);
+  line-height: 20px;
+  border-left: 1px solid black;
+  text-align: center;
+}
+
+.ziltag-pseudo-comment .ziltag-ziltag-form {
+  width: 100%;
+  margin-left: 50px;
+}
+
+/*
+TODO: ZiltagForm on CoDiv and PseudoComment should use unified layout style.
+*/
+.ziltag-pseudo-comment .ziltag-ziltag-form nav {
+  height: 100%;
+}
+
+.ziltag-pseudo-comment .ziltag-ziltag-form .ziltag-ziltag-form__col0 {
+  width: calc(100% - 60px);
+}
+
+.ziltag-pseudo-comment .ziltag-ziltag-form .ziltag-ziltag-form__col0 input {
+  width: 60%;
 }
