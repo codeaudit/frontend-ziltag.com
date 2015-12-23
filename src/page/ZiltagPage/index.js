@@ -54,7 +54,7 @@ class ZiltagPage extends Component {
             {...this.props}
             {...this.actors}
             {...comment}
-            {...current_user}
+            usr={current_user.usr}
             author={comment.usr}
             onChange={e => {
               ziltag_comment_editor_changed({
@@ -123,7 +123,7 @@ class ZiltagPage extends Component {
             {...this.props}
             {...this.actors}
             {...current_ziltag}
-            {...current_user}
+            usr={current_user.usr}
             author={current_ziltag.usr}
             onChange={ziltag_editor_changed}
           />
