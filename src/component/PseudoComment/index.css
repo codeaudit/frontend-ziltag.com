@@ -45,6 +45,7 @@
 
 .ziltag-pseudo-comment .ziltag-ziltag-form {
   width: 100%;
+  margin-left: 50px;
 }
 
 /*
@@ -52,4 +53,12 @@ TODO: ZiltagForm on CoDiv and PseudoComment should use unified layout style.
 */
 .ziltag-pseudo-comment .ziltag-ziltag-form nav {
   height: 100%;
+}
+
+.ziltag-pseudo-comment .ziltag-ziltag-form .ziltag-ziltag-form__col0 {
+  width: calc(100% - 60px);
+}
+
+.ziltag-pseudo-comment .ziltag-ziltag-form .ziltag-ziltag-form__col0 input {
+  width: 60%;
 }
