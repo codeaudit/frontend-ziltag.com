@@ -6,8 +6,8 @@
 }
 
 .ziltag-ziltag-preview__content {
-  width: calc(100% - 38px);
-  height: 100%;
+  width: calc(100% - 38px - 14px);
+  height: 30px;
   overflow: hidden;
 }
 
