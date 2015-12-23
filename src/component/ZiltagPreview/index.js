@@ -18,7 +18,9 @@ class ZiltagPreview extends Component {
 
     return (
       <div className='ziltag-ziltag-preview'>
-        {ziltag.content}
+        <div className='ziltag-ziltag-preview__content'>
+          {ziltag.content}
+        </div>
         <Avatar
           className='ziltag-ziltag-preview__avatar'
           src={ziltag.usr.avatar}
