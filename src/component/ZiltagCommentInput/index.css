@@ -28,6 +28,7 @@
 
 .ziltag-ziltag-comment-input__post {
   width: 70px;
+  height: 15px;
   text-align: center;
   font-size: 14px;
   color: rgba(0, 0, 0, .26);

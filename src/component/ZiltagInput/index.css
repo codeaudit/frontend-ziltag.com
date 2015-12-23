@@ -1,4 +1,5 @@
 .ziltag-ziltag-input {
+  position: relative;
   display: flex;
 }
 
@@ -8,6 +9,7 @@
   padding: 0;
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 14px;
+  line-height: 15px;
   color: rgba(0, 0, 0, .87);
   border: 0;
   outline: 0;
@@ -16,6 +18,7 @@
 
 .ziltag-ziltag-input__post {
   width: 50px;
+  height: 15px;
   text-align: center;
   font-size: 14px;
   color: rgba(0, 0, 0, .26);
@@ -27,4 +30,9 @@
   font-weight: 500;
   color: rgba(0, 0, 0, .87);
   border-left: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-input .ziltag-ziltag-input__post {
+  position: absolute;
+  bottom: 0;
 }
