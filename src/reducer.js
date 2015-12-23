@@ -48,7 +48,7 @@ function ziltag_map(state={}, action) {
       var index = state.ziltags.findIndex(
         x => x.id == action.payload.value.id
       )
-      edited_state.ziltags[index].preview = action.payload.value.content
+      edited_state.ziltags[index].content = action.payload.value.content
       return edited_state
     default:
       return state
