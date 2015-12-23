@@ -9,7 +9,7 @@
 
 .ziltag-pseudo-comment__text {
   width: calc(100% - 60px);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 20px;
   color: rgba(0, 0, 0, .26);
 }
@@ -20,7 +20,7 @@
 }
 
 .ziltag-pseudo-comment__main strong {
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 500;
   color: rgb(238, 46, 36);
 }

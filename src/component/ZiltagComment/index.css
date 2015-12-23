@@ -24,7 +24,7 @@
 
 .ziltag-ziltag-comment__text {
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 20px;
   color: rgba(0, 0, 0, .87);
 }
@@ -78,4 +78,12 @@
 
 .ziltag-ziltag-comment .ziltag-ziltag-comment__user-avatar {
   margin-right: 10px;
+}
+
+.ziltag-ziltag-comment__row--editing .ziltag-ziltag-comment__edit-operator {
+  font-weight: normal;
+}
+
+.ziltag-ziltag-comment__row--editing .ziltag-ziltag-comment__edit-operator--warn {
+  font-weight: 500;
 }
