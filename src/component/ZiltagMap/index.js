@@ -129,7 +129,12 @@ class ZiltagMap extends Component {
               </ZiltagMapDialog>
           : ziltag_input.mode == 'login'
           ? <ZiltagForm>
-              <input onChange={login_form_user_changed} type='email' placeholder='Email'/>
+              <input
+                onChange={login_form_user_changed}
+                type='email'
+                placeholder='Email'
+                autoFocus
+              />
               <input onChange={login_form_password_changed} type='password' placeholder='Password'/>
               <nav>
                 <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
@@ -158,7 +163,12 @@ class ZiltagMap extends Component {
             </ZiltagForm>
           : ziltag_input.mode == 'sign_up'
           ? <ZiltagForm>
-              <input onChange={sign_up_form_name_changed} type='name' placeholder='Username'/>
+              <input
+                onChange={sign_up_form_name_changed}
+                type='name'
+                placeholder='Username'
+                autoFocus
+              />
               <input onChange={sign_up_form_email_changed} type='email' placeholder='Email'/>
               <nav>
                 <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
