@@ -21,13 +21,19 @@ class ZiltagCommentInput extends Component {
       activate_pseudo_comment
     } = this.props
 
+    console.log('ziltag_comment_input.content', ziltag_comment_input.content)
+
     return (
       <div className='ziltag-ziltag-comment-input'>
         <Avatar
           className='ziltag-ziltag-comment-input__avatar'
           src={usr && usr.avatar}
         />
-        <textarea onChange={onChange} placeholder='Your text here'/>
+        <textarea
+          onChange={onChange}
+          value={ziltag_comment_input.content || ''}
+          placeholder='Your text here'
+        />
         <div
           onClick={() => {
             if (usr) {
