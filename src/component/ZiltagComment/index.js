@@ -7,6 +7,7 @@ import Avatar from '../Avatar'
 try {
   if (__WEBPACK__) {
     require('./index.css')
+    var warn_icon = require('./warn.png')
   }
 } catch (e) {}
 
@@ -149,8 +150,24 @@ class ZiltagComment extends Component {
       var text_component = <div className='ziltag-ziltag-comment__text'>{content}</div>
     }
 
+    if ((usr && usr.name == author.name) && !usr.confirmed) {
+      var warn_component = (
+        <p className='ziltag-ziltag-comment__warn'>
+          <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
+          Please verify your account to make this comment “public.”
+          Haven’t receive confirmation email? <a>Send again</a>
+        </p>
+      )
+    }
+
     return (
-      <div className='ziltag-ziltag-comment'>
+      <div
+        className={classNames({
+          'ziltag-ziltag-comment': true,
+          'ziltag-ziltag-comment--unverified':
+            (usr && usr.name == author.name) && !usr.confirmed
+        })}
+      >
         <Avatar
           className='ziltag-ziltag-comment__user-avatar' src={author.avatar}
         />
@@ -159,7 +176,11 @@ class ZiltagComment extends Component {
             {author.name}
           </div>
           {text_component}
-          {edit_operator_components}
+          {
+            (usr && usr.name == author.name) && !usr.confirmed
+            ? warn_component
+            : edit_operator_components
+          }
         </div>
       </div>
     )
