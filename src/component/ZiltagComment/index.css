@@ -5,6 +5,10 @@
   border-radius: 3px;
 }
 
+.ziltag-ziltag-comment--unverified {
+  background: rgba(216, 216, 216, .5);
+}
+
 .ziltag-ziltag-comment:last-of-type {
   padding-bottom: 15px;
 }
@@ -61,6 +65,22 @@
 .ziltag-ziltag-comment__edit-operator--warn:first-of-type {
   padding-right: 0;
   border-right: 0;
+}
+
+.ziltag-ziltag-comment__warn {
+  font-size: 12px;
+  font-weight: 500;
+  color: rgb(238, 46, 36);
+}
+
+.ziltag-ziltag-comment__warn a {
+  color: rgb(0, 159, 246);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.ziltag-ziltag-comment__warn .ziltag-ziltag-comment__warn-icon {
+  float: left;
 }
 
 .ziltag-ziltag-comment .ziltag-ziltag-comment__main {
