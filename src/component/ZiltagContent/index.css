@@ -27,13 +27,17 @@
 .ziltag-ziltag-content__edit-operator {
   font-size: 12px;
   font-weight: 500;
-  text-decoration: underline;
   cursor: pointer;
 }
 
 .ziltag-ziltag-content__edit-operator:last-of-type {
   padding-left: 16px;
   border-left: 1px solid rgba(0, 0, 0, .87);
+}
+
+.ziltag-ziltag-content__edit-operator--warn {
+  color: rgb(238, 46, 36);
+  cursor: default;
 }
 
 .ziltag-ziltag-content .ziltag-ziltag-content__text {

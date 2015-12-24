@@ -60,10 +60,14 @@ export function create_ziltag(map_id, x, y, content) {
   }), ziltag_created)
 }
 
-export const activate_ziltag_editor = createAction('ACTIVATE_ZILTAG_EDITOR')
-export const deactivate_ziltag_editor = createAction('DEACTIVATE_ZILTAG_EDITOR')
+export const activate_ziltag_edit_mode = createAction('ACTIVATE_ZILTAG_EDIT_MODE')
+export const deactivate_ziltag_edit_mode = createAction('DEACTIVATE_ZILTAG_EDIT_MODE')
+
+export const activate_ziltag_delete_mode = createAction('ACTIVATE_ZILTAG_DELETE_MODE')
+export const deactivate_ziltag_delete_mode = createAction('DEACTIVATE_ZILTAG_DELETE_MODE')
 
 export const ziltag_edited = createAction('ZILTAG_EDITED')
+export const ziltag_deleted = createAction('ZILTAG_DELETED')
 
 export function edit_ziltag(ziltag_id, content) {
   const api = `${RAILS_ADDR}/api/v1/ziltags/${ziltag_id}`
@@ -80,6 +84,14 @@ export function edit_ziltag(ziltag_id, content) {
       }
     })
   }), ziltag_edited)
+}
+
+export function delete_ziltag(ziltag_id) {
+  const api = `${RAILS_ADDR}/api/v1/ziltags/${ziltag_id}`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'delete'
+  }), () => ziltag_deleted(ziltag_id))
 }
 
 export const activate_ziltag_comment_edit_mode = createAction('ACTIVATE_ZILTAG_COMMENT_EDIT_MODE')

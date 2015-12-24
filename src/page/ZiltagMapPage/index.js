@@ -33,8 +33,6 @@ class ZiltagMapPage extends Component {
       ziltag_map
     } = this.props
 
-    console.log('ziltag_map', ziltag_map)
-
     const summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
       return (
         <div
