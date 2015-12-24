@@ -86,64 +86,64 @@ class ZiltagComment extends Component {
       }
 
       var edit_operator_components = (
+        <div
+          className={classNames(
+            'ziltag-ziltag-comment__row',
+            'ziltag-ziltag-comment__row--editing',
+          )}
+        >
+          {
+            ziltag_comment_editors[id].mode == 'delete' && (
+              <div
+                className={
+                  classNames(
+                    'ziltag-ziltag-comment__edit-operator',
+                    'ziltag-ziltag-comment__edit-operator--warn'
+                  )
+                }
+              >
+                Delete?
+              </div>
+            )
+          }
           <div
-            className={classNames(
-              'ziltag-ziltag-comment__row',
-              'ziltag-ziltag-comment__row--editing',
-            )}
+            className='ziltag-ziltag-comment__edit-operator'
+            onClick={() => {
+              if (ziltag_comment_editors[id].mode == 'edit') {
+                deactivate_ziltag_comment_edit_mode(id)
+              } else if (ziltag_comment_editors[id].mode == 'delete') {
+                delete_ziltag_comment(id)
+              }
+            }}
           >
             {
-              ziltag_comment_editors[id].mode == 'delete' && (
-                <div
-                  className={
-                    classNames(
-                      'ziltag-ziltag-comment__edit-operator',
-                      'ziltag-ziltag-comment__edit-operator--warn'
-                    )
-                  }
-                >
-                  Delete?
-                </div>
-              )
+              ziltag_comment_editors[id].mode == 'edit'
+              ? 'Cancel'
+              : ziltag_comment_editors[id].mode == 'delete'
+              ? 'Confirm'
+              : ''
             }
-            <div
-              className='ziltag-ziltag-comment__edit-operator'
-              onClick={() => {
-                if (ziltag_comment_editors[id].mode == 'edit') {
-                  deactivate_ziltag_comment_edit_mode(id)
-                } else if (ziltag_comment_editors[id].mode == 'delete') {
-                  delete_ziltag_comment(id)
-                }
-              }}
-            >
-              {
-                ziltag_comment_editors[id].mode == 'edit'
-                ? 'Cancel'
-                : ziltag_comment_editors[id].mode == 'delete'
-                ? 'Confirm'
-                : ''
-              }
-            </div>
-            <div
-              className='ziltag-ziltag-comment__edit-operator'
-              onClick={() => {
-                if (ziltag_comment_editors[id].mode == 'edit') {
-                  edit_ziltag_comment(id, ziltag_comment_editors[id].content)
-                  .then(() => deactivate_ziltag_comment_edit_mode(id))
-                } else if (ziltag_comment_editors[id].mode == 'delete') {
-                  deactivate_ziltag_comment_delete_mode(id)
-                }
-              }}
-            >
-              {
-                ziltag_comment_editors[id].mode == 'edit'
-                ? 'Confirm'
-                : ziltag_comment_editors[id].mode == 'delete'
-                ? 'Cancel'
-                : ''
-              }
-            </div>
           </div>
+          <div
+            className='ziltag-ziltag-comment__edit-operator'
+            onClick={() => {
+              if (ziltag_comment_editors[id].mode == 'edit') {
+                edit_ziltag_comment(id, ziltag_comment_editors[id].content)
+                .then(() => deactivate_ziltag_comment_edit_mode(id))
+              } else if (ziltag_comment_editors[id].mode == 'delete') {
+                deactivate_ziltag_comment_delete_mode(id)
+              }
+            }}
+          >
+            {
+              ziltag_comment_editors[id].mode == 'edit'
+              ? 'Confirm'
+              : ziltag_comment_editors[id].mode == 'delete'
+              ? 'Cancel'
+              : ''
+            }
+          </div>
+        </div>
       )
     } else {
       var text_component = <div className='ziltag-ziltag-comment__text'>{content}</div>
