@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
+import TimeAgo from 'react-timeago'
 
 import Avatar from '../Avatar'
 
@@ -18,6 +19,7 @@ class ZiltagComment extends Component {
       id,
       content,
       author,
+      created_at,
       usr,
       ziltag_comment_editors,
       onChange,
@@ -172,8 +174,14 @@ class ZiltagComment extends Component {
           className='ziltag-ziltag-comment__user-avatar' src={author.avatar}
         />
         <div className='ziltag-ziltag-comment__main'>
-          <div className='ziltag-ziltag-comment__user-name'>
-            {author.name}
+          <div>
+            <span className='ziltag-ziltag-comment__user-name'>
+              {author.name}
+            </span>
+            <TimeAgo
+              className='ziltag-ziltag-comment__since'
+              date={created_at}
+            />
           </div>
           {text_component}
           {

@@ -67,6 +67,10 @@
   border-right: 0;
 }
 
+.ziltag-ziltag-comment__since {
+  font-size: 12px;
+}
+
 .ziltag-ziltag-comment__warn {
   font-size: 12px;
   font-weight: 500;
@@ -81,6 +85,10 @@
 
 .ziltag-ziltag-comment__warn .ziltag-ziltag-comment__warn-icon {
   float: left;
+}
+
+.ziltag-ziltag-comment__main .ziltag-ziltag-comment__user-name {
+  margin-right: 6px;
 }
 
 .ziltag-ziltag-comment .ziltag-ziltag-comment__main {
