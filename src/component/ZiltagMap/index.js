@@ -50,7 +50,9 @@ class ZiltagMap extends Component {
         ziltag.x_px = ziltag.x * ziltag_map.width
         ziltag.y_px = ziltag.y * ziltag_map.height
 
-        ziltag.activated = ziltag.id == current_ziltag.id
+        ziltag.activated = (
+          ziltag.id == current_ziltag.id && !ziltag_input.activated
+        )
         ? true : false
 
         return [
@@ -249,11 +251,8 @@ class ZiltagMap extends Component {
             }
           }}
         >
-          {
-            ziltag_input.activated
-            ? ziltag_input_components
-            : ziltag_components
-          }
+          {ziltag_input_components}
+          {ziltag_components}
         </div>
       </div>
     )
