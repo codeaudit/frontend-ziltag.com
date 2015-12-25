@@ -22,8 +22,7 @@ class BasePage extends Component {
       ziltag_map,
       activate_avatar_menu,
       deactivate_avatar_menu,
-      deactivate_ziltag_input,
-      current_user_logout
+      deactivate_ziltag_input
     } = this.props
 
     return (
@@ -48,7 +47,10 @@ class BasePage extends Component {
             }}
           />
         </div>
-        <AvatarMenu logout={current_user_logout} activated={avatar_menu.activated}/>
+        <AvatarMenu
+          {...this.props}
+          {...avatar_menu}
+        />
         <div className='ziltag-base-page-main'>
           <div className='ziltag-base-page-main__col0'>
             <ZiltagMap

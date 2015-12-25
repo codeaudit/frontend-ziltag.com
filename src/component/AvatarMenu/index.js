@@ -18,7 +18,9 @@ class AvatarMenu extends Component {
   render() {
     const {
       activated,
-      logout
+      current_ziltag,
+      current_user_logout,
+      fetch_ziltag
     } = this.props
 
     const style = {
@@ -31,7 +33,10 @@ class AvatarMenu extends Component {
         <Item>Term of Use</Item>
         <Item>Privacy</Item>
         <hr/>
-        <Item onClick={logout}>Logout</Item>
+        <Item onClick={() => {
+          current_user_logout()
+          .then(fetch_ziltag(current_ziltag.id))
+        }}>Logout</Item>
       </ul>
     )
   }
