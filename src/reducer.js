@@ -87,7 +87,7 @@ function current_ziltag(state={}, action) {
       var index = state.comments.findIndex(
         x => x.id == action.payload
       )
-      comment_deleted_state.comments.splice(index)
+      comment_deleted_state.comments.splice(index, 1)
       return comment_deleted_state
     default:
       return state
