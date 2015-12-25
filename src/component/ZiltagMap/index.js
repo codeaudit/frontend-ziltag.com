@@ -50,7 +50,9 @@ class ZiltagMap extends Component {
         ziltag.x_px = ziltag.x * ziltag_map.width
         ziltag.y_px = ziltag.y * ziltag_map.height
 
-        ziltag.activated = ziltag.id == current_ziltag.id
+        ziltag.activated = (
+          ziltag.id == current_ziltag.id && !ziltag_input.activated
+        )
         ? true : false
 
         return [
@@ -233,6 +235,15 @@ class ZiltagMap extends Component {
           }}
           className='ziltag-ziltag-map__container'
           onClick={(e) => {
+            function is_overlapping(point1, point2) {
+              const distance = Math.sqrt(
+                Math.pow(point1.x - point2.x, 2) +
+                Math.pow(point1.y - point2.y, 2)
+              )
+              const radius = 12
+              return distance < 2 * radius
+            }
+
             const radius = 12
             const x_px = e.nativeEvent.offsetX
             const y_px = e.nativeEvent.offsetY
@@ -242,18 +253,19 @@ class ZiltagMap extends Component {
               x_px > radius &&
               x_px <= ziltag_map.width - radius &&
               y_px > radius &&
-              y_px <= ziltag_map.height - radius
+              y_px <= ziltag_map.height - radius &&
+              !ziltag_map.ziltags.filter(ziltag => is_overlapping(
+                {x: ziltag.x_px, y: ziltag.y_px},
+                {x: x_px, y: y_px}
+              )).length
             ) {
               activate_ziltag_input({x_px, y_px, x, y, map_id: ziltag_map.id})
               e.stopPropagation()
             }
           }}
         >
-          {
-            ziltag_input.activated
-            ? ziltag_input_components
-            : ziltag_components
-          }
+          {ziltag_input_components}
+          {ziltag_components}
         </div>
       </div>
     )
