@@ -215,3 +215,13 @@ export const deactivate_pseudo_comment = createAction('DEACTIVATE_PSEUDO_COMMENT
 
 export const pseudo_comment_sign_up = createAction('PSEUDO_COMMENT_SIGN_UP')
 export const pseudo_comment_login = createAction('PSEUDO_COMMENT_LOGIN')
+
+export const verification_mail_resended = createAction('VERIFICATION_MAIL_RESENDED')
+
+export function resend_verification_mail(params) {
+  const api = `${RAILS_ADDR}/api/v1/resend_confirmation`
+  return bind(fetch(api, {
+    credentials: 'include',
+    method: 'post'
+  }), () => verification_mail_resended(params))
+}

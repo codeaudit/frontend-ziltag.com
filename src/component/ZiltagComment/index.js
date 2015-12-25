@@ -22,13 +22,15 @@ class ZiltagComment extends Component {
       created_at,
       usr,
       ziltag_comment_editors,
+      resend_verification_mail_tip,
       onChange,
       activate_ziltag_comment_edit_mode,
       deactivate_ziltag_comment_edit_mode,
       activate_ziltag_comment_delete_mode,
       deactivate_ziltag_comment_delete_mode,
       edit_ziltag_comment,
-      delete_ziltag_comment
+      delete_ziltag_comment,
+      resend_verification_mail
     } = this.props
 
     if (usr && author && usr.name == author.name) {
@@ -153,13 +155,36 @@ class ZiltagComment extends Component {
     }
 
     if ((usr && usr.name == author.name) && !usr.confirmed) {
-      var warn_component = (
-        <p className='ziltag-ziltag-comment__warn'>
-          <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
-          Please verify your account to make this comment “public.”
-          Haven’t receive confirmation email? <a>Send again</a>
-        </p>
+      const is_initiator = (
+        resend_verification_mail_tip.initiator &&
+        resend_verification_mail_tip.initiator.comment &&
+        resend_verification_mail_tip.initiator.comment.id == id
       )
+
+      if (is_initiator) {
+        var warn_component = (
+          <p className='ziltag-ziltag-comment__warn'>
+            Confirmation email sent. Please check you inbox.
+          </p>
+        )
+      } else {
+        var warn_component = (
+          <p className='ziltag-ziltag-comment__warn'>
+            <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
+            Please verify your account to make this comment “public.”
+            Haven’t receive confirmation email?&nbsp;
+            <a onClick={
+              () => resend_verification_mail({
+                initiator: {
+                  comment: {id}
+                }
+              })}
+            >
+              Send again
+            </a>
+          </p>
+        )
+      }
     }
 
     return (

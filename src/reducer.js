@@ -215,6 +215,15 @@ function pseudo_comment(state={}, action) {
   }
 }
 
+function resend_verification_mail_tip(state={}, action) {
+  switch (action.type) {
+    case 'VERIFICATION_MAIL_RESENDED':
+      return {done: true, ...action.payload}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
@@ -227,5 +236,6 @@ export default combineReducers({
   ziltag_comment_editors,
   sign_up_form,
   login_form,
-  pseudo_comment
+  pseudo_comment,
+  resend_verification_mail_tip
 })

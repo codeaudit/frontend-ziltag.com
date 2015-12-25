@@ -37,6 +37,7 @@ class ZiltagMap extends Component {
       sign_up_form_email_changed,
       create_ziltag,
       pushState,
+      resend_verification_mail,
       ziltag_map,
       ziltag_input,
       login_form,
@@ -126,7 +127,12 @@ class ZiltagMap extends Component {
                   Haven’t receive confirmation email?
                 </p>
                 <nav>
-                  <div className='ziltag-ziltag-form__link'>Resend Email</div>
+                  <div
+                    className='ziltag-ziltag-form__link'
+                    onClick={resend_verification_mail}
+                  >
+                    Resend Email
+                  </div>
                 </nav>
               </ZiltagMapDialog>
           : ziltag_input.mode == 'login'
