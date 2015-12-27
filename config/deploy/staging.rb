@@ -8,7 +8,7 @@
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
 
-server "staging2.ziltag.com", :user => "deploy", :roles => %w[app]
+server "staging.ziltag.com", :user => "deploy", :roles => %w[app]
 set :branch, :master
 
 
