@@ -27,6 +27,11 @@
   cursor: pointer;
 }
 
+.ziltag-ziltag-form__prompt {
+  font-size: 12px;
+  color: rgb(238, 46, 36);
+}
+
 .ziltag-ziltag-form__col0 {
   width: 226px;
 }
@@ -76,6 +81,7 @@
 }
 
 .ziltag-ziltag-form footer h1 {
+  display: inline-block;
   font-size: 14px;
   font-weight: 500;
   color: rgba(0, 0, 0, .87);
@@ -92,4 +98,8 @@
   color: rgb(0, 139, 243);
   text-decoration: underline;
   cursor: pointer;
+}
+
+.ziltag-ziltag-form footer .ziltag-ziltag-form__prompt {
+  margin-left: 20px;
 }

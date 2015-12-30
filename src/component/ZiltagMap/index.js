@@ -150,22 +150,30 @@ class ZiltagMap extends Component {
                 <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
-                <h1 onClick={() => {
-                  const {
-                    user,
-                    password
-                  } = login_form
+                <div>
+                  <h1
+                    onClick={() => {
+                      const {
+                        user,
+                        password
+                      } = login_form
 
-                  current_user_login(user, password)
-                  .then(() => {
-                    fetch_current_user()
-                    deactivate_ziltag_input()
-                  })
-                }}
-                className={'ziltag-ziltag-form__submit'}
-              >
-                Login
-              </h1>
+                      current_user_login(user, password)
+                      .then(({payload}) => {
+                        if (!payload.value.error) {
+                          fetch_current_user()
+                          deactivate_ziltag_input()
+                        } else {
+                          throw payload.value.error
+                        }
+                      })
+                    }}
+                    className={'ziltag-ziltag-form__submit'}
+                  >
+                    Login
+                  </h1>
+                  <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+                </div>
                 <p><a>Forget password?</a></p>
               </footer>
             </ZiltagForm>
@@ -184,22 +192,29 @@ class ZiltagMap extends Component {
                 <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
-                <h1 onClick={() => {
-                  const {
-                    name,
-                    email
-                  } = sign_up_form
+                <div>
+                  <h1
+                    onClick={() => {
+                      const {
+                        name,
+                        email
+                      } = sign_up_form
 
-                  current_user_sign_up(name, email)
-                  .then(() => {
-                    fetch_current_user()
-                    deactivate_ziltag_input()
-                  })
-                }}
-                className={'ziltag-ziltag-form__submit'}
-              >
-                Sign Up
-              </h1>
+                      current_user_sign_up(name, email)
+                      .then(({payload}) => {
+                        console.log('payload.value.errors', payload.value.errors)
+                        if (!payload.value.errors) {
+                          fetch_current_user()
+                          deactivate_ziltag_input()
+                        }
+                      })
+                    }}
+                    className={'ziltag-ziltag-form__submit'}
+                  >
+                    Sign Up
+                  </h1>
+                  <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+                </div>
                 <p>Signing up means you agree with our <a>Terms</a> and <a>Privacy Policy</a>.</p>
               </footer>
             </ZiltagForm>

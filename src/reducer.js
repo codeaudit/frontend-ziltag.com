@@ -3,12 +3,26 @@ import { routerStateReducer } from 'redux-router'
 
 
 function current_user(state={}, action) {
+  console.log('action', action)
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
     case 'CURRENT_USER_LOGGED_IN':
-      return action.payload.value
+    case 'CURRENT_USER_SIGNED_UP':
+      return {...action.payload.value, status: 'success'}
     case 'CURRENT_USER_LOGGED_OUT':
       return {}
+    case 'CURRENT_USER_LOGIN_FAILED':
+      return {status: 'login_failed', prompt: 'Incorrect email or password.'}
+    case 'CURRENT_USER_SIGN_UP_FAILED':
+      if (action.payload.value.errors.email[0] == 'is invalid') {
+        return {status: 'sign_up_failed', prompt: 'Email is invalid.'}
+      } else if (action.payload.value.errors.email[0] == 'has already been taken') {
+        return {status: 'sign_up_failed', prompt: 'Email has already in use.'}
+      }
+    case 'ACTIVATE_ZILTAG_INPUT':
+    case 'ZILTAG_INPUT_LOGIN':
+    case 'ZILTAG_INPUT_SIGN_UP':
+      return {...state, status: null, prompt: null}
     default:
       return state
   }

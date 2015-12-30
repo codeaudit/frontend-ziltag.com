@@ -165,6 +165,7 @@ export function current_user_logout() {
 }
 
 export const current_user_logged_in = createAction('CURRENT_USER_LOGGED_IN')
+export const current_user_login_failed = createAction('CURRENT_USER_LOGIN_FAILED')
 
 export function current_user_login(user, password) {
   const api = `${RAILS_ADDR}/api/v1/sign_in`
@@ -181,10 +182,17 @@ export function current_user_login(user, password) {
         password
       }
     })
-  }), current_user_logged_in)
+  }), (resp) => {
+    if (resp.value.error == 'invalid login name or password') {
+      return current_user_login_failed(resp)
+    } else {
+      return current_user_logged_in(resp)
+    }
+  })
 }
 
 export const current_user_signed_up = createAction('CURRENT_USER_SIGNED_UP')
+export const current_user_sign_up_failed = createAction('CURRENT_USER_SIGN_UP_FAILED')
 
 export function current_user_sign_up(name, email) {
   const api = `${RAILS_ADDR}/api/v1/users`
@@ -201,7 +209,7 @@ export function current_user_sign_up(name, email) {
         email
       }
     })
-  }), current_user_signed_up)
+  }), current_user_signed_up, current_user_sign_up_failed)
 }
 
 export const login_form_user_changed = createAction('LOGIN_FORM_USER_CHANGED')
