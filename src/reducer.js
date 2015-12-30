@@ -3,7 +3,6 @@ import { routerStateReducer } from 'redux-router'
 
 
 function current_user(state={}, action) {
-  console.log('action', action)
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
     case 'CURRENT_USER_LOGGED_IN':

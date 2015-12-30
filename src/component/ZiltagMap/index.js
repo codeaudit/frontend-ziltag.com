@@ -202,7 +202,6 @@ class ZiltagMap extends Component {
 
                       current_user_sign_up(name, email)
                       .then(({payload}) => {
-                        console.log('payload.value.errors', payload.value.errors)
                         if (!payload.value.errors) {
                           fetch_current_user()
                           deactivate_ziltag_input()
