@@ -23,6 +23,11 @@ import {NODE_ENV, NODE_PORT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
 const app = new Koa()
 const proxy = httpProxy.createProxyServer()
 
+// TODO https://github.com/nodejitsu/node-http-proxy/issues/839
+proxy.on('proxyReq', function(proxyReq, req, res, options) {
+  if (proxyReq.path != '/') proxyReq.path = proxyReq.path.replace(/\/$/, '')
+})
+
 if (NODE_ENV == 'dev') {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('koa-webpack-dev-middleware')
@@ -45,9 +50,17 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 
 
 app.use(async (ctx, next) => {
-  if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
+  if (ctx.req.url == '/plugin.js') {
     proxy.web(ctx.req, ctx.res, {
-      target: RAILS_ADDR
+      target: PLUGIN_ADDR,
+      changeOrigin: true,
+      ignorePath: true
+    })
+    ctx.respond = false
+  } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
+    proxy.web(ctx.req, ctx.res, {
+      target: RAILS_ADDR,
+      ignorePath: false
     })
     ctx.respond = false
   } else {
