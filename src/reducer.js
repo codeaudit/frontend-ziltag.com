@@ -21,6 +21,8 @@ function current_user(state={}, action) {
     case 'ACTIVATE_ZILTAG_INPUT':
     case 'ZILTAG_INPUT_LOGIN':
     case 'ZILTAG_INPUT_SIGN_UP':
+    case 'PSEUDO_COMMENT_SIGN_UP':
+    case 'PSEUDO_COMMENT_LOGIN':
       return {...state, status: null, prompt: null}
     default:
       return state
