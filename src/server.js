@@ -45,13 +45,7 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 
 
 app.use(async (ctx, next) => {
-  if (ctx.req.url == '/plugin.js') {
-    proxy.web(ctx.req, ctx.res, {
-      target: PLUGIN_ADDR,
-      ignorePath: true
-    })
-    ctx.respond = false
-  } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
+  if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
     proxy.web(ctx.req, ctx.res, {
       target: RAILS_ADDR
     })
