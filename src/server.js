@@ -60,6 +60,7 @@ app.use(async (ctx, next) => {
   } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
     proxy.web(ctx.req, ctx.res, {
       target: RAILS_ADDR,
+      changeOrigin: false,
       ignorePath: false
     })
     ctx.respond = false
