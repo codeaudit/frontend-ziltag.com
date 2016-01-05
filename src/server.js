@@ -23,9 +23,11 @@ import {NODE_ENV, NODE_PORT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
 const app = new Koa()
 const proxy = httpProxy.createProxyServer()
 
-// TODO https://github.com/nodejitsu/node-http-proxy/issues/839
-proxy.on('proxyReq', function(proxyReq, req, res, options) {
-  if (proxyReq.path != '/') proxyReq.path = proxyReq.path.replace(/\/$/, '')
+// TODO: https://github.com/nodejitsu/node-http-proxy/issues/839
+proxy.on('proxyReq', (proxyReq, req, res, options) => {
+  if (proxyReq.path != '/') {
+    proxyReq.path = proxyReq.path.replace(/\/$/, '')
+  }
 })
 
 if (NODE_ENV == 'dev') {
@@ -47,7 +49,6 @@ if (NODE_ENV == 'dev') {
 app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
 })))
-
 
 app.use(async (ctx, next) => {
   if (ctx.req.url == '/plugin.js') {
