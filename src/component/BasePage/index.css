@@ -8,6 +8,7 @@ body {
 }
 
 .ziltag-base-page__head {
+  width: 100%;
   height: 54px;
   background: white;
   border-bottom: 1px solid rgba(0, 0, 0, .12);
@@ -51,7 +52,12 @@ body {
 }
 
 .ziltag-base-page .ziltag-base-page-main {
-  margin: 20px;
+  margin: 74px 20px 20px;
+}
+
+.ziltag-base-page .ziltag-base-page__head {
+  position: fixed;
+  top: 0;
 }
 
 .ziltag-base-page__head .ziltag-logo {
