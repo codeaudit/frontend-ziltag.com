@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
+import TextareaAutosize from 'react-textarea-autosize'
 
 
 try {
@@ -17,20 +18,9 @@ class ZiltagInput extends Component {
       ziltag_input
     } = this.props
 
-    if (ziltag_input.content) {
-      var line_count = Math.ceil(ziltag_input.content.length / 16)
-    } else {
-      var line_count = 1
-    }
-
-    const textarea_style = {
-      height: 15 * line_count
-    }
-
     return (
       <div className='ziltag-ziltag-input'>
-        <textarea
-          style={textarea_style}
+        <TextareaAutosize
           onChange={onChange}
           placeholder='Your text here'
         />

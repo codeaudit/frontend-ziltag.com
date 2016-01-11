@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
 import TimeAgo from 'react-timeago'
+import TextareaAutosize from 'react-textarea-autosize'
 
 import Avatar from '../Avatar'
 
@@ -61,24 +62,12 @@ class ZiltagComment extends Component {
         ziltag_comment_editors[id].mode == 'delete')) {
 
       if (ziltag_comment_editors[id].mode == 'edit') {
-
-        if (ziltag_comment_editors[id].content) {
-          var line_count = Math.ceil(ziltag_comment_editors[id].content.length / 42)
-        } else {
-          var line_count = Math.ceil(content.length / 42)
-        }
-
-        const textarea_style = {
-          height: 20 * line_count
-        }
-
         var text_component = (
-          <textarea
+          <TextareaAutosize
             className={classNames(
               'ziltag-ziltag-comment__text',
               'ziltag-ziltag-comment__text--editing'
             )}
-            style={textarea_style}
             autoFocus
             onChange={onChange}
             defaultValue={content}
