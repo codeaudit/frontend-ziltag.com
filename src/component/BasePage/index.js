@@ -33,7 +33,7 @@ class BasePage extends Component {
           deactivate_ziltag_input()
         }}
       >
-        <div className='ziltag-base-page__head'>
+        <div style={{zIndex: 5}} className='ziltag-base-page__head'>
           <Logo/>
           <Avatar
             style={{
