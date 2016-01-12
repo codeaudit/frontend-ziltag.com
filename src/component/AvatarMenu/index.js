@@ -35,7 +35,11 @@ class AvatarMenu extends Component {
         <hr/>
         <Item onClick={() => {
           current_user_logout()
-          .then(() => fetch_ziltag(current_ziltag.id))
+          .then(() => {
+            if (current_ziltag.id) {
+              fetch_ziltag(current_ziltag.id)
+            }
+          })
         }}>Logout</Item>
       </ul>
     )

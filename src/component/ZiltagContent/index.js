@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import classNames from 'classnames'
+import TextareaAutosize from 'react-textarea-autosize'
 
 
 try {
@@ -50,7 +51,7 @@ class ZiltagContent extends Component {
 
     if (mode == 'edit') {
       var text_component = (
-        <textarea
+        <TextareaAutosize
           className={classNames(
             'ziltag-ziltag-content__text',
             'ziltag-ziltag-content__text--editing'
@@ -134,7 +135,7 @@ class ZiltagContent extends Component {
 
     return (
       <div className='ziltag-ziltag-content'>
-        <div className='ziltag-ziltag-content__text'>{text_component}</div>
+        {text_component}
         {edit_operator_components}
       </div>
     )
