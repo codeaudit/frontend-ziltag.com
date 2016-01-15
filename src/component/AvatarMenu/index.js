@@ -29,9 +29,7 @@ class AvatarMenu extends Component {
 
     return (
       <ul style={style} className='ziltag-base-page__avatar-menu'>
-        <Item>Setting</Item>
-        <Item>Term of Use</Item>
-        <Item>Privacy</Item>
+        <Item><a href='/users/edit'>Setting</a></Item>
         <hr/>
         <Item onClick={() => {
           current_user_logout()
