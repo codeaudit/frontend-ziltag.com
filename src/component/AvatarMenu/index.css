@@ -48,3 +48,9 @@
 .ziltag-base-page__avatar-menu hr {
   margin: 0 6px;
 }
+
+.ziltag-base-page__avatar-menu-item a {
+  z-index: 1;
+  color: black;
+  text-decoration: none;
+}
