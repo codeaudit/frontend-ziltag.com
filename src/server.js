@@ -4,6 +4,10 @@ import Koa from 'koa'
 import staticCache from 'koa-static-cache'
 import polyfill from 'koa-convert'
 import httpProxy from 'http-proxy'
+import http from 'http'
+import https from 'https'
+import fs from 'fs'
+import forceSSL from 'koa-force-ssl'
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import {Provider} from 'react-redux'
@@ -17,14 +21,29 @@ import fetch from 'redux-effects-fetch'
 import reducer from './reducer'
 import routes from './route'
 
-import {NODE_ENV, NODE_PORT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
+import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
 
+var SSL_OPTOINS = {
+  key: fs.readFileSync(SSL_KEY),
+  cert: fs.readFileSync(SSL_CERT)
+}
 
 const app = new Koa()
-const proxy = httpProxy.createProxyServer()
+
+const railsProxy = httpProxy.createProxyServer({
+  target: RAILS_ADDR,
+  secure: NODE_ENV != 'dev'
+})
+
+const githubProxy = httpProxy.createProxyServer({
+  target: PLUGIN_ADDR,
+  secure: NODE_ENV != 'dev',
+  changeOrigin: true,
+  ignorePath: true
+})
 
 // TODO: https://github.com/nodejitsu/node-http-proxy/issues/839
-proxy.on('proxyReq', (proxyReq, req, res, options) => {
+githubProxy.on('proxyReq', (proxyReq, req, res, options) => {
   if (proxyReq.path != '/') {
     proxyReq.path = proxyReq.path.replace(/\/$/, '')
   }
@@ -46,24 +65,18 @@ if (NODE_ENV == 'dev') {
   require('babel-polyfill')
 }
 
+app.use(polyfill(forceSSL(SSL_PORT)))
+
 app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
 })))
 
 app.use(async (ctx, next) => {
   if (ctx.req.url == '/plugin.js') {
-    proxy.web(ctx.req, ctx.res, {
-      target: PLUGIN_ADDR,
-      changeOrigin: true,
-      ignorePath: true
-    })
+    githubProxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
-    proxy.web(ctx.req, ctx.res, {
-      target: RAILS_ADDR,
-      changeOrigin: false,
-      ignorePath: false
-    })
+    railsProxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else {
     const store = compose(
@@ -89,4 +102,5 @@ app.use(async (ctx, next) => {
   }
 })
 
-app.listen(NODE_PORT)
+http.createServer(app.callback()).listen(NODE_PORT)
+https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
