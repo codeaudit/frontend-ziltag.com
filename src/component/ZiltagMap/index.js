@@ -46,6 +46,11 @@ class ZiltagMap extends Component {
       current_user
     } = this.props
 
+    const total_right_screen_margin = 40
+    const fitted_ziltag_map_width = document.documentElement.clientWidth / 2 - total_right_screen_margin
+    ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height
+    ziltag_map.width = fitted_ziltag_map_width
+
     const ziltag_components = ziltag_map.ziltags && ziltag_map.ziltags.map(
       ziltag => {
         ziltag.x_px = ziltag.x * ziltag_map.width
@@ -234,7 +239,7 @@ class ZiltagMap extends Component {
       <div
         style={{
           width: ziltag_map.width,
-          height: ziltag_map.height
+          height: ziltag_map.height,
         }}
         className='ziltag-ziltag-map'
       >
