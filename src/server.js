@@ -23,7 +23,7 @@ import routes from './route'
 
 import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
 
-var SSL_OPTOINS = {
+const SSL_OPTOINS = {
   key: fs.readFileSync(SSL_KEY),
   cert: fs.readFileSync(SSL_CERT)
 }
@@ -32,7 +32,8 @@ const app = new Koa()
 
 const railsProxy = httpProxy.createProxyServer({
   target: RAILS_ADDR,
-  secure: NODE_ENV != 'dev'
+  secure: false, // TODO: https://github.com/nodejitsu/node-http-proxy/issues/915
+  ssl: SSL_OPTOINS
 })
 
 const githubProxy = httpProxy.createProxyServer({
