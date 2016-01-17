@@ -23,12 +23,15 @@ import routes from './route'
 
 import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, API_ADDR, PLUGIN_ADDR} from '../env'
 
-const SSL_OPTOINS = {
-  key: fs.readFileSync(SSL_KEY),
-  cert: fs.readFileSync(SSL_CERT)
-}
 
-const app = new Koa()
+switch (NODE_ENV) {
+  case 'staging':
+  case 'production':
+    var SSL_OPTOINS = {
+      key: fs.readFileSync(SSL_KEY),
+      cert: fs.readFileSync(SSL_CERT)
+    }
+}
 
 const api_proxy = httpProxy.createProxyServer({
   target: API_ADDR,
@@ -38,7 +41,7 @@ const api_proxy = httpProxy.createProxyServer({
 
 const plugin_proxy = httpProxy.createProxyServer({
   target: PLUGIN_ADDR,
-  secure: NODE_ENV != 'dev',
+  secure: !!SSL_OPTOINS,
   changeOrigin: true,
   ignorePath: true
 })
@@ -49,6 +52,8 @@ plugin_proxy.on('proxyReq', (proxyReq, req, res, options) => {
     proxyReq.path = proxyReq.path.replace(/\/$/, '')
   }
 })
+
+const app = new Koa()
 
 if (NODE_ENV == 'dev') {
   const webpack = require('webpack')
@@ -66,7 +71,9 @@ if (NODE_ENV == 'dev') {
   require('babel-polyfill')
 }
 
-app.use(polyfill(forceSSL(SSL_PORT)))
+if (SSL_OPTOINS) {
+  app.use(polyfill(forceSSL(SSL_PORT)))
+}
 
 app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
@@ -104,4 +111,7 @@ app.use(async (ctx, next) => {
 })
 
 http.createServer(app.callback()).listen(NODE_PORT)
-https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
+
+if (SSL_OPTOINS) {
+  https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
+}
