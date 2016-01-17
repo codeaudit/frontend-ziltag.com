@@ -21,7 +21,7 @@ import fetch from 'redux-effects-fetch'
 import reducer from './reducer'
 import routes from './route'
 
-import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, RAILS_ADDR, PLUGIN_ADDR} from '../env'
+import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, API_ADDR, PLUGIN_ADDR} from '../env'
 
 const SSL_OPTOINS = {
   key: fs.readFileSync(SSL_KEY),
@@ -30,13 +30,13 @@ const SSL_OPTOINS = {
 
 const app = new Koa()
 
-const railsProxy = httpProxy.createProxyServer({
-  target: RAILS_ADDR,
+const api_proxy = httpProxy.createProxyServer({
+  target: API_ADDR,
   secure: false, // TODO: https://github.com/nodejitsu/node-http-proxy/issues/915
   ssl: SSL_OPTOINS
 })
 
-const githubProxy = httpProxy.createProxyServer({
+const plugin_proxy = httpProxy.createProxyServer({
   target: PLUGIN_ADDR,
   secure: NODE_ENV != 'dev',
   changeOrigin: true,
@@ -44,7 +44,7 @@ const githubProxy = httpProxy.createProxyServer({
 })
 
 // TODO: https://github.com/nodejitsu/node-http-proxy/issues/839
-githubProxy.on('proxyReq', (proxyReq, req, res, options) => {
+plugin_proxy.on('proxyReq', (proxyReq, req, res, options) => {
   if (proxyReq.path != '/') {
     proxyReq.path = proxyReq.path.replace(/\/$/, '')
   }
@@ -74,10 +74,10 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 
 app.use(async (ctx, next) => {
   if (ctx.req.url == '/plugin.js') {
-    githubProxy.web(ctx.req, ctx.res)
+    plugin_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
-    railsProxy.web(ctx.req, ctx.res)
+    api_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else {
     const store = compose(
