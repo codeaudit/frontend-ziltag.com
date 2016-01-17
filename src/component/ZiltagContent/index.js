@@ -11,6 +11,28 @@ try {
 
 
 class ZiltagContent extends Component {
+  anchorify(text) {
+    const regex = new RegExp(
+      '\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:' + '\'' + '.,<>?«»“”‘’]))',
+      'ig'
+    )
+
+    const delimiter = String.fromCharCode('\u0008')
+
+    return text.replace(regex, url => {
+      return delimiter + url + delimiter
+    })
+    .split(delimiter)
+    .map((token, i) => {
+      let key = 'anchorify-text-' + i
+      if (regex.test(token)) {
+        return <a key={key} href={token} target='_blank'>{token}</a>
+      } else {
+        return <span key={key} >{token}</span>
+      }
+    })
+  }
+
   render() {
     const {
       id,
@@ -29,6 +51,8 @@ class ZiltagContent extends Component {
       delete_ziltag,
       pushState
     } = this.props
+
+    const processed_content = content && this.anchorify(content)
 
     if (usr && author && usr.name == author.name) {
       var edit_operator_components = (
@@ -91,7 +115,7 @@ class ZiltagContent extends Component {
           </div>
       )
     } else {
-      var text_component = <div className='ziltag-ziltag-content__text'>{content}</div>
+      var text_component = <div className='ziltag-ziltag-content__text'>{processed_content}</div>
 
       if (mode == 'delete') {
         var edit_operator_components = (
