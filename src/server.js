@@ -24,13 +24,9 @@ import routes from './route'
 import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, API_ADDR, PLUGIN_ADDR} from '../env'
 
 
-switch (NODE_ENV) {
-  case 'staging':
-  case 'production':
-    var SSL_OPTOINS = {
-      key: fs.readFileSync(SSL_KEY),
-      cert: fs.readFileSync(SSL_CERT)
-    }
+var SSL_OPTOINS = {
+  key: fs.readFileSync(SSL_KEY),
+  cert: fs.readFileSync(SSL_CERT)
 }
 
 const api_proxy = httpProxy.createProxyServer({
@@ -71,9 +67,7 @@ if (NODE_ENV == 'dev') {
   require('babel-polyfill')
 }
 
-if (SSL_OPTOINS) {
-  app.use(polyfill(forceSSL(SSL_PORT)))
-}
+app.use(polyfill(forceSSL(SSL_PORT)))
 
 app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
@@ -111,7 +105,4 @@ app.use(async (ctx, next) => {
 })
 
 http.createServer(app.callback()).listen(NODE_PORT)
-
-if (SSL_OPTOINS) {
-  https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
-}
+https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
