@@ -24,7 +24,7 @@ import routes from './route'
 import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, API_ADDR, PLUGIN_ADDR} from '../env'
 
 
-var SSL_OPTOINS = {
+const SSL_OPTOINS = {
   key: fs.readFileSync(SSL_KEY),
   cert: fs.readFileSync(SSL_CERT)
 }
