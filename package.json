@@ -9,7 +9,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "babel src --out-dir dist --ignore=client.js",
     "build:client": "webpack --config webpack/prod.config.babel.js",
-    "serve": "nodemon src/server.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --exec babel-node",
+    "serve": "nodemon src/server.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --ignore src/saga.js --exec babel-node",
     "start": "pm2 start dist/server.js -i 0 --name frontend",
     "stop": "pm2 delete frontend",
     "restart": "pm2 restart frontend"
@@ -62,6 +62,7 @@
     "redux-effects": "^0.4.0",
     "redux-effects-fetch": "^0.4.1",
     "redux-router": "^1.0.0-beta4",
+    "redux-saga": "^0.4.1",
     "serialize-javascript": "^1.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
