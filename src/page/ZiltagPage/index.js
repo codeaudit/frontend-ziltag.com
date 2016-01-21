@@ -48,8 +48,6 @@ class ZiltagPage extends Component {
     if (current_ziltag.deleted) {
       console.log('current_ziltag', current_ziltag)
       pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
-    } else {
-      console.log('no')
     }
   }
 
