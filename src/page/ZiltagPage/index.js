@@ -46,7 +46,6 @@ class ZiltagPage extends Component {
     const {current_ziltag} = next_props
     const {pushState} = this.actors
     if (current_ziltag.deleted) {
-      console.log('current_ziltag', current_ziltag)
       pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
     }
   }
