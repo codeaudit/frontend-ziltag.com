@@ -42,6 +42,17 @@ class ZiltagPage extends Component {
     }
   }
 
+  componentWillUpdate(next_props) {
+    const {current_ziltag} = next_props
+    const {pushState} = this.actors
+    if (current_ziltag.deleted) {
+      console.log('current_ziltag', current_ziltag)
+      pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
+    } else {
+      console.log('no')
+    }
+  }
+
   render() {
     const {
       current_ziltag,
@@ -57,10 +68,6 @@ class ZiltagPage extends Component {
       ziltag_comment_editor_changed,
       pushState
     } = this.actors
-
-    if (current_ziltag.deleted) {
-      pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
-    }
 
     if (current_ziltag.comments) {
       var comment_components = current_ziltag.comments.map(
