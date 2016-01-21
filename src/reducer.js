@@ -98,7 +98,6 @@ function current_ziltag(state={}, action) {
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
       return action.payload.value
-    case 'ZILTAG_COMMENT_CREATED':
     case 'SSE_COMMENT_CREATED':
       return {...state, comments: [action.payload.value, ...state.comments]}
     case 'ACTIVATE_ZILTAG_EDIT_MODE':
@@ -111,7 +110,6 @@ function current_ziltag(state={}, action) {
       return {...state, mode: 'read'}
     case 'ZILTAG_EDITED':
       return action.payload.value
-    case 'ZILTAG_COMMENT_EDITED':
     case 'SSE_COMMENT_UPDATED':
       const comment_edited_state = {...state}
       var index = state.comments.findIndex(
@@ -122,11 +120,10 @@ function current_ziltag(state={}, action) {
         content: action.payload.value.content
       }
       return comment_edited_state
-    case 'ZILTAG_COMMENT_DELETED':
     case 'SSE_COMMENT_DELETED':
       const comment_deleted_state = {...state}
       var index = state.comments.findIndex(
-        x => x.id == action.payload
+        x => x.id == action.payload.id
       )
       comment_deleted_state.comments.splice(index, 1)
       return comment_deleted_state
