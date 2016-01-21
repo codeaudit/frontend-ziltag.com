@@ -1,5 +1,5 @@
-import { combineReducers } from 'redux'
-import { routerStateReducer } from 'redux-router'
+import {combineReducers} from 'redux'
+import {routerStateReducer, push} from 'redux-router'
 
 
 function current_user(state={}, action) {
@@ -65,6 +65,29 @@ function ziltag_map(state={}, action) {
       )
       edited_state.ziltags[index].content = action.payload.value.content
       return edited_state
+    case 'SSE_ZILTAG_CREATED':
+      const sse_ziltag_created_state = {...state}
+      const created_ziltag = action.payload.value
+      created_ziltag.link = `/ziltags/${created_ziltag.id}`
+      created_ziltag.co_div = {activated: false}
+      sse_ziltag_created_state.ziltags.push(created_ziltag)
+      return sse_ziltag_created_state
+    case 'SSE_ZILTAG_UPDATED':
+      const sse_ziltag_updated_state = {...state}
+      const updated_ziltag = action.payload.value
+      var index = state.ziltags.findIndex(
+        x => x.id == updated_ziltag.id
+      )
+      sse_ziltag_updated_state.ziltags[index].content = updated_ziltag.content
+      return sse_ziltag_updated_state
+    case 'SSE_ZILTAG_DELETED':
+      const sse_ziltag_deleted_state = {...state}
+      const deleted_ziltag = action.payload
+      var index = state.ziltags.findIndex(
+        x => x.id == deleted_ziltag.id
+      )
+      sse_ziltag_deleted_state.ziltags.splice(index, 1)
+      return sse_ziltag_deleted_state
     default:
       return state
   }
@@ -76,6 +99,7 @@ function current_ziltag(state={}, action) {
     case 'ZILTAG_CREATED':
       return action.payload.value
     case 'ZILTAG_COMMENT_CREATED':
+    case 'SSE_COMMENT_CREATED':
       return {...state, comments: [action.payload.value, ...state.comments]}
     case 'ACTIVATE_ZILTAG_EDIT_MODE':
       return {...state, mode: 'edit'}
@@ -88,6 +112,7 @@ function current_ziltag(state={}, action) {
     case 'ZILTAG_EDITED':
       return action.payload.value
     case 'ZILTAG_COMMENT_EDITED':
+    case 'SSE_COMMENT_UPDATED':
       const comment_edited_state = {...state}
       var index = state.comments.findIndex(
         x => x.id == action.payload.value.id
@@ -98,12 +123,26 @@ function current_ziltag(state={}, action) {
       }
       return comment_edited_state
     case 'ZILTAG_COMMENT_DELETED':
+    case 'SSE_COMMENT_DELETED':
       const comment_deleted_state = {...state}
       var index = state.comments.findIndex(
         x => x.id == action.payload
       )
       comment_deleted_state.comments.splice(index, 1)
       return comment_deleted_state
+    case 'SSE_ZILTAG_UPDATED':
+      const updated_ziltag = action.payload.value
+      if (updated_ziltag.id == state.id) {
+        return updated_ziltag
+      }
+    case 'ZILTAG_DELETED':
+    case 'SSE_ZILTAG_DELETED':
+      const deleted_ziltag = action.payload
+      if (deleted_ziltag.id == state.id) {
+        deleted_ziltag.map_id = state.map_id
+        deleted_ziltag.deleted = true
+        return deleted_ziltag
+      }
     default:
       return state
   }

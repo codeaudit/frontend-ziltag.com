@@ -37,7 +37,7 @@ const api_proxy = httpProxy.createProxyServer({
 
 const plugin_proxy = httpProxy.createProxyServer({
   target: PLUGIN_ADDR,
-  secure: !!SSL_OPTOINS,
+  secure: true,
   changeOrigin: true,
   ignorePath: true
 })

@@ -91,7 +91,7 @@ export function delete_ziltag(ziltag_id) {
   return bind(fetch(api, {
     credentials: 'include',
     method: 'delete'
-  }), () => ziltag_deleted(ziltag_id))
+  }), () => ziltag_deleted({id: ziltag_id}))
 }
 
 export const activate_ziltag_comment_edit_mode = createAction('ACTIVATE_ZILTAG_COMMENT_EDIT_MODE')
@@ -233,3 +233,13 @@ export function resend_verification_mail(params) {
     method: 'post'
   }), () => verification_mail_resended(params))
 }
+
+export const sse_ziltag_created = createAction('SSE_ZILTAG_CREATED')
+export const sse_ziltag_updated = createAction('SSE_ZILTAG_UPDATED')
+export const sse_ziltag_deleted = createAction('SSE_ZILTAG_DELETED')
+export const sse_comment_created = createAction('SSE_COMMENT_CREATED')
+export const sse_comment_updated = createAction('SSE_COMMENT_UPDATED')
+export const sse_comment_deleted = createAction('SSE_COMMENT_DELETED')
+
+export const can_create_ziltag_page_stream = createAction('CAN_CREATE_ZILTAG_PAGE_STREAM')
+export const can_create_ziltag_map_page_stream = createAction('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')

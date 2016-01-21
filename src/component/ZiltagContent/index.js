@@ -139,9 +139,6 @@ class ZiltagContent extends Component {
               className='ziltag-ziltag-content__edit-operator'
               onClick={() => {
                 delete_ziltag(id)
-                .then(() => {
-                  pushState(null, `/ziltag_maps/${map_id}`)
-                })
               }}
             >
               Confirm

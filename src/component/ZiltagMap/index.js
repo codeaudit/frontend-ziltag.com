@@ -122,6 +122,7 @@ class ZiltagMap extends Component {
 
                   create_ziltag(map_id, x, y, content)
                   .then((action) => {
+                    fetch_ziltag(action.payload.value.id)
                     pushState(null, `/ziltags/${action.payload.value.id}`)
                     fetch_ziltag_map(ziltag_map.id)
                     deactivate_ziltag_input()

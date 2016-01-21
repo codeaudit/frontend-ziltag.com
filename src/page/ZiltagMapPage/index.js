@@ -24,8 +24,10 @@ class ZiltagMapPage extends Component {
   }
 
   componentDidMount() {
+    const {router} = this.props
     this.actors.fetch_current_user()
-    this.actors.fetch_ziltag_map(this.props.router.params.id)
+    this.actors.fetch_ziltag_map(router.params.id)
+    .then(action => this.actors.can_create_ziltag_map_page_stream({id: router.params.id}))
   }
 
   render() {

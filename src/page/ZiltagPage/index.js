@@ -27,9 +27,19 @@ class ZiltagPage extends Component {
   }
 
   componentDidMount() {
+    const {router} = this.props
     this.actors.fetch_current_user()
-    this.actors.fetch_ziltag(this.props.router.params.id)
+    this.actors.fetch_ziltag(router.params.id)
     .then(action => this.actors.fetch_ziltag_map(action.payload.value.map_id))
+    .then(action => this.actors.can_create_ziltag_page_stream({id: router.params.id}))
+  }
+
+  componentWillReceiveProps(next_props) {
+    if (next_props.params.id != this.props.params.id) {
+      this.actors.can_create_ziltag_page_stream({
+        id: next_props.params.id
+      })
+    }
   }
 
   render() {
@@ -44,8 +54,13 @@ class ZiltagPage extends Component {
       ziltag_comment_input_changed,
       create_ziltag_comment,
       ziltag_editor_changed,
-      ziltag_comment_editor_changed
+      ziltag_comment_editor_changed,
+      pushState
     } = this.actors
+
+    if (current_ziltag.deleted) {
+      pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
+    }
 
     if (current_ziltag.comments) {
       var comment_components = current_ziltag.comments.map(
