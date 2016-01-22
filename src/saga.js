@@ -53,6 +53,7 @@ function* set_ziltag_page_stream() {
         `${SSE_ADDR}/api/v1/ziltags/${ziltag_id}/stream`
       )
     } else if (create_ziltag_resp) {
+      console.log('create_ziltag_resp', create_ziltag_resp)
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
     } else if (update_ziltag_resp) {
       yield put(sse_ziltag_updated({value: JSON.parse(update_ziltag_resp.data)}))
@@ -77,16 +78,24 @@ function* set_ziltag_map_page_stream() {
 
   while (true) {
     const {
+      ziltag_page_action,
       create_ziltag_resp,
       update_ziltag_resp,
       delete_ziltag_resp
     } = yield race({
+      ziltag_page_action: take('CAN_CREATE_ZILTAG_PAGE_STREAM'),
       create_ziltag_resp: call(wait_for_event, esrc, 'create_ziltag'),
       update_ziltag_resp: call(wait_for_event, esrc, 'update_ziltag'),
       delete_ziltag_resp: call(wait_for_event, esrc, 'delete_ziltag')
     })
 
-    if (create_ziltag_resp) {
+    if (ziltag_page_action) {
+      ziltag_map_page_action = yield take('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')
+      ziltag_map_id = ziltag_map_page_action.payload.id
+      esrc = new EventSource(
+        `${SSE_ADDR}/api/v1/ziltag_maps/${ziltag_map_id}/stream`
+      )
+    } else if (create_ziltag_resp) {
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
     } else if (update_ziltag_resp) {
       yield put(sse_ziltag_updated({value: JSON.parse(update_ziltag_resp.data)}))
