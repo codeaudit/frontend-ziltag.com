@@ -53,7 +53,6 @@ function* set_ziltag_page_stream() {
         `${SSE_ADDR}/api/v1/ziltags/${ziltag_id}/stream`
       )
     } else if (create_ziltag_resp) {
-      console.log('create_ziltag_resp', create_ziltag_resp)
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
     } else if (update_ziltag_resp) {
       yield put(sse_ziltag_updated({value: JSON.parse(update_ziltag_resp.data)}))
