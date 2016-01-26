@@ -11,11 +11,12 @@ import {
 
 import {SSE_ADDR} from '../env'
 
-
+// TODO: fix the duplicated event listeners
 function wait_for_event(elm, event_type) {
   return new Promise(resolve => {
     const cb = e => {
       resolve(e)
+      elm.removeEventListener(event_type, cb)
     }
     elm.addEventListener(event_type, cb)
   })
@@ -31,6 +32,7 @@ function* set_ziltag_page_stream() {
   while (true) {
     const {
       new_ziltag_page_action,
+      ziltag_map_page_action,
       create_ziltag_resp,
       update_ziltag_resp,
       delete_ziltag_resp,
@@ -39,6 +41,7 @@ function* set_ziltag_page_stream() {
       delete_comment_resp
     } = yield race({
       new_ziltag_page_action: take('CAN_CREATE_ZILTAG_PAGE_STREAM'),
+      ziltag_map_page_action: take('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM'),
       create_ziltag_resp: call(wait_for_event, esrc, 'create_ziltag'),
       update_ziltag_resp: call(wait_for_event, esrc, 'update_ziltag'),
       delete_ziltag_resp: call(wait_for_event, esrc, 'delete_ziltag'),
@@ -48,10 +51,14 @@ function* set_ziltag_page_stream() {
     })
 
     if (new_ziltag_page_action) {
+      esrc.close()
       ziltag_id = new_ziltag_page_action.payload.id
       esrc = new EventSource(
         `${SSE_ADDR}/api/v1/ziltags/${ziltag_id}/stream`
       )
+    } else if (ziltag_map_page_action) {
+      esrc.close()
+      yield take('CAN_CREATE_ZILTAG_PAGE_STREAM')
     } else if (create_ziltag_resp) {
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
     } else if (update_ziltag_resp) {
@@ -89,6 +96,7 @@ function* set_ziltag_map_page_stream() {
     })
 
     if (ziltag_page_action) {
+      esrc.close()
       ziltag_map_page_action = yield take('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')
       ziltag_map_id = ziltag_map_page_action.payload.id
       esrc = new EventSource(
