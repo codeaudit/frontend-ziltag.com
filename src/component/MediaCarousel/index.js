@@ -57,24 +57,24 @@ class MediaCarousel extends Component {
       var mask = <div className='ziltag-media-carousel__mask'></div>
     }
 
-    var have_to_left_indicator = active_index == 0 ? false : true
-    var have_to_right_indicator = active_index == end_index ? false: true
+    var have_prev_indicator = active_index == 0 ? false : true
+    var have_next_indicator = active_index == end_index ? false: true
 
-    if (have_to_left_indicator) {
-      var to_left_indicator = (
+    if (have_prev_indicator) {
+      var prev_indicator = (
         <div className={classNames([
           'ziltag-media-carousel__indicator',
-          'ziltag-media-carousel__indicator--to-left'
+          'ziltag-media-carousel__indicator--prev'
         ])}>
         </div>
       )
     }
 
-    if (have_to_right_indicator) {
-      var to_right_indicator = (
+    if (have_next_indicator) {
+      var next_indicator = (
         <div className={classNames([
           'ziltag-media-carousel__indicator',
-          'ziltag-media-carousel__indicator--to-right'
+          'ziltag-media-carousel__indicator--next'
         ])}>
         </div>
       )
@@ -83,8 +83,8 @@ class MediaCarousel extends Component {
     return (
       <div className='ziltag-media-carousel'>
         {mask}
-        {to_left_indicator}
-        {to_right_indicator}
+        {prev_indicator}
+        {next_indicator}
         {youtube_components}
       </div>
     )

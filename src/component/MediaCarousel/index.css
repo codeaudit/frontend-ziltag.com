@@ -35,12 +35,12 @@
   cursor: pointer;
 }
 
-.ziltag-media-carousel__indicator--to-left {
-  background: url(to-left-indicator.png)
+.ziltag-media-carousel__indicator--prev {
+  background: url(prev-indicator.png)
 }
 
-.ziltag-media-carousel__indicator--to-right {
-  background: url(to-right-indicator.png);
+.ziltag-media-carousel__indicator--next {
+  background: url(next-indicator.png);
 }
 
 .ziltag-media-carousel .ziltag-media-carousel__indicator {
@@ -48,7 +48,7 @@
   top: calc(50% - 20px);
 }
 
-.ziltag-media-carousel .ziltag-media-carousel__indicator--to-right {
+.ziltag-media-carousel .ziltag-media-carousel__indicator--next {
   right: 0;
 }
 
