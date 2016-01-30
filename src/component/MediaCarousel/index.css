@@ -1,15 +1,24 @@
 .ziltag-media-carousel {
   position: relative;
+  display: flex;
   width: 100%;
   height: 238px;
-  padding-right: 20%;
-  box-sizing: border-box;
 }
 
 .ziltag-media-carousel__youtube {
-  width: 100%;
-  height: 100%;
   border: 0;
+}
+
+.ziltag-media-carousel__youtube--active {
+  width: calc(80% - 16px);
+}
+
+.ziltag-media-carousel__youtube--next {
+  width: 20%;
+}
+
+.ziltag-media-carousel__youtube--unstaged {
+  display: none;
 }
 
 .ziltag-media-carousel__mask {
@@ -18,4 +27,8 @@
   height: 100%;
   background: white;
   opacity: .68;
+}
+
+.ziltag-media-carousel .ziltag-media-carousel__youtube--active {
+  margin-right: 16px;
 }

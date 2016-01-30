@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import classNames from 'classnames'
 
 
 try {
@@ -20,15 +21,30 @@ class MediaCarousel extends Component {
     } = content
 
     if (youtube_ids) {
-      var youtube_components = youtube_ids.map(id => (
-        <iframe
-          className='ziltag-media-carousel__youtube'
+      var youtube_components = youtube_ids.map((id, i) => {
+        if (i == 0) {
+          var active = true
+        }
+
+        if (i == 1) {
+          var next = true
+        }
+
+        return <iframe
+          className={
+            classNames({
+              'ziltag-media-carousel__youtube': true,
+              'ziltag-media-carousel__youtube--active': active,
+              'ziltag-media-carousel__youtube--next': next,
+              'ziltag-media-carousel__youtube--unstaged': !(active || next)
+            })
+          }
           src={`https://www.youtube.com/embed/${id}`}
           allowFullScreen
           key={`youtube-${id}`}
         >
         </iframe>
-      ))
+      })
     }
 
     if (disable) {
