@@ -243,3 +243,6 @@ export const sse_comment_deleted = createAction('SSE_COMMENT_DELETED')
 
 export const can_create_ziltag_page_stream = createAction('CAN_CREATE_ZILTAG_PAGE_STREAM')
 export const can_create_ziltag_map_page_stream = createAction('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')
+
+export const go_next_media_content = createAction('GO_NEXT_MEDIA_CONTENT')
+export const go_prev_media_content = createAction('GO_PREV_MEDIA_CONTENT')

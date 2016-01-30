@@ -43,7 +43,7 @@ class ZiltagContent extends Component {
       mode,
       usr,
       ziltag_editor,
-      media_content,
+      media_carousel,
       onChange,
       activate_ziltag_edit_mode,
       deactivate_ziltag_edit_mode,
@@ -51,6 +51,8 @@ class ZiltagContent extends Component {
       deactivate_ziltag_delete_mode,
       edit_ziltag,
       delete_ziltag,
+      go_next_media_content,
+      go_prev_media_content,
       pushState
     } = this.props
 
@@ -162,7 +164,12 @@ class ZiltagContent extends Component {
       <div className='ziltag-ziltag-content'>
         {text_component}
         {edit_operator_components}
-        <MediaCarousel content={media_content} disable={mode == 'edit'}/>
+        <MediaCarousel
+          content={media_carousel}
+          disable={mode == 'edit'}
+          onNext={go_next_media_content}
+          onPrev={go_prev_media_content}
+        />
       </div>
     )
   }

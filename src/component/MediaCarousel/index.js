@@ -13,27 +13,25 @@ class MediaCarousel extends Component {
   render() {
     const {
       content,
-      disable
+      disable,
+      onNext,
+      onPrev
     } = this.props
 
     const {
-      youtube_ids
+      youtube_ids,
+      active_index,
+      end_index
     } = content
-
-    let active_index = 0
-    let next_index = 0
-    let end_index = youtube_ids ? youtube_ids.length - 1 : 0
 
     if (youtube_ids) {
       var youtube_components = youtube_ids.map((id, i) => {
-        if (i == 0) {
+        if (i == active_index) {
           var active = true
-          active_index = i
         }
 
-        if (i == 1) {
+        if (i == active_index + 1) {
           var next = true
-          next_index = i
         }
 
         return <iframe
@@ -62,20 +60,26 @@ class MediaCarousel extends Component {
 
     if (have_prev_indicator) {
       var prev_indicator = (
-        <div className={classNames([
-          'ziltag-media-carousel__indicator',
-          'ziltag-media-carousel__indicator--prev'
-        ])}>
+        <div
+          className={classNames([
+            'ziltag-media-carousel__indicator',
+            'ziltag-media-carousel__indicator--prev'
+          ])}
+          onClick={onPrev}
+        >
         </div>
       )
     }
 
     if (have_next_indicator) {
       var next_indicator = (
-        <div className={classNames([
-          'ziltag-media-carousel__indicator',
-          'ziltag-media-carousel__indicator--next'
-        ])}>
+        <div
+          className={classNames([
+            'ziltag-media-carousel__indicator',
+            'ziltag-media-carousel__indicator--next'
+          ])}
+          onClick={onNext}
+        >
         </div>
       )
     }

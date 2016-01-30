@@ -296,14 +296,36 @@ function extract_youtube_ids(text) {
   .filter(x => x)
 }
 
-function media_content(state={}, action) {
+function media_carousel(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_EDITOR_CHANGED':
       var youtube_ids = extract_youtube_ids(action.payload.target.value)
-      return {...state, youtube_ids}
+      return {
+        ...state,
+        youtube_ids,
+        active_index: state.active_index || (youtube_ids ? 0 : -1),
+        end_index: youtube_ids ? youtube_ids.length - 1 : -1
+      }
     case 'ZILTAG_FETCHED':
       var youtube_ids = extract_youtube_ids(action.payload.value.content)
-      return {...state, youtube_ids}
+      return {
+        ...state,
+        youtube_ids,
+        active_index: state.active_index || (youtube_ids ? 0 : -1),
+        end_index: youtube_ids ? youtube_ids.length - 1 : -1
+      }
+    case 'GO_NEXT_MEDIA_CONTENT':
+      const go_next_state = {...state}
+      return {
+        ...state,
+        active_index: state.active_index + 1
+      }
+    case 'GO_PREV_MEDIA_CONTENT':
+      const go_prev_state = {...state}
+      return {
+        ...state,
+        active_index: state.active_index - 1
+      }
     default:
       return state
   }
@@ -323,5 +345,5 @@ export default combineReducers({
   login_form,
   pseudo_comment,
   resend_verification_mail_tip,
-  media_content
+  media_carousel
 })
