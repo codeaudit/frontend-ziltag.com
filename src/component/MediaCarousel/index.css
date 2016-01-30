@@ -29,6 +29,29 @@
   opacity: .68;
 }
 
+.ziltag-media-carousel__indicator {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.ziltag-media-carousel__indicator--to-left {
+  background: url(to-left-indicator.png)
+}
+
+.ziltag-media-carousel__indicator--to-right {
+  background: url(to-right-indicator.png);
+}
+
+.ziltag-media-carousel .ziltag-media-carousel__indicator {
+  position: absolute;
+  top: calc(50% - 20px);
+}
+
+.ziltag-media-carousel .ziltag-media-carousel__indicator--to-right {
+  right: 0;
+}
+
 .ziltag-media-carousel .ziltag-media-carousel__youtube--active {
   margin-right: 16px;
 }
