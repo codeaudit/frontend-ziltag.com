@@ -2,6 +2,8 @@ import React, {Component} from 'react'
 import classNames from 'classnames'
 import TextareaAutosize from 'react-textarea-autosize'
 
+import MediaCarousel from '../MediaCarousel'
+
 
 try {
   if (__WEBPACK__) {
@@ -16,7 +18,6 @@ class ZiltagContent extends Component {
       '\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:' + '\'' + '.,<>?«»“”‘’]))',
       'ig'
     )
-
     const delimiter = String.fromCharCode('\u0008')
 
     return text.replace(regex, url => {
@@ -42,6 +43,7 @@ class ZiltagContent extends Component {
       mode,
       usr,
       ziltag_editor,
+      media_content,
       onChange,
       activate_ziltag_edit_mode,
       deactivate_ziltag_edit_mode,
@@ -52,7 +54,9 @@ class ZiltagContent extends Component {
       pushState
     } = this.props
 
-    const processed_content = content && this.anchorify(content)
+    if (content) {
+      var processed_content = this.anchorify(content)
+    }
 
     if (usr && author && usr.name == author.name) {
       var edit_operator_components = (
@@ -158,6 +162,7 @@ class ZiltagContent extends Component {
       <div className='ziltag-ziltag-content'>
         {text_component}
         {edit_operator_components}
+        <MediaCarousel content={media_content}/>
       </div>
     )
   }

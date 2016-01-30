@@ -275,6 +275,40 @@ function resend_verification_mail_tip(state={}, action) {
   }
 }
 
+function extract_youtube_ids(text) {
+  /*
+    got from https://stackoverflow.com/questions/5830387/how-to-find-all-youtube-video-ids-in-a-string-using-a-regex
+    might have little bugs.
+  */
+  const regex = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*?[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig
+  const delimiter = String.fromCharCode('\u0008')
+
+  return text.replace(regex, url => {
+    return delimiter + url + delimiter
+  })
+  .split(delimiter)
+  .map(token => {
+    if (regex.test(token)) {
+      return token.replace(regex, '$1')
+    }
+    return ''
+  })
+  .filter(x => x)
+}
+
+function media_content(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_EDITOR_CHANGED':
+      var youtube_ids = extract_youtube_ids(action.payload.target.value)
+      return {...state, youtube_ids}
+    case 'ZILTAG_FETCHED':
+      var youtube_ids = extract_youtube_ids(action.payload.value.content)
+      return {...state, youtube_ids}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
@@ -288,5 +322,6 @@ export default combineReducers({
   sign_up_form,
   login_form,
   pseudo_comment,
-  resend_verification_mail_tip
+  resend_verification_mail_tip,
+  media_content
 })
