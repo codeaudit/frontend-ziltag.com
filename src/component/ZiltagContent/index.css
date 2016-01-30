@@ -16,6 +16,7 @@
 }
 
 .ziltag-ziltag-content__text--editing {
+  display: block;
   padding: 0;
   border: 0;
   outline: 0;
