@@ -162,7 +162,7 @@ class ZiltagContent extends Component {
       <div className='ziltag-ziltag-content'>
         {text_component}
         {edit_operator_components}
-        <MediaCarousel content={media_content}/>
+        <MediaCarousel content={media_content} disable={mode == 'edit'}/>
       </div>
     )
   }

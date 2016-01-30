@@ -11,7 +11,8 @@ try {
 class MediaCarousel extends Component {
   render() {
     const {
-      content
+      content,
+      disable
     } = this.props
 
     const {
@@ -23,14 +24,20 @@ class MediaCarousel extends Component {
         <iframe
           className='ziltag-media-carousel__youtube'
           src={`https://www.youtube.com/embed/${id}`}
-          allowfullscreen
+          allowFullScreen
+          key={`youtube-${id}`}
         >
         </iframe>
       ))
     }
 
+    if (disable) {
+      var mask = <div className='ziltag-media-carousel__mask'></div>
+    }
+
     return (
       <div className='ziltag-media-carousel'>
+        {mask}
         {youtube_components}
       </div>
     )
