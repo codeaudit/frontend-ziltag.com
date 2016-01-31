@@ -21,7 +21,8 @@ class MediaCarousel extends Component {
     const {
       youtube_ids,
       active_index,
-      end_index
+      end_index,
+      direction
     } = content
 
     if (youtube_ids) {
@@ -34,13 +35,37 @@ class MediaCarousel extends Component {
           var next = true
         }
 
+        if (direction == 'next') {
+          if (i == active_index - 1) {
+            var active_to_unstaged = true
+          } else if (i == active_index) {
+            var next_to_active = true
+          } else if (i == active_index + 1) {
+            var unstaged_to_next = true
+          }
+        } else if (direction == 'prev') {
+          if (i == active_index + 1) {
+            var active_to_next = true
+          } else if (i == active_index) {
+            var unstaged_to_active = true
+          } else if (i == active_index + 2) {
+            var next_to_unstaged = true
+          }
+        }
+
         return <iframe
           className={
             classNames({
               'ziltag-media-carousel__youtube': true,
               'ziltag-media-carousel__youtube--active': active,
               'ziltag-media-carousel__youtube--next': next,
-              'ziltag-media-carousel__youtube--unstaged': !(active || next)
+              'ziltag-media-carousel__youtube--unstaged': !(active || next),
+              'ziltag-media-carousel__youtube--active-to-unstaged': active_to_unstaged,
+              'ziltag-media-carousel__youtube--next-to-active': next_to_active,
+              'ziltag-media-carousel__youtube--unstaged-to-next': unstaged_to_next,
+              'ziltag-media-carousel__youtube--unstaged-to-active': unstaged_to_active,
+              'ziltag-media-carousel__youtube--active-to-next': active_to_next,
+              'ziltag-media-carousel__youtube--next-to-unstaged': next_to_unstaged
             })
           }
           src={`https://www.youtube.com/embed/${id}`}

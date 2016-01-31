@@ -318,13 +318,15 @@ function media_carousel(state={}, action) {
       const go_next_state = {...state}
       return {
         ...state,
-        active_index: state.active_index + 1
+        active_index: state.active_index + 1,
+        direction: 'next'
       }
     case 'GO_PREV_MEDIA_CONTENT':
       const go_prev_state = {...state}
       return {
         ...state,
-        active_index: state.active_index - 1
+        active_index: state.active_index - 1,
+        direction: 'prev'
       }
     default:
       return state

@@ -18,7 +18,31 @@
 }
 
 .ziltag-media-carousel__youtube--unstaged {
-  display: none;
+  width: 0;
+}
+
+.ziltag-media-carousel__youtube--active-to-unstaged {
+  transition: width 1s;
+}
+
+.ziltag-media-carousel__youtube--next-to-active {
+  transition: width 1s;
+}
+
+.ziltag-media-carousel__youtube--unstaged-to-next {
+  transition: width 1s;
+}
+
+.ziltag-media-carousel__youtube--unstaged-to-active {
+  transition: width 1s;
+}
+
+.ziltag-media-carousel__youtube--active-to-next {
+  transition: width 1s;
+}
+
+.ziltag-media-carousel__youtube--next-to-unstaged {
+  transition: width 1s;
 }
 
 .ziltag-media-carousel__mask {
