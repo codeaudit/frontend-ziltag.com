@@ -14,6 +14,10 @@ try {
 
 class ZiltagContent extends Component {
   anchorify(text) {
+    if (!text) {
+      return text
+    }
+
     const regex = new RegExp(
       '\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:' + '\'' + '.,<>?«»“”‘’]))',
       'ig'
@@ -55,10 +59,6 @@ class ZiltagContent extends Component {
       go_prev_media_content,
       pushState
     } = this.props
-
-    if (content) {
-      var processed_content = this.anchorify(content)
-    }
 
     if (usr && author && usr.name == author.name) {
       var edit_operator_components = (
@@ -121,7 +121,11 @@ class ZiltagContent extends Component {
           </div>
       )
     } else {
-      var text_component = <div className='ziltag-ziltag-content__text'>{processed_content}</div>
+      var text_component = (
+        <div className='ziltag-ziltag-content__text'>
+          {this.anchorify(content)}
+        </div>
+      )
 
       if (mode == 'delete') {
         var edit_operator_components = (

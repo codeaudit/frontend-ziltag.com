@@ -30,6 +30,31 @@ class ZiltagMapPage extends Component {
     .then(action => this.actors.can_create_ziltag_map_page_stream({id: router.params.id}))
   }
 
+  anchorify(text) {
+    if (!text) {
+      return text
+    }
+
+    const regex = new RegExp(
+      '\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:' + '\'' + '.,<>?«»“”‘’]))',
+      'ig'
+    )
+    const delimiter = String.fromCharCode('\u0008')
+
+    return text.replace(regex, url => {
+      return delimiter + url + delimiter
+    })
+    .split(delimiter)
+    .map((token, i) => {
+      let key = 'anchorify-text-' + i
+      if (regex.test(token)) {
+        return <a key={key} href={token} target='_blank'>{token}</a>
+      } else {
+        return <span key={key} >{token}</span>
+      }
+    })
+  }
+
   render() {
     const {
       ziltag_map
@@ -46,6 +71,7 @@ class ZiltagMapPage extends Component {
               }
             )
           }
+          key={`ziltag-summary-${ziltag.id}`}
         >
           <Avatar
             className='ziltag-ziltag-map-page__ziltag-user-avatar'
@@ -56,7 +82,7 @@ class ZiltagMapPage extends Component {
               {ziltag.usr.name}
             </div>
             <div className='ziltag-ziltag-map-page__ziltag-content'>
-              {ziltag.content}
+              {this.anchorify(ziltag.content)}
             </div>
           </div>
         </div>
