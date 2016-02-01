@@ -160,16 +160,22 @@ class ZiltagContent extends Component {
       }
     }
 
-    return (
-      <div className='ziltag-ziltag-content'>
-        {text_component}
-        {edit_operator_components}
+    if (media_carousel.youtube_ids && media_carousel.youtube_ids.length) {
+      var media_carousel_component = (
         <MediaCarousel
           content={media_carousel}
           disable={mode == 'edit'}
           onNext={go_next_media_content}
           onPrev={go_prev_media_content}
         />
+      )
+    }
+
+    return (
+      <div className='ziltag-ziltag-content'>
+        {text_component}
+        {edit_operator_components}
+        {media_carousel_component}
       </div>
     )
   }
