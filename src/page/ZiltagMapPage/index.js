@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router'
 import {bindActionCreators} from 'redux'
 import {pushState} from 'redux-router'
 import classNames from 'classnames'
@@ -48,7 +49,7 @@ class ZiltagMapPage extends Component {
     .map((token, i) => {
       let key = 'anchorify-text-' + i
       if (regex.test(token)) {
-        return <a key={key} href={token} target='_blank'>{token}</a>
+        return <span className='ziltag-ziltag-map-page__anchorify-text' key={key}>{token}</span>
       } else {
         return <span key={key} >{token}</span>
       }
@@ -60,9 +61,13 @@ class ZiltagMapPage extends Component {
       ziltag_map
     } = this.props
 
+    const {
+      fetch_ziltag
+    } = this.actors
+
     const summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
       return (
-        <div
+        <Link
           className={
             classNames(
               {
@@ -71,6 +76,11 @@ class ZiltagMapPage extends Component {
               }
             )
           }
+          to={ziltag.link}
+          onClick={(e) => {
+            fetch_ziltag(ziltag.id)
+            e.stopPropagation()
+          }}
           key={`ziltag-summary-${ziltag.id}`}
         >
           <Avatar
@@ -85,7 +95,7 @@ class ZiltagMapPage extends Component {
               {this.anchorify(ziltag.content)}
             </div>
           </div>
-        </div>
+        </Link>
       )
     })
 
