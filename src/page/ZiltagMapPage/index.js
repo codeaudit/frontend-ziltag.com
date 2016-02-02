@@ -105,7 +105,7 @@ class ZiltagMapPage extends Component {
           {...this.props}
           {...this.actors}
         >
-          <h1 className='ziltag-ziltag-map-page__heading'>Summary</h1>
+          <h1 className='ziltag-ziltag-map-page__heading'>People are tagging...</h1>
           {summary_components}
         </BasePage>
       </div>
