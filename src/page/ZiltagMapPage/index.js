@@ -13,6 +13,7 @@ import * as actors from '../../actor'
 try {
   if (__WEBPACK__) {
     require('./index.css')
+    var robot_src = require('./robot.png')
   }
 } catch (e) {}
 
@@ -65,7 +66,7 @@ class ZiltagMapPage extends Component {
       fetch_ziltag
     } = this.actors
 
-    const summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
+    var summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
       return (
         <Link
           className={
@@ -98,6 +99,29 @@ class ZiltagMapPage extends Component {
         </Link>
       )
     })
+
+    if (!(summary_components && summary_components.length)) {
+      summary_components = [
+        <div
+          className='ziltag-ziltag-map-page__ziltag'
+        >
+          <Avatar
+            className='ziltag-ziltag-map-page__ziltag-user-avatar'
+            src={robot_src}
+          />
+          <div className='ziltag-ziltag-map-page__ziltag-main'>
+            <div className='ziltag-ziltag-map-page__ziltag-user-name'>
+              Ziltag Robot
+            </div>
+            <div className='ziltag-ziltag-map-page__ziltag-content'>
+              There is currently no tag on this image.<br/>
+              You can be the first to tag on it!<br/>
+              Just click anywhere on the image to start.<br/>
+            </div>
+          </div>
+        </div>
+      ]
+    }
 
     return (
       <div className='ziltag-ziltag-map-page'>
