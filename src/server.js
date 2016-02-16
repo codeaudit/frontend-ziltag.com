@@ -17,6 +17,7 @@ import {reduxReactRouter, match} from 'redux-router/server'
 import createHistory from 'history/lib/createMemoryHistory'
 import effects from 'redux-effects'
 import fetch from 'redux-effects-fetch'
+import outdent from 'outdent'
 
 import reducer from './reducer'
 import routes from './route'
@@ -94,11 +95,19 @@ app.use(async (ctx, next) => {
           </Provider>
         )
 
-        ctx.body = ('<!doctype html>\n<script src="/public/main.bundle.js"></script>' +
-          ReactDOM.renderToString(
-            <div id="react-content" dangerouslySetInnerHTML={{__html: ReactDOM.renderToString(component)}}/>
-          )
-        )
+        ctx.body = (outdent`
+          <!doctype html>
+          <html>
+            <head>
+              <script src="/public/main.bundle.js"></script>
+            </head>
+            <body>
+              ${ReactDOM.renderToString(
+                <div id="react-content" dangerouslySetInnerHTML={{__html: ReactDOM.renderToString(component)}}/>
+              )}
+            </body>
+          </html>
+        `)
       })
     )
   }
