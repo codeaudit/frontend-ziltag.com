@@ -70,12 +70,10 @@ class ZiltagMapPage extends Component {
       return (
         <Link
           className={
-            classNames(
-              {
-                'ziltag-ziltag-map-page__ziltag': true,
-                'ziltag-ziltag-map-page__ziltag--activated': ziltag.co_div.activated
-              }
-            )
+            classNames({
+              'ziltag-ziltag-map-page__ziltag': true,
+              'ziltag-ziltag-map-page__ziltag--activated': ziltag.co_div.activated
+            })
           }
           to={ziltag.link}
           onClick={(e) => {
