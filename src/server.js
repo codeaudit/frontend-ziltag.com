@@ -95,11 +95,28 @@ app.use(async (ctx, next) => {
           </Provider>
         )
 
+        const [, page_type, id] = ctx.originalUrl.split('/')
+
+        if (page_type == 'ziltags') {
+          const full_url = ctx.protocol + '://' + ctx.host + ctx.originalUrl
+          const title = 'Ziltag'
+
+          var social_media_meta = outdent`
+            <meta property="og:type" content="article">
+            <meta property="og:title" content="${title}">
+            <meta property="og:url" content="${full_url}">
+            <meta property="og:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="${title}">
+            <meta name="twitter:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
+          `
+        }
+
         ctx.body = (outdent`
           <!doctype html>
           <html>
             <head>
-              <script src="/public/main.bundle.js"></script>
+              <script src="/public/main.bundle.js"></script>${social_media_meta ? '\n' + social_media_meta : ''}
             </head>
             <body>
               ${ReactDOM.renderToString(
