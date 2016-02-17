@@ -100,16 +100,17 @@ app.use(async (ctx, next) => {
         if (page_type == 'ziltags') {
           const full_url = ctx.protocol + '://' + ctx.host + ctx.originalUrl
           const title = 'Ziltag'
+          const description = 'Ziltag is a visual tagging plugin that helps you discover and discuss wonderful things.'
 
           var social_media_meta = outdent`
             <meta property="og:type" content="article">
             <meta property="og:title" content="${title}">
-            <meta property="og:description" content="">
+            <meta property="og:description" content="${description}">
             <meta property="og:url" content="${full_url}">
             <meta property="og:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:title" content="${title}">
-            <meta name="twitter:description" content="">
+            <meta name="twitter:description" content="${description}">
             <meta name="twitter:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
           `
         }
