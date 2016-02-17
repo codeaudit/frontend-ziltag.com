@@ -104,10 +104,12 @@ app.use(async (ctx, next) => {
           var social_media_meta = outdent`
             <meta property="og:type" content="article">
             <meta property="og:title" content="${title}">
+            <meta property="og:description" content="">
             <meta property="og:url" content="${full_url}">
             <meta property="og:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:title" content="${title}">
+            <meta name="twitter:description" content="">
             <meta name="twitter:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
           `
         }
