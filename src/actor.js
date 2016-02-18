@@ -246,3 +246,6 @@ export const can_create_ziltag_map_page_stream = createAction('CAN_CREATE_ZILTAG
 
 export const go_next_media_content = createAction('GO_NEXT_MEDIA_CONTENT')
 export const go_prev_media_content = createAction('GO_PREV_MEDIA_CONTENT')
+
+export const activate_social_media_menu = createAction('ACTIVATE_SOCIAL_MEDIA_MENU')
+export const deactivate_social_media_menu = createAction('DEACTIVATE_SOCIAL_MEDIA_MENU')

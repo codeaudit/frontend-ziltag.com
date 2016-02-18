@@ -333,6 +333,17 @@ function media_carousel(state={}, action) {
   }
 }
 
+function social_media_menu(state={}, action) {
+  switch (action.type) {
+    case 'ACTIVATE_SOCIAL_MEDIA_MENU':
+      return {activated: true}
+    case 'DEACTIVATE_SOCIAL_MEDIA_MENU':
+      return {activated: false}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
@@ -347,5 +358,6 @@ export default combineReducers({
   login_form,
   pseudo_comment,
   resend_verification_mail_tip,
-  media_carousel
+  media_carousel,
+  social_media_menu
 })
