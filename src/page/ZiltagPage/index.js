@@ -9,6 +9,8 @@ import ZiltagComment from '../../component/ZiltagComment'
 import ZiltagCommentInput from '../../component/ZiltagCommentInput'
 import PseudoComment from '../../component/PseudoComment'
 import Avatar from '../../component/Avatar'
+import SocialMediaMenu from '../../component/SocialMediaMenu'
+
 import * as actors from '../../actor'
 
 
@@ -55,7 +57,8 @@ class ZiltagPage extends Component {
       current_ziltag,
       current_user,
       ziltag_comment_input,
-      pseudo_comment
+      pseudo_comment,
+      social_media_menu
     } = this.props
 
     const {
@@ -63,6 +66,8 @@ class ZiltagPage extends Component {
       create_ziltag_comment,
       ziltag_editor_changed,
       ziltag_comment_editor_changed,
+      activate_social_media_menu,
+      deactivate_social_media_menu,
       pushState
     } = this.actors
 
@@ -113,7 +118,12 @@ class ZiltagPage extends Component {
     }
 
     return (
-      <div className='ziltag-ziltag-page'>
+      <div
+        onClick={() => {
+          deactivate_social_media_menu()
+        }}
+        className='ziltag-ziltag-page'
+      >
         <BasePage
           {...this.props}
           {...this.actors}
@@ -134,8 +144,19 @@ class ZiltagPage extends Component {
             <div className='ziltag-ziltag-page__op-right'>
               <div className='ziltag-ziltag-page__close'>
               </div>
-              <div className='ziltag-ziltag-page__share'>
+              <div
+                onClick={(e) => {
+                  activate_social_media_menu()
+                  e.stopPropagation()
+                }}
+                className='ziltag-ziltag-page__share'
+              >
               </div>
+              <SocialMediaMenu
+                activated={social_media_menu.activated}
+                className='ziltag-ziltag-page__social-media-menu'
+              >
+              </SocialMediaMenu>
             </div>
           </div>
           <ZiltagContent

@@ -39,6 +39,7 @@
 }
 
 .ziltag-ziltag-page__op .ziltag-ziltag-page__op-right {
+  position: relative;
   height: 100%;
   margin-left: auto;
 }
@@ -61,6 +62,13 @@
 .ziltag-ziltag-page__op-right .ziltag-ziltag-page__close,
 .ziltag-ziltag-page__op-right, .ziltag-ziltag-page__share {
   height: 50%;
+}
+
+.ziltag-ziltag-page__op-right .ziltag-ziltag-page__social-media-menu {
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+  left: -54px;
 }
 
 .ziltag-base-page-main__col1 .ziltag-ziltag-comment-input,
