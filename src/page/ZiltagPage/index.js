@@ -71,6 +71,10 @@ class ZiltagPage extends Component {
       pushState
     } = this.actors
 
+    try {
+      var full_url = window.location.href
+    } catch (e) {}
+
     if (current_ziltag.comments) {
       var comment_components = current_ziltag.comments.map(
         comment => (
@@ -154,6 +158,7 @@ class ZiltagPage extends Component {
               </div>
               <SocialMediaMenu
                 activated={social_media_menu.activated}
+                url={full_url}
                 className='ziltag-ziltag-page__social-media-menu'
               >
               </SocialMediaMenu>
