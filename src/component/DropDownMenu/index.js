@@ -33,12 +33,11 @@ export default DropDownMenu
 class Item extends Component {
   render() {
     const {
-      onClick,
       children
     } = this.props
 
     return (
-      <li onClick={onClick} className='ziltag-drop-down-menu-item'>
+      <li className='ziltag-drop-down-menu-item'>
         {children}
       </li>
     )

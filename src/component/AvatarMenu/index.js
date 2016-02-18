@@ -20,14 +20,20 @@ class AvatarMenu extends Component {
       <DropDownMenu style={style} className='ziltag-base-page__avatar-menu'>
         <Item><a href='/users/edit'>Setting</a></Item>
         <hr/>
-        <Item onClick={() => {
-          current_user_logout()
-          .then(() => {
-            if (current_ziltag.id) {
-              fetch_ziltag(current_ziltag.id)
-            }
-          })
-        }}>Logout</Item>
+        <Item>
+          <div
+            onClick={() => {
+              current_user_logout()
+              .then(() => {
+                if (current_ziltag.id) {
+                  fetch_ziltag(current_ziltag.id)
+                }
+              })
+            }}
+          >
+            Logout
+          </div>
+        </Item>
       </DropDownMenu>
     )
   }
