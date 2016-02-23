@@ -22,7 +22,16 @@ import outdent from 'outdent'
 import reducer from './reducer'
 import routes from './route'
 
-import {NODE_ENV, NODE_PORT, SSL_PORT, SSL_KEY, SSL_CERT, API_ADDR, PLUGIN_ADDR} from '../env'
+import {
+  NODE_ENV,
+  NODE_PORT,
+  SSL_PORT,
+  SSL_KEY,
+  SSL_CERT,
+  API_ADDR,
+  PLUGIN_ADDR,
+  FILE_ADDR
+} from '../env'
 
 
 const SSL_OPTOINS = {
@@ -107,11 +116,11 @@ app.use(async (ctx, next) => {
             <meta property="og:title" content="${title}">
             <meta property="og:description" content="${description}">
             <meta property="og:url" content="${full_url}">
-            <meta property="og:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
+            <meta property="og:image" content="${FILE_ADDR}/uploads/ziltags/share_image/${id}/share.jpg">
             <meta name="twitter:card" content="summary_large_image">
             <meta name="twitter:title" content="${title}">
             <meta name="twitter:description" content="${description}">
-            <meta name="twitter:image" content="https://ziltag-staging.s3.amazonaws.com/uploads/ziltags/share_image/${id}/share.jpg">
+            <meta name="twitter:image" content="${FILE_ADDR}/uploads/ziltags/share_image/${id}/share.jpg">
           `
         }
 
