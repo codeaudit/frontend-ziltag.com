@@ -35,31 +35,31 @@ class BasePage extends Component {
       >
         <div style={{zIndex: 5}} className='ziltag-base-page__head'>
           <Logo/>
-          <Avatar
+          {current_user.usr && <Avatar
             style={{
               display: current_user.usr ? 'inline' : 'none'
             }}
             className='ziltag-base-page__avatar'
-            src={current_user.usr && current_user.usr.avatar}
+            src={current_user.usr.avatar}
             onClick={(e) => {
               activate_avatar_menu()
               e.stopPropagation()
             }}
-          />
+          />}
         </div>
-        <AvatarMenu
+        {current_user.usr && <AvatarMenu
           {...this.props}
           {...avatar_menu}
-        />
+        />}
         <div className='ziltag-base-page-main'>
-          <div className='ziltag-base-page-main__col0'>
+          {ziltag_map.ziltags && <div className='ziltag-base-page-main__col0'>
             <ZiltagMap
               {...this.props}
             />
             <span className='ziltag-base-page__href'>
               From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
             </span>
-          </div>
+          </div>}
           <div className='ziltag-base-page-main__col1'>
             {children}
           </div>

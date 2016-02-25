@@ -82,18 +82,18 @@ class ZiltagMapPage extends Component {
           }}
           key={`ziltag-summary-${ziltag.id}`}
         >
-          <Avatar
+          {ziltag.usr && <Avatar
             className='ziltag-ziltag-map-page__ziltag-user-avatar'
             src={ziltag.usr.avatar}
-          />
-          <div className='ziltag-ziltag-map-page__ziltag-main'>
+          />}
+          {ziltag.usr && <div className='ziltag-ziltag-map-page__ziltag-main'>
             <div className='ziltag-ziltag-map-page__ziltag-user-name'>
               {ziltag.usr.name}
             </div>
             <div className='ziltag-ziltag-map-page__ziltag-content'>
               {this.anchorify(ziltag.content)}
             </div>
-          </div>
+          </div>}
         </Link>
       )
     })
@@ -102,6 +102,7 @@ class ZiltagMapPage extends Component {
       summary_components = [
         <div
           className='ziltag-ziltag-map-page__ziltag'
+          key='ziltag-summary-default'
         >
           <Avatar
             className='ziltag-ziltag-map-page__ziltag-user-avatar'

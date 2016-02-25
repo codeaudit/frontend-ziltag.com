@@ -133,10 +133,10 @@ class ZiltagPage extends Component {
           {...this.actors}
         >
           <div className='ziltag-ziltag-page__op'>
-            <Avatar
+            {current_ziltag.usr && <Avatar
               className='ziltag-ziltag-page__op-avatar'
-              src={current_ziltag.usr && current_ziltag.usr.avatar}
-            />
+              src={current_ziltag.usr.avatar}
+            />}
             <div className='ziltag-ziltag-page__op-left'>
               <div className='ziltag-ziltag-page__op-prompt'>
                 Tag created by
