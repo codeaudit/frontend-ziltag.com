@@ -3,6 +3,7 @@ import path from 'path'
 import webpack from 'webpack'
 import cssnano from 'cssnano'
 import postcss_nesting from 'postcss-nesting'
+import postcss_cssnext from 'postcss-cssnext'
 
 import {NODE_ENV} from '../env'
 
@@ -36,6 +37,6 @@ module.exports = {
     })
   ],
   postcss: () => {
-    return [postcss_nesting, cssnano]
+    return [postcss_nesting, postcss_cssnext, cssnano]
   }
 }
