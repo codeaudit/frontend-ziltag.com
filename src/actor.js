@@ -249,3 +249,5 @@ export const go_prev_media_content = createAction('GO_PREV_MEDIA_CONTENT')
 
 export const activate_social_media_menu = createAction('ACTIVATE_SOCIAL_MEDIA_MENU')
 export const deactivate_social_media_menu = createAction('DEACTIVATE_SOCIAL_MEDIA_MENU')
+
+export const deactivate_ziltag_reader = createAction('DEACTIVATE_ZILTAG_READER')
