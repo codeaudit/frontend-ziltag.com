@@ -68,6 +68,7 @@ class ZiltagPage extends Component {
       ziltag_comment_editor_changed,
       activate_social_media_menu,
       deactivate_social_media_menu,
+      deactivate_ziltag_reader,
       pushState
     } = this.actors
 
@@ -146,7 +147,10 @@ class ZiltagPage extends Component {
               </div>
             </div>
             <div className='ziltag-ziltag-page__op-right'>
-              <div className='ziltag-ziltag-page__close'>
+              <div
+                className='ziltag-ziltag-page__close'
+                onClick={deactivate_ziltag_reader}
+              >
               </div>
               <div
                 onClick={(e) => {

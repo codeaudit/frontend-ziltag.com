@@ -112,7 +112,13 @@ function* set_ziltag_map_page_stream() {
   }
 }
 
+function* deactivate_ziltag_reader() {
+  yield take('DEACTIVATE_ZILTAG_READER')
+  window.parent.postMessage('deactivate_ziltag_reader', '*')
+}
+
 export default [
   set_ziltag_page_stream,
-  set_ziltag_map_page_stream
+  set_ziltag_map_page_stream,
+  deactivate_ziltag_reader
 ]
