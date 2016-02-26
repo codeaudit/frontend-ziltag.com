@@ -61,7 +61,7 @@ class BasePage extends Component {
             </span>
           </div>}
           <div className='ziltag-base-page-main__col1'>
-            {children}
+            {ziltag_map.ziltags && children}
           </div>
         </div>
       </div>

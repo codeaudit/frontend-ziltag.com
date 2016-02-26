@@ -129,7 +129,7 @@ class ZiltagPage extends Component {
         }}
         className='ziltag-ziltag-page'
       >
-        <BasePage
+        {current_ziltag.content && <BasePage
           {...this.props}
           {...this.actors}
         >
@@ -179,7 +179,7 @@ class ZiltagPage extends Component {
           <h2>Comments</h2>
           {comment_input_area}
           {comment_components}
-        </BasePage>
+        </BasePage>}
       </div>
     )
   }
