@@ -6,23 +6,23 @@ function current_user(state={}, action) {
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
     case 'CURRENT_USER_LOGGED_IN':
-    case 'CURRENT_USER_SIGNED_UP':
+    case 'CURRENT_USER_JOINED':
       return {...action.payload.value, status: 'success'}
     case 'CURRENT_USER_LOGGED_OUT':
       return {}
-    case 'CURRENT_USER_LOGIN_FAILED':
-      return {status: 'login_failed', prompt: 'Incorrect email or password.'}
-    case 'CURRENT_USER_SIGN_UP_FAILED':
+    case 'CURRENT_USER_SIGN_IN_FAILED':
+      return {status: 'sign_in_failed', prompt: 'Incorrect email or password.'}
+    case 'CURRENT_USER_JOIN_FAILED':
       if (action.payload.value.errors.email[0] == 'is invalid') {
-        return {status: 'sign_up_failed', prompt: 'Email is invalid.'}
+        return {status: 'join_failed', prompt: 'Email is invalid.'}
       } else if (action.payload.value.errors.email[0] == 'has already been taken') {
-        return {status: 'sign_up_failed', prompt: 'Email has already in use.'}
+        return {status: 'join_failed', prompt: 'Email has already in use.'}
       }
     case 'ACTIVATE_ZILTAG_INPUT':
-    case 'ZILTAG_INPUT_LOGIN':
-    case 'ZILTAG_INPUT_SIGN_UP':
-    case 'PSEUDO_COMMENT_SIGN_UP':
-    case 'PSEUDO_COMMENT_LOGIN':
+    case 'ZILTAG_INPUT_SIGN_IN':
+    case 'ZILTAG_INPUT_JOIN':
+    case 'PSEUDO_COMMENT_JOIN':
+    case 'PSEUDO_COMMENT_SIGN_IN':
       return {...state, status: null, prompt: null}
     default:
       return state
@@ -156,10 +156,10 @@ function ziltag_input(state={}, action) {
       }
     case 'DEACTIVATE_ZILTAG_INPUT':
       return {activated: false}
-    case 'ZILTAG_INPUT_LOGIN':
-      return {...state, mode: 'login'}
-    case 'ZILTAG_INPUT_SIGN_UP':
-      return {...state, mode: 'sign_up'}
+    case 'ZILTAG_INPUT_SIGN_IN':
+      return {...state, mode: 'sign_in'}
+    case 'ZILTAG_INPUT_JOIN':
+      return {...state, mode: 'join'}
     case 'ZILTAG_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
     default:
@@ -229,22 +229,22 @@ function ziltag_comment_editors(state={}, action) {
   }
 }
 
-function sign_up_form(state={}, action) {
+function join_form(state={}, action) {
   switch (action.type) {
-    case 'SIGN_UP_FORM_NAME_CHANGED':
+    case 'JOIN_FORM_NAME_CHANGED':
       return {...state, name: action.payload.target.value}
-    case 'SIGN_UP_FORM_EMAIL_CHANGED':
+    case 'JOIN_FORM_EMAIL_CHANGED':
       return {...state, email: action.payload.target.value}
     default:
       return state
   }
 }
 
-function login_form(state={}, action) {
+function sign_in_form(state={}, action) {
   switch (action.type) {
-    case 'LOGIN_FORM_USER_CHANGED':
+    case 'SIGN_IN_FORM_USER_CHANGED':
       return {...state, user: action.payload.target.value}
-    case 'LOGIN_FORM_PASSWORD_CHANGED':
+    case 'SIGN_IN_FORM_PASSWORD_CHANGED':
       return {...state, password: action.payload.target.value}
     default:
       return state
@@ -257,10 +257,10 @@ function pseudo_comment(state={}, action) {
       return {...state, mode: 'read'}
     case 'DEACTIVATE_PSEUDO_COMMENT':
       return {...state, mode: null}
-    case 'PSEUDO_COMMENT_SIGN_UP':
-      return {...state, mode: 'sign_up'}
-    case 'PSEUDO_COMMENT_LOGIN':
-      return {...state, mode: 'login'}
+    case 'PSEUDO_COMMENT_JOIN':
+      return {...state, mode: 'join'}
+    case 'PSEUDO_COMMENT_SIGN_IN':
+      return {...state, mode: 'sign_in'}
     default:
       return state
   }
@@ -354,8 +354,8 @@ export default combineReducers({
   ziltag_editor,
   ziltag_comment_input,
   ziltag_comment_editors,
-  sign_up_form,
-  login_form,
+  join_form,
+  sign_in_form,
   pseudo_comment,
   resend_verification_mail_tip,
   media_carousel,

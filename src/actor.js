@@ -152,12 +152,12 @@ export function create_ziltag_comment(ziltag_id, content) {
   }), ziltag_comment_created)
 }
 
-export const ziltag_input_sign_up = createAction('ZILTAG_INPUT_SIGN_UP')
-export const ziltag_input_login = createAction('ZILTAG_INPUT_LOGIN')
+export const ziltag_input_join = createAction('ZILTAG_INPUT_JOIN')
+export const ziltag_input_sign_in = createAction('ZILTAG_INPUT_SIGN_IN')
 
 export const current_user_logged_out = createAction('CURRENT_USER_LOGGED_OUT')
 
-export function current_user_logout() {
+export function current_user_sign_out() {
   const api = `${API_ADDR}/api/v1/sign_out`
   return bind(fetch(api, {
     credentials: 'include'
@@ -165,9 +165,9 @@ export function current_user_logout() {
 }
 
 export const current_user_logged_in = createAction('CURRENT_USER_LOGGED_IN')
-export const current_user_login_failed = createAction('CURRENT_USER_LOGIN_FAILED')
+export const current_user_sign_in_failed = createAction('CURRENT_USER_SIGN_IN_FAILED')
 
-export function current_user_login(user, password) {
+export function current_user_sign_in(user, password) {
   const api = `${API_ADDR}/api/v1/sign_in`
   return bind(fetch(api, {
     credentials: 'include',
@@ -178,23 +178,23 @@ export function current_user_login(user, password) {
     },
     body: JSON.stringify({
       user: {
-        login: user,
+        sign_in: user,
         password
       }
     })
   }), (resp) => {
-    if (resp.value.error == 'invalid login name or password') {
-      return current_user_login_failed(resp)
+    if (resp.value.error == 'invalid sign_in name or password') {
+      return current_user_sign_in_failed(resp)
     } else {
       return current_user_logged_in(resp)
     }
   })
 }
 
-export const current_user_signed_up = createAction('CURRENT_USER_SIGNED_UP')
-export const current_user_sign_up_failed = createAction('CURRENT_USER_SIGN_UP_FAILED')
+export const current_user_joined = createAction('CURRENT_USER_JOINED')
+export const current_user_join_failed = createAction('CURRENT_USER_JOIN_FAILED')
 
-export function current_user_sign_up(name, email) {
+export function current_user_join(name, email) {
   const api = `${API_ADDR}/api/v1/users`
   return bind(fetch(api, {
     credentials: 'include',
@@ -209,20 +209,20 @@ export function current_user_sign_up(name, email) {
         email
       }
     })
-  }), current_user_signed_up, current_user_sign_up_failed)
+  }), current_user_joined, current_user_join_failed)
 }
 
-export const login_form_user_changed = createAction('LOGIN_FORM_USER_CHANGED')
-export const login_form_password_changed = createAction('LOGIN_FORM_PASSWORD_CHANGED')
+export const sign_in_form_user_changed = createAction('SIGN_IN_FORM_USER_CHANGED')
+export const sign_in_form_password_changed = createAction('SIGN_IN_FORM_PASSWORD_CHANGED')
 
-export const sign_up_form_name_changed = createAction('SIGN_UP_FORM_NAME_CHANGED')
-export const sign_up_form_email_changed = createAction('SIGN_UP_FORM_EMAIL_CHANGED')
+export const join_form_name_changed = createAction('JOIN_FORM_NAME_CHANGED')
+export const join_form_email_changed = createAction('JOIN_FORM_EMAIL_CHANGED')
 
 export const activate_pseudo_comment = createAction('ACTIVATE_PSEUDO_COMMENT')
 export const deactivate_pseudo_comment = createAction('DEACTIVATE_PSEUDO_COMMENT')
 
-export const pseudo_comment_sign_up = createAction('PSEUDO_COMMENT_SIGN_UP')
-export const pseudo_comment_login = createAction('PSEUDO_COMMENT_LOGIN')
+export const pseudo_comment_join = createAction('PSEUDO_COMMENT_JOIN')
+export const pseudo_comment_sign_in = createAction('PSEUDO_COMMENT_SIGN_IN')
 
 export const verification_mail_resended = createAction('VERIFICATION_MAIL_RESENDED')
 

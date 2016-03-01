@@ -8,7 +8,7 @@ class AvatarMenu extends Component {
     const {
       activated,
       current_ziltag,
-      current_user_logout,
+      current_user_sign_out,
       fetch_ziltag
     } = this.props
 
@@ -23,7 +23,7 @@ class AvatarMenu extends Component {
         <Item>
           <div
             onClick={() => {
-              current_user_logout()
+              current_user_sign_out()
               .then(() => {
                 if (current_ziltag.id) {
                   fetch_ziltag(current_ziltag.id)
@@ -31,7 +31,7 @@ class AvatarMenu extends Component {
               })
             }}
           >
-            Logout
+            Sign Out
           </div>
         </Item>
       </DropDownMenu>

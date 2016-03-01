@@ -15,35 +15,35 @@ class PseudoComment extends Component {
     const {
       content,
       mode,
-      sign_up_form,
-      login_form,
+      join_form,
+      sign_in_form,
       current_user,
-      pseudo_comment_sign_up,
-      pseudo_comment_login,
+      pseudo_comment_join,
+      pseudo_comment_sign_in,
       deactivate_pseudo_comment,
-      current_user_sign_up,
-      current_user_login,
+      current_user_join,
+      current_user_sign_in,
       fetch_current_user,
-      sign_up_form_name_changed,
-      sign_up_form_email_changed,
-      login_form_user_changed,
-      login_form_password_changed
+      join_form_name_changed,
+      join_form_email_changed,
+      sign_in_form_user_changed,
+      sign_in_form_password_changed
     } = this.props
 
-    if (mode == 'login') {
+    if (mode == 'sign_in') {
       var component = (
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <input
-              onChange={login_form_user_changed}
+              onChange={sign_in_form_user_changed}
               type='email'
               placeholder='Email'
               autoFocus
             />
-            <input onChange={login_form_password_changed} type='password' placeholder='Password'/>
+            <input onChange={sign_in_form_password_changed} type='password' placeholder='Password'/>
             <nav>
-              <div onClick={pseudo_comment_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
-              <div onClick={pseudo_comment_login} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Login</div>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link'>Join</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
               <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -53,9 +53,9 @@ class PseudoComment extends Component {
                     const {
                       user,
                       password
-                    } = login_form
+                    } = sign_in_form
 
-                    current_user_login(user, password)
+                    current_user_sign_in(user, password)
                     .then(({payload}) => {
                       if (!payload.value.error) {
                         fetch_current_user()
@@ -67,7 +67,7 @@ class PseudoComment extends Component {
                   }}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Login
+                  Sign In
                 </h1>
               <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
             </div>
@@ -76,20 +76,20 @@ class PseudoComment extends Component {
           </ZiltagForm>
         </div>
       )
-    } else if (mode == 'sign_up') {
+    } else if (mode == 'join') {
       var component = (
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <input
-              onChange={sign_up_form_name_changed}
+              onChange={join_form_name_changed}
               type='name'
               placeholder='Username'
               autoFocus
             />
-            <input onChange={sign_up_form_email_changed} type='email' placeholder='Email'/>
+            <input onChange={join_form_email_changed} type='email' placeholder='Email'/>
             <nav>
-              <div onClick={pseudo_comment_sign_up} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
-              <div onClick={pseudo_comment_login} className='ziltag-ziltag-form__link'>Login</div>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
               <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -99,9 +99,9 @@ class PseudoComment extends Component {
                     const {
                       name,
                       email
-                    } = sign_up_form
+                    } = join_form
 
-                    current_user_sign_up(name, email)
+                    current_user_join(name, email)
                     .then(({payload}) => {
                       if (!payload.value.errors) {
                         fetch_current_user()
@@ -111,7 +111,7 @@ class PseudoComment extends Component {
                   }}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Sign Up
+                  Join
                 </h1>
               <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
             </div>
@@ -135,15 +135,15 @@ class PseudoComment extends Component {
           <nav>
             <div
               className='ziltag-ziltag-form__link'
-              onClick={pseudo_comment_sign_up}
+              onClick={pseudo_comment_join}
             >
-              Sign Up
+              Join
               </div>
             <div
               className='ziltag-ziltag-form__link'
-              onClick={pseudo_comment_login}
+              onClick={pseudo_comment_sign_in}
             >
-              Login
+              Sign In
             </div>
             <div
               className='ziltag-ziltag-form__link'

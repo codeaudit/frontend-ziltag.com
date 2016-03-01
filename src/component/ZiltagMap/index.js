@@ -27,21 +27,21 @@ class ZiltagMap extends Component {
       activate_ziltag_input,
       deactivate_ziltag_input,
       ziltag_input_changed,
-      ziltag_input_sign_up,
-      ziltag_input_login,
-      current_user_login,
-      current_user_sign_up,
-      login_form_user_changed,
-      login_form_password_changed,
-      sign_up_form_name_changed,
-      sign_up_form_email_changed,
+      ziltag_input_join,
+      ziltag_input_sign_in,
+      current_user_sign_in,
+      current_user_join,
+      sign_in_form_user_changed,
+      sign_in_form_password_changed,
+      join_form_name_changed,
+      join_form_email_changed,
       create_ziltag,
       pushState,
       resend_verification_mail,
       ziltag_map,
       ziltag_input,
-      login_form,
-      sign_up_form,
+      sign_in_form,
+      join_form,
       current_ziltag,
       current_user
     } = this.props
@@ -145,18 +145,18 @@ class ZiltagMap extends Component {
                   </div>
                 </nav>
               </ZiltagMapDialog>
-          : ziltag_input.mode == 'login'
+          : ziltag_input.mode == 'sign_in'
           ? <ZiltagForm>
               <input
-                onChange={login_form_user_changed}
+                onChange={sign_in_form_user_changed}
                 type='email'
                 placeholder='Email'
                 autoFocus
               />
-              <input onChange={login_form_password_changed} type='password' placeholder='Password'/>
+              <input onChange={sign_in_form_password_changed} type='password' placeholder='Password'/>
               <nav>
-                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
-                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Login</div>
+                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
+                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
                 <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
@@ -166,9 +166,9 @@ class ZiltagMap extends Component {
                       const {
                         user,
                         password
-                      } = login_form
+                      } = sign_in_form
 
-                      current_user_login(user, password)
+                      current_user_sign_in(user, password)
                       .then(({payload}) => {
                         if (!payload.value.error) {
                           fetch_current_user()
@@ -180,25 +180,25 @@ class ZiltagMap extends Component {
                     }}
                     className={'ziltag-ziltag-form__submit'}
                   >
-                    Login
+                    Sign In
                   </h1>
                   <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
                 </div>
                 <p><a>Forget password?</a></p>
               </footer>
             </ZiltagForm>
-          : ziltag_input.mode == 'sign_up'
+          : ziltag_input.mode == 'join'
           ? <ZiltagForm>
               <input
-                onChange={sign_up_form_name_changed}
+                onChange={join_form_name_changed}
                 type='name'
                 placeholder='Username'
                 autoFocus
               />
-              <input onChange={sign_up_form_email_changed} type='email' placeholder='Email'/>
+              <input onChange={join_form_email_changed} type='email' placeholder='Email'/>
               <nav>
-                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign Up</div>
-                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link'>Login</div>
+                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
+                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
                 <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
               </nav>
               <footer>
@@ -208,9 +208,9 @@ class ZiltagMap extends Component {
                       const {
                         name,
                         email
-                      } = sign_up_form
+                      } = join_form
 
-                      current_user_sign_up(name, email)
+                      current_user_join(name, email)
                       .then(({payload}) => {
                         if (!payload.value.errors) {
                           fetch_current_user()
@@ -220,7 +220,7 @@ class ZiltagMap extends Component {
                     }}
                     className={'ziltag-ziltag-form__submit'}
                   >
-                    Sign Up
+                    Join
                   </h1>
                   <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
                 </div>
@@ -232,8 +232,8 @@ class ZiltagMap extends Component {
                 <strong>Oops! You need to have an account to post a tag.</strong>
               </p>
               <nav>
-                <div onClick={ziltag_input_sign_up} className='ziltag-ziltag-form__link'>Sign Up</div>
-                <div onClick={ziltag_input_login} className='ziltag-ziltag-form__link'>Login</div>
+                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
+                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
               </nav>
             </ZiltagMapDialog>
         }
