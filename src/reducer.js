@@ -11,13 +11,9 @@ function current_user(state={}, action) {
     case 'CURRENT_USER_LOGGED_OUT':
       return {}
     case 'CURRENT_USER_SIGN_IN_FAILED':
-      return {status: 'sign_in_failed', prompt: 'Incorrect email or password.'}
+      return {status: 'sign_in_failed', prompt: action.payload.value.error}
     case 'CURRENT_USER_JOIN_FAILED':
-      if (action.payload.value.errors.email[0] == 'is invalid') {
-        return {status: 'join_failed', prompt: 'Email is invalid.'}
-      } else if (action.payload.value.errors.email[0] == 'has already been taken') {
-        return {status: 'join_failed', prompt: 'Email has already in use.'}
-      }
+      return {status: 'join_failed', prompt: action.payload.value.error}
     case 'ACTIVATE_ZILTAG_INPUT':
     case 'ZILTAG_INPUT_SIGN_IN':
     case 'ZILTAG_INPUT_JOIN':

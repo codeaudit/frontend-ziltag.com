@@ -183,7 +183,7 @@ export function current_user_sign_in(user, password) {
       }
     })
   }), (resp) => {
-    if (resp.value.error == 'invalid sign_in name or password') {
+    if (resp.value.error) {
       return current_user_sign_in_failed(resp)
     } else {
       return current_user_logged_in(resp)
