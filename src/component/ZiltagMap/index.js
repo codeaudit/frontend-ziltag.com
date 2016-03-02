@@ -184,7 +184,7 @@ class ZiltagMap extends Component {
                   </h1>
                   <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
                 </div>
-                <p><a>Forget password?</a></p>
+                <p><a href='/users/password/new'>Forgot password?</a></p>
               </footer>
             </ZiltagForm>
           : ziltag_input.mode == 'join'
