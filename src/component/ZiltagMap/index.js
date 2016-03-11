@@ -81,8 +81,6 @@ class ZiltagMap extends Component {
         if (!payload.value.error) {
           fetch_current_user()
           deactivate_ziltag_input()
-        } else {
-          throw payload.value.error
         }
       })
     }

@@ -56,8 +56,6 @@ class PseudoComment extends Component {
         if (!payload.value.error) {
           fetch_current_user()
           deactivate_pseudo_comment()
-        } else {
-          throw payload.value.error
         }
       })
     }
