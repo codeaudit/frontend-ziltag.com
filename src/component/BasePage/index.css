@@ -3,6 +3,10 @@ body {
   background: rgb(249, 249, 249);
 }
 
+a {
+  color: #0074D9;
+}
+
 .ziltag-base-page {
   height: 100%;
 }

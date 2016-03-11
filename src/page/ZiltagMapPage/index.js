@@ -52,7 +52,7 @@ class ZiltagMapPage extends Component {
       if (regex.test(token)) {
         return <span className='ziltag-ziltag-map-page__anchorify-text' key={key}>{token}</span>
       } else {
-        return <span key={key} >{token}</span>
+        return <span key={key}>{token}</span>
       }
     })
   }
