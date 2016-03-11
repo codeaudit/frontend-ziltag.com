@@ -155,16 +155,16 @@ export function create_ziltag_comment(ziltag_id, content) {
 export const ziltag_input_join = createAction('ZILTAG_INPUT_JOIN')
 export const ziltag_input_sign_in = createAction('ZILTAG_INPUT_SIGN_IN')
 
-export const current_user_logged_out = createAction('CURRENT_USER_LOGGED_OUT')
+export const current_user_signed_out = createAction('CURRENT_USER_SIGNED_OUT')
 
 export function current_user_sign_out() {
   const api = `${API_ADDR}/api/v1/sign_out`
   return bind(fetch(api, {
     credentials: 'include'
-  }), current_user_logged_out)
+  }), current_user_signed_out)
 }
 
-export const current_user_logged_in = createAction('CURRENT_USER_LOGGED_IN')
+export const current_user_signed_in = createAction('CURRENT_USER_SIGNED_IN')
 export const current_user_sign_in_failed = createAction('CURRENT_USER_SIGN_IN_FAILED')
 
 export function current_user_sign_in(user, password) {
@@ -186,7 +186,7 @@ export function current_user_sign_in(user, password) {
     if (resp.value.error) {
       return current_user_sign_in_failed(resp)
     } else {
-      return current_user_logged_in(resp)
+      return current_user_signed_in(resp)
     }
   })
 }
