@@ -183,10 +183,10 @@ export function current_user_sign_in(user, password) {
       }
     })
   }), (resp) => {
-    if (resp.value.error) {
-      return current_user_sign_in_failed(resp)
-    } else {
+    if (!resp.value.error) {
       return current_user_signed_in(resp)
+    } else {
+      return current_user_sign_in_failed(resp)
     }
   })
 }
@@ -209,7 +209,13 @@ export function current_user_join(name, email) {
         email
       }
     })
-  }), current_user_joined, current_user_join_failed)
+  }), (resp) => {
+    if (!resp.value.error) {
+      return current_user_joined(resp)
+    } else {
+      return current_user_join_failed(resp)
+    }
+  })
 }
 
 export const sign_in_form_user_changed = createAction('SIGN_IN_FORM_USER_CHANGED')

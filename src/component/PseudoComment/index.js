@@ -38,7 +38,7 @@ class PseudoComment extends Component {
 
       current_user_join(name, email)
       .then(({payload}) => {
-        if (!payload.value.errors) {
+        if (!payload.value.error) {
           fetch_current_user()
           deactivate_pseudo_comment()
         }
