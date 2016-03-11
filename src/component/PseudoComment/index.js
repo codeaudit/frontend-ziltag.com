@@ -30,17 +30,63 @@ class PseudoComment extends Component {
       sign_in_form_password_changed
     } = this.props
 
+    function join() {
+      const {
+        name,
+        email
+      } = join_form
+
+      current_user_join(name, email)
+      .then(({payload}) => {
+        if (!payload.value.errors) {
+          fetch_current_user()
+          deactivate_pseudo_comment()
+        }
+      })
+    }
+
+    function sign_in() {
+      const {
+        user,
+        password
+      } = sign_in_form
+
+      current_user_sign_in(user, password)
+      .then(({payload}) => {
+        if (!payload.value.error) {
+          fetch_current_user()
+          deactivate_pseudo_comment()
+        } else {
+          throw payload.value.error
+        }
+      })
+    }
+
     if (mode == 'sign_in') {
       var component = (
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <input
               onChange={sign_in_form_user_changed}
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  sign_in()
+                }
+              }}
               type='email'
               placeholder='Email'
               autoFocus
             />
-            <input onChange={sign_in_form_password_changed} type='password' placeholder='Password'/>
+            <input
+              onChange={sign_in_form_password_changed}
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  sign_in()
+                }
+              }}
+              type='password'
+              placeholder='Password'
+            />
             <nav>
               <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link'>Join</div>
               <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
@@ -49,22 +95,7 @@ class PseudoComment extends Component {
             <footer>
               <div>
                 <h1
-                  onClick={() => {
-                    const {
-                      user,
-                      password
-                    } = sign_in_form
-
-                    current_user_sign_in(user, password)
-                    .then(({payload}) => {
-                      if (!payload.value.error) {
-                        fetch_current_user()
-                        deactivate_pseudo_comment()
-                      } else {
-                        throw payload.value.error
-                      }
-                    })
-                  }}
+                  onClick={sign_in}
                   className={'ziltag-ziltag-form__submit'}
                 >
                   Sign In
@@ -82,11 +113,25 @@ class PseudoComment extends Component {
           <ZiltagForm>
             <input
               onChange={join_form_name_changed}
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  join()
+                }
+              }}
               type='name'
               placeholder='Username'
               autoFocus
             />
-            <input onChange={join_form_email_changed} type='email' placeholder='Email'/>
+            <input
+              onChange={join_form_email_changed}
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  join()
+                }
+              }}
+              type='email'
+              placeholder='Email'
+            />
             <nav>
               <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
               <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
@@ -95,20 +140,7 @@ class PseudoComment extends Component {
             <footer>
               <div>
                 <h1
-                  onClick={() => {
-                    const {
-                      name,
-                      email
-                    } = join_form
-
-                    current_user_join(name, email)
-                    .then(({payload}) => {
-                      if (!payload.value.errors) {
-                        fetch_current_user()
-                        deactivate_pseudo_comment()
-                      }
-                    })
-                  }}
+                  onClick={join}
                   className={'ziltag-ziltag-form__submit'}
                 >
                   Join
