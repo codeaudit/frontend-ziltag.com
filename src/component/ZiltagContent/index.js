@@ -142,7 +142,7 @@ class ZiltagContent extends Component {
                 save()
               }}
             >
-              Confirm
+              Save
             </div>
           </div>
       )
@@ -177,7 +177,7 @@ class ZiltagContent extends Component {
                 delete_ziltag(id)
               }}
             >
-              Confirm
+              Save
             </div>
             <div
               className='ziltag-ziltag-content__edit-operator'
