@@ -165,6 +165,9 @@ function ziltag_input(state={}, action) {
 
 function ziltag_editor(state={}, action) {
   switch (action.type) {
+    case 'ZILTAG_FETCHED':
+    case 'ZILTAG_CREATED':
+      return action.payload.value
     case 'ZILTAG_EDITOR_CHANGED':
       return {...state, content: action.payload.target.value}
     default:
