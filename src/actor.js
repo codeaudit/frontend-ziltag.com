@@ -155,16 +155,16 @@ export function create_ziltag_comment(ziltag_id, content) {
 export const ziltag_input_join = createAction('ZILTAG_INPUT_JOIN')
 export const ziltag_input_sign_in = createAction('ZILTAG_INPUT_SIGN_IN')
 
-export const current_user_logged_out = createAction('CURRENT_USER_LOGGED_OUT')
+export const current_user_signed_out = createAction('CURRENT_USER_SIGNED_OUT')
 
 export function current_user_sign_out() {
   const api = `${API_ADDR}/api/v1/sign_out`
   return bind(fetch(api, {
     credentials: 'include'
-  }), current_user_logged_out)
+  }), current_user_signed_out)
 }
 
-export const current_user_logged_in = createAction('CURRENT_USER_LOGGED_IN')
+export const current_user_signed_in = createAction('CURRENT_USER_SIGNED_IN')
 export const current_user_sign_in_failed = createAction('CURRENT_USER_SIGN_IN_FAILED')
 
 export function current_user_sign_in(user, password) {
@@ -183,10 +183,10 @@ export function current_user_sign_in(user, password) {
       }
     })
   }), (resp) => {
-    if (resp.value.error) {
-      return current_user_sign_in_failed(resp)
+    if (!resp.value.error) {
+      return current_user_signed_in(resp)
     } else {
-      return current_user_logged_in(resp)
+      return current_user_sign_in_failed(resp)
     }
   })
 }
@@ -209,7 +209,13 @@ export function current_user_join(name, email) {
         email
       }
     })
-  }), current_user_joined, current_user_join_failed)
+  }), (resp) => {
+    if (!resp.value.error) {
+      return current_user_joined(resp)
+    } else {
+      return current_user_join_failed(resp)
+    }
+  })
 }
 
 export const sign_in_form_user_changed = createAction('SIGN_IN_FORM_USER_CHANGED')

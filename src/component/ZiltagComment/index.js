@@ -34,6 +34,19 @@ class ZiltagComment extends Component {
       resend_verification_mail
     } = this.props
 
+    const {
+      ctrl_pressed
+    } = this.state || {}
+
+    function is_ctrl(keyCode) {
+      return keyCode == 91 || keyCode == 17
+    }
+
+    function save() {
+      edit_ziltag_comment(id, ziltag_comment_editors[id].content)
+      .then(() => deactivate_ziltag_comment_edit_mode(id))
+    }
+
     if (usr && author && usr.name == author.name) {
       var edit_operator_components = (
         <div className='ziltag-ziltag-comment__row'>
@@ -68,8 +81,22 @@ class ZiltagComment extends Component {
               'ziltag-ziltag-comment__text',
               'ziltag-ziltag-comment__text--editing'
             )}
-            autoFocus
             onChange={onChange}
+            onKeyDown={(e) => {
+              if (is_ctrl(e.keyCode)) {
+                this.setState({ctrl_pressed: true})
+              }
+              if (ctrl_pressed && e.key == 'Enter') {
+                save()
+                e.preventDefault()
+              }
+            }}
+            onKeyUp={(e) => {
+              if (is_ctrl(e.keyCode)) {
+                this.setState({ctrl_pressed: false})
+              }
+            }}
+            autoFocus
             defaultValue={content}
           />
         )
@@ -122,8 +149,7 @@ class ZiltagComment extends Component {
             className='ziltag-ziltag-comment__edit-operator'
             onClick={() => {
               if (ziltag_comment_editors[id].mode == 'edit') {
-                edit_ziltag_comment(id, ziltag_comment_editors[id].content)
-                .then(() => deactivate_ziltag_comment_edit_mode(id))
+                save()
               } else if (ziltag_comment_editors[id].mode == 'delete') {
                 deactivate_ziltag_comment_delete_mode(id)
               }

@@ -5,10 +5,10 @@ import {routerStateReducer, push} from 'redux-router'
 function current_user(state={}, action) {
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
-    case 'CURRENT_USER_LOGGED_IN':
+    case 'CURRENT_USER_SIGNED_IN':
     case 'CURRENT_USER_JOINED':
       return {...action.payload.value, status: 'success'}
-    case 'CURRENT_USER_LOGGED_OUT':
+    case 'CURRENT_USER_SIGNED_OUT':
       return {}
     case 'CURRENT_USER_SIGN_IN_FAILED':
       return {status: 'sign_in_failed', prompt: action.payload.value.error}

@@ -55,6 +55,36 @@ class ZiltagMap extends Component {
       }
     } catch (e) {}
 
+    function join() {
+      const {
+        name,
+        email
+      } = join_form
+
+      current_user_join(name, email)
+      .then(({payload}) => {
+        if (!payload.value.error) {
+          fetch_current_user()
+          deactivate_ziltag_input()
+        }
+      })
+    }
+
+    function sign_in() {
+      const {
+        user,
+        password
+      } = sign_in_form
+
+      current_user_sign_in(user, password)
+      .then(({payload}) => {
+        if (!payload.value.error) {
+          fetch_current_user()
+          deactivate_ziltag_input()
+        }
+      })
+    }
+
     const ziltag_components = ziltag_map.ziltags && ziltag_map.ziltags.map(
       ziltag => {
         ziltag.x_px = ziltag.x * ziltag_map.width
@@ -149,11 +179,25 @@ class ZiltagMap extends Component {
           ? <ZiltagForm>
               <input
                 onChange={sign_in_form_user_changed}
+                onKeyPress={(e) => {
+                  if (e.key == 'Enter') {
+                    sign_in()
+                  }
+                }}
                 type='email'
                 placeholder='Email'
                 autoFocus
               />
-              <input onChange={sign_in_form_password_changed} type='password' placeholder='Password'/>
+              <input
+                onChange={sign_in_form_password_changed}
+                onKeyPress={(e) => {
+                  if (e.key == 'Enter') {
+                    sign_in()
+                  }
+                }}
+                type='password'
+                placeholder='Password'
+              />
               <nav>
                 <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
                 <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
@@ -162,22 +206,7 @@ class ZiltagMap extends Component {
               <footer>
                 <div>
                   <h1
-                    onClick={() => {
-                      const {
-                        user,
-                        password
-                      } = sign_in_form
-
-                      current_user_sign_in(user, password)
-                      .then(({payload}) => {
-                        if (!payload.value.error) {
-                          fetch_current_user()
-                          deactivate_ziltag_input()
-                        } else {
-                          throw payload.value.error
-                        }
-                      })
-                    }}
+                    onClick={sign_in}
                     className={'ziltag-ziltag-form__submit'}
                   >
                     Sign In
@@ -191,11 +220,25 @@ class ZiltagMap extends Component {
           ? <ZiltagForm>
               <input
                 onChange={join_form_name_changed}
+                onKeyPress={(e) => {
+                  if (e.key == 'Enter') {
+                    join()
+                  }
+                }}
                 type='name'
                 placeholder='Username'
                 autoFocus
               />
-              <input onChange={join_form_email_changed} type='email' placeholder='Email'/>
+              <input
+                onChange={join_form_email_changed}
+                onKeyPress={(e) => {
+                  if (e.key == 'Enter') {
+                    join()
+                  }
+                }}
+                type='email'
+                placeholder='Email'
+              />
               <nav>
                 <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
                 <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
@@ -204,20 +247,7 @@ class ZiltagMap extends Component {
               <footer>
                 <div>
                   <h1
-                    onClick={() => {
-                      const {
-                        name,
-                        email
-                      } = join_form
-
-                      current_user_join(name, email)
-                      .then(({payload}) => {
-                        if (!payload.value.errors) {
-                          fetch_current_user()
-                          deactivate_ziltag_input()
-                        }
-                      })
-                    }}
+                    onClick={join}
                     className={'ziltag-ziltag-form__submit'}
                   >
                     Join
