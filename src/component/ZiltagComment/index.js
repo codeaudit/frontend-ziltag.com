@@ -39,7 +39,7 @@ class ZiltagComment extends Component {
     } = this.state || {}
 
     function is_ctrl(keyCode) {
-      return keyCode == 91 || keyCode == 17
+      return keyCode == 91 || keyCode == 93 || keyCode == 17
     }
 
     function save() {
