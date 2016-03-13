@@ -113,7 +113,7 @@ function* set_ziltag_map_page_stream() {
   }
 }
 
-function* deactivate_ziltag_reader() {
+function* deactivate_plugin_ziltag_reader() {
   yield take('DEACTIVATE_ZILTAG_READER')
   window.parent.postMessage('deactivate_ziltag_reader', '*')
 }
@@ -128,6 +128,6 @@ function* listen_resize_event() {
 export default [
   set_ziltag_page_stream,
   set_ziltag_map_page_stream,
-  deactivate_ziltag_reader,
+  deactivate_plugin_ziltag_reader,
   listen_resize_event
 ]
