@@ -29,7 +29,21 @@ class BasePage extends Component {
     try {
       if (document) {
         const total_right_screen_margin = 40
-        const fitted_ziltag_map_width = document.documentElement.clientWidth / 2 - total_right_screen_margin
+        const min_width = 300
+        const breakpoint = min_width * 2 + total_right_screen_margin
+
+        if (document.documentElement.clientWidth < breakpoint) {
+          var fitted_ziltag_map_width = (
+            document.documentElement.clientWidth -
+            total_right_screen_margin
+          )
+        } else {
+          var fitted_ziltag_map_width = (
+            document.documentElement.clientWidth / 2 -
+            total_right_screen_margin
+          )
+        }
+
         ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height
         ziltag_map.width = fitted_ziltag_map_width
       }
