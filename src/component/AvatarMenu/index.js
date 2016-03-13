@@ -13,7 +13,8 @@ class AvatarMenu extends Component {
     } = this.props
 
     const style = {
-      display: activated ? 'block' : 'none'
+      display: activated ? 'block' : 'none',
+      zIndex: 6
     }
 
     return (
