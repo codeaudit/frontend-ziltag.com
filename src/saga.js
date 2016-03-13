@@ -6,7 +6,8 @@ import {
   sse_ziltag_deleted,
   sse_comment_created,
   sse_comment_updated,
-  sse_comment_deleted
+  sse_comment_deleted,
+  window_resized
 } from './actor'
 
 import {SSE_ADDR} from '../env'
@@ -112,13 +113,21 @@ function* set_ziltag_map_page_stream() {
   }
 }
 
-function* deactivate_ziltag_reader() {
+function* deactivate_plugin_ziltag_reader() {
   yield take('DEACTIVATE_ZILTAG_READER')
   window.parent.postMessage('deactivate_ziltag_reader', '*')
+}
+
+function* listen_resize_event() {
+  while (true) {
+    yield call(wait_for_event, window, 'resize')
+    yield put(window_resized())
+  }
 }
 
 export default [
   set_ziltag_page_stream,
   set_ziltag_map_page_stream,
-  deactivate_ziltag_reader
+  deactivate_plugin_ziltag_reader,
+  listen_resize_event
 ]

@@ -122,13 +122,19 @@ app.use(async (ctx, next) => {
             <meta name="twitter:description" content="${description}">
             <meta name="twitter:image" content="${FILE_ADDR}/uploads/ziltags/share_image/${id}/share.jpg">
           `
+
+          var responsive_meta = outdent`
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+          `
         }
 
         ctx.body = (outdent`
           <!doctype html>
           <html>
             <head>
-              <script src="/public/main.bundle.js"></script>${social_media_meta ? '\n' + social_media_meta : ''}
+              <script src="/public/main.bundle.js"></script>
+              ${social_media_meta}
+              ${responsive_meta}
             </head>
             <body>
               ${ReactDOM.renderToString(

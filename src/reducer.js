@@ -343,6 +343,15 @@ function social_media_menu(state={}, action) {
   }
 }
 
+function window_event(state={}, action) {
+  switch (action.type) {
+    case 'WINDOW_RESIZED':
+      return {event_name: 'resize'}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   current_user,
@@ -358,5 +367,6 @@ export default combineReducers({
   pseudo_comment,
   resend_verification_mail_tip,
   media_carousel,
-  social_media_menu
+  social_media_menu,
+  window_event
 })
