@@ -43,17 +43,9 @@ class ZiltagMap extends Component {
       sign_in_form,
       join_form,
       current_ziltag,
-      current_user
+      current_user,
+      style
     } = this.props
-
-    try {
-      if (document) {
-        const total_right_screen_margin = 40
-        const fitted_ziltag_map_width = document.documentElement.clientWidth / 2 - total_right_screen_margin
-        ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height
-        ziltag_map.width = fitted_ziltag_map_width
-      }
-    } catch (e) {}
 
     function join() {
       const {
@@ -272,10 +264,7 @@ class ZiltagMap extends Component {
 
     return (
       <div
-        style={{
-          width: ziltag_map.width,
-          height: ziltag_map.height,
-        }}
+        style={style}
         className='ziltag-ziltag-map'
       >
         <img
@@ -291,7 +280,7 @@ class ZiltagMap extends Component {
         <div
           style={{
             width: ziltag_map.width,
-            height: ziltag_map.height,
+            height: ziltag_map.height
           }}
           className='ziltag-ziltag-map__container'
           onClick={(e) => {
