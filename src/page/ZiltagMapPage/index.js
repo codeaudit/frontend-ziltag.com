@@ -63,7 +63,9 @@ class ZiltagMapPage extends Component {
     } = this.props
 
     const {
-      fetch_ziltag
+      fetch_ziltag,
+      hover_on_ziltag,
+      unhover_on_ziltag
     } = this.actors
 
     var summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
@@ -80,6 +82,8 @@ class ZiltagMapPage extends Component {
             fetch_ziltag(ziltag.id)
             e.stopPropagation()
           }}
+          onMouseEnter={() => hover_on_ziltag(ziltag.id)}
+          onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
           key={`ziltag-summary-${ziltag.id}`}
         >
           {ziltag.usr && <Avatar
