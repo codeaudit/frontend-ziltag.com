@@ -32,3 +32,7 @@
   font-size: 12px;
   font-weight: 500;
 }
+
+.ziltag-ziltag-map-dialog > p {
+  margin-right: 15px;
+}
