@@ -168,7 +168,7 @@ class ZiltagComment extends Component {
               ziltag_comment_editors[id].mode == 'edit'
               ? 'Cancel'
               : ziltag_comment_editors[id].mode == 'delete'
-              ? 'Save'
+              ? 'Confirm'
               : ''
             }
           </div>
