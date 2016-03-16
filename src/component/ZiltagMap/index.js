@@ -57,7 +57,6 @@ class ZiltagMap extends Component {
       .then(({payload}) => {
         if (!payload.value.error) {
           fetch_current_user()
-          deactivate_ziltag_input()
         }
       })
     }
@@ -152,7 +151,8 @@ class ZiltagMap extends Component {
                 }}
                 ziltag_input={ziltag_input}
               />
-            : <ZiltagMapDialog>
+            : ziltag_input.mode != 'post_join'
+            ? <ZiltagMapDialog>
                 <p>
                   <strong>Please verify your account to post a tag.</strong>
                   <br/>
@@ -166,6 +166,15 @@ class ZiltagMap extends Component {
                     Resend Email
                   </div>
                 </nav>
+              </ZiltagMapDialog>
+            : <ZiltagMapDialog>
+                <p>
+                  <strong>
+                    Thank you for joining us. A verification email has sent.
+                  </strong>
+                  <br/>
+                  Please check your inbox to verify your account. Thank you.
+                </p>
               </ZiltagMapDialog>
           : ziltag_input.mode == 'sign_in'
           ? <ZiltagForm>
@@ -249,6 +258,16 @@ class ZiltagMap extends Component {
                 <p>Signing up means you agree with our <a>Terms</a> and <a>Privacy Policy</a>.</p>
               </footer>
             </ZiltagForm>
+          : ziltag_input.mode == 'post_join'
+          ? <ZiltagMapDialog>
+              <p>
+                <strong>
+                  Thank you for joining us. A verification email has sent.
+                </strong>
+                <br/>
+                Please check your inbox to verify your account. Thank you.
+              </p>
+            </ZiltagMapDialog>
           : <ZiltagMapDialog>
               <p>
                 <strong>Oops! You need to have an account to post a tag.</strong>

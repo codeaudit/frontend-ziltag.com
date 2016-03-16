@@ -158,6 +158,8 @@ function ziltag_input(state={}, action) {
       return {...state, mode: 'join'}
     case 'ZILTAG_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
+    case 'CURRENT_USER_JOINED':
+      return {...state, mode: 'post_join'}
     default:
       return state
   }
