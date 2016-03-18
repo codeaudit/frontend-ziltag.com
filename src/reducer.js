@@ -46,6 +46,8 @@ function ziltag_map(state={}, action) {
         return ziltag
       })
       return ziltag_map_state
+    case 'ZILTAG_MAP_FETCH_FAILED':
+      return action.payload.value
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
       const co_div_state = {...state}
@@ -93,6 +95,7 @@ function current_ziltag(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
+    case 'ZILTAG_FETCH_FAILED':
       return action.payload.value
     case 'SSE_COMMENT_CREATED':
       return {...state, comments: [action.payload.value, ...state.comments]}

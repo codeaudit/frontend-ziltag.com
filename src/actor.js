@@ -18,21 +18,35 @@ export const activate_avatar_menu = createAction('ACTIVATE_AVATAR_MENU')
 export const deactivate_avatar_menu = createAction('DEACTIVATE_AVATAR_MENU')
 
 export const ziltag_map_fetched = createAction('ZILTAG_MAP_FETCHED')
+export const ziltag_map_fetch_failed = createAction('ZILTAG_MAP_FETCH_FAILED')
 
 export function fetch_ziltag_map(map_id) {
   const api = `${API_ADDR}/api/v1/ziltag_maps/${map_id}`
   return bind(fetch(api, {
     credentials: 'include'
-  }), ziltag_map_fetched)
+  }), resp => {
+    if (!resp.value.error) {
+      return ziltag_map_fetched(resp)
+    } else {
+      return ziltag_map_fetch_failed(resp)
+    }
+  })
 }
 
 export const ziltag_fetched = createAction('ZILTAG_FETCHED')
+export const ziltag_fetch_failed = createAction('ZILTAG_FETCH_FAILED')
 
 export function fetch_ziltag(ziltag_id) {
   const api = `${API_ADDR}/api/v1/ziltags/${ziltag_id}`
   return bind(fetch(api, {
     credentials: 'include'
-  }), ziltag_fetched)
+  }), resp => {
+    if (!resp.value.error) {
+      return ziltag_fetched(resp)
+    } else {
+      return ziltag_fetch_failed(resp)
+    }
+  })
 }
 
 export const hover_on_ziltag = createAction('HOVER_ON_ZILTAG')
@@ -182,7 +196,7 @@ export function current_user_sign_in(user, password) {
         password
       }
     })
-  }), (resp) => {
+  }), resp => {
     if (!resp.value.error) {
       return current_user_signed_in(resp)
     } else {
@@ -209,7 +223,7 @@ export function current_user_join(name, email) {
         email
       }
     })
-  }), (resp) => {
+  }), resp => {
     if (!resp.value.error) {
       return current_user_joined(resp)
     } else {

@@ -10,6 +10,7 @@ import ZiltagCommentInput from '../../component/ZiltagCommentInput'
 import PseudoComment from '../../component/PseudoComment'
 import Avatar from '../../component/Avatar'
 import SocialMediaMenu from '../../component/SocialMediaMenu'
+import Ziltag404Page from '../../component/Ziltag404Page'
 
 import * as actors from '../../actor'
 
@@ -34,6 +35,7 @@ class ZiltagPage extends Component {
     this.actors.fetch_ziltag(router.params.id)
     .then(action => this.actors.fetch_ziltag_map(action.payload.value.map_id))
     .then(action => this.actors.can_create_ziltag_page_stream({id: router.params.id}))
+    .catch(e => e)
   }
 
   componentWillReceiveProps(next_props) {
@@ -71,6 +73,10 @@ class ZiltagPage extends Component {
       deactivate_ziltag_reader,
       pushState
     } = this.actors
+
+    if (current_ziltag.error) {
+      return <Ziltag404Page/>
+    }
 
     try {
       var full_url = window.location.href

@@ -7,6 +7,8 @@ import classNames from 'classnames'
 
 import BasePage from '../../component/BasePage'
 import Avatar from '../../component/Avatar'
+import Ziltag404Page from '../../component/Ziltag404Page'
+
 import * as actors from '../../actor'
 
 
@@ -29,7 +31,11 @@ class ZiltagMapPage extends Component {
     const {router} = this.props
     this.actors.fetch_current_user()
     this.actors.fetch_ziltag_map(router.params.id)
-    .then(action => this.actors.can_create_ziltag_map_page_stream({id: router.params.id}))
+    .then(action => {
+      if (!action.payload.value.error) {
+        this.actors.can_create_ziltag_map_page_stream({id: router.params.id})
+      }
+    })
   }
 
   anchorify(text) {
@@ -67,6 +73,10 @@ class ZiltagMapPage extends Component {
       hover_on_ziltag,
       unhover_on_ziltag
     } = this.actors
+
+    if (ziltag_map.error) {
+      return <Ziltag404Page/>
+    }
 
     var summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
       return (
