@@ -133,8 +133,8 @@ app.use(async (ctx, next) => {
           <html>
             <head>
               <script src="/public/main.bundle.js"></script>
-              ${social_media_meta}
-              ${responsive_meta}
+              ${social_media_meta || ''}
+              ${responsive_meta || ''}
             </head>
             <body>
               ${ReactDOM.renderToString(
