@@ -10,3 +10,4 @@ exports.API_ADDR = 'https://localhost:3000'
 exports.SSE_ADDR = 'https://localhost:3310'
 exports.PLUGIN_ADDR = 'http://localhost:4000/dist/ziltag-plugin.js'
 exports.FILE_ADDR = 'https://localhost:3000'
+exports.FORCE_SSL = false

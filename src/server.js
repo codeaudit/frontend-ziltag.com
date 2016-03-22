@@ -30,7 +30,8 @@ import {
   SSL_CERT,
   API_ADDR,
   PLUGIN_ADDR,
-  FILE_ADDR
+  FILE_ADDR,
+  FORCE_SSL
 } from '../env'
 
 
@@ -77,7 +78,9 @@ if (NODE_ENV == 'dev') {
   require('babel-polyfill')
 }
 
-app.use(polyfill(forceSSL(SSL_PORT)))
+if (FORCE_SSL) {
+  app.use(polyfill(forceSSL(SSL_PORT)))
+}
 
 app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
@@ -148,5 +151,7 @@ app.use(async (ctx, next) => {
   }
 })
 
-http.createServer(app.callback()).listen(NODE_PORT)
-https.createServer(SSL_OPTOINS, app.callback()).listen(SSL_PORT)
+http.createServer(app.callback()).listen(process.env.PORT || NODE_PORT)
+https.createServer(SSL_OPTOINS, app.callback()).listen(
+  parseInt(process.env.PORT) + 1 || SSL_PORT
+)
