@@ -159,7 +159,7 @@ class PseudoComment extends Component {
               {content}
             </div>
             <strong>
-              Oops! You need to have an account to post a comment.
+              Oops! You need to have an account to post the comment.
             </strong>
           </div>
           <nav>
