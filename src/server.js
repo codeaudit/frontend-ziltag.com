@@ -135,9 +135,10 @@ app.use(async (ctx, next) => {
           <!doctype html>
           <html>
             <head>
-              <script src="/public/main.bundle.js"></script>
+              <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
               ${social_media_meta || ''}
               ${responsive_meta || ''}
+              <script src="/public/main.bundle.js"></script>
             </head>
             <body>
               ${ReactDOM.renderToString(
