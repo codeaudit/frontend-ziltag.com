@@ -142,7 +142,7 @@ app.use(async (ctx, next) => {
             </head>
             <body>
               ${ReactDOM.renderToString(
-                <div id="react-content" dangerouslySetInnerHTML={{__html: ReactDOM.renderToString(component)}}/>
+                <div id='react-content' dangerouslySetInnerHTML={{__html: ReactDOM.renderToString(component)}}/>
               )}
             </body>
           </html>
