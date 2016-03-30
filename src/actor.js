@@ -8,7 +8,7 @@ import {API_ADDR} from '../env'
 export const current_user_fetched = createAction('CURRENT_USER_FETCHED')
 
 export function fetch_current_user() {
-  const api = `${API_ADDR}/api/v1/me`
+  const api = '/api/v1/me'
   return bind(fetch(api, {
     credentials: 'include'
   }), current_user_fetched)
@@ -21,7 +21,7 @@ export const ziltag_map_fetched = createAction('ZILTAG_MAP_FETCHED')
 export const ziltag_map_fetch_failed = createAction('ZILTAG_MAP_FETCH_FAILED')
 
 export function fetch_ziltag_map(map_id) {
-  const api = `${API_ADDR}/api/v1/ziltag_maps/${map_id}`
+  const api = `/api/v1/ziltag_maps/${map_id}`
   return bind(fetch(api, {
     credentials: 'include'
   }), resp => {
@@ -37,7 +37,7 @@ export const ziltag_fetched = createAction('ZILTAG_FETCHED')
 export const ziltag_fetch_failed = createAction('ZILTAG_FETCH_FAILED')
 
 export function fetch_ziltag(ziltag_id) {
-  const api = `${API_ADDR}/api/v1/ziltags/${ziltag_id}`
+  const api = `/api/v1/ziltags/${ziltag_id}`
   return bind(fetch(api, {
     credentials: 'include'
   }), resp => {
@@ -58,7 +58,7 @@ export const deactivate_ziltag_input = createAction('DEACTIVATE_ZILTAG_INPUT')
 export const ziltag_created = createAction('ZILTAG_CREATED')
 
 export function create_ziltag(map_id, x, y, content) {
-  const api = `${API_ADDR}/api/v1/ziltags`
+  const api = '/api/v1/ziltags'
   return bind(fetch(api, {
     credentials: 'include',
     method: 'post',
@@ -84,7 +84,7 @@ export const ziltag_edited = createAction('ZILTAG_EDITED')
 export const ziltag_deleted = createAction('ZILTAG_DELETED')
 
 export function edit_ziltag(ziltag_id, content) {
-  const api = `${API_ADDR}/api/v1/ziltags/${ziltag_id}`
+  const api = `/api/v1/ziltags/${ziltag_id}`
   return bind(fetch(api, {
     credentials: 'include',
     method: 'put',
@@ -101,7 +101,7 @@ export function edit_ziltag(ziltag_id, content) {
 }
 
 export function delete_ziltag(ziltag_id) {
-  const api = `${API_ADDR}/api/v1/ziltags/${ziltag_id}`
+  const api = `/api/v1/ziltags/${ziltag_id}`
   return bind(fetch(api, {
     credentials: 'include',
     method: 'delete'
@@ -118,7 +118,7 @@ export const ziltag_comment_edited = createAction('ZILTAG_COMMENT_EDITED')
 export const ziltag_comment_deleted = createAction('ZILTAG_COMMENT_DELETED')
 
 export function edit_ziltag_comment(comment_id, content) {
-  const api = `${API_ADDR}/api/v1/comments/${comment_id}`
+  const api = `/api/v1/comments/${comment_id}`
   return bind(fetch(api, {
     credentials: 'include',
     method: 'put',
@@ -135,7 +135,7 @@ export function edit_ziltag_comment(comment_id, content) {
 }
 
 export function delete_ziltag_comment(comment_id) {
-  const api = `${API_ADDR}/api/v1/comments/${comment_id}`
+  const api = `/api/v1/comments/${comment_id}`
   return bind(fetch(api, {
     credentials: 'include',
     method: 'delete'
@@ -150,7 +150,7 @@ export const ziltag_comment_editor_changed = createAction('ZILTAG_COMMENT_EDITOR
 export const ziltag_comment_created = createAction('ZILTAG_COMMENT_CREATED')
 
 export function create_ziltag_comment(ziltag_id, content) {
-  const api = `${API_ADDR}/api/v1/comments`
+  const api = '/api/v1/comments'
   return bind(fetch(api, {
     credentials: 'include',
     method: 'post',
@@ -172,7 +172,7 @@ export const ziltag_input_sign_in = createAction('ZILTAG_INPUT_SIGN_IN')
 export const current_user_signed_out = createAction('CURRENT_USER_SIGNED_OUT')
 
 export function current_user_sign_out() {
-  const api = `${API_ADDR}/api/v1/sign_out`
+  const api = '/api/v1/sign_out'
   return bind(fetch(api, {
     credentials: 'include'
   }), current_user_signed_out)
@@ -182,7 +182,7 @@ export const current_user_signed_in = createAction('CURRENT_USER_SIGNED_IN')
 export const current_user_sign_in_failed = createAction('CURRENT_USER_SIGN_IN_FAILED')
 
 export function current_user_sign_in(user, password) {
-  const api = `${API_ADDR}/api/v1/sign_in`
+  const api = '/api/v1/sign_in'
   return bind(fetch(api, {
     credentials: 'include',
     method: 'post',
@@ -209,7 +209,7 @@ export const current_user_joined = createAction('CURRENT_USER_JOINED')
 export const current_user_join_failed = createAction('CURRENT_USER_JOIN_FAILED')
 
 export function current_user_join(name, email) {
-  const api = `${API_ADDR}/api/v1/users`
+  const api = '/api/v1/users'
   return bind(fetch(api, {
     credentials: 'include',
     method: 'post',
@@ -247,7 +247,7 @@ export const pseudo_comment_sign_in = createAction('PSEUDO_COMMENT_SIGN_IN')
 export const verification_mail_resended = createAction('VERIFICATION_MAIL_RESENDED')
 
 export function resend_verification_mail(params) {
-  const api = `${API_ADDR}/api/v1/resend_confirmation`
+  const api = '/api/v1/resend_confirmation'
   return bind(fetch(api, {
     credentials: 'include',
     method: 'post'
