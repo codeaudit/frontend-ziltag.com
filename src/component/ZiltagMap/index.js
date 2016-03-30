@@ -156,7 +156,7 @@ class ZiltagMap extends Component {
                 <p>
                   <strong>Please verify your account to post a tag.</strong>
                   <br/>
-                  Haven’t receive confirmation email?
+                  Haven’t received confirmation email?
                 </p>
                 <nav>
                   <div

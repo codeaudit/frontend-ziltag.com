@@ -217,8 +217,8 @@ class ZiltagComment extends Component {
         var warn_component = (
           <p className='ziltag-ziltag-comment__warn'>
             <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
-            Please verify your account to make this comment “public.”
-            Haven’t receive confirmation email?&nbsp;
+            Please verify your account to make this comment "public".
+            Haven’t received confirmation email?&nbsp;
             <a onClick={
               () => resend_verification_mail({
                 initiator: {
