@@ -226,7 +226,7 @@ class ZiltagMap extends Component {
                     join()
                   }
                 }}
-                type='name'
+                type='text'
                 placeholder='Username'
                 autoFocus
               />
