@@ -16,7 +16,8 @@
 .ziltag-ziltag-comment__user-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  min-width: 40px;
+  min-height: 40px;
 }
 
 .ziltag-ziltag-comment__user-name {
