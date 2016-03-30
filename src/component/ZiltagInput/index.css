@@ -31,8 +31,3 @@
   color: rgba(0, 0, 0, .87);
   border-left: 1px solid rgba(0, 0, 0, .87);
 }
-
-.ziltag-ziltag-input .ziltag-ziltag-input__post {
-  position: absolute;
-  bottom: 0;
-}
