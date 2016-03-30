@@ -56,7 +56,7 @@
   font-size: 12px;
 }
 
-.ziltag-ziltag-form input[name='text'] {
+.ziltag-ziltag-form input[name='name'] {
   background: 0 50% url(name.png) no-repeat;
 }
 
