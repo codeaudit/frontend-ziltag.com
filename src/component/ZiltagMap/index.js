@@ -186,6 +186,7 @@ class ZiltagMap extends Component {
                   }
                 }}
                 type='email'
+                name='email'
                 placeholder='Email'
                 autoFocus
               />
@@ -197,6 +198,7 @@ class ZiltagMap extends Component {
                   }
                 }}
                 type='password'
+                name='password'
                 placeholder='Password'
               />
               <nav>
@@ -226,8 +228,8 @@ class ZiltagMap extends Component {
                     join()
                   }
                 }}
-                type='text'
-                placeholder='Username'
+                name='name'
+                placeholder='Name'
                 autoFocus
               />
               <input
@@ -238,6 +240,7 @@ class ZiltagMap extends Component {
                   }
                 }}
                 type='email'
+                name='email'
                 placeholder='Email'
               />
               <nav>

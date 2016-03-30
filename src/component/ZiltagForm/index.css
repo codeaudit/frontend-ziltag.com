@@ -56,15 +56,15 @@
   font-size: 12px;
 }
 
-.ziltag-ziltag-form input[type='text'] {
+.ziltag-ziltag-form input[name='text'] {
   background: 0 50% url(name.png) no-repeat;
 }
 
-.ziltag-ziltag-form input[type='email'] {
+.ziltag-ziltag-form input[name='email'] {
   background: 0 50% url(email.png) no-repeat;
 }
 
-.ziltag-ziltag-form input[type='password'] {
+.ziltag-ziltag-form input[name='password'] {
   background: 0 50% url(password.png) no-repeat;
 }
 

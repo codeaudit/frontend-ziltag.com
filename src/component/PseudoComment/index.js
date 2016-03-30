@@ -72,6 +72,7 @@ class PseudoComment extends Component {
                 }
               }}
               type='email'
+              name='email'
               placeholder='Email'
               autoFocus
             />
@@ -83,6 +84,7 @@ class PseudoComment extends Component {
                 }
               }}
               type='password'
+              name='password'
               placeholder='Password'
             />
             <nav>
@@ -116,8 +118,8 @@ class PseudoComment extends Component {
                   join()
                 }
               }}
-              type='text'
-              placeholder='Username'
+              name='name'
+              placeholder='Name'
               autoFocus
             />
             <input
@@ -128,6 +130,7 @@ class PseudoComment extends Component {
                 }
               }}
               type='email'
+              name='email'
               placeholder='Email'
             />
             <nav>
