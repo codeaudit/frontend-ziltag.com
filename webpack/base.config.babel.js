@@ -4,6 +4,7 @@ import webpack from 'webpack'
 import cssnano from 'cssnano'
 import postcss_nesting from 'postcss-nesting'
 import postcss_cssnext from 'postcss-cssnext'
+import postcss_normalize from 'postcss-normalize'
 
 import {NODE_ENV} from '../env'
 
@@ -37,6 +38,6 @@ module.exports = {
     })
   ],
   postcss: () => {
-    return [postcss_nesting, postcss_cssnext, cssnano]
+    return [postcss_normalize, postcss_nesting, postcss_cssnext, cssnano]
   }
 }
