@@ -33,7 +33,7 @@ class ZiltagComment extends Component {
     .map((token, i) => {
       let key = 'anchorify-text-' + i
       if (regex.test(token)) {
-        return <a key={key} href={token} target='_blank'>{token}</a>
+        return <a key={key} href={token} target='_blank' rel='noopener'>{token}</a>
       } else {
         return <span key={key} >{token}</span>
       }
