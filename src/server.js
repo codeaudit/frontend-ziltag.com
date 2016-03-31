@@ -97,7 +97,7 @@ app.use(async (ctx, next) => {
   if (ctx.req.url == '/plugin.js') {
     plugin_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
-  } else if (ctx.req.url.match(/^\/api\/v1\/(ziltags|ziltag_maps)\/.*\/stream$/)) {
+  } else if (ctx.req.url.match(/^\/api\/v1\/(ziltags|ziltag_maps)\/.*\/stream/)) {
     sse_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
