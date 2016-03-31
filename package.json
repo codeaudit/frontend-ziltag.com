@@ -24,6 +24,7 @@
   "homepage": "https://github.com/ziltag/frontend-ziltag.com#readme",
   "devDependencies": {
     "babel-plugin-react-transform": "^2.0.0-beta1",
+    "cz-conventional-changelog": "^1.1.5",
     "koa-webpack-dev-middleware": "^1.0.1",
     "koa-webpack-hot-middleware": "^1.0.1",
     "react-transform-hmr": "^1.0.1"
@@ -69,5 +70,10 @@
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
     "webpack": "^1.12.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
