@@ -60,10 +60,38 @@ const plugin_proxy = httpProxy.createProxyServer({
   ignorePath: true
 })
 
+api_proxy.on('proxyReq', (proxyReq, req) => {
+  req._proxyReq = proxyReq
+})
+
+api_proxy.on('error', (err, req) => {
+  if (req.socket.destroyed && err.code == 'ECONNRESET') {
+    req._proxyReq.abort()
+  }
+})
+
+sse_proxy.on('proxyReq', (proxyReq, req) => {
+  req._proxyReq = proxyReq
+})
+
+sse_proxy.on('error', (err, req) => {
+  if (req.socket.destroyed && err.code == 'ECONNRESET') {
+    req._proxyReq.abort()
+  }
+})
+
 // TODO: https://github.com/nodejitsu/node-http-proxy/issues/839
-plugin_proxy.on('proxyReq', (proxyReq, req, res, options) => {
+plugin_proxy.on('proxyReq', (proxyReq, req) => {
+  req._proxyReq = proxyReq
+
   if (proxyReq.path != '/') {
     proxyReq.path = proxyReq.path.replace(/\/$/, '')
+  }
+})
+
+plugin_proxy.on('error', (err, req) => {
+  if (req.socket.destroyed && err.code == 'ECONNRESET') {
+    req._proxyReq.abort()
   }
 })
 
