@@ -29,6 +29,7 @@ import {
   SSL_KEY,
   SSL_CERT,
   API_ADDR,
+  SSE_ADDR,
   PLUGIN_ADDR,
   FILE_ADDR,
   FORCE_SSL
@@ -42,6 +43,12 @@ const SSL_OPTOINS = {
 
 const api_proxy = httpProxy.createProxyServer({
   target: API_ADDR,
+  secure: false, // TODO: https://github.com/nodejitsu/node-http-proxy/issues/915
+  ssl: SSL_OPTOINS
+})
+
+const sse_proxy = httpProxy.createProxyServer({
+  target: SSE_ADDR,
   secure: false, // TODO: https://github.com/nodejitsu/node-http-proxy/issues/915
   ssl: SSL_OPTOINS
 })
@@ -89,6 +96,9 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
 app.use(async (ctx, next) => {
   if (ctx.req.url == '/plugin.js') {
     plugin_proxy.web(ctx.req, ctx.res)
+    ctx.respond = false
+  } else if (ctx.req.url.match(/^\/api\/v1\/(ziltags|ziltag_maps)\/.*\/stream$/)) {
+    sse_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else if (!ctx.req.url.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
     api_proxy.web(ctx.req, ctx.res)

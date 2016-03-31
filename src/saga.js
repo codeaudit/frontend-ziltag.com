@@ -10,7 +10,6 @@ import {
   window_resized
 } from './actor'
 
-import {SSE_ADDR} from '../env'
 
 // TODO: fix the duplicated event listeners
 function wait_for_event(elm, event_type) {
@@ -27,7 +26,7 @@ function* set_ziltag_page_stream() {
   var ziltag_page_action = yield take('CAN_CREATE_ZILTAG_PAGE_STREAM')
   var ziltag_id = ziltag_page_action.payload.id
   var esrc = new EventSource(
-    `${SSE_ADDR}/api/v1/ziltags/${ziltag_id}/stream`
+    `/api/v1/ziltags/${ziltag_id}/stream`
   )
 
   while (true) {
@@ -55,7 +54,7 @@ function* set_ziltag_page_stream() {
       esrc.close()
       ziltag_id = new_ziltag_page_action.payload.id
       esrc = new EventSource(
-        `${SSE_ADDR}/api/v1/ziltags/${ziltag_id}/stream`
+        `/api/v1/ziltags/${ziltag_id}/stream`
       )
     } else if (ziltag_map_page_action) {
       esrc.close()
@@ -80,7 +79,7 @@ function* set_ziltag_map_page_stream() {
   var ziltag_map_page_action = yield take('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')
   var ziltag_map_id = ziltag_map_page_action.payload.id
   var esrc = new EventSource(
-    `${SSE_ADDR}/api/v1/ziltag_maps/${ziltag_map_id}/stream`
+    `/api/v1/ziltag_maps/${ziltag_map_id}/stream`
   )
 
   while (true) {
@@ -101,7 +100,7 @@ function* set_ziltag_map_page_stream() {
       ziltag_map_page_action = yield take('CAN_CREATE_ZILTAG_MAP_PAGE_STREAM')
       ziltag_map_id = ziltag_map_page_action.payload.id
       esrc = new EventSource(
-        `${SSE_ADDR}/api/v1/ziltag_maps/${ziltag_map_id}/stream`
+        `/api/v1/ziltag_maps/${ziltag_map_id}/stream`
       )
     } else if (create_ziltag_resp) {
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
