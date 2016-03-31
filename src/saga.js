@@ -1,3 +1,5 @@
+import 'event-source-polyfill'
+
 import {take, put, call, race} from 'redux-saga'
 
 import {

@@ -38,6 +38,7 @@
     "classnames": "^2.2.1",
     "css-loader": "^0.23.0",
     "cssnano": "^3.3.2",
+    "event-source-polyfill": "0.0.7",
     "file-loader": "^0.8.5",
     "history": "^1.13.1",
     "http-proxy": "^1.12.0",
