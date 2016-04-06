@@ -80,6 +80,7 @@ class ZiltagPage extends Component {
 
     try {
       var full_url = window.location.href
+      var is_iframe = window != window.parent
     } catch (e) {}
 
     if (current_ziltag.comments) {
@@ -154,6 +155,9 @@ class ZiltagPage extends Component {
             </div>
             <div className='ziltag-ziltag-page__op-right'>
               <div
+                style={{
+                  visibility: is_iframe ? 'visible' : 'hidden'
+                }}
                 className='ziltag-ziltag-page__close'
                 onClick={deactivate_ziltag_reader}
               >
