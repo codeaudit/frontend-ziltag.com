@@ -22,10 +22,6 @@ class ZiltagInput extends Component {
       ctrl_pressed
     } = this.state || {}
 
-    function is_ctrl(keyCode) {
-      return keyCode == 91 || keyCode == 93 || keyCode == 17
-    }
-
     function submit() {
       if (ziltag_input.content) {
         onSubmit()
@@ -37,17 +33,12 @@ class ZiltagInput extends Component {
         <TextareaAutosize
           onChange={onChange}
           onKeyDown={(e) => {
-            if (is_ctrl(e.keyCode)) {
-              this.setState({ctrl_pressed: true})
-            }
-            if (ctrl_pressed && e.key == 'Enter') {
+            if (
+              e.getModifierState('Control') || e.getModifierState('Meta') &&
+              e.key == 'Enter'
+            ) {
               submit()
               e.preventDefault()
-            }
-          }}
-          onKeyUp={(e) => {
-            if (is_ctrl(e.keyCode)) {
-              this.setState({ctrl_pressed: false})
             }
           }}
           placeholder='Your text here'
