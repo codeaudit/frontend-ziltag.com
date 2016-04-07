@@ -22,10 +22,6 @@ class ZiltagCommentInput extends Component {
       activate_pseudo_comment
     } = this.props
 
-    const {
-      ctrl_pressed
-    } = this.state || {}
-
     function post() {
       if (usr) {
         if (ziltag_comment_input.content) {

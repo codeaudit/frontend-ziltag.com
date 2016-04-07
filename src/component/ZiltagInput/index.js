@@ -18,10 +18,6 @@ class ZiltagInput extends Component {
       ziltag_input
     } = this.props
 
-    const {
-      ctrl_pressed
-    } = this.state || {}
-
     function submit() {
       if (ziltag_input.content) {
         onSubmit()

@@ -60,10 +60,6 @@ class ZiltagContent extends Component {
       pushState
     } = this.props
 
-    const {
-      ctrl_pressed
-    } = this.state || {}
-
     function save() {
       edit_ziltag(id, ziltag_editor.content)
     }

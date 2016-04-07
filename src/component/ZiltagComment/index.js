@@ -59,10 +59,6 @@ class ZiltagComment extends Component {
       resend_verification_mail
     } = this.props
 
-    const {
-      ctrl_pressed
-    } = this.state || {}
-
     function save() {
       edit_ziltag_comment(id, ziltag_comment_editors[id].content)
       .then(() => deactivate_ziltag_comment_edit_mode(id))
