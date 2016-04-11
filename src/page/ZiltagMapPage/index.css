@@ -43,7 +43,7 @@
   font-size: 14px;
   line-height: 20px;
   color: rgba(0,0,0,.87);
-  word-break: break-all;
+  word-wrap: break-word;
   overflow: hidden;
 }
 

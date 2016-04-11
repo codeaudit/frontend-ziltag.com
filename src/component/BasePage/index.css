@@ -52,6 +52,7 @@ a {
 
 .ziltag-base-page-main__col0, .ziltag-base-page-main__col1 {
   width: 50%;
+  min-width: 50%;
   flex: 1 1 300px;
 }
 
