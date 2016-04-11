@@ -46,8 +46,9 @@
 .ziltag-ziltag-form input {
   display: block;
   width: 195px;
-  padding-left: 30px;
+  height: 30px;
   line-height: 30px;
+  padding-left: 30px;
   border: 0;
   outline: 0;
   border-bottom: 1px solid rgba(0, 0, 0, .26);
