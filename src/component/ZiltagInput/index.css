@@ -9,7 +9,6 @@
   padding: 0;
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 14px;
-  line-height: 15px;
   color: rgba(0, 0, 0, .87);
   border: 0;
   outline: 0;
@@ -18,7 +17,7 @@
 
 .ziltag-ziltag-input__post {
   width: 50px;
-  height: 15px;
+  height: 16px;
   text-align: center;
   font-size: 14px;
   color: rgba(0, 0, 0, .26);
