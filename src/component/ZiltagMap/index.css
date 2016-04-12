@@ -14,7 +14,6 @@
   align-items: center;
   justify-content: center;
   background: rgba(0, 0, 0, .54);
-  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 14px;
   color: white;
 }
@@ -62,7 +61,6 @@
 .ziltag-co-div .ziltag-ziltag-input,
 .ziltag-co-div .ziltag-ziltag-map-dialog {
   width: 311px;
-  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   margin: 6px 0 6px 15px;
 }
 
