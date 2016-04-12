@@ -1,6 +1,7 @@
 body {
   margin: 0;
   background: rgb(249, 249, 249);
+  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
 }
 
 a {
@@ -25,7 +26,6 @@ a {
 }
 
 .ziltag-base-page__href {
-  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
   font-size: 12px;
   color: rgba(0, 0, 0, .87);
 }

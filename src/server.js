@@ -176,6 +176,7 @@ app.use(async (ctx, next) => {
               <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
               ${social_media_meta || ''}
               ${responsive_meta || ''}
+              <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500" type="text/css">
               <script src="/public/main.bundle.js"></script>
             </head>
             <body>
