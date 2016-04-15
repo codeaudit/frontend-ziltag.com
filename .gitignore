@@ -5,3 +5,4 @@ vendor/*
 .bundle/config
 .DS_Store
 hotel.log
+npm-debug.log
