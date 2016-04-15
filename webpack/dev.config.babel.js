@@ -19,12 +19,8 @@ module.exports = {
     ]
   },
   devtool: 'source-map',
-  plugins: [...base_config.plugins,
-    new webpack.DefinePlugin({
-      'process.env': {
-        BABEL_ENV: JSON.stringify('dev/client')
-      }
-    }),
+  plugins: [
+    ...base_config.plugins,
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
   ]
