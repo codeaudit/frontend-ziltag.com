@@ -16,7 +16,7 @@ import sagas from './saga'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  const store = compose(
+  var store = compose(
     reduxReactRouter({createHistory}),
     applyMiddleware(effects, fetch, sagaMiddleware(...sagas))
   )(createStore)(reducer)
@@ -27,4 +27,21 @@ document.addEventListener('DOMContentLoaded', () => {
     </Provider>,
     document.getElementById('react-content')
   )
+
+  if (module.hot) {
+    module.hot.accept('./route', () => {
+      const next_routes = require('./route').default
+      ReactDOM.render(
+        <Provider store={store} key='provider'>
+          <ReduxRouter routes={next_routes}/>
+        </Provider>,
+        document.getElementById('react-content')
+      )
+    })
+
+    module.hot.accept('./reducer', () => {
+      const next_reducer = require('./reducer').default
+      store.replaceReducer(next_reducer)
+    })
+  }
 })
