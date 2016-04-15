@@ -8,11 +8,7 @@ module.exports = {
   ...base_config,
   entry: './src/client',
   module: {
-    ...base_config.module,
-    loaders: [
-      ...base_config.module.loaders,
-      { test: /\.jsx?$/, exclude:  /(node_modules)/, loader: 'babel' }
-    ]
+    ...base_config.module
   },
   plugins: [
     ...base_config.plugins,

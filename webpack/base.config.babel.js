@@ -22,7 +22,8 @@ module.exports = {
       { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
       { test: /\.json$/, loader: 'json' },
       { test: /\.(png|jpg|eot)$/, loader: 'url' },
-      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' }
+      { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
+      { test: /\.jsx?$/, exclude:  /(node_modules)/, loaders: ['babel'] }
     ]
   },
   plugins: [

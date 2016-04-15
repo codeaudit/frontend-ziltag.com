@@ -12,11 +12,7 @@ module.exports = {
     './src/client'
   ],
   module: {
-    ...base_config.module,
-    loaders: [
-      ...base_config.module.loaders,
-      { test: /\.jsx?$/, exclude:  /(node_modules)/, loaders: ['babel'] }
-    ]
+    ...base_config.module
   },
   devtool: 'source-map',
   plugins: [
