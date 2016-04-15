@@ -9,7 +9,7 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "babel src --out-dir dist --ignore=client.js",
     "build:client": "webpack --config webpack/prod.config.babel.js",
-    "serve": "nodemon --debug src/server.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --ignore src/saga.js --exec babel-node",
+    "serve": "nodemon --debug src/server.js --ignore src/route.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --ignore src/saga.js --exec babel-node",
     "start": "pm2 start dist/server.js -i 0 --name frontend",
     "stop": "pm2 delete frontend",
     "restart": "pm2 restart frontend"
