@@ -16,32 +16,62 @@ import sagas from './saga'
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  var store = compose(
-    reduxReactRouter({createHistory}),
-    applyMiddleware(effects, fetch, sagaMiddleware(...sagas))
-  )(createStore)(reducer)
+  if (process.env.NODE_ENV != 'production') {
+    const persistState = require('redux-devtools').persistState
 
-  ReactDOM.render(
-    <Provider store={store} key='provider'>
-      <ReduxRouter routes={routes}/>
-    </Provider>,
-    document.getElementById('react-content')
-  )
+    function getDebugSessionKey() {
+      const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
+      return (matches && matches.length > 0) ? matches[1] : null
+    }
 
-  if (module.hot) {
-    module.hot.accept('./route', () => {
-      const next_routes = require('./route').default
-      ReactDOM.render(
-        <Provider store={store} key='provider'>
-          <ReduxRouter routes={next_routes}/>
-        </Provider>,
-        document.getElementById('react-content')
-      )
-    })
+    const DevTools = require('./devtool').default
+    const store = compose(
+      reduxReactRouter({createHistory}),
+      applyMiddleware(effects, fetch, sagaMiddleware(...sagas)),
+      DevTools.instrument(),
+      persistState(getDebugSessionKey())
+    )(createStore)(reducer)
 
-    module.hot.accept('./reducer', () => {
-      const next_reducer = require('./reducer').default
-      store.replaceReducer(next_reducer)
-    })
+    ReactDOM.render(
+      <Provider store={store} key='provider'>
+        <div>
+          <ReduxRouter routes={routes}/>
+          <DevTools/>
+        </div>
+      </Provider>,
+      document.getElementById('react-content')
+    )
+
+    if (module.hot) {
+      module.hot.accept('./route', () => {
+        const next_routes = require('./route').default
+        ReactDOM.render(
+          <Provider store={store} key='provider'>
+            <div>
+              <ReduxRouter routes={next_routes}/>
+              <DevTools/>
+            </div>
+          </Provider>,
+          document.getElementById('react-content')
+        )
+      })
+
+      module.hot.accept('./reducer', () => {
+        const next_reducer = require('./reducer').default
+        store.replaceReducer(next_reducer)
+      })
+    }
+  } else {
+    const store = compose(
+      reduxReactRouter({createHistory}),
+      applyMiddleware(effects, fetch, sagaMiddleware(...sagas))
+    )(createStore)(reducer)
+
+    ReactDOM.render(
+      <Provider store={store} key='provider'>
+        <ReduxRouter routes={routes}/>
+      </Provider>,
+      document.getElementById('react-content')
+    )
   }
 })
