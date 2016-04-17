@@ -132,7 +132,7 @@ app.use(async (ctx, next) => {
     api_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else {
-    if (process.env.NODE_ENV != 'production') {
+    if (NODE_ENV == 'dev') {
       var DevTools = require('./devtool').default
       var store = compose(
         reduxReactRouter({getRoutes: () => routes, createHistory}),
@@ -148,7 +148,7 @@ app.use(async (ctx, next) => {
 
     store.dispatch(match(ctx.request.originalUrl,
       (error, redirectLocation, routerState) => {
-        if (process.env.NODE_ENV != 'production') {
+        if (NODE_ENV == 'dev') {
           var component = (
             <Provider store={store} key="provider">
               <div>
