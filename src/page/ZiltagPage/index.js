@@ -23,6 +23,7 @@ try {
 
 if (process.env.NODE_ENV != 'production') {
   var DevTools = require('../../devtool').default
+  var ENABLE_DEVTOOL = require('../../../env').ENABLE_DEVTOOL
 }
 
 
@@ -198,7 +199,7 @@ class ZiltagPage extends Component {
         </BasePage>}
         {
           process.env.NODE_ENV != 'production'
-          ? this.state.is_mounted && <DevTools/>
+          ? this.state.is_mounted && ENABLE_DEVTOOL && <DevTools/>
           : ''
         }
       </div>
