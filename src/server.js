@@ -132,38 +132,18 @@ app.use(async (ctx, next) => {
     api_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else {
-    if (NODE_ENV == 'dev') {
-      var DevTools = require('./devtool').default
-      var store = compose(
-        reduxReactRouter({getRoutes: () => routes, createHistory}),
-        applyMiddleware(effects, fetch),
-        DevTools.instrument()
-      )(createStore)(reducer)
-    } else {
-      var store = compose(
-        reduxReactRouter({getRoutes: () => routes, createHistory}),
-        applyMiddleware(effects, fetch)
-      )(createStore)(reducer)
-    }
+    var store = compose(
+      reduxReactRouter({getRoutes: () => routes, createHistory}),
+      applyMiddleware(effects, fetch)
+    )(createStore)(reducer)
 
     store.dispatch(match(ctx.request.originalUrl,
       (error, redirectLocation, routerState) => {
-        if (NODE_ENV == 'dev') {
-          var component = (
-            <Provider store={store} key="provider">
-              <div>
-                <ReduxRouter/>
-                <DevTools/>
-              </div>
-            </Provider>
-          )
-        } else {
-          var component = (
-            <Provider store={store} key="provider">
-              <ReduxRouter/>
-            </Provider>
-          )
-        }
+        var component = (
+          <Provider store={store} key="provider">
+            <ReduxRouter/>
+          </Provider>
+        )
 
         const [, page_type, id] = ctx.originalUrl.split('/')
 

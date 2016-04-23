@@ -34,10 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     ReactDOM.render(
       <Provider store={store} key='provider'>
-        <div>
-          <ReduxRouter routes={routes}/>
-          <DevTools/>
-        </div>
+        <ReduxRouter routes={routes}/>
       </Provider>,
       document.getElementById('react-content')
     )
@@ -47,10 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const next_routes = require('./route').default
         ReactDOM.render(
           <Provider store={store} key='provider'>
-            <div>
-              <ReduxRouter routes={next_routes}/>
-              <DevTools/>
-            </div>
+            <ReduxRouter routes={next_routes}/>
           </Provider>,
           document.getElementById('react-content')
         )

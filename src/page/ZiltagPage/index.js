@@ -21,12 +21,16 @@ try {
   }
 } catch (e) {}
 
+if (process.env.NODE_ENV != 'production') {
+  var DevTools = require('../../devtool').default
+}
+
 
 class ZiltagPage extends Component {
-
   constructor(props) {
     super(props)
     this.actors = bindActionCreators({...actors, pushState}, this.props.dispatch)
+    this.state = {is_mounted: false}
   }
 
   componentDidMount() {
@@ -36,6 +40,8 @@ class ZiltagPage extends Component {
     .then(action => this.actors.fetch_ziltag_map(action.payload.value.map_id))
     .then(action => this.actors.can_create_ziltag_page_stream({id: router.params.id}))
     .catch(e => e)
+
+    this.setState({is_mounted: true})
   }
 
   componentWillReceiveProps(next_props) {
@@ -190,6 +196,11 @@ class ZiltagPage extends Component {
           {comment_input_area}
           {comment_components}
         </BasePage>}
+        {
+          process.env.NODE_ENV != 'production'
+          ? this.state.is_mounted && <DevTools/>
+          : ''
+        }
       </div>
     )
   }

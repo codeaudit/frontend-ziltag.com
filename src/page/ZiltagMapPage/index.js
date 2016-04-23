@@ -19,12 +19,16 @@ try {
   }
 } catch (e) {}
 
+if (process.env.NODE_ENV != 'production') {
+  var DevTools = require('../../devtool').default
+}
+
 
 class ZiltagMapPage extends Component {
-
   constructor(props) {
     super(props)
     this.actors = bindActionCreators({...actors, pushState}, this.props.dispatch)
+    this.state = {is_mounted: false}
   }
 
   componentDidMount() {
@@ -36,6 +40,8 @@ class ZiltagMapPage extends Component {
         this.actors.can_create_ziltag_map_page_stream({id: router.params.id})
       }
     })
+
+    this.setState({is_mounted: true})
   }
 
   anchorify(text) {
@@ -161,6 +167,11 @@ class ZiltagMapPage extends Component {
           </h1>
           {summary_components}
         </BasePage>
+        {
+          process.env.NODE_ENV != 'production'
+          ? this.state.is_mounted && <DevTools/>
+          : ''
+        }
       </div>
     )
   }
