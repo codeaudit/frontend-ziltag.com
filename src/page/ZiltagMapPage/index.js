@@ -71,12 +71,18 @@ class ZiltagMapPage extends Component {
     const {
       fetch_ziltag,
       hover_on_ziltag,
-      unhover_on_ziltag
+      unhover_on_ziltag,
+      deactivate_ziltag_reader
     } = this.actors
 
     if (ziltag_map.error) {
       return <Ziltag404Page/>
     }
+
+    try {
+      var full_url = window.location.href
+      var is_iframe = window != window.parent
+    } catch (e) {}
 
     var summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
       return (
@@ -142,7 +148,17 @@ class ZiltagMapPage extends Component {
           {...this.props}
           {...this.actors}
         >
-          <h1 className='ziltag-ziltag-map-page__heading'>People are tagging...</h1>
+          <h1 className='ziltag-ziltag-map-page__heading'>
+            People are tagging...
+            <div
+              style={{
+                visibility: is_iframe ? 'visible' : 'hidden'
+              }}
+              className='ziltag-ziltag-map-page__close'
+              onClick={deactivate_ziltag_reader}
+            >
+            </div>
+          </h1>
           {summary_components}
         </BasePage>
       </div>
