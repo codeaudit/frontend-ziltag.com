@@ -15,7 +15,7 @@
   font-weight: 500;
 }
 
-.ziltag-ziltag-page__op-prompt {
+.ziltag-ziltag-page__op-date {
   font-size: 12px;
   font-weight: 300;
   color: rgba(0, 0, 0, .54);
@@ -44,7 +44,7 @@
   left: 10px;
 }
 
-.ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-prompt {
+.ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-date {
   position: relative;
   top: 8px;
 }
