@@ -22,8 +22,11 @@ try {
 } catch (e) {}
 
 if (process.env.NODE_ENV != 'production') {
-  var DevTools = require('../../devtool').default
-  var ENABLE_DEVTOOL = require('../../../env').ENABLE_DEVTOOL
+  const NODE_ENV = require('../../../env').NODE_ENV
+  if (NODE_ENV == 'dev') {
+    var DevTools = require('../../devtool').default
+    var ENABLE_DEVTOOL = require('../../../env').ENABLE_DEVTOOL
+  }
 }
 
 
