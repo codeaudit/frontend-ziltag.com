@@ -1,33 +1,37 @@
-.body {
+.ziltag-ziltag-404-page {
   width: 100vw;
   height: 100vh;
-  background: url(/images/shutter.jpg) no-repeat center center fixed;
-  -moz-background-size: cover;
-  -webkit-background-size: cover;
-  -o-background-size: cover;
+  margin: 0;
+  background: url(/images/shutter.jpg) fixed center center;
   background-size: cover;
-}
-.box {
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  margin: 50px 80px ;
   color: white;
 }
-.box__title {
+
+.ziltag-ziltag-404-page__main {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 50px 80px;
+}
+
+.ziltag-ziltag-404-page__explanation {
+  margin: 0 0 10px;
+  font-size: 34px;
+  font-weight: 500;
+}
+
+.ziltag-ziltag-404-page__suggestion {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.ziltag-ziltag-404-page h1 {
+  margin: 0 0 10px;
   font-size: 112px;
   font-weight: 300;
 }
-.box__subtitle {
-  font-size: 34px;
-  font-weight: 500;
-  margin-top: 10px;
-}
-.box__footer {
-  font-size: 24px;
-  font-weight: 400;
-  margin-top: 10px;
-}
-.box__footer a{
+
+.ziltag-ziltag-404-page a {
   color: white;
 }

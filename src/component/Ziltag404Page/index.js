@@ -11,11 +11,15 @@ try {
 class Ziltag404Page extends Component {
   render() {
     return (
-      <div className="body">
-        <div className="box">
-          <div className="box__title">Oops.</div>
-          <div className="box__subtitle">Sorry, the page you’re looking for doesn’t exist.</div>
-          <div className="box__footer">Go back to <a href="https://ziltag.com">ziltag.com</a> or <a href="mailto:hi@ziltag.com">contact us</a>.</div>
+      <div className='ziltag-ziltag-404-page'>
+        <div className='ziltag-ziltag-404-page__main'>
+          <h1>Oops.</h1>
+          <p className='ziltag-ziltag-404-page__explanation'>
+            Sorry, the page you’re looking for doesn’t exist.
+          </p>
+          <p className='ziltag-ziltag-404-page__suggestion'>
+            Go back to <a href='/'>ziltag.com</a> or <a href='mailto:hi@ziltag.com'>contact us</a>.
+          </p>
         </div>
       </div>
     )
