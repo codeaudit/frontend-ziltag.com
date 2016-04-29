@@ -6,6 +6,7 @@ import fs from 'fs'
 import Koa from 'koa'
 import staticCache from 'koa-static-cache'
 import polyfill from 'koa-convert'
+import compress from 'koa-compress'
 import httpProxy from 'http-proxy'
 import forceSSL from 'koa-force-ssl'
 import React from 'react'
@@ -96,6 +97,18 @@ plugin_proxy.on('error', (err, req) => {
 })
 
 const app = new Koa()
+
+app.use(compress({
+  filter: content_type => {
+    return /text/i.test(content_type)
+  },
+  flush: require('zlib').Z_SYNC_FLUSH
+}))
+
+app.use(async (ctx, next) => {
+  ctx.compress = true
+  await next()
+})
 
 if (NODE_ENV == 'dev') {
   const webpack = require('webpack')
