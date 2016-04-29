@@ -98,18 +98,6 @@ plugin_proxy.on('error', (err, req) => {
 
 const app = new Koa()
 
-app.use(compress({
-  filter: content_type => {
-    return /text/i.test(content_type)
-  },
-  flush: require('zlib').Z_SYNC_FLUSH
-}))
-
-app.use(async (ctx, next) => {
-  ctx.compress = true
-  await next()
-})
-
 if (NODE_ENV == 'dev') {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('koa-webpack-dev-middleware')
@@ -125,6 +113,18 @@ if (NODE_ENV == 'dev') {
 } else {
   require('babel-polyfill')
 }
+
+app.use(compress({
+  filter: content_type => {
+    return /text/i.test(content_type)
+  },
+  flush: require('zlib').Z_SYNC_FLUSH
+}))
+
+app.use(async (ctx, next) => {
+  ctx.compress = true
+  await next()
+})
 
 if (FORCE_SSL) {
   app.use(polyfill(forceSSL(SSL_PORT)))
