@@ -1,7 +1,7 @@
-node_modules/*
+node_modules
 *.sublime-*
-dist/*
-vendor/*
+dist
+vendor
 .bundle/config
 .DS_Store
 hotel.log
