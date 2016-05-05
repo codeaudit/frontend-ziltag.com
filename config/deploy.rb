@@ -6,6 +6,7 @@ set :repo_url, 'git@github.com:ziltag/frontend-ziltag.com.git'
 set :ssh_options, {
   forward_agent: true
 }
+set :keep_releases, 2
 set :deploy_to, '/home/deploy/frontend'
 set :app_command, 'dist/server.js'
 
