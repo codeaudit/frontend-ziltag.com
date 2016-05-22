@@ -92,9 +92,7 @@
   margin: 55px 0 20px;
 }
 
-.ziltag-base-page--mobile .ziltag-base-page__href,
-.ziltag-base-page--mobile .ziltag-ziltag-page__share,
-.ziltag-base-page--mobile .ziltag-ziltag-comment-input {
+.ziltag-base-page--mobile .ziltag-base-page__href {
   display: none;
 }
 
