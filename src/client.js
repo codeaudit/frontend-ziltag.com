@@ -16,11 +16,11 @@ import root_saga from './saga'
 
 
 document.addEventListener('DOMContentLoaded', () => {
+  const sagaMiddleware = createSagaMiddleware()
+
   if (process.env.NODE_ENV != 'production') {
     const persistState = require('redux-devtools').persistState
     const DevTools = require('./devtool').default
-
-    const sagaMiddleware = createSagaMiddleware()
 
     function getDebugSessionKey() {
       const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
