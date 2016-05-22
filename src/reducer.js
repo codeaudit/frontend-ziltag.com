@@ -1,6 +1,18 @@
 import {combineReducers} from 'redux'
-import {routerStateReducer, push} from 'redux-router'
+import {routerStateReducer} from 'redux-router'
 
+
+function client_state(state={}, action) {
+  switch (action.type) {
+    case 'UPDATE_CLIENT_STATE':
+      return {
+        ...state,
+        ...action.payload
+      }
+    default:
+      return state
+  }
+}
 
 function current_user(state={}, action) {
   switch (action.type) {
@@ -359,6 +371,7 @@ function window_event(state={}, action) {
 
 export default combineReducers({
   router: routerStateReducer,
+  client_state,
   current_user,
   avatar_menu,
   ziltag_map,

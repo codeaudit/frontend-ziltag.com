@@ -8,17 +8,19 @@ import {ReduxRouter, reduxReactRouter} from 'redux-router'
 import {createHistory} from 'history'
 import effects from 'redux-effects'
 import fetch from 'redux-effects-fetch'
-import sagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga'
 
 import reducer from './reducer'
 import routes from './route'
-import sagas from './saga'
+import root_saga from './saga'
 
 
 document.addEventListener('DOMContentLoaded', () => {
   if (process.env.NODE_ENV != 'production') {
     const persistState = require('redux-devtools').persistState
     const DevTools = require('./devtool').default
+
+    const sagaMiddleware = createSagaMiddleware()
 
     function getDebugSessionKey() {
       const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
@@ -27,10 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const store = compose(
       reduxReactRouter({createHistory}),
-      applyMiddleware(effects, fetch, sagaMiddleware(...sagas)),
+      applyMiddleware(effects, fetch, sagaMiddleware),
       DevTools.instrument(),
       persistState(getDebugSessionKey())
     )(createStore)(reducer)
+
+    sagaMiddleware.run(root_saga)
 
     ReactDOM.render(
       <Provider store={store} key='provider'>
@@ -58,8 +62,10 @@ document.addEventListener('DOMContentLoaded', () => {
   } else {
     const store = compose(
       reduxReactRouter({createHistory}),
-      applyMiddleware(effects, fetch, sagaMiddleware(...sagas))
+      applyMiddleware(effects, fetch, sagaMiddleware)
     )(createStore)(reducer)
+
+    sagaMiddleware.run(root_saga)
 
     ReactDOM.render(
       <Provider store={store} key='provider'>

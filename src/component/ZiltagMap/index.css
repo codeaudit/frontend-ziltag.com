@@ -38,6 +38,8 @@
 
 .ziltag-ziltag-map .ziltag-ziltag-map__container {
   z-index: 1;
+  width: 100%;
+  height: 100%;
 }
 
 .ziltag-ziltag-map .ziltag-ziltag-map__href {
@@ -72,4 +74,8 @@
 
 .ziltag-co-div .ziltag-ziltag-input {
   margin: 20px 0 20px 15px;
+}
+
+.ziltag-ziltag-map--mobile .ziltag-ziltag-map__prompt {
+  display: none;
 }

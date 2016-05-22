@@ -273,3 +273,6 @@ export const deactivate_social_media_menu = createAction('DEACTIVATE_SOCIAL_MEDI
 export const deactivate_ziltag_reader = createAction('DEACTIVATE_ZILTAG_READER')
 
 export const window_resized = createAction('WINDOW_RESIZED')
+
+export const can_update_client_state = createAction('CAN_UPDATE_CLIENT_STATE')
+export const update_client_state = createAction('UPDATE_CLIENT_STATE')

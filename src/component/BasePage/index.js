@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import classNames from 'classnames'
 
 import Logo from '../Logo'
 import Avatar from '../Avatar'
@@ -23,8 +24,13 @@ class BasePage extends Component {
       activate_avatar_menu,
       deactivate_avatar_menu,
       deactivate_ziltag_input,
-      window_event
+      window_event,
+      client_state
     } = this.props
+
+    const {
+      is_mobile
+    } = client_state
 
     try {
       if (document) {
@@ -33,10 +39,16 @@ class BasePage extends Component {
         const breakpoint = min_width * 2 + total_right_screen_margin
 
         if (document.documentElement.clientWidth < breakpoint) {
-          var fitted_ziltag_map_width = (
-            document.documentElement.clientWidth -
-            total_right_screen_margin
-          )
+          if (is_mobile) {
+            var fitted_ziltag_map_width = (
+              document.documentElement.clientWidth
+            )
+          } else {
+            var fitted_ziltag_map_width = (
+              document.documentElement.clientWidth -
+              total_right_screen_margin
+            )
+          }
         } else {
           var fitted_ziltag_map_width = (
             document.documentElement.clientWidth / 2 -
@@ -51,7 +63,11 @@ class BasePage extends Component {
 
     return (
       <div
-        className='ziltag-base-page'
+        className={
+          classNames('ziltag-base-page', {
+            'ziltag-base-page--mobile': is_mobile
+          })
+        }
         onClick={() => {
           deactivate_avatar_menu()
           deactivate_ziltag_input()
@@ -61,7 +77,7 @@ class BasePage extends Component {
           <Logo/>
           {current_user.usr && <Avatar
             style={{
-              display: current_user.usr ? 'inline' : 'none'
+              display: current_user.usr && !is_mobile ? 'inline' : 'none'
             }}
             className='ziltag-base-page__avatar'
             src={current_user.usr.avatar}
