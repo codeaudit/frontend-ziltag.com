@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import {routerStateReducer, push} from 'redux-router'
+import {routerStateReducer} from 'redux-router'
 
 
 function current_user(state={}, action) {
