@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {pushState} from 'redux-router'
+import classNames from 'classnames'
 
 import BasePage from '../../component/BasePage'
 import ZiltagContent from '../../component/ZiltagContent'
@@ -80,7 +81,8 @@ class ZiltagPage extends Component {
       current_user,
       ziltag_comment_input,
       pseudo_comment,
-      social_media_menu
+      social_media_menu,
+      client_state
     } = this.props
 
     const {
@@ -93,6 +95,10 @@ class ZiltagPage extends Component {
       deactivate_ziltag_reader,
       pushState
     } = this.actors
+
+    const {
+      is_mobile
+    } = client_state
 
     if (current_ziltag.error) {
       return <Ziltag404Page/>
@@ -155,69 +161,96 @@ class ZiltagPage extends Component {
     const year = created_at.getFullYear()
     const created_at_div = (
       <div className='ziltag-ziltag-page__op-date'>
-        {month} {date}, {year}
+        <span className='ziltag-ziltag-page__op-clock-icon'>🕓</span>{month} {date}, {year}
       </div>
     )
+
+    const op_name_component = (
+      <div className='ziltag-ziltag-page__op-name'>
+        {current_ziltag.usr && current_ziltag.usr.name}
+      </div>
+    )
+
+    if (is_mobile) {
+      var op_left_component = (
+        <div className='ziltag-ziltag-page__op-left'>
+          {op_name_component}
+          {created_at_div}
+        </div>
+      )
+    } else {
+      var op_left_component = (
+        <div className='ziltag-ziltag-page__op-left'>
+          {created_at_div}
+          {op_name_component}
+        </div>
+      )
+    }
 
     return (
       <div
         onClick={() => {
           deactivate_social_media_menu()
         }}
-        className='ziltag-ziltag-page'
+        className={
+          classNames('ziltag-ziltag-page', {
+            'ziltag-ziltag-page--mobile': is_mobile
+          })
+        }
       >
-        {current_ziltag.content && <BasePage
-          {...this.props}
-          {...this.actors}
-        >
-          <div className='ziltag-ziltag-page__op'>
-            {current_ziltag.usr && <Avatar
-              className='ziltag-ziltag-page__op-avatar'
-              src={current_ziltag.usr.avatar}
-            />}
-            <div className='ziltag-ziltag-page__op-left'>
-              {created_at_div}
-              <div className='ziltag-ziltag-page__op-name'>
-                {current_ziltag.usr && current_ziltag.usr.name}
-              </div>
-            </div>
-            <div className='ziltag-ziltag-page__op-right'>
-              <div
-                style={{
-                  visibility: is_iframe ? 'visible' : 'hidden'
-                }}
-                className='ziltag-ziltag-page__close'
-                onClick={deactivate_ziltag_reader}
-              >
-              </div>
-              <div
-                onClick={(e) => {
-                  activate_social_media_menu()
-                  e.stopPropagation()
-                }}
-                className='ziltag-ziltag-page__share'
-              >
-              </div>
-              <SocialMediaMenu
-                activated={social_media_menu.activated}
-                url={full_url}
-                className='ziltag-ziltag-page__social-media-menu'
-              >
-              </SocialMediaMenu>
-            </div>
-          </div>
-          <ZiltagContent
+        {
+          current_ziltag.content &&
+          <BasePage
             {...this.props}
             {...this.actors}
-            {...current_ziltag}
-            usr={current_user.usr}
-            author={current_ziltag.usr}
-            onChange={ziltag_editor_changed}
-          />
-          <h2>Comments</h2>
-          {comment_input_area}
-          {comment_components}
-        </BasePage>}
+          >
+            <div className='ziltag-ziltag-page__op'>
+              {current_ziltag.usr && <Avatar
+                className='ziltag-ziltag-page__op-avatar'
+                src={current_ziltag.usr.avatar}
+              />}
+              {op_left_component}
+              <div className='ziltag-ziltag-page__op-right'>
+                <div
+                  style={{
+                    visibility: is_iframe ? 'visible' : 'hidden'
+                  }}
+                  className='ziltag-ziltag-page__close'
+                  onClick={deactivate_ziltag_reader}
+                >
+                </div>
+                <div
+                  onClick={(e) => {
+                    activate_social_media_menu()
+                    e.stopPropagation()
+                  }}
+                  className='ziltag-ziltag-page__share'
+                >
+                </div>
+                <SocialMediaMenu
+                  activated={social_media_menu.activated}
+                  url={full_url}
+                  className='ziltag-ziltag-page__social-media-menu'
+                >
+                </SocialMediaMenu>
+              </div>
+            </div>
+            <ZiltagContent
+              {...this.props}
+              {...this.actors}
+              {...current_ziltag}
+              usr={current_user.usr}
+              author={current_ziltag.usr}
+              onChange={ziltag_editor_changed}
+            />
+            {
+              !is_mobile &&
+              <h2>Comments</h2>
+            }
+            {comment_input_area}
+            {comment_components}
+          </BasePage>
+        }
         {
           process.env.NODE_ENV != 'production'
           ? this.state.is_mounted && ENABLE_DEVTOOL && <DevTools/>

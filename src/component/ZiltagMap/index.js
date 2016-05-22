@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import {Link} from 'react-router'
+import classNames from 'classnames'
 
 import Ziltag from '../Ziltag'
 import CoDiv from '../CoDiv'
@@ -44,8 +45,13 @@ class ZiltagMap extends Component {
       join_form,
       current_ziltag,
       current_user,
+      client_state,
       style
     } = this.props
+
+    const {
+      is_mobile
+    } = client_state
 
     function join() {
       const {
@@ -95,8 +101,16 @@ class ZiltagMap extends Component {
             }}
           >
             <Ziltag
-              onMouseEnter={() => hover_on_ziltag(ziltag.id)}
-              onMouseLeave={() => unhover_on_ziltag(ziltag.id)}
+              onMouseEnter={() => {
+                if (!is_mobile) {
+                  hover_on_ziltag(ziltag.id)
+                }
+              }}
+              onMouseLeave={() => {
+                if (is_mobile) {
+                  unhover_on_ziltag(ziltag.id)
+                }
+              }}
               ziltag={ziltag}
               key={ziltag.id}
             />
@@ -289,7 +303,14 @@ class ZiltagMap extends Component {
     return (
       <div
         style={style}
-        className='ziltag-ziltag-map'
+        className={
+          classNames(
+            'ziltag-ziltag-map',
+            {
+              'ziltag-ziltag-map--mobile': is_mobile
+            }
+          )
+        }
       >
         <img
           className='ziltag-ziltag-map__img'
@@ -302,10 +323,6 @@ class ZiltagMap extends Component {
           </div>
         }
         <div
-          style={{
-            width: ziltag_map.width,
-            height: ziltag_map.height
-          }}
           className='ziltag-ziltag-map__container'
           onClick={(e) => {
             function is_overlapping(point1, point2) {
@@ -323,6 +340,7 @@ class ZiltagMap extends Component {
             const x = x_px / ziltag_map.width
             const y = y_px / ziltag_map.height
             if (
+              !is_mobile &&
               x_px > radius &&
               x_px <= ziltag_map.width - radius &&
               y_px > radius &&

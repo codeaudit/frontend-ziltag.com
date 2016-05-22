@@ -81,3 +81,23 @@
   font-weight: 500;
   color: rgba(0, 0, 0, .87);
 }
+
+.ziltag-base-page--mobile .ziltag-base-page__head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ziltag-base-page--mobile .ziltag-base-page-main {
+  margin: 55px 0 20px;
+}
+
+.ziltag-base-page--mobile .ziltag-base-page__href,
+.ziltag-base-page--mobile .ziltag-ziltag-page__share,
+.ziltag-base-page--mobile .ziltag-ziltag-comment-input {
+  display: none;
+}
+
+.ziltag-base-page--mobile .ziltag-base-page-main__col0 .ziltag-ziltag-map {
+  margin-bottom: 18px;
+}

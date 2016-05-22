@@ -6,6 +6,10 @@
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
 }
 
+.ziltag-ziltag-page--mobile {
+  background: white;
+}
+
 .ziltag-ziltag-page__op {
   display: flex;
   height: 56px;
@@ -27,6 +31,10 @@
   font-size: 12px;
   font-weight: 300;
   color: rgba(0, 0, 0, .54);
+}
+
+.ziltag-ziltag-page__op-clock-icon {
+  letter-spacing: 10px;
 }
 
 .ziltag-ziltag-page__close {
@@ -77,4 +85,22 @@
 .ziltag-base-page-main__col1 .ziltag-ziltag-comment-input,
 .ziltag-base-page-main__col1 .ziltag-pseudo-comment {
   margin-bottom: 10px;
+}
+
+.ziltag-ziltag-page--mobile .ziltag-ziltag-page__op {
+  border: 0;
+}
+
+.ziltag-ziltag-page--mobile .ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-date {
+  position: relative;
+  top: 16px;
+}
+
+.ziltag-ziltag-page--mobile .ziltag-ziltag-page__op-left .ziltag-ziltag-page__op-name {
+  position: relative;
+  top: 8px;
+}
+
+.ziltag-ziltag-page--mobile .ziltag-ziltag-page__op {
+  padding: 0 32px 0;
 }
