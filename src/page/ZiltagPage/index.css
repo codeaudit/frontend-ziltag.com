@@ -1,5 +1,6 @@
 .ziltag-ziltag-page {
   position: absolute;
+  width: 100%;
   background: rgb(249, 249, 249);
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
 }
