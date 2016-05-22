@@ -39,10 +39,20 @@ class ZiltagPage extends Component {
 
   componentDidMount() {
     const {router} = this.props
-    this.actors.fetch_current_user()
-    this.actors.fetch_ziltag(router.params.id)
-    .then(action => this.actors.fetch_ziltag_map(action.payload.value.map_id))
-    .then(action => this.actors.can_create_ziltag_page_stream({id: router.params.id}))
+    const {
+      fetch_current_user,
+      fetch_ziltag,
+      fetch_ziltag_map,
+      can_create_ziltag_page_stream,
+      can_update_client_state
+    } = this.actors
+
+    can_update_client_state()
+
+    fetch_current_user()
+    fetch_ziltag(router.params.id)
+    .then(action => fetch_ziltag_map(action.payload.value.map_id))
+    .then(action => can_create_ziltag_page_stream({id: router.params.id}))
     .catch(e => e)
 
     this.setState({is_mounted: true})
