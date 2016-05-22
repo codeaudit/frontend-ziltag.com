@@ -1,6 +1,7 @@
 .ziltag-ziltag-map-page {
   position: absolute;
   width: 100%;
+  min-height: 100vh;
   background: rgb(249, 249, 249);
   font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
 }
