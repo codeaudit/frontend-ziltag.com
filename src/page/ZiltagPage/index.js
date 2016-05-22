@@ -219,14 +219,17 @@ class ZiltagPage extends Component {
                   onClick={deactivate_ziltag_reader}
                 >
                 </div>
-                <div
-                  onClick={(e) => {
-                    activate_social_media_menu()
-                    e.stopPropagation()
-                  }}
-                  className='ziltag-ziltag-page__share'
-                >
-                </div>
+                {
+                  is_mobile &&
+                  <div
+                    onClick={(e) => {
+                      activate_social_media_menu()
+                      e.stopPropagation()
+                    }}
+                    className='ziltag-ziltag-page__share'
+                  >
+                  </div>
+                }
                 <SocialMediaMenu
                   activated={social_media_menu.activated}
                   url={full_url}
@@ -247,8 +250,14 @@ class ZiltagPage extends Component {
               !is_mobile &&
               <h2>Comments</h2>
             }
-            {comment_input_area}
-            {comment_components}
+            {
+              !is_mobile &&
+              comment_input_area
+            }
+            {
+              !is_mobile &&
+              comment_components
+            }
           </BasePage>
         }
         {
