@@ -220,7 +220,7 @@ class ZiltagPage extends Component {
                 >
                 </div>
                 {
-                  is_mobile &&
+                  !is_mobile &&
                   <div
                     onClick={(e) => {
                       activate_social_media_menu()
