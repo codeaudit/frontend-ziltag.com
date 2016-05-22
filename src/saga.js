@@ -1,6 +1,6 @@
 import 'event-source-polyfill'
 
-import {take, put, call, race} from 'redux-saga'
+import {take, put, call, race} from 'redux-saga/effects'
 
 import {
   sse_ziltag_created,
@@ -126,9 +126,11 @@ function* listen_resize_event() {
   }
 }
 
-export default [
-  set_ziltag_page_stream,
-  set_ziltag_map_page_stream,
-  deactivate_plugin_ziltag_reader,
-  listen_resize_event
-]
+export default function* root_saga() {
+  yield [
+    set_ziltag_page_stream(),
+    set_ziltag_map_page_stream(),
+    deactivate_plugin_ziltag_reader(),
+    listen_resize_event()
+  ]
+}

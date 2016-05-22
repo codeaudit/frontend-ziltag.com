@@ -67,7 +67,7 @@
     "redux-effects": "^0.4.0",
     "redux-effects-fetch": "^0.4.1",
     "redux-router": "^1.0.0-beta4",
-    "redux-saga": "^0.4.1",
+    "redux-saga": "^0.10.4",
     "serialize-javascript": "^1.1.2",
     "style-loader": "^0.13.0",
     "url-loader": "^0.5.7",
