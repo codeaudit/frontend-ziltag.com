@@ -1,13 +1,3 @@
-body {
-  margin: 0;
-  background: rgb(249, 249, 249);
-  font-family: Roboto, GillSans, Calibri, Trebuchet, sans-serif;
-}
-
-a {
-  color: #0074D9;
-}
-
 .ziltag-base-page {
   height: 100%;
 }
@@ -48,6 +38,10 @@ a {
 .ziltag-base-page-main {
   display: flex;
   flex-flow: row wrap;
+}
+
+.ziltag-base-page a {
+  color: #0074D9;
 }
 
 .ziltag-base-page-main__col0, .ziltag-base-page-main__col1 {
