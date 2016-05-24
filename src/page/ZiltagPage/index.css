@@ -20,6 +20,8 @@
 .ziltag-ziltag-page__op-avatar {
   width: 56px;
   height: 56px;
+  min-width: 56px;
+  min-height: 56px;
 }
 
 .ziltag-ziltag-page__op-name {
