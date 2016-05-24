@@ -107,7 +107,7 @@ class ZiltagMap extends Component {
                 }
               }}
               onMouseLeave={() => {
-                if (is_mobile) {
+                if (!is_mobile) {
                   unhover_on_ziltag(ziltag.id)
                 }
               }}
