@@ -186,6 +186,7 @@ app.use(async (ctx, next) => {
           <!doctype html>
           <html>
             <head>
+              <title>Ziltag -- the ultimate plugin built for your website</title>
               <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
               ${social_media_meta || ''}
               ${responsive_meta || ''}
