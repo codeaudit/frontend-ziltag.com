@@ -156,7 +156,10 @@ class ZiltagPage extends Component {
     }
 
     const created_at = new Date(current_ziltag.created_at)
-    const month = created_at.toLocaleString('en', {month: 'long'})
+    const month = [
+      'Jan.', 'Feb.', 'Mar.', 'Apr.', 'May', 'Jun.',
+      'Jul.', 'Aug.', 'Sep.', 'Oct.', 'Nov.', 'Dec.'
+    ][created_at.getMonth()]
     const date = created_at.getDate()
     const year = created_at.getFullYear()
     const created_at_div = (
