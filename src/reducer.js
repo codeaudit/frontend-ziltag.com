@@ -367,14 +367,18 @@ function window_event(state={}, action) {
   }
 }
 
+function delete_key(state, key) {
+  const key_deleted_state = {...state}
+  delete key_deleted_state[key]
+  return key_deleted_state
+}
+
 function errors(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCH_FAILED':
       return {...state, ziltag_map: action.payload.value}
     case 'ZILTAG_MAP_FETCHED':
-      const delete_ziltag_map_error_state = {...state}
-      delete delete_ziltag_map_error_state.ziltag_map
-      return delete_ziltag_map_error_state
+      return delete_key(state, 'ziltag_map')
     default:
       return state
   }
