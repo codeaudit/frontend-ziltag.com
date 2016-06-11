@@ -372,7 +372,9 @@ function errors(state={}, action) {
     case 'ZILTAG_MAP_FETCH_FAILED':
       return {...state, ziltag_map: action.payload.value}
     case 'ZILTAG_MAP_FETCHED':
-      return {...state, ziltag_map: undefined}
+      const delete_ziltag_map_error_state = {...state}
+      delete delete_ziltag_map_error_state.ziltag_map
+      return delete_ziltag_map_error_state
     default:
       return state
   }
