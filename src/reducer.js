@@ -58,8 +58,6 @@ function ziltag_map(state={}, action) {
         return ziltag
       })
       return ziltag_map_state
-    case 'ZILTAG_MAP_FETCH_FAILED':
-      return action.payload.value
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
       const co_div_state = {...state}
@@ -369,6 +367,17 @@ function window_event(state={}, action) {
   }
 }
 
+function errors(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_MAP_FETCH_FAILED':
+      return {...state, ziltag_map: action.payload.value}
+    case 'ZILTAG_MAP_FETCHED':
+      return {...state, ziltag_map: undefined}
+    default:
+      return state
+  }
+}
+
 export default combineReducers({
   router: routerStateReducer,
   client_state,
@@ -386,5 +395,6 @@ export default combineReducers({
   resend_verification_mail_tip,
   media_carousel,
   social_media_menu,
-  window_event
+  window_event,
+  errors
 })

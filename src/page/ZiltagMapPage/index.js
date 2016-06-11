@@ -84,7 +84,8 @@ class ZiltagMapPage extends Component {
 
   render() {
     const {
-      ziltag_map
+      ziltag_map,
+      errors
     } = this.props
 
     const {
@@ -94,7 +95,7 @@ class ZiltagMapPage extends Component {
       deactivate_ziltag_reader
     } = this.actors
 
-    if (ziltag_map.error) {
+    if (errors.ziltag_map) {
       return <Ziltag404Page/>
     }
 
