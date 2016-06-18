@@ -48,107 +48,126 @@ function avatar_menu(state={}, action) {
   }
 }
 
-function ziltag_map(state={}, action) {
+function ziltag_maps(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
-      const ziltag_map_state = action.payload.value
-      ziltag_map_state.ziltags = ziltag_map_state.ziltags.map(ziltag => {
-        ziltag.link = `/ziltags/${ziltag.id}`
-        ziltag.co_div = {activated: false}
-        return ziltag
-      })
-      return ziltag_map_state
-    case 'HOVER_ON_ZILTAG':
-    case 'UNHOVER_ON_ZILTAG':
-      const co_div_state = {...state}
-      var index = state.ziltags.findIndex(x => x.id == action.payload)
-      co_div_state.ziltags[index].co_div = {
-        activated: action.type == 'HOVER_ON_ZILTAG' ? true : false
-      }
-      return co_div_state
-    case 'ZILTAG_EDITED':
-      const edited_state = {...state}
-      var index = state.ziltags.findIndex(
-        x => x.id == action.payload.value.id
-      )
-      edited_state.ziltags[index].content = action.payload.value.content
-      return edited_state
-    case 'SSE_ZILTAG_CREATED':
-      const sse_ziltag_created_state = {...state}
-      const created_ziltag = action.payload.value
-      created_ziltag.link = `/ziltags/${created_ziltag.id}`
-      created_ziltag.co_div = {activated: false}
-      sse_ziltag_created_state.ziltags.push(created_ziltag)
-      return sse_ziltag_created_state
-    case 'SSE_ZILTAG_UPDATED':
-      const sse_ziltag_updated_state = {...state}
-      const updated_ziltag = action.payload.value
-      var index = state.ziltags.findIndex(
-        x => x.id == updated_ziltag.id
-      )
-      sse_ziltag_updated_state.ziltags[index].content = updated_ziltag.content
-      return sse_ziltag_updated_state
-    case 'SSE_ZILTAG_DELETED':
-      const sse_ziltag_deleted_state = {...state}
-      const deleted_ziltag = action.payload
-      var index = state.ziltags.findIndex(
-        x => x.id == deleted_ziltag.id
-      )
-      sse_ziltag_deleted_state.ziltags.splice(index, 1)
-      return sse_ziltag_deleted_state
+      return {...state, [action.payload.value.id]: action.payload.value}
     default:
       return state
   }
 }
 
-function current_ziltag(state={}, action) {
+function ziltags(state={}, action) {
   switch (action.type) {
+    case 'ZILTAG_MAP_FETCHED':
+      const ziltag_map_fetched_state = {...state}
+      for (const ziltag of action.payload.value.ziltags) {
+        ziltag_map_fetched_state[ziltag.id] = {
+          ...ziltag_map_fetched_state[ziltag.id],
+          ...ziltag,
+          map_id: action.payload.value.id
+        }
+      }
+      return ziltag_map_fetched_state
+    case 'ZILTAG_EDITED':
+      return {...state, [action.payload.value.id]: {
+        ...state[action.payload.value.id],
+        content: action.payload.value.content
+      }}
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
-    case 'ZILTAG_FETCH_FAILED':
-      return action.payload.value
-    case 'SSE_COMMENT_CREATED':
-      return {...state, comments: [action.payload.value, ...state.comments]}
-    case 'ACTIVATE_ZILTAG_EDIT_MODE':
-      return {...state, mode: 'edit'}
-    case 'DEACTIVATE_ZILTAG_EDIT_MODE':
-      return {...state, mode: 'read'}
-    case 'ACTIVATE_ZILTAG_DELETE_MODE':
-      return {...state, mode: 'delete'}
-    case 'DEACTIVATE_ZILTAG_DELETE_MODE':
-      return {...state, mode: 'read'}
     case 'ZILTAG_EDITED':
-      return action.payload.value
-    case 'SSE_COMMENT_UPDATED':
-      const comment_edited_state = {...state}
-      var index = state.comments.findIndex(
-        x => x.id == action.payload.value.id
-      )
-      comment_edited_state.comments[index] = {
-        ...state.comments[index],
-        content: action.payload.value.content
-      }
-      return comment_edited_state
-    case 'SSE_COMMENT_DELETED':
-      const comment_deleted_state = {...state}
-      var index = state.comments.findIndex(
-        x => x.id == action.payload.id
-      )
-      comment_deleted_state.comments.splice(index, 1)
-      return comment_deleted_state
+    case 'SSE_ZILTAG_CREATED':
     case 'SSE_ZILTAG_UPDATED':
-      const updated_ziltag = action.payload.value
-      if (updated_ziltag.id == state.id) {
-        return updated_ziltag
+      return {
+        ...state,
+        [action.payload.value.id]: {
+          ...state[action.payload.value.id],
+          ...action.payload.value
+        }
       }
     case 'ZILTAG_DELETED':
     case 'SSE_ZILTAG_DELETED':
-      const deleted_ziltag = action.payload
-      if (deleted_ziltag.id == state.id) {
-        deleted_ziltag.map_id = state.map_id
-        deleted_ziltag.deleted = true
-        return deleted_ziltag
+      return delete_key(state, action.payload.id)
+    default:
+      return state
+  }
+}
+
+function co_divs(state={}, action) {
+  switch (action.type) {
+    case 'HOVER_ON_ZILTAG':
+    case 'UNHOVER_ON_ZILTAG':
+      return {...state, [action.payload]: {
+        activated: action.type == 'HOVER_ON_ZILTAG' ? true : false
+      }}
+    case 'ZILTAG_MAP_FETCHED':
+      const ziltag_map_fetched_state = {...state}
+      for (const ziltag of action.payload.value.ziltags) {
+        ziltag_map_fetched_state[ziltag.id] = {activated: false}
       }
+      return ziltag_map_fetched_state
+    case 'ZILTAG_FETCHED':
+    case 'ZILTAG_CREATED':
+    case 'SSE_ZILTAG_CREATED':
+      return {...state, [action.payload.value.id]: {activated: false}}
+    case 'ZILTAG_DELETED':
+    case 'SSE_ZILTAG_DELETED':
+      return delete_key(state, action.payload.id)
+    default:
+      return state
+  }
+}
+
+function comments(state={}, action) {
+  switch (action.type) {
+    case 'ZILTAG_FETCHED':
+      const ziltag_fetched_state = {...state}
+      for (const comment of action.payload.value.comments) {
+        ziltag_fetched_state[comment.id] = {
+          ...comment,
+          ziltag_id: action.payload.value.id
+        }
+      }
+      return ziltag_fetched_state
+    case 'SSE_COMMENT_CREATED':
+    case 'SSE_COMMENT_UPDATED':
+      return {...state, [action.payload.value.id]: action.payload.value}
+    case 'SSE_COMMENT_DELETED':
+      return delete_key(state, action.payload.id)
+    case 'ZILTAG_DELETED':
+    case 'SSE_ZILTAG_DELETED':
+      const ziltag_deleted_state = {...state}
+      for (const id in state) {
+        if (state[id].ziltag_id === action.payload.id) {
+          delete ziltag_deleted_state[id]
+        }
+      }
+      return ziltag_deleted_state
+    default:
+      return state
+  }
+}
+
+function current_ziltag_map_id(state=null, action) {
+  switch (action.type) {
+    case 'ZILTAG_MAP_FETCHED':
+      return action.payload.value.id
+    default:
+      return state
+  }
+}
+
+function current_ziltag_id(state=null, action) {
+  switch (action.type) {
+    case 'SET_CURRENT_ZILTAG_ID':
+      return action.payload
+    case 'ZILTAG_FETCHED':
+    case 'ZILTAG_CREATED':
+      return action.payload.value.id
+    case 'ZILTAG_DELETED':
+    case 'SSE_ZILTAG_DELETED':
+      return null
     default:
       return state
   }
@@ -182,9 +201,20 @@ function ziltag_editor(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
+    case 'ZILTAG_EDITED':
+    case 'SSE_ZILTAG_CREATED':
+    case 'SSE_ZILTAG_UPDATED':
       return action.payload.value
     case 'ZILTAG_EDITOR_CHANGED':
       return {...state, content: action.payload.target.value}
+    case 'ACTIVATE_ZILTAG_EDIT_MODE':
+      return {...state, mode: 'edit'}
+    case 'DEACTIVATE_ZILTAG_EDIT_MODE':
+      return {...state, mode: 'read'}
+    case 'ACTIVATE_ZILTAG_DELETE_MODE':
+      return {...state, mode: 'delete'}
+    case 'DEACTIVATE_ZILTAG_DELETE_MODE':
+      return {...state, mode: 'read'}
     default:
       return state
   }
@@ -379,6 +409,10 @@ function errors(state={}, action) {
       return {...state, ziltag_map: action.payload.value}
     case 'ZILTAG_MAP_FETCHED':
       return delete_key(state, 'ziltag_map')
+    case 'ZILTAG_FETCH_FAILED':
+      return {...state, ziltag: action.payload.value}
+    case 'ZILTAG_FETCHED':
+      return delete_key(state, 'ziltag')
     default:
       return state
   }
@@ -389,8 +423,12 @@ export default combineReducers({
   client_state,
   current_user,
   avatar_menu,
-  ziltag_map,
-  current_ziltag,
+  ziltag_maps,
+  ziltags,
+  co_divs,
+  comments,
+  current_ziltag_map_id,
+  current_ziltag_id,
   ziltag_input,
   ziltag_editor,
   ziltag_comment_input,

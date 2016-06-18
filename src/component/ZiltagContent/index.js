@@ -56,8 +56,7 @@ class ZiltagContent extends Component {
       edit_ziltag,
       delete_ziltag,
       go_next_media_content,
-      go_prev_media_content,
-      pushState
+      go_prev_media_content
     } = this.props
 
     function save() {

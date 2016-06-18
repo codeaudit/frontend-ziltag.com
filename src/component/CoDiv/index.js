@@ -14,6 +14,7 @@ class CoDiv extends Component {
     const {
       onClick,
       ziltag,
+      co_div,
       ziltag_map,
       children
     } = this.props
@@ -23,7 +24,7 @@ class CoDiv extends Component {
     const y_offset = -30
 
     const style = {
-      display: ziltag.co_div.activated ? 'block' : 'none',
+      display: co_div.activated ? 'block' : 'none',
       top: ziltag.y_px + y_offset
     }
 
@@ -37,8 +38,7 @@ class CoDiv extends Component {
       <div
         style={style}
         className={
-          classNames({
-            'ziltag-co-div': true,
+          classNames('ziltag-co-div', {
             'ziltag-co-div--left': direction == 'left',
             'ziltag-co-div--right': direction == 'right'
           })

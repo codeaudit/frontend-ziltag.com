@@ -7,7 +7,7 @@ class AvatarMenu extends Component {
   render() {
     const {
       activated,
-      current_ziltag,
+      current_ziltag_id,
       current_user_sign_out,
       fetch_ziltag
     } = this.props
@@ -26,8 +26,8 @@ class AvatarMenu extends Component {
             onClick={() => {
               current_user_sign_out()
               .then(() => {
-                if (current_ziltag.id) {
-                  fetch_ziltag(current_ziltag.id)
+                if (current_ziltag_id) {
+                  fetch_ziltag(current_ziltag_id)
                 }
               })
             }}
