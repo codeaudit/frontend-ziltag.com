@@ -1,6 +1,7 @@
 import 'event-source-polyfill'
 
 import {take, put, call, race} from 'redux-saga/effects'
+import {pushState} from 'redux-router'
 import MobileDetect from 'mobile-detect'
 
 import {
@@ -117,8 +118,10 @@ function* set_ziltag_map_page_stream() {
 }
 
 function* deactivate_plugin_ziltag_reader() {
-  yield take('DEACTIVATE_ZILTAG_READER')
-  window.parent.postMessage('deactivate_ziltag_reader', '*')
+  while (true) {
+    yield take('DEACTIVATE_ZILTAG_READER')
+    window.parent.postMessage('deactivate_ziltag_reader', '*')
+  }
 }
 
 function* listen_resize_event() {
@@ -134,12 +137,25 @@ function* detect_mobile() {
   yield put(update_client_state({is_mobile}))
 }
 
+function* listen_reader() {
+  while (true) {
+    var {data: action} = yield call(wait_for_event, window, 'message')
+
+    if (action.type === 'LOAD_ZILTAG') {
+      yield put(pushState(null, `/ziltags/${action.payload.id}`))
+    } else if (action.type === 'LOAD_ZILTAG_MAP') {
+      yield put(pushState(null, `/ziltag_maps/${action.payload.id}`))
+    }
+  }
+}
+
 export default function* root_saga() {
   yield [
     set_ziltag_page_stream(),
     set_ziltag_map_page_stream(),
     deactivate_plugin_ziltag_reader(),
     listen_resize_event(),
-    detect_mobile()
+    detect_mobile(),
+    listen_reader()
   ]
 }

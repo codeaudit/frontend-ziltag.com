@@ -41,7 +41,8 @@ class ZiltagMapPage extends Component {
       fetch_current_user,
       fetch_ziltag_map,
       can_create_ziltag_map_page_stream,
-      can_update_client_state
+      can_update_client_state,
+      set_current_ziltag_map_id
     } = this.actors
 
     can_update_client_state()
@@ -51,6 +52,7 @@ class ZiltagMapPage extends Component {
     .then(action => {
       if (!action.payload.value.error) {
         can_create_ziltag_map_page_stream({id: router.params.id})
+        set_current_ziltag_map_id({id: router.params.id})
       }
     })
 

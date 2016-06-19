@@ -141,7 +141,7 @@ app.use(async (ctx, next) => {
   } else if (ctx.path.match(/^\/api\/v1\/(ziltags|ziltag_maps)\/.*\/stream$/)) {
     sse_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
-  } else if (!ctx.path.match(/^\/(ziltags|ziltag_maps)\/.*/)) {
+  } else if (!ctx.path.match(/^\/((ziltags|ziltag_maps)\/|reader).*/)) {
     api_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
   } else {

@@ -70,11 +70,13 @@ class ZiltagPage extends Component {
         fetch_ziltag,
         fetch_ziltag_map,
         can_create_ziltag_page_stream,
+        set_current_ziltag_id
       } = this.actors
 
       can_create_ziltag_page_stream({
         id: next_props.params.id
       })
+      set_current_ziltag_id(next_props.params.id)
 
       fetch_current_user()
       fetch_ziltag(next_props.params.id)

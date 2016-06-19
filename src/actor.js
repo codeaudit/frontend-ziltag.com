@@ -278,3 +278,4 @@ export const can_update_client_state = createAction('CAN_UPDATE_CLIENT_STATE')
 export const update_client_state = createAction('UPDATE_CLIENT_STATE')
 
 export const set_current_ziltag_id = createAction('SET_CURRENT_ZILTAG_ID')
+export const set_current_ziltag_map_id = createAction('SET_CURRENT_ZILTAG_MAP_ID')
