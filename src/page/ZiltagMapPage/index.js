@@ -41,7 +41,8 @@ class ZiltagMapPage extends Component {
       fetch_current_user,
       fetch_ziltag_map,
       can_create_ziltag_map_page_stream,
-      can_update_client_state
+      can_update_client_state,
+      set_current_ziltag_map_id
     } = this.actors
 
     can_update_client_state()
@@ -51,6 +52,7 @@ class ZiltagMapPage extends Component {
     .then(action => {
       if (!action.payload.value.error) {
         can_create_ziltag_map_page_stream({id: router.params.id})
+        set_current_ziltag_map_id({id: router.params.id})
       }
     })
 
@@ -84,7 +86,11 @@ class ZiltagMapPage extends Component {
 
   render() {
     const {
-      ziltag_map
+      ziltag_maps,
+      ziltags,
+      co_divs,
+      current_ziltag_map_id,
+      errors
     } = this.props
 
     const {
@@ -94,7 +100,12 @@ class ZiltagMapPage extends Component {
       deactivate_ziltag_reader
     } = this.actors
 
-    if (ziltag_map.error) {
+    const ziltag_map = ziltag_maps[current_ziltag_map_id] || {}
+    const current_ziltags = Object.keys(ziltags)
+      .map(ziltag_id => ziltags[ziltag_id])
+      .filter(({map_id}) => map_id === ziltag_map.id)
+
+    if (errors.ziltag_map) {
       return <Ziltag404Page/>
     }
 
@@ -103,16 +114,16 @@ class ZiltagMapPage extends Component {
       var is_iframe = window != window.parent
     } catch (e) {}
 
-    var summary_components = ziltag_map.ziltags && ziltag_map.ziltags.map(ziltag => {
+    var summary_components = current_ziltags.map(ziltag => {
       return (
         <Link
           className={
             classNames({
               'ziltag-ziltag-map-page__ziltag': true,
-              'ziltag-ziltag-map-page__ziltag--activated': ziltag.co_div.activated
+              'ziltag-ziltag-map-page__ziltag--activated': co_divs[ziltag.id].activated
             })
           }
-          to={ziltag.link}
+          to={`/ziltags/${ziltag.id}`}
           onClick={(e) => {
             fetch_ziltag(ziltag.id)
             e.stopPropagation()
@@ -163,23 +174,28 @@ class ZiltagMapPage extends Component {
 
     return (
       <div className='ziltag-ziltag-map-page'>
-        <BasePage
-          {...this.props}
-          {...this.actors}
-        >
-          <h1 className='ziltag-ziltag-map-page__heading'>
-            People are tagging...
-            <div
-              style={{
-                visibility: is_iframe ? 'visible' : 'hidden'
-              }}
-              className='ziltag-ziltag-map-page__close'
-              onClick={deactivate_ziltag_reader}
-            >
-            </div>
-          </h1>
-          {summary_components}
-        </BasePage>
+        {
+          current_ziltag_map_id &&
+          <BasePage
+            {...this.props}
+            {...this.actors}
+            {...{ziltag_map}}
+            ziltags={current_ziltags}
+          >
+            <h1 className='ziltag-ziltag-map-page__heading'>
+              People are tagging...
+              <div
+                style={{
+                  visibility: is_iframe ? 'visible' : 'hidden'
+                }}
+                className='ziltag-ziltag-map-page__close'
+                onClick={deactivate_ziltag_reader}
+              >
+              </div>
+            </h1>
+            {summary_components}
+          </BasePage>
+        }
         {
           process.env.NODE_ENV != 'production'
           ? this.state.is_mounted && ENABLE_DEVTOOL && <DevTools/>

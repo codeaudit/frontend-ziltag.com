@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const store = compose(
-      reduxReactRouter({createHistory}),
       applyMiddleware(effects, fetch, sagaMiddleware),
+      reduxReactRouter({createHistory}),
       DevTools.instrument(),
       persistState(getDebugSessionKey())
     )(createStore)(reducer)
@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   } else {
     const store = compose(
-      reduxReactRouter({createHistory}),
-      applyMiddleware(effects, fetch, sagaMiddleware)
+      applyMiddleware(effects, fetch, sagaMiddleware),
+      reduxReactRouter({createHistory})
     )(createStore)(reducer)
 
     sagaMiddleware.run(root_saga)

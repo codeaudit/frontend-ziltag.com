@@ -21,6 +21,7 @@ class BasePage extends Component {
       current_user,
       avatar_menu,
       ziltag_map,
+      ziltags,
       activate_avatar_menu,
       deactivate_avatar_menu,
       deactivate_ziltag_input,
@@ -56,7 +57,7 @@ class BasePage extends Component {
           )
         }
 
-        ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height
+        ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height || 0
         ziltag_map.width = fitted_ziltag_map_width
       }
     } catch (e) {}
@@ -92,20 +93,21 @@ class BasePage extends Component {
           {...avatar_menu}
         />}
         <div className='ziltag-base-page-main'>
-          {ziltag_map.ziltags && <div className='ziltag-base-page-main__col0'>
-            <ZiltagMap
-              {...this.props}
-              style={{
-                width: ziltag_map.width,
-                height: ziltag_map.height
-              }}
-            />
-            <span className='ziltag-base-page__href'>
-              From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
-            </span>
-          </div>}
+          {ziltag_map &&
+            <div className='ziltag-base-page-main__col0'>
+              <ZiltagMap
+                {...this.props}
+                style={{
+                  width: ziltag_map.width,
+                  height: ziltag_map.height
+                }}
+              />
+              <span className='ziltag-base-page__href'>
+                From <a href={ziltag_map.href} target='_blank'>{ziltag_map.host}</a>
+              </span>
+            </div>}
           <div className='ziltag-base-page-main__col1'>
-            {ziltag_map.ziltags && children}
+            {ziltags && children}
           </div>
         </div>
       </div>

@@ -45,14 +45,18 @@ class ZiltagPage extends Component {
       fetch_ziltag,
       fetch_ziltag_map,
       can_create_ziltag_page_stream,
-      can_update_client_state
+      can_update_client_state,
+      set_current_ziltag_id
     } = this.actors
 
     can_update_client_state()
+    set_current_ziltag_id(router.params.id)
 
     fetch_current_user()
     fetch_ziltag(router.params.id)
-    .then(action => fetch_ziltag_map(action.payload.value.map_id))
+    .then(action => {
+      return fetch_ziltag_map(action.payload.value.map_id)
+    })
     .then(action => can_create_ziltag_page_stream({id: router.params.id}))
     .catch(e => e)
 
@@ -61,28 +65,51 @@ class ZiltagPage extends Component {
 
   componentWillReceiveProps(next_props) {
     if (next_props.params.id != this.props.params.id) {
-      this.actors.can_create_ziltag_page_stream({
+      const {
+        fetch_current_user,
+        fetch_ziltag,
+        fetch_ziltag_map,
+        can_create_ziltag_page_stream,
+        set_current_ziltag_id
+      } = this.actors
+
+      can_create_ziltag_page_stream({
         id: next_props.params.id
       })
+      set_current_ziltag_id(next_props.params.id)
+
+      fetch_current_user()
+      fetch_ziltag(next_props.params.id)
+      .then(action => {
+        return fetch_ziltag_map(action.payload.value.map_id)
+      })
+      .then(action => can_create_ziltag_page_stream({id: next_props.params.id}))
+      .catch(e => e)
     }
   }
 
   componentWillUpdate(next_props) {
-    const {current_ziltag} = next_props
+    const {current_ziltag_id, current_ziltag_map_id} = next_props
     const {pushState} = this.actors
-    if (current_ziltag.deleted) {
-      pushState(null, `/ziltag_maps/${current_ziltag.map_id}`)
+    if (!current_ziltag_id) {
+      pushState(null, `/ziltag_maps/${current_ziltag_map_id}`)
     }
   }
 
   render() {
     const {
-      current_ziltag,
+      ziltags,
+      current_ziltag_id,
       current_user,
+      ziltag_maps,
+      comments,
+      ziltag_editor,
+      current_ziltag_map_id,
       ziltag_comment_input,
       pseudo_comment,
       social_media_menu,
-      client_state
+      client_state,
+      errors
     } = this.props
 
     const {
@@ -100,7 +127,19 @@ class ZiltagPage extends Component {
       is_mobile
     } = client_state
 
-    if (current_ziltag.error) {
+    const current_ziltag = ziltags[current_ziltag_id] || {}
+    const ziltag_map = ziltag_maps[current_ziltag_map_id] || {}
+
+    if (ziltag_map.ziltags) {
+      var current_ziltags = []
+      for (const ziltag_id of ziltag_map.ziltags.map(ziltag => ziltag.id)) {
+        current_ziltags.push(ziltags[ziltag_id])
+      }
+    } else {
+      var current_ziltags = []
+    }
+
+    if (errors.ziltag) {
       return <Ziltag404Page/>
     }
 
@@ -109,8 +148,13 @@ class ZiltagPage extends Component {
       var is_iframe = window != window.parent
     } catch (e) {}
 
-    if (current_ziltag.comments) {
-      var comment_components = current_ziltag.comments.map(
+    const current_comments = Object.keys(comments)
+      .map(comment_id => comments[comment_id])
+      .filter(({ziltag_id}) => ziltag_id === current_ziltag.id)
+      .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+
+    if (current_comments) {
+      var comment_components = current_comments.map(
         comment => (
           <ZiltagComment
             {...this.props}
@@ -148,7 +192,7 @@ class ZiltagPage extends Component {
           onChange={ziltag_comment_input_changed}
           onSubmit={() => {
             create_ziltag_comment(
-              current_ziltag.id, ziltag_comment_input.content
+              current_ziltag_id, ziltag_comment_input.content
             )
           }}
         />
@@ -206,6 +250,8 @@ class ZiltagPage extends Component {
           <BasePage
             {...this.props}
             {...this.actors}
+            {...{ziltag_map}}
+            ziltags={current_ziltags}
           >
             <div className='ziltag-ziltag-page__op'>
               {current_ziltag.usr && <Avatar
@@ -247,6 +293,7 @@ class ZiltagPage extends Component {
               {...current_ziltag}
               usr={current_user.usr}
               author={current_ziltag.usr}
+              mode={ziltag_editor.mode}
               onChange={ziltag_editor_changed}
             />
             {

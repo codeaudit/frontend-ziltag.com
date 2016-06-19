@@ -40,10 +40,12 @@ class ZiltagMap extends Component {
       pushState,
       resend_verification_mail,
       ziltag_map,
+      ziltags,
+      co_divs,
       ziltag_input,
       sign_in_form,
       join_form,
-      current_ziltag,
+      current_ziltag_id,
       current_user,
       client_state,
       style
@@ -82,19 +84,19 @@ class ZiltagMap extends Component {
       })
     }
 
-    const ziltag_components = ziltag_map.ziltags && ziltag_map.ziltags.map(
+    const ziltag_components = ziltags.map(
       ziltag => {
         ziltag.x_px = ziltag.x * ziltag_map.width
         ziltag.y_px = ziltag.y * ziltag_map.height
 
         ziltag.activated = (
-          ziltag.id == current_ziltag.id && !ziltag_input.activated
+          ziltag.id == current_ziltag_id && !ziltag_input.activated
         )
         ? true : false
 
         return [
           <Link
-            to={ziltag.link}
+            to={`/ziltags/${ziltag.id}`}
             onClick={(e) => {
               fetch_ziltag(ziltag.id)
               e.stopPropagation()
@@ -117,8 +119,9 @@ class ZiltagMap extends Component {
           </Link>,
           <CoDiv
             ziltag={ziltag}
+            co_div={co_divs[ziltag.id]}
             ziltag_map={ziltag_map}
-            key={'p' + ziltag.id}
+            key={'co-div-' + ziltag.id}
           >
             <ZiltagPreview ziltag={ziltag}/>
           </CoDiv>
@@ -139,6 +142,7 @@ class ZiltagMap extends Component {
           e.stopPropagation()
         }}
         ziltag={ziltag_input}
+        co_div={ziltag_input.co_div}
         ziltag_map={ziltag_map}
         key='ziltag_input'
       >

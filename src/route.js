@@ -3,6 +3,7 @@ import Route from 'react-router'
 
 import ZiltagMapPage from './page/ZiltagMapPage'
 import ZiltagPage from './page/ZiltagPage'
+import ReaderPage from './page/ReaderPage'
 
 
 export default (
@@ -11,5 +12,7 @@ export default (
 	  </Route>
 	  <Route path='/ziltags/:id' component={ZiltagPage}>
 	  </Route>
+    <Route path='/reader' component={ReaderPage}>
+    </Route>
   </Route>
 )
