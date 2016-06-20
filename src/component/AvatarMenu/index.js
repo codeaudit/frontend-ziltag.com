@@ -19,7 +19,7 @@ class AvatarMenu extends Component {
 
     return (
       <DropDownMenu style={style} className='ziltag-base-page__avatar-menu'>
-        <Item><a href='/users/edit'>Setting</a></Item>
+        <Item><a href='/dashboard/account' target='_blank'>Setting</a></Item>
         <hr/>
         <Item>
           <div
