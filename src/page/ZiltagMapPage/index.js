@@ -59,6 +59,27 @@ class ZiltagMapPage extends Component {
     this.setState({is_mounted: true})
   }
 
+  componentWillReceiveProps(next_props) {
+    if (next_props.params.id != this.props.params.id) {
+      const {
+        fetch_current_user,
+        fetch_ziltag_map,
+        can_create_ziltag_map_page_stream,
+        set_current_ziltag_map_id
+      } = this.actors
+
+      set_current_ziltag_map_id({id: next_props.params.id})
+      fetch_current_user()
+      fetch_ziltag_map(next_props.params.id)
+      .then(action => {
+        if (!action.payload.value.error) {
+          can_create_ziltag_map_page_stream({id: next_props.params.id})
+          set_current_ziltag_map_id({id: next_props.params.id})
+        }
+      })
+    }
+  }
+
   anchorify(text) {
     if (!text) {
       return text
