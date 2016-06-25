@@ -198,22 +198,16 @@ function ziltag_input(state={}, action) {
 
 function ziltag_editor(state={}, action) {
   switch (action.type) {
-    case 'ZILTAG_FETCHED':
-    case 'ZILTAG_CREATED':
-    case 'ZILTAG_EDITED':
-    case 'SSE_ZILTAG_CREATED':
-    case 'SSE_ZILTAG_UPDATED':
-      return action.payload.value
     case 'ZILTAG_EDITOR_CHANGED':
       return {...state, content: action.payload.target.value}
     case 'ACTIVATE_ZILTAG_EDIT_MODE':
-      return {...state, mode: 'edit'}
-    case 'DEACTIVATE_ZILTAG_EDIT_MODE':
-      return {...state, mode: 'read'}
+      return {mode: 'edit', content: action.payload}
     case 'ACTIVATE_ZILTAG_DELETE_MODE':
       return {...state, mode: 'delete'}
+    case 'SET_CURRENT_ZILTAG_ID':
+    case 'DEACTIVATE_ZILTAG_EDIT_MODE':
     case 'DEACTIVATE_ZILTAG_DELETE_MODE':
-      return {...state, mode: 'read'}
+      return {mode: 'read'}
     default:
       return state
   }

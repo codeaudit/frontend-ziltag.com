@@ -68,7 +68,7 @@ class ZiltagContent extends Component {
         <div className='ziltag-ziltag-content__row'>
           <div
             className='ziltag-ziltag-content__edit-operator'
-            onClick={activate_ziltag_edit_mode}
+            onClick={() => activate_ziltag_edit_mode(content)}
           >
             Edit
           </div>
