@@ -165,8 +165,13 @@ function current_ziltag_id(state=null, action) {
     case 'ZILTAG_CREATED':
       return action.payload.value.id
     case 'ZILTAG_DELETED':
+      if (action.payload.value.id === state) {
+        return null
+      }
     case 'SSE_ZILTAG_DELETED':
-      return null
+      if (action.payload.id === state) {
+        return null
+      }
     default:
       return state
   }
