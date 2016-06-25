@@ -129,15 +129,9 @@ class ZiltagPage extends Component {
 
     const current_ziltag = ziltags[current_ziltag_id] || {}
     const ziltag_map = ziltag_maps[current_ziltag_map_id] || {}
-
-    if (ziltag_map.ziltags) {
-      var current_ziltags = []
-      for (const ziltag_id of ziltag_map.ziltags.map(ziltag => ziltag.id)) {
-        current_ziltags.push(ziltags[ziltag_id])
-      }
-    } else {
-      var current_ziltags = []
-    }
+    const current_ziltags = Object.keys(ziltags)
+      .map(ziltag_id => ziltags[ziltag_id])
+      .filter(({map_id}) => map_id === ziltag_map.id)
 
     if (errors.ziltag) {
       return <Ziltag404Page/>
