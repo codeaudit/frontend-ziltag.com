@@ -162,7 +162,6 @@ function current_ziltag_id(state=null, action) {
   switch (action.type) {
     case 'SET_CURRENT_ZILTAG_ID':
       return action.payload
-    case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
       return action.payload.value.id
     case 'ZILTAG_DELETED':
