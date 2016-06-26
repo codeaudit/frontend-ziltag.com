@@ -76,7 +76,6 @@ function ziltags(state={}, action) {
       }}
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
-    case 'ZILTAG_EDITED':
     case 'SSE_ZILTAG_CREATED':
     case 'SSE_ZILTAG_UPDATED':
       return {
@@ -209,6 +208,7 @@ function ziltag_editor(state={}, action) {
     case 'ACTIVATE_ZILTAG_DELETE_MODE':
       return {...state, mode: 'delete'}
     case 'SET_CURRENT_ZILTAG_ID':
+    case 'ZILTAG_EDITED':
     case 'DEACTIVATE_ZILTAG_EDIT_MODE':
     case 'DEACTIVATE_ZILTAG_DELETE_MODE':
       return {mode: 'read'}
