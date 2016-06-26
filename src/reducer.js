@@ -153,6 +153,8 @@ function current_ziltag_map_id(state=null, action) {
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
       return action.payload.value.id
+    case 'SET_CURRENT_ZILTAG_MAP_ID':
+      return action.payload
     default:
       return state
   }

@@ -42,17 +42,19 @@ class ZiltagMapPage extends Component {
       fetch_ziltag_map,
       can_create_ziltag_map_page_stream,
       can_update_client_state,
-      set_current_ziltag_map_id
+      set_current_ziltag_map_id,
+      set_current_ziltag_id
     } = this.actors
 
     can_update_client_state()
+    set_current_ziltag_id(null)
 
     fetch_current_user()
     fetch_ziltag_map(router.params.id)
     .then(action => {
       if (!action.payload.value.error) {
         can_create_ziltag_map_page_stream({id: router.params.id})
-        set_current_ziltag_map_id({id: router.params.id})
+        set_current_ziltag_map_id(router.params.id)
       }
     })
 
@@ -65,16 +67,19 @@ class ZiltagMapPage extends Component {
         fetch_current_user,
         fetch_ziltag_map,
         can_create_ziltag_map_page_stream,
-        set_current_ziltag_map_id
+        set_current_ziltag_map_id,
+        set_current_ziltag_id
       } = this.actors
 
-      set_current_ziltag_map_id({id: next_props.params.id})
+      set_current_ziltag_map_id(next_props.params.id)
+      set_current_ziltag_id(null)
+
       fetch_current_user()
       fetch_ziltag_map(next_props.params.id)
       .then(action => {
         if (!action.payload.value.error) {
           can_create_ziltag_map_page_stream({id: next_props.params.id})
-          set_current_ziltag_map_id({id: next_props.params.id})
+          set_current_ziltag_map_id(next_props.params.id)
         }
       })
     }
