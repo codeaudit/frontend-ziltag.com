@@ -18,17 +18,17 @@ namespace :pm2 do
     within current_path do
       execute :npm, :i, '--production'
       execute :npm, :run, :build
-      execute :pm2, :delete, fetch(:application)
-      execute :pm2, :start, fetch(:app_command), '-i 0', '--name', fetch(:application)
     end
+    execute :pm2, :delete, fetch(:application)
+    execute :pm2, :start, "#{fetch(:deploy_to)}/current/#{fetch(:app_command)}", '-i 0', '--name', fetch(:application)
   end
 
   def start_app
     within current_path do
       execute :npm, :i, '--production'
       execute :npm, :run, :build
-      execute :pm2, :start, fetch(:app_command), '-i 0', '--name', fetch(:application)
     end
+    execute :pm2, :start, "#{fetch(:deploy_to)}/current/#{fetch(:app_command)}", '-i 0', '--name', fetch(:application)
   end
 
   desc 'Restart app gracefully'
