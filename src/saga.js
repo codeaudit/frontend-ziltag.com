@@ -11,6 +11,9 @@ import {
   sse_comment_created,
   sse_comment_updated,
   sse_comment_deleted,
+  deactivate_avatar_menu,
+  deactivate_social_media_menu,
+  deactivate_ziltag_input,
   window_resized,
   update_client_state
 } from './actor'
@@ -137,13 +140,21 @@ function* detect_mobile() {
   yield put(update_client_state({is_mobile}))
 }
 
+function* deactivate_previous_state() {
+  yield put(deactivate_avatar_menu())
+  yield put(deactivate_social_media_menu())
+  yield put(deactivate_ziltag_input())
+}
+
 function* listen_reader() {
   while (true) {
     var {data: action} = yield call(wait_for_event, window, 'message')
 
     if (action.type === 'LOAD_ZILTAG') {
+      yield* deactivate_previous_state()
       yield put(pushState(null, `/ziltags/${action.payload.id}`))
     } else if (action.type === 'LOAD_ZILTAG_MAP') {
+      yield* deactivate_previous_state()
       yield put(pushState(null, `/ziltag_maps/${action.payload.id}`))
     }
   }
