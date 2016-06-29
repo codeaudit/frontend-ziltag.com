@@ -14,6 +14,7 @@ import {
   deactivate_avatar_menu,
   deactivate_social_media_menu,
   deactivate_ziltag_input,
+  clean_ziltag_comment_input,
   window_resized,
   update_client_state
 } from './actor'
@@ -144,6 +145,7 @@ function* deactivate_previous_state() {
   yield put(deactivate_avatar_menu())
   yield put(deactivate_social_media_menu())
   yield put(deactivate_ziltag_input())
+  yield put(clean_ziltag_comment_input())
 }
 
 function* listen_reader() {

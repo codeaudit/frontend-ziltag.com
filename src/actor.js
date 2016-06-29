@@ -144,6 +144,7 @@ export function delete_ziltag_comment(comment_id) {
 
 export const ziltag_input_changed = createAction('ZILTAG_INPUT_CHANGED')
 export const ziltag_editor_changed = createAction('ZILTAG_EDITOR_CHANGED')
+export const clean_ziltag_comment_input = createAction('CLEAN_ZILTAG_COMMENT_INPUT')
 export const ziltag_comment_input_changed = createAction('ZILTAG_COMMENT_INPUT_CHANGED')
 export const ziltag_comment_editor_changed = createAction('ZILTAG_COMMENT_EDITOR_CHANGED')
 

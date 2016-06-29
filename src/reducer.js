@@ -221,6 +221,7 @@ function ziltag_comment_input(state={}, action) {
   switch (action.type) {
     case 'ZILTAG_COMMENT_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
+    case 'CLEAN_ZILTAG_COMMENT_INPUT':
     case 'ZILTAG_COMMENT_CREATED':
       return {}
     default:
