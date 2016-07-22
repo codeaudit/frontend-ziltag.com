@@ -254,14 +254,14 @@ class ZiltagPage extends Component {
               />}
               {op_left_component}
               <div className='ziltag-ziltag-page__op-right'>
-                <div
+                {!is_mobile && <div
                   style={{
                     visibility: is_iframe ? 'visible' : 'hidden'
                   }}
                   className='ziltag-ziltag-page__close'
                   onClick={deactivate_ziltag_reader}
                 >
-                </div>
+                </div>}
                 {
                   !is_mobile &&
                   <div

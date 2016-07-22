@@ -15,6 +15,13 @@
   cursor: pointer;
 }
 
+.ziltag-base-page__close--mobile {
+  width: 24px;
+  height: 24px;
+  background: top center url(mobile-close.png) no-repeat;
+  cursor: pointer;
+}
+
 .ziltag-base-page__href {
   font-size: 12px;
   color: rgba(0, 0, 0, .87);
@@ -33,6 +40,12 @@
   position: fixed;
   right: 16px;
   top: 47px;
+}
+
+.ziltag-base-page .ziltag-base-page__close--mobile {
+  position: absolute;
+  top: calc(50% - 12px);
+  right: 25px;
 }
 
 .ziltag-base-page-main {

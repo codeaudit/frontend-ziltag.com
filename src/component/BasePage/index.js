@@ -25,6 +25,7 @@ class BasePage extends Component {
       activate_avatar_menu,
       deactivate_avatar_menu,
       deactivate_ziltag_input,
+      deactivate_ziltag_reader,
       window_event,
       client_state
     } = this.props
@@ -62,6 +63,11 @@ class BasePage extends Component {
       }
     } catch (e) {}
 
+    try {
+      var full_url = window.location.href
+      var is_iframe = window != window.parent
+    } catch (e) {}
+
     return (
       <div
         className={
@@ -87,6 +93,14 @@ class BasePage extends Component {
               e.stopPropagation()
             }}
           />}
+          {is_mobile && <div
+            style={{
+              visibility: is_iframe ? 'visible' : 'hidden'
+            }}
+            className='ziltag-base-page__close--mobile'
+            onClick={deactivate_ziltag_reader}
+          >
+          </div>}
         </div>
         {current_user.usr && <AvatarMenu
           {...this.props}
