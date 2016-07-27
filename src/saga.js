@@ -1,7 +1,7 @@
 import 'event-source-polyfill'
 
 import {take, put, call, race} from 'redux-saga/effects'
-import {pushState} from 'redux-router'
+import {push} from 'redux-router'
 import MobileDetect from 'mobile-detect'
 
 import {
@@ -154,10 +154,10 @@ function* listen_reader() {
 
     if (action.type === 'LOAD_ZILTAG') {
       yield* deactivate_previous_state()
-      yield put(pushState(null, `/ziltags/${action.payload.id}`))
+      yield put(push(`/ziltags/${action.payload.id}`))
     } else if (action.type === 'LOAD_ZILTAG_MAP') {
       yield* deactivate_previous_state()
-      yield put(pushState(null, `/ziltag_maps/${action.payload.id}`))
+      yield put(push(`/ziltag_maps/${action.payload.id}`))
     }
   }
 }

@@ -37,7 +37,7 @@ class ZiltagMap extends Component {
       join_form_name_changed,
       join_form_email_changed,
       create_ziltag,
-      pushState,
+      push,
       resend_verification_mail,
       ziltag_map,
       ziltags,
@@ -162,7 +162,7 @@ class ZiltagMap extends Component {
                   create_ziltag(map_id, x, y, content)
                   .then((action) => {
                     fetch_ziltag(action.payload.value.id)
-                    pushState(null, `/ziltags/${action.payload.value.id}`)
+                    push(`/ziltags/${action.payload.value.id}`)
                     fetch_ziltag_map(ziltag_map.id)
                     deactivate_ziltag_input()
                   })

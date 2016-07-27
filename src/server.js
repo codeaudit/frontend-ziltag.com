@@ -146,7 +146,7 @@ app.use(async (ctx, next) => {
     ctx.respond = false
   } else {
     var store = compose(
-      reduxReactRouter({getRoutes: () => routes, createHistory}),
+      reduxReactRouter({routes, createHistory}),
       applyMiddleware(effects, fetch)
     )(createStore)(reducer)
 

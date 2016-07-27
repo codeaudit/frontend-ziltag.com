@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {pushState} from 'redux-router'
+import {push} from 'redux-router'
 import classNames from 'classnames'
 
 import BasePage from '../../component/BasePage'
@@ -34,7 +34,7 @@ if (process.env.NODE_ENV != 'production') {
 class ZiltagPage extends Component {
   constructor(props) {
     super(props)
-    this.actors = bindActionCreators({...actors, pushState}, this.props.dispatch)
+    this.actors = bindActionCreators({...actors, push}, this.props.dispatch)
     this.state = {is_mounted: false}
   }
 
@@ -90,9 +90,9 @@ class ZiltagPage extends Component {
 
   componentWillUpdate(next_props) {
     const {current_ziltag_id, current_ziltag_map_id} = next_props
-    const {pushState} = this.actors
+    const {push} = this.actors
     if (!current_ziltag_id) {
-      pushState(null, `/ziltag_maps/${current_ziltag_map_id}`)
+      push(`/ziltag_maps/${current_ziltag_map_id}`)
     }
   }
 
@@ -120,7 +120,7 @@ class ZiltagPage extends Component {
       activate_social_media_menu,
       deactivate_social_media_menu,
       deactivate_ziltag_reader,
-      pushState
+      push
     } = this.actors
 
     const {
