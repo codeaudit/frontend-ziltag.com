@@ -1,5 +1,5 @@
 import React from 'react'
-import Route from 'react-router'
+import {Route} from 'react-router'
 
 import ZiltagMapPage from './page/ZiltagMapPage'
 import ZiltagPage from './page/ZiltagPage'
