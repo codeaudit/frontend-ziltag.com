@@ -97,10 +97,6 @@ class ZiltagMap extends Component {
         return [
           <Link
             to={`/ziltags/${ziltag.id}`}
-            onClick={(e) => {
-              fetch_ziltag(ziltag.id)
-              e.stopPropagation()
-            }}
           >
             <Ziltag
               onMouseEnter={() => {
@@ -112,6 +108,9 @@ class ZiltagMap extends Component {
                 if (!is_mobile) {
                   unhover_on_ziltag(ziltag.id)
                 }
+              }}
+              onClick={(e) => {
+                fetch_ziltag(ziltag.id)
               }}
               ziltag={ziltag}
               key={ziltag.id}
