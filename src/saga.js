@@ -72,6 +72,7 @@ function* set_ziltag_page_stream() {
     } else if (update_ziltag_resp) {
       yield put(sse_ziltag_updated({value: JSON.parse(update_ziltag_resp.data)}))
     } else if (delete_ziltag_resp) {
+      esrc.close()
       yield put(sse_ziltag_deleted(JSON.parse(delete_ziltag_resp.data)))
     } else if (create_comment_resp) {
       yield put(sse_comment_created({value: JSON.parse(create_comment_resp.data)}))
