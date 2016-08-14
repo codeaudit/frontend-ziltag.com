@@ -110,9 +110,6 @@ class ZiltagMap extends Component {
                   unhover_on_ziltag(ziltag.id)
                 }
               }}
-              onClick={(e) => {
-                fetch_ziltag(ziltag.id)
-              }}
               ziltag={ziltag}
               key={ziltag.id}
             />

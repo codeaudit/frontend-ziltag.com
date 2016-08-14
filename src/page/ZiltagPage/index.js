@@ -83,8 +83,6 @@ class ZiltagPage extends Component {
       .then(action => {
         return fetch_ziltag_map(action.payload.value.map_id)
       })
-      .then(action => can_create_ziltag_page_stream({id: next_props.params.id}))
-      .catch(e => e)
     }
   }
 
