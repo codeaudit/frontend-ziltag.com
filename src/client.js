@@ -14,6 +14,8 @@ import reducer from './reducer'
 import routes from './route'
 import root_saga from './saga'
 
+require('normalize.css')
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const sagaMiddleware = createSagaMiddleware()

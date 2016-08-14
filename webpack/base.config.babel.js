@@ -3,7 +3,6 @@ import path from 'path'
 import webpack from 'webpack'
 import cssnano from 'cssnano'
 import postcss_cssnext from 'postcss-cssnext'
-import postcss_normalize from 'postcss-normalize'
 
 import {NODE_ENV} from '../env'
 
@@ -38,6 +37,6 @@ module.exports = {
     })
   ],
   postcss: () => {
-    return [postcss_normalize, postcss_cssnext, cssnano]
+    return [postcss_cssnext, cssnano]
   }
 }
