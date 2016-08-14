@@ -101,6 +101,7 @@ class ZiltagMap extends Component {
             <Ziltag
               onMouseEnter={() => {
                 if (!is_mobile) {
+                  deactivate_ziltag_input()
                   hover_on_ziltag(ziltag.id)
                 }
               }}
