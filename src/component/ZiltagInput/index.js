@@ -27,6 +27,8 @@ class ZiltagInput extends Component {
     return (
       <div className='ziltag-ziltag-input'>
         <TextareaAutosize
+          autoFocus
+          placeholder='Your text here'
           onChange={onChange}
           onKeyDown={(e) => {
             if (
@@ -37,7 +39,6 @@ class ZiltagInput extends Component {
               e.preventDefault()
             }
           }}
-          placeholder='Your text here'
         />
         <div
           onClick={submit}
