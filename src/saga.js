@@ -67,7 +67,6 @@ function* set_ziltag_page_stream() {
       )
     } else if (ziltag_map_page_action) {
       esrc.close()
-      yield take('CAN_CREATE_ZILTAG_PAGE_STREAM')
     } else if (create_ziltag_resp) {
       yield put(sse_ziltag_created({value: JSON.parse(create_ziltag_resp.data)}))
     } else if (update_ziltag_resp) {
