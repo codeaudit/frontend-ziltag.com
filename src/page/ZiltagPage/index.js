@@ -52,12 +52,16 @@ class ZiltagPage extends Component {
     can_update_client_state()
     set_current_ziltag_id(router.params.id)
 
-    fetch_current_user()
     fetch_ziltag(router.params.id)
     .then(action => {
       return fetch_ziltag_map(action.payload.value.map_id)
     })
-    .then(action => can_create_ziltag_page_stream({id: router.params.id}))
+    .then(action => {
+      fetch_current_user({
+        ziltag_map_id: action.payload.value.id
+      })
+      return can_create_ziltag_page_stream({id: router.params.id})
+    })
     .catch(e => e)
 
     this.setState({is_mounted: true})
@@ -65,6 +69,10 @@ class ZiltagPage extends Component {
 
   componentWillReceiveProps(next_props) {
     if (next_props.params.id != this.props.params.id) {
+      const {
+        current_ziltag_map_id
+      } = next_props
+
       const {
         fetch_current_user,
         fetch_ziltag,
@@ -78,7 +86,9 @@ class ZiltagPage extends Component {
       })
       set_current_ziltag_id(next_props.params.id)
 
-      fetch_current_user()
+      fetch_current_user({
+        ziltag_map_id: current_ziltag_map_id
+      })
       fetch_ziltag(next_props.params.id)
       .then(action => {
         return fetch_ziltag_map(action.payload.value.map_id)

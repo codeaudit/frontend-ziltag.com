@@ -64,7 +64,9 @@ class ZiltagMap extends Component {
       current_user_join(name, email)
       .then(({payload}) => {
         if (!payload.value.error) {
-          fetch_current_user()
+          fetch_current_user({
+            ziltag_map_id: ziltag_map.id
+          })
         }
       })
     }
@@ -78,7 +80,9 @@ class ZiltagMap extends Component {
       current_user_sign_in(user, password)
       .then(({payload}) => {
         if (!payload.value.error) {
-          fetch_current_user()
+          fetch_current_user({
+            ziltag_map_id: ziltag_map.id
+          })
           deactivate_ziltag_input()
         }
       })
@@ -318,7 +322,7 @@ class ZiltagMap extends Component {
           src={ziltag_map.src}
         />
         {
-          !ziltag_input.activated &&
+          !ziltag_input.activated && current_user.usr && current_user.usr.permissions.includes('create_ziltag') &&
           <div className='ziltag-ziltag-map__prompt'>
             click anywhere to tag
           </div>
@@ -351,7 +355,9 @@ class ZiltagMap extends Component {
                 {x: x_px, y: y_px}
               )).length
             ) {
-              activate_ziltag_input({x_px, y_px, x, y, map_id: ziltag_map.id})
+              if (current_user.usr.permissions.includes('create_ziltag')) {
+                activate_ziltag_input({x_px, y_px, x, y, map_id: ziltag_map.id})
+              }
               e.stopPropagation()
             }
           }}

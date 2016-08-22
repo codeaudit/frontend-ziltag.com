@@ -49,7 +49,7 @@ class ZiltagMapPage extends Component {
     can_update_client_state()
     set_current_ziltag_id(null)
 
-    fetch_current_user()
+    fetch_current_user({ziltag_map_id: router.params.id})
     fetch_ziltag_map(router.params.id)
     .then(action => {
       if (!action.payload.value.error) {
@@ -74,7 +74,7 @@ class ZiltagMapPage extends Component {
       set_current_ziltag_map_id(next_props.params.id)
       set_current_ziltag_id(null)
 
-      fetch_current_user()
+      fetch_current_user({ziltag_map_id: next_props.params.id})
       fetch_ziltag_map(next_props.params.id)
       .then(action => {
         if (!action.payload.value.error) {

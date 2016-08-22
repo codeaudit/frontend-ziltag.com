@@ -18,6 +18,8 @@ class PseudoComment extends Component {
       join_form,
       sign_in_form,
       current_user,
+      current_ziltag_id,
+      current_ziltag_map_id,
       pseudo_comment_join,
       pseudo_comment_sign_in,
       deactivate_pseudo_comment,
@@ -39,7 +41,9 @@ class PseudoComment extends Component {
       current_user_join(name, email)
       .then(({payload}) => {
         if (!payload.value.error) {
-          fetch_current_user()
+          fetch_current_user({
+            ziltag_map_id: current_ziltag_map_id
+          })
           deactivate_pseudo_comment()
         }
       })
@@ -54,7 +58,9 @@ class PseudoComment extends Component {
       current_user_sign_in(user, password)
       .then(({payload}) => {
         if (!payload.value.error) {
-          fetch_current_user()
+          fetch_current_user({
+            ziltag_map_id: current_ziltag_map_id
+          })
           deactivate_pseudo_comment()
         }
       })
