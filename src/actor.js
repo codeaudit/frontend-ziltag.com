@@ -7,8 +7,8 @@ import {API_ADDR} from '../env'
 
 export const current_user_fetched = createAction('CURRENT_USER_FETCHED')
 
-export function fetch_current_user() {
-  const api = '/api/v1/me'
+export function fetch_current_user({ziltag_map_id}) {
+  const api = `/api/v1/me?ziltag_map_id=${ziltag_map_id}`
   return bind(fetch(api, {
     credentials: 'include'
   }), current_user_fetched)
