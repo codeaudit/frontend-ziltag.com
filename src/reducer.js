@@ -26,6 +26,10 @@ function current_user(state={}, action) {
       return {status: 'sign_in_failed', prompt: action.payload.value.error}
     case 'CURRENT_USER_JOIN_FAILED':
       return {status: 'join_failed', prompt: action.payload.value.error}
+    case 'FORGOT_PASSWORD_EMAIL_NOT_FOUND':
+      return {status: 'email_not_found', prompt: action.payload.error}
+    case 'FORGOT_PASSWORD_EMAIL_SENT':
+      return {status: 'email_sent', prompt: action.payload.message}
     case 'ACTIVATE_ZILTAG_INPUT':
     case 'ZILTAG_INPUT_SIGN_IN':
     case 'ZILTAG_INPUT_JOIN':
@@ -190,6 +194,8 @@ function ziltag_input(state={}, action) {
       return {...state, mode: 'sign_in'}
     case 'ZILTAG_INPUT_JOIN':
       return {...state, mode: 'join'}
+    case 'ZILTAG_INPUT_FORGOT_PASSWORD':
+      return {...state, mode: 'forgot_password'}
     case 'ZILTAG_INPUT_CHANGED':
       return {...state, content: action.payload.target.value}
     case 'CURRENT_USER_JOINED':
@@ -293,6 +299,15 @@ function sign_in_form(state={}, action) {
   }
 }
 
+function forgot_password_form(state={}, action) {
+  switch (action.type) {
+    case 'FORGOT_PASSWORD_FORM_EMAIL_CHANGED':
+      return {...state, email: action.payload.target.value}
+    default:
+      return state
+  }
+}
+
 function pseudo_comment(state={}, action) {
   switch (action.type) {
     case 'ACTIVATE_PSEUDO_COMMENT':
@@ -303,6 +318,8 @@ function pseudo_comment(state={}, action) {
       return {...state, mode: 'join'}
     case 'PSEUDO_COMMENT_SIGN_IN':
       return {...state, mode: 'sign_in'}
+    case 'PSEUDO_COMMENT_FORGOT_PASSWORD':
+      return {...state, mode: 'forgot_password'}
     default:
       return state
   }
@@ -433,6 +450,7 @@ export default combineReducers({
   ziltag_comment_editors,
   join_form,
   sign_in_form,
+  forgot_password_form,
   pseudo_comment,
   resend_verification_mail_tip,
   media_carousel,

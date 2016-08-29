@@ -1,6 +1,7 @@
 import 'event-source-polyfill'
 
-import {take, put, call, race} from 'redux-saga/effects'
+import {takeEvery} from 'redux-saga'
+import {take, put, call, race, select} from 'redux-saga/effects'
 import {push} from 'redux-router'
 import MobileDetect from 'mobile-detect'
 
@@ -16,7 +17,9 @@ import {
   deactivate_ziltag_input,
   clean_ziltag_comment_input,
   window_resized,
-  update_client_state
+  update_client_state,
+  forgot_password_email_sent,
+  forgot_password_email_not_found
 } from './actor'
 
 
@@ -162,6 +165,28 @@ function* listen_reader() {
   }
 }
 
+function* listen_forgot_password() {
+  yield takeEvery('FORGOT_PASSWORD', forgot_password)
+}
+
+function* forgot_password() {
+  const email = yield select(state => state.forgot_password_form.email)
+  const {success, errors} = yield call(() => fetch(`/api/v2/password`, {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({email})
+  }).then(resp => resp.json()))
+
+  if (errors) {
+    yield put(forgot_password_email_not_found({error: 'Email not found.'}))
+  } else {
+    yield put(forgot_password_email_sent({message: 'Password reset email has been sent.'}))
+  }
+}
+
 export default function* root_saga() {
   yield [
     set_ziltag_page_stream(),
@@ -169,6 +194,7 @@ export default function* root_saga() {
     deactivate_plugin_ziltag_reader(),
     listen_resize_event(),
     detect_mobile(),
-    listen_reader()
+    listen_reader(),
+    listen_forgot_password()
   ]
 }

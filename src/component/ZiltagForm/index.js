@@ -34,6 +34,8 @@ class ZiltagForm extends Component {
     return (
       <div className='ziltag-ziltag-form'>
         <div className='ziltag-ziltag-form__col0'>
+          {group['h1']}
+          {group['p']}
           {group['input']}
           {group['footer']}
         </div>

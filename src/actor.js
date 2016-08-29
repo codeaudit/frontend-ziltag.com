@@ -169,6 +169,7 @@ export function create_ziltag_comment(ziltag_id, content) {
 
 export const ziltag_input_join = createAction('ZILTAG_INPUT_JOIN')
 export const ziltag_input_sign_in = createAction('ZILTAG_INPUT_SIGN_IN')
+export const ziltag_input_forgot_password = createAction('ZILTAG_INPUT_FORGOT_PASSWORD')
 
 export const current_user_signed_out = createAction('CURRENT_USER_SIGNED_OUT')
 
@@ -239,11 +240,14 @@ export const sign_in_form_password_changed = createAction('SIGN_IN_FORM_PASSWORD
 export const join_form_name_changed = createAction('JOIN_FORM_NAME_CHANGED')
 export const join_form_email_changed = createAction('JOIN_FORM_EMAIL_CHANGED')
 
+export const forgot_password_form_email_changed = createAction('FORGOT_PASSWORD_FORM_EMAIL_CHANGED')
+
 export const activate_pseudo_comment = createAction('ACTIVATE_PSEUDO_COMMENT')
 export const deactivate_pseudo_comment = createAction('DEACTIVATE_PSEUDO_COMMENT')
 
 export const pseudo_comment_join = createAction('PSEUDO_COMMENT_JOIN')
 export const pseudo_comment_sign_in = createAction('PSEUDO_COMMENT_SIGN_IN')
+export const pseudo_comment_forgot_password = createAction('PSEUDO_COMMENT_FORGOT_PASSWORD')
 
 export const verification_mail_resended = createAction('VERIFICATION_MAIL_RESENDED')
 
@@ -280,3 +284,7 @@ export const update_client_state = createAction('UPDATE_CLIENT_STATE')
 
 export const set_current_ziltag_id = createAction('SET_CURRENT_ZILTAG_ID')
 export const set_current_ziltag_map_id = createAction('SET_CURRENT_ZILTAG_MAP_ID')
+
+export const forgot_password = createAction('FORGOT_PASSWORD')
+export const forgot_password_email_sent = createAction('FORGOT_PASSWORD_EMAIL_SENT')
+export const forgot_password_email_not_found = createAction('FORGOT_PASSWORD_EMAIL_NOT_FOUND')

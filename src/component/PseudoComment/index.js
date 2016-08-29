@@ -17,19 +17,23 @@ class PseudoComment extends Component {
       mode,
       join_form,
       sign_in_form,
+      forgot_password_form,
       current_user,
       current_ziltag_id,
       current_ziltag_map_id,
       pseudo_comment_join,
       pseudo_comment_sign_in,
+      pseudo_comment_forgot_password,
       deactivate_pseudo_comment,
       current_user_join,
       current_user_sign_in,
+      forgot_password,
       fetch_current_user,
       join_form_name_changed,
       join_form_email_changed,
       sign_in_form_user_changed,
-      sign_in_form_password_changed
+      sign_in_form_password_changed,
+      forgot_password_form_email_changed
     } = this.props
 
     function join() {
@@ -108,7 +112,7 @@ class PseudoComment extends Component {
                 </h1>
               <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
             </div>
-              <p><a href='/users/password/new'>Forgot password?</a></p>
+              <p><a onClick={pseudo_comment_forgot_password}>Forgot password?</a></p>
             </footer>
           </ZiltagForm>
         </div>
@@ -157,6 +161,42 @@ class PseudoComment extends Component {
               <p>
                 Signing up means you agree with our <a target='_blank' href='http://blog.ziltag.com/post/136853735385/terms-of-service'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/tagged/policy'>Privacy Policy</a>.
               </p>
+            </footer>
+          </ZiltagForm>
+        </div>
+      )
+    } else if (mode == 'forgot_password') {
+      var component = (
+        <div className='ziltag-pseudo-comment'>
+          <ZiltagForm>
+            <h1 className='ziltag-pseudo-comment__head'>Forgot your password?</h1>
+            <p className='ziltag-pseudo-comment__prompt'>Please enter your email to reset.</p>
+            <input
+              onChange={forgot_password_form_email_changed}
+              onKeyPress={(e) => {
+                if (e.key == 'Enter') {
+                  forgot_password()
+                }
+              }}
+              type='email'
+              name='email'
+              placeholder='Email'
+            />
+            <nav>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+            </nav>
+            <footer>
+              <div>
+                <h1
+                  onClick={forgot_password}
+                  className={'ziltag-ziltag-form__submit'}
+                >
+                  Send
+                </h1>
+              <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+            </div>
             </footer>
           </ZiltagForm>
         </div>
