@@ -9,10 +9,15 @@
     "build": "npm run build:server && npm run build:client",
     "build:server": "babel src --out-dir dist --ignore=client.js",
     "build:client": "webpack --config webpack/prod.config.babel.js",
-    "serve": "nodemon --debug=$((PORT-1)) src/server.js --ignore src/route.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --ignore src/saga.js --exec babel-node",
+    "serve": "nodemon --debug=$((${PORT:=2000}-1)) src/server.js --ignore src/route.js --ignore src/component --ignore src/page --ignore src/client.js --ignore src/reducer.js --ignore src/actor.js --ignore src/saga.js --exec babel-node",
     "start": "pm2 start dist/server.js -i 0 --name frontend",
     "stop": "pm2 delete frontend",
-    "restart": "pm2 restart frontend"
+    "restart": "pm2 restart frontend",
+    "docker:build": "CONTAINER_NAME=frontend-ziltag.com_build PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose build",
+    "docker:push": "docker tag frontend-ziltag.com_build localhost:5000/frontend-ziltag.com && docker push localhost:5000/frontend-ziltag.com",
+    "docker:initdb": "CONTAINER_NAME=frontend-ziltag.com_initdb PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose run --rm app bin/rake dev:setup",
+    "docker:serve": "CONTAINER_NAME=frontend-ziltag.com_serve PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose up",
+    "docker:npm": "docker exec frontend-ziltag.com_serve npm"
   },
   "repository": {
     "type": "git",
@@ -26,6 +31,7 @@
     "cz-conventional-changelog": "^1.1.6",
     "koa-webpack-dev-middleware": "^1.0.1",
     "koa-webpack-hot-middleware": "^1.0.1",
+    "nodemon": "^1.10.2",
     "redux-devtools": "^3.2.0",
     "redux-devtools-dock-monitor": "^1.1.1",
     "redux-devtools-log-monitor": "^1.0.10"
