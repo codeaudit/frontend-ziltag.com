@@ -17,6 +17,9 @@ Go to project `ziltag-plugin` and register `ziltag-plugin`'s image to local dock
 ### Initialize Database
 `npm run docker:initdb`
 
+### Migrate Database
+`npm run docker:migrate`
+
 ### Run dev server
 May operate by `hotel`.
 
