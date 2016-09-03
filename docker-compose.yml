@@ -20,8 +20,6 @@ services:
   ziltag-plugin:
     image: localhost:5000/ziltag-plugin
     command: npm run serve
-    expose:
-      - 4000
 
   db:
     image: postgres
