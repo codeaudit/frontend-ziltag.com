@@ -3,7 +3,7 @@ FROM node:6
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-RUN npm i -g pm2
+RUN npm i -g pm2 eslint babel-eslint
 COPY package.json /usr/src/app/package.json
 RUN npm i
 COPY . /usr/src/app
