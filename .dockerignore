@@ -1,0 +1,13 @@
+node_modules
+*.sublime-*
+dist
+vendor
+.bundle/config
+.DS_Store
+hotel.log
+npm-debug.log
+.git
+.gitignore
+Dockerfile
+docker-compose.yml
+.semaphore-cache
