@@ -3,8 +3,6 @@ import path from 'path'
 import webpack from 'webpack'
 import postcss_cssnext from 'postcss-cssnext'
 
-import {NODE_ENV} from '../env'
-
 
 module.exports = {
   output: {
@@ -29,9 +27,6 @@ module.exports = {
       'fetch': 'isomorphic-fetch'
     }),
     new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: `'${NODE_ENV}'`
-      },
       __WEBPACK__: true
     })
   ],

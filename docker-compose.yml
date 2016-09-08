@@ -3,66 +3,32 @@ services:
   frontend-ziltag.com:
     container_name: ${CONTAINER_NAME}
     build: .
-    image: frontend-ziltag.com
+    image: ziltag/frontend-ziltag.com
     command: npm run serve
+    links:
+      - ziltag.dev
     ports:
       - "${PORT}:2000"
       - "${SSL_PORT}:2001"
       - "${DEBUG_PORT}:1999"
-    links:
-      - ziltag-plugin
-      - web
-      - sse
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
 
-  ziltag-plugin:
-    image: localhost:5000/ziltag-plugin
-    command: npm run serve
-
-  db:
-    image: postgres
-    volumes:
-      - ziltag-db:/var/lib/postgresql/data
-    environment:
-      POSTGRES_DB: ziltag_development
-
-  app:
-    image: localhost:5000/ziltag.com
-    depends_on:
+  ziltag.dev:
+    image: ziltag/ziltag.com
+    links:
       - db
 
-  web:
-    image: localhost:5000/ziltag.com
-    command: bundle exec puma
-    expose:
-      - 3000
-    depends_on:
-      - app
+  ziltag-plugin:
+    image: ziltag/ziltag-plugin
 
-  sse:
-    image: localhost:5000/ziltag.com
-    command: ruby lib/sse.rb -svp 3310 --ssl --ssl-key ../config/ssl/localhost.key --ssl-cert ../config/ssl/localhost.crt -c ./sse/config.rb
-    expose:
-      - 3310
-    depends_on:
-      - app
-
-  worker:
-    image: localhost:5000/ziltag.com
-    command: bundle exec rake qc:work
+  db:
+    image: postgres:9.4
     environment:
-      QUEUES: "mailers,default"
-      QC_MEASURE: "true"
-    depends_on:
-      - app
-
-  webpack:
-    image: localhost:5000/ziltag.com
-    command: npm run dev
-    depends_on:
-      - app
+      POSTGRES_DB: ziltag_development
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
 volumes:
-  ziltag-db:
+  pgdata:
