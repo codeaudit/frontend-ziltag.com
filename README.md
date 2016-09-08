@@ -1,24 +1,16 @@
 # frontend-ziltag.com
 
 ## Development
-### Preliminary Operation
-Go to project `ziltag.com` and register `ziltag.com`'s image to local docker registry (will be eliminated after we push images to docker hub).
-
-`docker tag ${name or id of ziltag.com's image} localhost:5000/ziltag.com && docker push localhost:5000/ziltag.com`
-
-Go to project `frontend-ziltag.com` and register `frontend-ziltag.com`'s image to local docker registry (will be eliminated after we push images to docker hub).
-
-`npm run docker:build && npm run docker:push`
-
-Go to project `ziltag-plugin` and register `ziltag-plugin`'s image to local docker registry (will be eliminated after we push images to docker hub).
-
-`npm run docker:build && npm run docker:push`
-
 ### Initialize Database
 `npm run docker:initdb`
 
 ### Migrate Database
 `npm run docker:migrate`
+
+### Upgrade
+`npm run docker:upgrade`
+
+This command equals `npm run docker:pull && npm run docker:build && npm run docker:migrate`.
 
 ### Run dev server
 May operate by `hotel`.
@@ -35,3 +27,6 @@ e.g.
 `npm run docker:npm -- i -S react`
 
 `npm run docker:npm -- rm -S react`
+
+### Lint
+`npm run docker:npm -- run lint`
