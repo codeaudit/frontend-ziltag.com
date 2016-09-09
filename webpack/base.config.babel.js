@@ -19,17 +19,26 @@ module.exports = {
       { test: /\.json$/, loader: 'json' },
       { test: /\.(png|jpg|eot)$/, loader: 'url' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
-      { test: /\.jsx?$/, exclude:  /(node_modules)/, loaders: ['babel'] }
+      {
+        test: /\.jsx?$/,
+        exclude:  /(node_modules)/,
+        loader: 'babel' ,
+        query: {
+          presets: [['es2015', {modules: false}], 'stage-0', 'react']
+        }
+      }
     ]
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      'fetch': 'isomorphic-fetch'
-    }),
     new webpack.DefinePlugin({
       __WEBPACK__: true
     })
   ],
+  resolve: {
+    alias: {
+      fetch: 'isomorphic-fetch'
+    }
+  },
   postcss: () => {
     return [postcss_cssnext]
   }

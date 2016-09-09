@@ -11,8 +11,14 @@ module.exports = {
   module: {
     ...base_config.module
   },
+  devtool: 'hidden-source-map',
   plugins: [
     ...base_config.plugins,
+    new webpack.LoaderOptionsPlugin({
+      test: /\.(js|css|png|jpg)$/,
+      minimize: true,
+      debug: false
+    }),
     new webpack.optimize.UglifyJsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {

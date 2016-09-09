@@ -14,7 +14,7 @@ module.exports = {
   module: {
     ...base_config.module
   },
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   plugins: [
     ...base_config.plugins,
     new webpack.HotModuleReplacementPlugin(),
