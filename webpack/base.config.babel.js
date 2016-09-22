@@ -32,14 +32,17 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       __WEBPACK__: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        context: __dirname,
+        postcss: [postcss_cssnext]
+      }
     })
   ],
   resolve: {
     alias: {
       fetch: 'isomorphic-fetch'
     }
-  },
-  postcss: () => {
-    return [postcss_cssnext]
   }
 }
