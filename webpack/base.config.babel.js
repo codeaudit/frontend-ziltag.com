@@ -2,6 +2,7 @@ import path from 'path'
 
 import webpack from 'webpack'
 import postcss_cssnext from 'postcss-cssnext'
+import postcss_calc from 'postcss-calc'
 
 
 module.exports = {
@@ -36,7 +37,7 @@ module.exports = {
     new webpack.LoaderOptionsPlugin({
       options: {
         context: __dirname,
-        postcss: [postcss_cssnext]
+        postcss: [postcss_cssnext, postcss_calc]
       }
     })
   ],
