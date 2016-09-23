@@ -10,7 +10,7 @@
 ### Upgrade
 `npm run docker:upgrade`
 
-This command equals `npm run docker:build && npm run docker:migrate`.
+This command equals `npm run docker:pull && npm run docker:build && npm run docker:migrate`.
 
 ### Run dev server
 May operate by `hotel`.
