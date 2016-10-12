@@ -18,7 +18,7 @@ class Ziltag extends Component {
       ziltag
     } = this.props
 
-    const radius = 12
+    const radius = 10
 
     const style = {
       top: ziltag.y_px - radius,

@@ -1,14 +1,20 @@
+:root {
+  --ziltag-radius: 10px;
+  --ziltag-diameter: calc(var(--ziltag-radius) * 2);
+  --ziltag-border: 1px;
+}
+
 .ziltag-ziltag {
-  width: 24px;
-  height: 24px;
-  background: rgba(255, 255, 255, .9);
-  border: 5px solid rgba(0, 0, 0, .45);
+  width: var(--ziltag-diameter);
+  height: var(--ziltag-diameter);
+  background: rgba(151, 151, 151, .9);
+  border: var(--ziltag-border) solid rgba(255, 255, 255, .9);
   border-radius: 50%;
-  box-shadow: inset 0 0 1px rgba(151, 151, 151, 1);
+  box-shadow: 0 6px 2px rgba(0, 0, 0, .1);
   box-sizing: border-box;
   cursor: pointer;
 }
 
 .ziltag-ziltag--activated {
-  border: 5px solid rgba(238, 46, 36, .89);
+  background: rgba(238, 46, 36, .9);
 }
