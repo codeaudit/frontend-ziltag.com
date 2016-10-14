@@ -124,7 +124,7 @@ class ZiltagMap extends Component {
             ziltag_map={ziltag_map}
             key={'co-div-' + ziltag.id}
           >
-            <ZiltagPreview ziltag={ziltag}/>
+            <ZiltagPreview content={ziltag.content} author={ziltag.usr.name}/>
           </CoDiv>
         ]
       }
