@@ -335,11 +335,11 @@ class ZiltagMap extends Component {
                 Math.pow(point1.x - point2.x, 2) +
                 Math.pow(point1.y - point2.y, 2)
               )
-              const radius = 12
+              const radius = 10
               return distance < 2 * radius
             }
 
-            const radius = 12
+            const radius = 10
             const x_px = e.nativeEvent.offsetX
             const y_px = e.nativeEvent.offsetY
             const x = x_px / ziltag_map.width
