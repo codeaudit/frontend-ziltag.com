@@ -1,7 +1,4 @@
-import React, {Component} from 'react'
-
-import Avatar from '../Avatar'
-
+import React from 'react'
 
 try {
   if (__WEBPACK__) {
@@ -10,24 +7,19 @@ try {
 } catch (e) {}
 
 
-class ZiltagPreview extends Component {
-  render() {
-    const {
-      ziltag
-    } = this.props
-
-    return (
-      <div className='ziltag-ziltag-preview'>
-        <div className='ziltag-ziltag-preview__content'>
-          {ziltag.content}
-        </div>
-        <Avatar
-          className='ziltag-ziltag-preview__avatar'
-          src={ziltag.usr.avatar}
-        />
-      </div>
-    )
-  }
+function ellipsize(text) {
+  const max_len = 140
+  const result = text.slice(0, max_len)
+  return result.length < max_len ? result : `${result}...`
 }
 
-export default ZiltagPreview
+export default ({content, author}) => (
+  <div className='ziltag-ziltag-preview'>
+    <div className='ziltag-ziltag-preview__author'>
+      {author}
+    </div>
+    <div className='ziltag-ziltag-preview__content'>
+      {ellipsize(content)}
+    </div>
+  </div>
+)
