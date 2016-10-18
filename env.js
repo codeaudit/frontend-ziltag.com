@@ -11,4 +11,4 @@ exports.SSE_ADDR = 'https://ziltag.dev:3310'
 exports.PLUGIN_ADDR = 'http://ziltag-plugin:4000/dist/ziltag-plugin.js'
 exports.FILE_ADDR = 'https://ziltag.dev:3000'
 exports.FORCE_SSL = false
-exports.ENABLE_DEVTOOL = true
+exports.ENABLE_DEVTOOL = false
