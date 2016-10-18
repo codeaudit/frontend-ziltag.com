@@ -14,7 +14,7 @@
     "stop": "pm2 delete frontend",
     "restart": "pm2 restart frontend",
     "docker:pull": "docker-compose -f docker-compose.build.yml pull",
-    "docker:build": "docker-compose -f docker-compose.build.yml down && docker-compose -f docker-compose.build.yml build",
+    "docker:build": "docker-compose -f docker-compose.build.yml stop frontend-ziltag.com && docker-compose -f docker-compose.build.yml rm -v -f frontend-ziltag.com && docker-compose -f docker-compose.build.yml down && docker-compose -f docker-compose.build.yml build",
     "docker:upgrade": "npm run docker:pull && npm run docker:build && npm run docker:migrate",
     "docker:initdb": "CONTAINER_NAME=frontend-ziltag.com_initdb PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose run --rm ziltag.dev bin/rake dev:setup",
     "docker:migrate": "CONTAINER_NAME=frontend-ziltag.com_migrate PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose run --rm ziltag.dev bin/rake db:migrate",
