@@ -187,6 +187,25 @@ function* forgot_password() {
   }
 }
 
+function* dispatch_event() {
+  while (true) {
+    const {
+      ziltag_input_activated
+    } = yield race({
+      ziltag_input_activated: take('ACTIVATE_ZILTAG_INPUT')
+    })
+
+    if (ziltag_input_activated) {
+      var message = {
+        type: 'event',
+        payload: {type: 'ZILTAG_INPUT_ACTIVATED'}
+      }
+    }
+
+    window.parent.postMessage(message, '*')
+  }
+}
+
 export default function* root_saga() {
   yield [
     set_ziltag_page_stream(),
@@ -195,6 +214,7 @@ export default function* root_saga() {
     listen_resize_event(),
     detect_mobile(),
     listen_reader(),
-    listen_forgot_password()
+    listen_forgot_password(),
+    dispatch_event()
   ]
 }
