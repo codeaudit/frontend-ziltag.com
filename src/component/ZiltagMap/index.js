@@ -278,7 +278,7 @@ class ZiltagMap extends Component {
                   <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
                 </div>
                 <p>
-                  Signing up means you agree with our <a target='_blank' href='http://blog.ziltag.com/post/136853735385/terms-of-service'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/tagged/policy'>Privacy Policy</a>.
+                  Join means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
                 </p>
               </footer>
             </ZiltagForm>
