@@ -10,7 +10,7 @@ try {
 
 class Logo extends Component {
   render() {
-    return <div className='ziltag-logo'></div>
+    return <a className='ziltag-logo' href='/' target='_blank'/>
   }
 }
 
