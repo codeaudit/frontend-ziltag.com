@@ -94,7 +94,7 @@ class ZiltagMap extends Component {
         ziltag.y_px = ziltag.y * ziltag_map.height
 
         ziltag.activated = (
-          ziltag.id == current_ziltag_id && !ziltag_input.activated
+          ziltag.id === current_ziltag_id && !ziltag_input.activated
         )
         ? true : false
 
@@ -130,6 +130,158 @@ class ZiltagMap extends Component {
       }
     )
 
+    const co_div_child_component = do {
+      if (current_user.usr) {
+        if (current_user.usr.confirmed) {
+          <ZiltagInput
+            onChange={ziltag_input_changed}
+            onSubmit={() => {
+              const {
+                map_id,
+                x,
+                y,
+                content
+              } = ziltag_input
+
+              create_ziltag(map_id, x, y, content)
+              .then((action) => {
+                fetch_ziltag(action.payload.value.id)
+                push(`/ziltags/${action.payload.value.id}`)
+                fetch_ziltag_map(ziltag_map.id)
+                deactivate_ziltag_input()
+              })
+            }}
+            ziltag_input={ziltag_input}
+          />
+        } else {
+          <ZiltagMapDialog>
+            <p>
+              <strong>Please verify your account to post a tag.</strong>
+              <br/>
+              Haven’t received confirmation email?
+            </p>
+            <nav>
+              <div
+                className='ziltag-ziltag-form__link'
+                onClick={resend_verification_mail}
+              >
+                Resend Email
+              </div>
+            </nav>
+          </ZiltagMapDialog>
+        }
+      } else {
+        if (ziltag_input.mode === 'join') {
+          <ZiltagForm>
+            <input
+              onChange={join_form_name_changed}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  join()
+                }
+              }}
+              name='name'
+              placeholder='Name'
+              autoFocus
+            />
+            <input
+              onChange={join_form_email_changed}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  join()
+                }
+              }}
+              type='email'
+              name='email'
+              placeholder='Email'
+            />
+            <nav>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+            </nav>
+            <footer>
+              <div>
+                <h1
+                  onClick={join}
+                  className={'ziltag-ziltag-form__submit'}
+                >
+                  Join
+                </h1>
+                <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+              </div>
+              <p>
+                Join means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
+              </p>
+            </footer>
+          </ZiltagForm>
+        } else if (ziltag_input.mode === 'post_join') {
+          <ZiltagMapDialog>
+            <p>
+              <strong>
+                Thank you for joining us. A verification email has sent.
+              </strong>
+              <br/>
+              Please check your inbox to verify your account. Thank you.
+            </p>
+          </ZiltagMapDialog>
+        } else if (ziltag_input.mode === 'sign_in') {
+          <ZiltagForm>
+            <input
+              onChange={sign_in_form_user_changed}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  sign_in()
+                }
+              }}
+              type='email'
+              name='email'
+              placeholder='Email'
+              autoFocus
+            />
+            <input
+              onChange={sign_in_form_password_changed}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  sign_in()
+                }
+              }}
+              type='password'
+              name='password'
+              placeholder='Password'
+            />
+            <nav>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
+              <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+            </nav>
+            <footer>
+              <div>
+                <h1
+                  onClick={sign_in}
+                  className={'ziltag-ziltag-form__submit'}
+                >
+                  Sign In
+                </h1>
+                <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+              </div>
+              <p><a href='/users/password/new'>Forgot password?</a></p>
+            </footer>
+          </ZiltagForm>
+        } else {
+          <ZiltagMapDialog>
+            <p>
+              <strong>Oops! You need to have an account to post a tag.</strong>
+            </p>
+            <nav>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+            </nav>
+          </ZiltagMapDialog>
+        }
+      }
+    }
+
     const ziltag_input_components = ziltag_input.activated && [
       <Ziltag
         onClick={(e) => {
@@ -147,161 +299,7 @@ class ZiltagMap extends Component {
         ziltag_map={ziltag_map}
         key='ziltag_input'
       >
-        {
-          current_user.usr
-          ? current_user.usr.confirmed
-            ? <ZiltagInput
-                onChange={ziltag_input_changed}
-                onSubmit={() => {
-                  const {
-                    map_id,
-                    x,
-                    y,
-                    content
-                  } = ziltag_input
-
-                  create_ziltag(map_id, x, y, content)
-                  .then((action) => {
-                    fetch_ziltag(action.payload.value.id)
-                    push(`/ziltags/${action.payload.value.id}`)
-                    fetch_ziltag_map(ziltag_map.id)
-                    deactivate_ziltag_input()
-                  })
-                }}
-                ziltag_input={ziltag_input}
-              />
-            : ziltag_input.mode != 'post_join'
-            ? <ZiltagMapDialog>
-                <p>
-                  <strong>Please verify your account to post a tag.</strong>
-                  <br/>
-                  Haven’t received confirmation email?
-                </p>
-                <nav>
-                  <div
-                    className='ziltag-ziltag-form__link'
-                    onClick={resend_verification_mail}
-                  >
-                    Resend Email
-                  </div>
-                </nav>
-              </ZiltagMapDialog>
-            : <ZiltagMapDialog>
-                <p>
-                  <strong>
-                    Thank you for joining us. A verification email has sent.
-                  </strong>
-                  <br/>
-                  Please check your inbox to verify your account. Thank you.
-                </p>
-              </ZiltagMapDialog>
-          : ziltag_input.mode == 'sign_in'
-          ? <ZiltagForm>
-              <input
-                onChange={sign_in_form_user_changed}
-                onKeyPress={(e) => {
-                  if (e.key == 'Enter') {
-                    sign_in()
-                  }
-                }}
-                type='email'
-                name='email'
-                placeholder='Email'
-                autoFocus
-              />
-              <input
-                onChange={sign_in_form_password_changed}
-                onKeyPress={(e) => {
-                  if (e.key == 'Enter') {
-                    sign_in()
-                  }
-                }}
-                type='password'
-                name='password'
-                placeholder='Password'
-              />
-              <nav>
-                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
-                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
-                <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
-              </nav>
-              <footer>
-                <div>
-                  <h1
-                    onClick={sign_in}
-                    className={'ziltag-ziltag-form__submit'}
-                  >
-                    Sign In
-                  </h1>
-                  <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
-                </div>
-                <p><a href='/users/password/new'>Forgot password?</a></p>
-              </footer>
-            </ZiltagForm>
-          : ziltag_input.mode == 'join'
-          ? <ZiltagForm>
-              <input
-                onChange={join_form_name_changed}
-                onKeyPress={(e) => {
-                  if (e.key == 'Enter') {
-                    join()
-                  }
-                }}
-                name='name'
-                placeholder='Name'
-                autoFocus
-              />
-              <input
-                onChange={join_form_email_changed}
-                onKeyPress={(e) => {
-                  if (e.key == 'Enter') {
-                    join()
-                  }
-                }}
-                type='email'
-                name='email'
-                placeholder='Email'
-              />
-              <nav>
-                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
-                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
-                <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
-              </nav>
-              <footer>
-                <div>
-                  <h1
-                    onClick={join}
-                    className={'ziltag-ziltag-form__submit'}
-                  >
-                    Join
-                  </h1>
-                  <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
-                </div>
-                <p>
-                  Join means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
-                </p>
-              </footer>
-            </ZiltagForm>
-          : ziltag_input.mode == 'post_join'
-          ? <ZiltagMapDialog>
-              <p>
-                <strong>
-                  Thank you for joining us. A verification email has sent.
-                </strong>
-                <br/>
-                Please check your inbox to verify your account. Thank you.
-              </p>
-            </ZiltagMapDialog>
-          : <ZiltagMapDialog>
-              <p>
-                <strong>Oops! You need to have an account to post a tag.</strong>
-              </p>
-              <nav>
-                <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
-                <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
-              </nav>
-            </ZiltagMapDialog>
-        }
+        {co_div_child_component}
       </CoDiv>
     ]
 
