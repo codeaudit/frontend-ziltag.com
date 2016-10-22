@@ -322,7 +322,7 @@ class ZiltagMap extends Component {
           src={ziltag_map.src}
         />
         {
-          !ziltag_input.activated && current_user.usr && current_user.permissions.includes('create_ziltag') &&
+          !ziltag_input.activated && current_user.permissions && current_user.permissions.includes('create_ziltag') &&
           <div className='ziltag-ziltag-map__prompt'>
             click anywhere to tag
           </div>
@@ -355,7 +355,7 @@ class ZiltagMap extends Component {
                 {x: x_px, y: y_px}
               )).length
             ) {
-              if (current_user.permissions.includes('create_ziltag')) {
+              if (current_user.permissions && current_user.permissions.includes('create_ziltag')) {
                 activate_ziltag_input({x_px, y_px, x, y, map_id: ziltag_map.id})
               }
               e.stopPropagation()

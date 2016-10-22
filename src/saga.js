@@ -19,7 +19,8 @@ import {
   window_resized,
   update_client_state,
   forgot_password_email_sent,
-  forgot_password_email_not_found
+  forgot_password_email_not_found,
+  fetch_current_user
 } from './actor'
 
 
@@ -206,6 +207,14 @@ function* dispatch_event() {
   }
 }
 
+function* post_sign_out() {
+  while (true) {
+    yield take('CURRENT_USER_SIGNED_OUT')
+    const ziltag_map_id = yield select(state => state.current_ziltag_map_id)
+    yield put(fetch_current_user({ziltag_map_id}))
+  }
+}
+
 export default function* root_saga() {
   yield [
     set_ziltag_page_stream(),
@@ -215,6 +224,7 @@ export default function* root_saga() {
     detect_mobile(),
     listen_reader(),
     listen_forgot_password(),
-    dispatch_event()
+    dispatch_event(),
+    post_sign_out()
   ]
 }

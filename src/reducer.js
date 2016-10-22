@@ -23,13 +23,13 @@ function current_user(state={}, action) {
     case 'CURRENT_USER_SIGNED_OUT':
       return {}
     case 'CURRENT_USER_SIGN_IN_FAILED':
-      return {status: 'sign_in_failed', prompt: action.payload.value.error}
+      return {...state, status: 'sign_in_failed', prompt: action.payload.value.error}
     case 'CURRENT_USER_JOIN_FAILED':
-      return {status: 'join_failed', prompt: action.payload.value.error}
+      return {...state, status: 'join_failed', prompt: action.payload.value.error}
     case 'FORGOT_PASSWORD_EMAIL_NOT_FOUND':
-      return {status: 'email_not_found', prompt: action.payload.error}
+      return {...state, status: 'email_not_found', prompt: action.payload.error}
     case 'FORGOT_PASSWORD_EMAIL_SENT':
-      return {status: 'email_sent', prompt: action.payload.message}
+      return {...state, status: 'email_sent', prompt: action.payload.message}
     case 'ACTIVATE_ZILTAG_INPUT':
     case 'ZILTAG_INPUT_SIGN_IN':
     case 'ZILTAG_INPUT_JOIN':
