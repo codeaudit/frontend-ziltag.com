@@ -329,6 +329,8 @@ function resend_verification_mail_tip(state={}, action) {
   switch (action.type) {
     case 'VERIFICATION_MAIL_RESENDED':
       return {done: true, ...action.payload}
+    case 'DEACTIVATE_ZILTAG_INPUT':
+      return {}
     default:
       return state
   }

@@ -41,6 +41,7 @@ class ZiltagMap extends Component {
       forgot_password,
       push,
       resend_verification_mail,
+      resend_verification_mail_tip,
       ziltag_input_forgot_password,
       ziltag_map,
       ziltags,
@@ -156,6 +157,12 @@ class ZiltagMap extends Component {
             }}
             ziltag_input={ziltag_input}
           />
+        } else if (resend_verification_mail_tip.initiator && resend_verification_mail_tip.initiator.ziltag_map_id === ziltag_map.id) {
+          <ZiltagMapDialog>
+            <p className='ziltag-ziltag-comment__warn'>
+              Confirmation email sent. Please check you inbox.
+            </p>
+          </ZiltagMapDialog>
         } else {
           <ZiltagMapDialog>
             <p>
@@ -166,7 +173,10 @@ class ZiltagMap extends Component {
             <nav>
               <div
                 className='ziltag-ziltag-form__link'
-                onClick={resend_verification_mail}
+                onClick={() => {resend_verification_mail({
+                  initiator: {
+                    ziltag_map_id: ziltag_map.id
+                }})}}
               >
                 Resend Email
               </div>
