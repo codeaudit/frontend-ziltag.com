@@ -18,6 +18,10 @@
   color: white;
 }
 
+.ziltag-forgot-password-form__head {
+  font-size: 20px;
+}
+
 .ziltag-ziltag-map .ziltag-ziltag-map__img,
 .ziltag-ziltag-map__prompt,
 .ziltag-ziltag-map__container {

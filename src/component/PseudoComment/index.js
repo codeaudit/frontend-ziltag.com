@@ -170,11 +170,11 @@ class PseudoComment extends Component {
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <h1 className='ziltag-pseudo-comment__head'>Forgot your password?</h1>
-            <p className='ziltag-pseudo-comment__prompt'>Please enter your email to reset.</p>
+            <p>Please enter your email to reset.</p>
             <input
               onChange={forgot_password_form_email_changed}
               onKeyPress={(e) => {
-                if (e.key == 'Enter') {
+                if (e.key === 'Enter') {
                   forgot_password()
                 }
               }}

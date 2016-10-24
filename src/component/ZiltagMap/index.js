@@ -36,9 +36,12 @@ class ZiltagMap extends Component {
       sign_in_form_password_changed,
       join_form_name_changed,
       join_form_email_changed,
+      forgot_password_form_email_changed,
       create_ziltag,
+      forgot_password,
       push,
       resend_verification_mail,
+      ziltag_input_forgot_password,
       ziltag_map,
       ziltags,
       co_divs,
@@ -265,7 +268,39 @@ class ZiltagMap extends Component {
                 </h1>
                 <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
               </div>
-              <p><a href='/users/password/new'>Forgot password?</a></p>
+              <p><a onClick={ziltag_input_forgot_password}>Forgot password?</a></p>
+            </footer>
+          </ZiltagForm>
+        } else if (ziltag_input.mode === 'forgot_password') {
+          <ZiltagForm>
+            <h1 className='ziltag-forgot-password-form__head'>Forgot your password?</h1>
+            <p>Please enter your email to reset.</p>
+            <input
+              onChange={forgot_password_form_email_changed}
+              onKeyPress={(e) => {
+                if (e.key === 'Enter') {
+                  forgot_password()
+                }
+              }}
+              type='email'
+              name='email'
+              placeholder='Email'
+            />
+            <nav>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
+            </nav>
+            <footer>
+              <div>
+                <h1
+                  onClick={forgot_password}
+                  className={'ziltag-ziltag-form__submit'}
+                >
+                  Send
+                </h1>
+              <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
+            </div>
             </footer>
           </ZiltagForm>
         } else {
