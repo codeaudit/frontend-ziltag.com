@@ -212,6 +212,20 @@ function* post_sign_out() {
     yield take('CURRENT_USER_SIGNED_OUT')
     const ziltag_map_id = yield select(state => state.current_ziltag_map_id)
     yield put(fetch_current_user({ziltag_map_id}))
+    window.parent.postMessage({
+      type: 'event',
+      payload: {type: 'CURRENT_USER_SIGNED_OUT'}
+    }, '*')
+  }
+}
+
+function* post_sign_in() {
+  while (true) {
+    yield take('CURRENT_USER_SIGNED_IN')
+    window.parent.postMessage({
+      type: 'event',
+      payload: {type: 'CURRENT_USER_SIGNED_IN'}
+    }, '*')
   }
 }
 
@@ -225,6 +239,7 @@ export default function* root_saga() {
     listen_reader(),
     listen_forgot_password(),
     dispatch_event(),
-    post_sign_out()
+    post_sign_out(),
+    post_sign_in()
   ]
 }
