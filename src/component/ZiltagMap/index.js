@@ -176,7 +176,8 @@ class ZiltagMap extends Component {
                 onClick={() => {resend_verification_mail({
                   initiator: {
                     ziltag_map_id: ziltag_map.id
-                }})}}
+                  }
+                })}}
               >
                 Resend Email
               </div>
