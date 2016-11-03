@@ -71,7 +71,10 @@ export function create_ziltag(map_id, x, y, content) {
         map_id, x, y, content
       }
     })
-  }), ziltag_created)
+  }), resp => {
+    resp.value = {x, y, ...resp.value}
+    return ziltag_created(resp)
+  })
 }
 
 export const activate_ziltag_edit_mode = createAction('ACTIVATE_ZILTAG_EDIT_MODE')
