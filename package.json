@@ -18,7 +18,8 @@
     "docker:upgrade": "npm run docker:pull && npm run docker:build && npm run docker:migrate",
     "docker:initdb": "CONTAINER_NAME=frontend-ziltag.com_initdb PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose run --rm ziltag.dev bin/rake dev:setup",
     "docker:migrate": "CONTAINER_NAME=frontend-ziltag.com_migrate PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose run --rm ziltag.dev bin/rake db:migrate",
-    "docker:serve": "CONTAINER_NAME=frontend-ziltag.com_serve PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose up",
+    "docker:serve": "npm run docker:stop && CONTAINER_NAME=frontend-ziltag.com_serve PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose up",
+    "docker:stop": "CONTAINER_NAME=frontend-ziltag.com_serve PORT=${PORT:=2000} SSL_PORT=$((${PORT:=2000}+1)) DEBUG_PORT=$((${PORT:=2000}-1)) docker-compose stop $CONTAINER_NAME",
     "docker:npm": "docker exec frontend-ziltag.com_serve npm"
   },
   "repository": {
