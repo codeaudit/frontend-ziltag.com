@@ -7,7 +7,6 @@ RUN npm i -g pm2
 COPY ./package.json /usr/src/app/package.json
 RUN npm i
 COPY ./ssl /usr/src/app/ssl
-COPY ./.eslintrc /usr/src/app/.eslintrc
 COPY ./env.js /usr/src/app/env.js
 COPY ./webpack /usr/src/app/webpack
 COPY ./src /usr/src/app/src
