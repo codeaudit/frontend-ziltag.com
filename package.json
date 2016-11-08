@@ -34,6 +34,7 @@
     "babel-eslint": "^6.1.2",
     "cz-conventional-changelog": "^1.1.6",
     "eslint": "^3.4.0",
+    "eslint-plugin-react": "^6.6.0",
     "koa-webpack-dev-middleware": "^1.0.1",
     "koa-webpack-hot-middleware": "^1.0.1",
     "nodemon": "^1.10.2",
@@ -102,5 +103,46 @@
       "stage-0",
       "react"
     ]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "modules": true,
+        "jsx": true
+      }
+    },
+    "plugins": [
+      "react"
+    ],
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "rules": {
+      "no-console": "off",
+      "no-constant-condition": [
+        "error",
+        {
+          "checkLoops": false
+        }
+      ],
+      "no-empty": [
+        "error",
+        {
+          "allowEmptyCatch": true
+        }
+      ],
+      "react/display-name": "off",
+      "react/prop-types": "off"
+    },
+    "globals": {
+      "__WEBPACK__": false
+    }
   }
 }

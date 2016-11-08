@@ -1,13 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-router'
 import {bindActionCreators} from 'redux'
 import {push} from 'redux-router'
-import classNames from 'classnames'
 
 import BasePage from '../../component/BasePage'
-import Avatar from '../../component/Avatar'
-import Ziltag404Page from '../../component/Ziltag404Page'
 
 import * as actors from '../../actor'
 

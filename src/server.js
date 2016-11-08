@@ -134,7 +134,7 @@ app.use(polyfill(staticCache(path.join(__dirname, 'public'), {
   prefix: '/public'
 })))
 
-app.use(async (ctx, next) => {
+app.use(async ctx => {
   if (ctx.path == '/plugin.js') {
     plugin_proxy.web(ctx.req, ctx.res)
     ctx.respond = false
@@ -151,7 +151,7 @@ app.use(async (ctx, next) => {
     )(createStore)(reducer)
 
     store.dispatch(match(ctx.request.originalUrl,
-      (error, redirectLocation, routerState) => {
+      () => {
         var component = (
           <Provider store={store} key="provider">
             <ReduxRouter/>

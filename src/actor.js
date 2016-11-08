@@ -2,8 +2,6 @@ import {createAction} from 'redux-actions'
 import {bind} from 'redux-effects'
 import {fetch} from 'redux-effects-fetch'
 
-import {API_ADDR} from '../env'
-
 
 export const current_user_fetched = createAction('CURRENT_USER_FETCHED')
 

@@ -8,11 +8,8 @@ import ReaderPage from './page/ReaderPage'
 
 export default (
 	<Route path='/'>
-	  <Route path='/ziltag_maps/:id' component={ZiltagMapPage}>
-	  </Route>
-	  <Route path='/ziltags/:id' component={ZiltagPage}>
-	  </Route>
-    <Route path='/reader' component={ReaderPage}>
-    </Route>
+    <Route path='/ziltag_maps/:id' component={ZiltagMapPage}/>
+    <Route path='/ziltags/:id' component={ZiltagPage}/>
+    <Route path='/reader' component={ReaderPage}/>
   </Route>
 )

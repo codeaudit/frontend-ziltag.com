@@ -41,7 +41,6 @@ class ZiltagContent extends Component {
   render() {
     const {
       id,
-      map_id,
       content,
       author,
       mode,
@@ -52,7 +51,6 @@ class ZiltagContent extends Component {
       activate_ziltag_edit_mode,
       deactivate_ziltag_edit_mode,
       activate_ziltag_delete_mode,
-      deactivate_ziltag_delete_mode,
       edit_ziltag,
       delete_ziltag,
       go_next_media_content,
@@ -63,27 +61,8 @@ class ZiltagContent extends Component {
       edit_ziltag(id, ziltag_editor.content)
     }
 
-    if (usr && author && usr.name == author.name) {
-      var edit_operator_components = (
-        <div className='ziltag-ziltag-content__row'>
-          <div
-            className='ziltag-ziltag-content__edit-operator'
-            onClick={() => activate_ziltag_edit_mode(content)}
-          >
-            Edit
-          </div>
-          <div
-            className='ziltag-ziltag-content__edit-operator'
-            onClick={activate_ziltag_delete_mode}
-          >
-            Delete
-          </div>
-        </div>
-      )
-    }
-
-    if (mode == 'edit') {
-      var text_component = (
+    const text_component = do {
+      if (mode === 'edit') {
         <TextareaAutosize
           className={classNames(
             'ziltag-ziltag-content__text',
@@ -102,77 +81,88 @@ class ZiltagContent extends Component {
           onChange={onChange}
           defaultValue={content}
         />
-      )
-
-      var edit_operator_components = (
-          <div
-            className={classNames(
-              'ziltag-ziltag-content__row',
-              'ziltag-ziltag-content__row--editing',
-            )}
-          >
-            <div
-              className='ziltag-ziltag-content__edit-operator'
-              onClick={deactivate_ziltag_edit_mode}
-            >
-              Cancel
-            </div>
-            <div
-              className={
-                classNames(
-                  'ziltag-ziltag-content__edit-operator',
-                  'ziltag-ziltag-content__edit-operator--confirm'
-                )
-              }
-              onClick={() => {
-                save()
-              }}
-            >
-              Save
-            </div>
-          </div>
-      )
-    } else {
-      var text_component = (
+      } else {
         <div className='ziltag-ziltag-content__text'>
           {this.anchorify(content)}
         </div>
-      )
+      }
+    }
 
-      if (mode == 'delete') {
-        var edit_operator_components = (
+    const edit_operator_components = do {
+      if (mode === 'edit') {
+        <div
+          className={classNames(
+            'ziltag-ziltag-content__row',
+            'ziltag-ziltag-content__row--editing',
+          )}
+        >
           <div
-            className={classNames(
-              'ziltag-ziltag-content__row',
-              'ziltag-ziltag-content__row--deleting',
-            )}
+            className='ziltag-ziltag-content__edit-operator'
+            onClick={deactivate_ziltag_edit_mode}
           >
-            <div
-              className={
-                classNames(
-                  'ziltag-ziltag-content__edit-operator',
-                  'ziltag-ziltag-content__edit-operator--warn'
-                )
-              }
-            >
-              Delete?
-            </div>
-            <div
-              className='ziltag-ziltag-content__edit-operator'
-              onClick={() => {
-                delete_ziltag(id)
-              }}
-            >
-              Confirm
-            </div>
-            <div
-              className='ziltag-ziltag-content__edit-operator'
-              onClick={deactivate_ziltag_edit_mode}
-            >
-              Cancel
-            </div>
+            Cancel
           </div>
-        )
+          <div
+            className={
+              classNames(
+                'ziltag-ziltag-content__edit-operator',
+                'ziltag-ziltag-content__edit-operator--confirm'
+              )
+            }
+            onClick={() => {
+              save()
+            }}
+          >
+            Save
+          </div>
+        </div>
+      } else if (mode === 'delete') {
+        <div
+          className={classNames(
+            'ziltag-ziltag-content__row',
+            'ziltag-ziltag-content__row--deleting',
+          )}
+        >
+          <div
+            className={
+              classNames(
+                'ziltag-ziltag-content__edit-operator',
+                'ziltag-ziltag-content__edit-operator--warn'
+              )
+            }
+          >
+            Delete?
+          </div>
+          <div
+            className='ziltag-ziltag-content__edit-operator'
+            onClick={() => {
+              delete_ziltag(id)
+            }}
+          >
+            Confirm
+          </div>
+          <div
+            className='ziltag-ziltag-content__edit-operator'
+            onClick={deactivate_ziltag_edit_mode}
+          >
+            Cancel
+          </div>
+        </div>
+      } else if (usr && author && usr.name === author.name) {
+        <div className='ziltag-ziltag-content__row'>
+          <div
+            className='ziltag-ziltag-content__edit-operator'
+            onClick={() => activate_ziltag_edit_mode(content)}
+          >
+            Edit
+          </div>
+          <div
+            className='ziltag-ziltag-content__edit-operator'
+            onClick={activate_ziltag_delete_mode}
+          >
+            Delete
+          </div>
+        </div>
       }
     }
 

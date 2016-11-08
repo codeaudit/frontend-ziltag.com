@@ -17,9 +17,7 @@ class PseudoComment extends Component {
       mode,
       join_form,
       sign_in_form,
-      forgot_password_form,
       current_user,
-      current_ziltag_id,
       current_ziltag_map_id,
       pseudo_comment_join,
       pseudo_comment_sign_in,
@@ -70,8 +68,8 @@ class PseudoComment extends Component {
       })
     }
 
-    if (mode == 'sign_in') {
-      var component = (
+    return do {
+      if (mode === 'sign_in') {
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <input
@@ -116,9 +114,7 @@ class PseudoComment extends Component {
             </footer>
           </ZiltagForm>
         </div>
-      )
-    } else if (mode == 'join') {
-      var component = (
+      } else if (mode === 'join') {
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <input
@@ -164,9 +160,7 @@ class PseudoComment extends Component {
             </footer>
           </ZiltagForm>
         </div>
-      )
-    } else if (mode == 'forgot_password') {
-      var component = (
+      } else if (mode === 'forgot_password') {
         <div className='ziltag-pseudo-comment'>
           <ZiltagForm>
             <h1 className='ziltag-pseudo-comment__head'>Forgot your password?</h1>
@@ -200,9 +194,7 @@ class PseudoComment extends Component {
             </footer>
           </ZiltagForm>
         </div>
-      )
-    } else if (mode == 'read') {
-      var component = (
+      } else if (mode === 'read') {
         <div className='ziltag-pseudo-comment'>
           <Avatar className='ziltag-pseudo-comment__user-avatar'/>
           <div className='ziltag-pseudo-comment__main'>
@@ -235,10 +227,8 @@ class PseudoComment extends Component {
             </div>
           </nav>
         </div>
-      )
+      }
     }
-
-    return component
   }
 }
 

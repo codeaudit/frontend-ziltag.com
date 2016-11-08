@@ -127,8 +127,7 @@ class ZiltagPage extends Component {
       ziltag_comment_editor_changed,
       activate_social_media_menu,
       deactivate_social_media_menu,
-      deactivate_ziltag_reader,
-      push
+      deactivate_ziltag_reader
     } = this.actors
 
     const {
@@ -176,17 +175,15 @@ class ZiltagPage extends Component {
       )
     }
 
-    if (pseudo_comment.mode) {
-      var comment_input_area = (
+    const comment_input_area = do {
+      if (pseudo_comment.mode) {
         <PseudoComment
           {...this.props}
           {...this.actors}
           {...ziltag_comment_input}
           {...pseudo_comment}
         />
-      )
-    } else {
-      var comment_input_area = (
+      } else {
         <ZiltagCommentInput
           {...this.props}
           {...this.actors}
@@ -198,7 +195,7 @@ class ZiltagPage extends Component {
             )
           }}
         />
-      )
+      }
     }
 
     const created_at = new Date(current_ziltag.created_at)
@@ -220,20 +217,18 @@ class ZiltagPage extends Component {
       </div>
     )
 
-    if (is_mobile) {
-      var op_left_component = (
+    const op_left_component = do {
+      if (is_mobile) {
         <div className='ziltag-ziltag-page__op-left'>
           {op_name_component}
           {created_at_div}
         </div>
-      )
-    } else {
-      var op_left_component = (
+      } else {
         <div className='ziltag-ziltag-page__op-left'>
           {created_at_div}
           {op_name_component}
         </div>
-      )
+      }
     }
 
     return (

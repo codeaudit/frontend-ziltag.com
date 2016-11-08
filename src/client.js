@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const persistState = require('redux-devtools').persistState
     const DevTools = require('./devtool').default
 
-    function getDebugSessionKey() {
+    const getDebugSessionKey = () => {
       const matches = window.location.href.match(/[?&]debug_session=([^&]+)\b/)
       return (matches && matches.length > 0) ? matches[1] : null
     }

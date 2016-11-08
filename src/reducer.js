@@ -62,17 +62,18 @@ function ziltag_maps(state={}, action) {
 }
 
 function ziltags(state={}, action) {
+  let next_state = {...state}
+
   switch (action.type) {
     case 'ZILTAG_MAP_FETCHED':
-      const ziltag_map_fetched_state = {...state}
       for (const ziltag of action.payload.value.ziltags) {
-        ziltag_map_fetched_state[ziltag.id] = {
-          ...ziltag_map_fetched_state[ziltag.id],
+        next_state[ziltag.id] = {
+          ...next_state[ziltag.id],
           ...ziltag,
           map_id: action.payload.value.id
         }
       }
-      return ziltag_map_fetched_state
+      return next_state
     case 'ZILTAG_EDITED':
       return {...state, [action.payload.value.id]: {
         ...state[action.payload.value.id],
@@ -98,6 +99,8 @@ function ziltags(state={}, action) {
 }
 
 function co_divs(state={}, action) {
+  let next_state = {...state}
+
   switch (action.type) {
     case 'HOVER_ON_ZILTAG':
     case 'UNHOVER_ON_ZILTAG':
@@ -105,11 +108,10 @@ function co_divs(state={}, action) {
         activated: action.type == 'HOVER_ON_ZILTAG' ? true : false
       }}
     case 'ZILTAG_MAP_FETCHED':
-      const ziltag_map_fetched_state = {...state}
       for (const ziltag of action.payload.value.ziltags) {
-        ziltag_map_fetched_state[ziltag.id] = {activated: false}
+        next_state[ziltag.id] = {activated: false}
       }
-      return ziltag_map_fetched_state
+      return next_state
     case 'ZILTAG_FETCHED':
     case 'ZILTAG_CREATED':
     case 'SSE_ZILTAG_CREATED':
@@ -123,16 +125,17 @@ function co_divs(state={}, action) {
 }
 
 function comments(state={}, action) {
+  let next_state = {...state}
+
   switch (action.type) {
     case 'ZILTAG_FETCHED':
-      const ziltag_fetched_state = {...state}
       for (const comment of action.payload.value.comments) {
-        ziltag_fetched_state[comment.id] = {
+        next_state[comment.id] = {
           ...comment,
           ziltag_id: action.payload.value.id
         }
       }
-      return ziltag_fetched_state
+      return next_state
     case 'SSE_COMMENT_CREATED':
     case 'SSE_COMMENT_UPDATED':
       return {...state, [action.payload.value.id]: action.payload.value}
@@ -140,13 +143,12 @@ function comments(state={}, action) {
       return delete_key(state, action.payload.id)
     case 'ZILTAG_DELETED':
     case 'SSE_ZILTAG_DELETED':
-      const ziltag_deleted_state = {...state}
       for (const id in state) {
         if (state[id].ziltag_id === action.payload.id) {
-          delete ziltag_deleted_state[id]
+          delete next_state[id]
         }
       }
-      return ziltag_deleted_state
+      return next_state
     default:
       return state
   }
@@ -173,6 +175,9 @@ function current_ziltag_id(state=null, action) {
     case 'SSE_ZILTAG_DELETED':
       if (action.payload.id === state) {
         return null
+      }
+      else {
+        return state
       }
     default:
       return state
@@ -236,42 +241,39 @@ function ziltag_comment_input(state={}, action) {
 }
 
 function ziltag_comment_editors(state={}, action) {
+  let next_state = {...state}
+
   switch (action.type) {
     case 'ZILTAG_COMMENT_EDITOR_CHANGED':
-      const edited_state = {...state}
-      edited_state[action.payload.id] = {
-        ...edited_state[action.payload.id],
+      next_state[action.payload.id] = {
+        ...state[action.payload.id],
         content: action.payload.target.value
       }
-      return edited_state
+      return next_state
     case 'ACTIVATE_ZILTAG_COMMENT_EDIT_MODE':
-      const activated_edit_state = {...state}
-      activated_edit_state[action.payload] = {
+      next_state[action.payload] = {
         ...state[action.payload]
       }
-      activated_edit_state[action.payload].mode = 'edit'
-      return activated_edit_state
+      next_state[action.payload].mode = 'edit'
+      return next_state
     case 'DEACTIVATE_ZILTAG_COMMENT_EDIT_MODE':
-      const deactivated_edit_state = {...state}
-      deactivated_edit_state[action.payload] = {
+      next_state[action.payload] = {
         ...state[action.payload]
       }
-      deactivated_edit_state[action.payload].mode = 'read'
-      return deactivated_edit_state
+      next_state[action.payload].mode = 'read'
+      return next_state
     case 'ACTIVATE_ZILTAG_COMMENT_DELETE_MODE':
-      const activated_delete_state = {...state}
-      activated_delete_state[action.payload] = {
+      next_state[action.payload] = {
         ...state[action.payload]
       }
-      activated_delete_state[action.payload].mode = 'delete'
-      return activated_delete_state
+      next_state[action.payload].mode = 'delete'
+      return next_state
     case 'DEACTIVATE_ZILTAG_COMMENT_DELETE_MODE':
-      const deactivated_delete_state = {...state}
-      deactivated_delete_state[action.payload] = {
+      next_state[action.payload] = {
         ...state[action.payload]
       }
-      deactivated_delete_state[action.payload].mode = 'read'
-      return deactivated_delete_state
+      next_state[action.payload].mode = 'read'
+      return next_state
     default:
       return state
   }
@@ -358,9 +360,11 @@ function extract_youtube_ids(text) {
 }
 
 function media_carousel(state={}, action) {
+  let youtube_ids
+
   switch (action.type) {
     case 'ZILTAG_EDITOR_CHANGED':
-      var youtube_ids = extract_youtube_ids(action.payload.target.value)
+      youtube_ids = extract_youtube_ids(action.payload.target.value)
       return {
         ...state,
         youtube_ids,
@@ -368,7 +372,7 @@ function media_carousel(state={}, action) {
         end_index: youtube_ids ? youtube_ids.length - 1 : -1
       }
     case 'ZILTAG_FETCHED':
-      var youtube_ids = extract_youtube_ids(action.payload.value.content)
+      youtube_ids = extract_youtube_ids(action.payload.value.content)
       return {
         ...state,
         youtube_ids,
@@ -376,14 +380,12 @@ function media_carousel(state={}, action) {
         end_index: youtube_ids ? youtube_ids.length - 1 : -1
       }
     case 'GO_NEXT_MEDIA_CONTENT':
-      const go_next_state = {...state}
       return {
         ...state,
         active_index: state.active_index + 1,
         direction: 'next'
       }
     case 'GO_PREV_MEDIA_CONTENT':
-      const go_prev_state = {...state}
       return {
         ...state,
         active_index: state.active_index - 1,

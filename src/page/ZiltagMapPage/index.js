@@ -136,7 +136,6 @@ class ZiltagMapPage extends Component {
     }
 
     try {
-      var full_url = window.location.href
       var is_iframe = window != window.parent
     } catch (e) {}
 

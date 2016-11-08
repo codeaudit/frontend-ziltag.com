@@ -172,7 +172,7 @@ function* listen_forgot_password() {
 
 function* forgot_password() {
   const email = yield select(state => state.forgot_password_form.email)
-  const {success, errors} = yield call(() => fetch('/api/v2/password', {
+  const {errors} = yield call(() => fetch('/api/v2/password', {
     method: 'POST',
     headers: {
       'Accept': 'application/json',

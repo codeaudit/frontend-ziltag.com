@@ -26,7 +26,6 @@ class BasePage extends Component {
       deactivate_avatar_menu,
       deactivate_ziltag_input,
       deactivate_ziltag_reader,
-      window_event,
       client_state
     } = this.props
 
@@ -40,22 +39,16 @@ class BasePage extends Component {
         const min_width = 300
         const breakpoint = min_width * 2 + total_right_screen_margin
 
-        if (document.documentElement.clientWidth < breakpoint) {
-          if (is_mobile) {
-            var fitted_ziltag_map_width = (
+        const fitted_ziltag_map_width = do {
+          if (document.documentElement.clientWidth < breakpoint) {
+            if (is_mobile) {
               document.documentElement.clientWidth
-            )
+            } else {
+              document.documentElement.clientWidth - total_right_screen_margin
+            }
           } else {
-            var fitted_ziltag_map_width = (
-              document.documentElement.clientWidth -
-              total_right_screen_margin
-            )
+            document.documentElement.clientWidth / 2 - total_right_screen_margin
           }
-        } else {
-          var fitted_ziltag_map_width = (
-            document.documentElement.clientWidth / 2 -
-            total_right_screen_margin
-          )
         }
 
         ziltag_map.height = fitted_ziltag_map_width / ziltag_map.width * ziltag_map.height || 0
@@ -64,7 +57,6 @@ class BasePage extends Component {
     } catch (e) {}
 
     try {
-      var full_url = window.location.href
       var is_iframe = window != window.parent
     } catch (e) {}
 

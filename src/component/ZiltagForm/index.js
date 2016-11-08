@@ -15,11 +15,13 @@ class ZiltagForm extends Component {
     } = this.props
 
     const group = children.reduce((prev, curr) => {
-      if (curr.type) {
-        if (typeof curr.type == 'string') {
-          var type = curr.type
-        } else if (typeof curr.type == 'function') {
-          var type = curr.type.name
+      const type = do {
+        if (typeof curr.type === 'string') {
+          curr.type
+        } else if (typeof curr.type === 'function') {
+          curr.type.name
+        } else {
+          null
         }
       }
 

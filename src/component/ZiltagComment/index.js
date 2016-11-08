@@ -64,63 +64,38 @@ class ZiltagComment extends Component {
       .then(() => deactivate_ziltag_comment_edit_mode(id))
     }
 
-    if (usr && author && usr.name == author.name) {
-      var edit_operator_components = (
-        <div className='ziltag-ziltag-comment__row'>
-          <div
-            className='ziltag-ziltag-comment__edit-operator'
-            onClick={() => {
-              activate_ziltag_comment_edit_mode(id)
-            }}
-          >
-            Edit
-          </div>
-          <div
-            className='ziltag-ziltag-comment__edit-operator'
-            onClick={() => {
-              activate_ziltag_comment_delete_mode(id)
-            }}
-          >
-            Delete
-          </div>
+    const text_component = do {
+      if (ziltag_comment_editors[id] && ziltag_comment_editors[id].mode === 'edit') {
+        <TextareaAutosize
+          className={classNames(
+            'ziltag-ziltag-comment__text',
+            'ziltag-ziltag-comment__text--editing'
+          )}
+          onChange={onChange}
+          onKeyDown={(e) => {
+            if (
+              e.getModifierState('Control') || e.getModifierState('Meta') &&
+              e.key == 'Enter'
+            ) {
+              save()
+              e.preventDefault()
+            }
+          }}
+          autoFocus
+          defaultValue={content}
+        />
+      } else {
+        <div className='ziltag-ziltag-comment__text'>
+          {this.anchorify(content)}
         </div>
-      )
+      }
     }
 
-    if (ziltag_comment_editors[id] &&
+    const edit_operator_components = do {
+      if (ziltag_comment_editors[id] &&
         (ziltag_comment_editors[id].mode == 'edit' ||
-        ziltag_comment_editors[id].mode == 'delete')) {
-
-      if (ziltag_comment_editors[id].mode == 'edit') {
-        var text_component = (
-          <TextareaAutosize
-            className={classNames(
-              'ziltag-ziltag-comment__text',
-              'ziltag-ziltag-comment__text--editing'
-            )}
-            onChange={onChange}
-            onKeyDown={(e) => {
-              if (
-                e.getModifierState('Control') || e.getModifierState('Meta') &&
-                e.key == 'Enter'
-              ) {
-                save()
-                e.preventDefault()
-              }
-            }}
-            autoFocus
-            defaultValue={content}
-          />
-        )
-      } else {
-        var text_component = (
-          <div className='ziltag-ziltag-comment__text'>
-            {this.anchorify(content)}
-          </div>
-        )
-      }
-
-      var edit_operator_components = (
+        ziltag_comment_editors[id].mode == 'delete')
+      ) {
         <div
           className={classNames(
             'ziltag-ziltag-comment__row',
@@ -178,45 +153,56 @@ class ZiltagComment extends Component {
             }
           </div>
         </div>
-      )
-    } else {
-      var text_component = (
-        <div className='ziltag-ziltag-comment__text'>
-          {this.anchorify(content)}
+      } else if (usr && author && usr.name === author.name) {
+        <div className='ziltag-ziltag-comment__row'>
+          <div
+            className='ziltag-ziltag-comment__edit-operator'
+            onClick={() => {
+              activate_ziltag_comment_edit_mode(id)
+            }}
+          >
+            Edit
+          </div>
+          <div
+            className='ziltag-ziltag-comment__edit-operator'
+            onClick={() => {
+              activate_ziltag_comment_delete_mode(id)
+            }}
+          >
+            Delete
+          </div>
         </div>
-      )
+      }
     }
 
-    if ((usr && usr.name == author.name) && !usr.confirmed) {
-      const is_initiator = (
+    const is_initiator = do {
+      if ((usr && usr.name === author.name) && !usr.confirmed) {
         resend_verification_mail_tip.initiator &&
         resend_verification_mail_tip.initiator.comment &&
         resend_verification_mail_tip.initiator.comment.id == id
-      )
+      }
+    }
 
+    const warn_component = do {
       if (is_initiator) {
-        var warn_component = (
-          <p className='ziltag-ziltag-comment__warn'>
-            Confirmation email sent. Please check you inbox.
-          </p>
-        )
+        <p className='ziltag-ziltag-comment__warn'>
+          Confirmation email sent. Please check you inbox.
+        </p>
       } else {
-        var warn_component = (
-          <p className='ziltag-ziltag-comment__warn'>
-            <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
-            Please verify your account to make this comment "public".
-            Haven’t received confirmation email?&nbsp;
-            <a onClick={
-              () => resend_verification_mail({
-                initiator: {
-                  comment: {id}
-                }
-              })}
-            >
-              Send again
-            </a>
-          </p>
-        )
+        <p className='ziltag-ziltag-comment__warn'>
+          <img className='ziltag-ziltag-comment__warn-icon' src={warn_icon}/>
+          Please verify your account to make this comment "public".
+          Haven’t received confirmation email?&nbsp;
+          <a onClick={
+            () => resend_verification_mail({
+              initiator: {
+                comment: {id}
+              }
+            })}
+          >
+            Send again
+          </a>
+        </p>
       }
     }
 
