@@ -210,12 +210,12 @@ function* dispatch_event() {
 function* post_sign_out() {
   while (true) {
     yield take('CURRENT_USER_SIGNED_OUT')
-    const ziltag_map_id = yield select(state => state.current_ziltag_map_id)
-    yield put(fetch_current_user({ziltag_map_id}))
     window.parent.postMessage({
       type: 'event',
       payload: {type: 'CURRENT_USER_SIGNED_OUT'}
     }, '*')
+    const ziltag_map_id = yield select(state => state.current_ziltag_map_id)
+    yield put(fetch_current_user({ziltag_map_id}))
   }
 }
 
