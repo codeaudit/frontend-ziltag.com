@@ -11,9 +11,6 @@ module.exports = {
     path: path.join(__dirname, '../dist/public'),
     publicPath: '/public/'
   },
-  resolve: {
-    extensions: ['', '.js', '.jsx']
-  },
   module: {
     loaders: [
       { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
