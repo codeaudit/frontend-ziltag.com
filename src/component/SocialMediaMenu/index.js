@@ -16,7 +16,8 @@ class SocialMediaMenu extends Component {
   render() {
     const {
       activated,
-      url
+      url,
+      fbAppId
     } = this.props
 
     const style = {
@@ -30,6 +31,7 @@ class SocialMediaMenu extends Component {
       >
         <Item>
           <FacebookButton
+            appId={fbAppId}
             url={url}
             className={classNames(
               'ziltag-social-media-menu__button',

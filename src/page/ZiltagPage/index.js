@@ -134,6 +134,8 @@ class ZiltagPage extends Component {
       is_mobile
     } = client_state
 
+    const fb_app_id = '1601838906791253'
+
     const current_ziltag = ziltags[current_ziltag_id] || {}
     const ziltag_map = ziltag_maps[current_ziltag_map_id] || {}
     const current_ziltags = Object.keys(ziltags)
@@ -279,6 +281,7 @@ class ZiltagPage extends Component {
                 <SocialMediaMenu
                   activated={social_media_menu.activated}
                   url={full_url}
+                  fbAppId={fb_app_id}
                   className='ziltag-ziltag-page__social-media-menu'
                 >
                 </SocialMediaMenu>
