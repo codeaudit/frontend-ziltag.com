@@ -191,15 +191,24 @@ function* forgot_password() {
 function* dispatch_event() {
   while (true) {
     const {
-      ziltag_input_activated
+      ziltag_input_activated,
+      ziltag_created
     } = yield race({
-      ziltag_input_activated: take('ACTIVATE_ZILTAG_INPUT')
+      ziltag_input_activated: take('ACTIVATE_ZILTAG_INPUT'),
+      ziltag_created: take('ZILTAG_CREATED')
     })
 
+    let message
+
     if (ziltag_input_activated) {
-      var message = {
+      message = {
         type: 'event',
         payload: {type: 'ZILTAG_INPUT_ACTIVATED'}
+      }
+    } else if (ziltag_created) {
+      message = {
+        type: 'event',
+        payload: {type: 'ZILTAG_CREATED'}
       }
     }
 
