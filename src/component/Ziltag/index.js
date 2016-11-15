@@ -9,6 +9,8 @@ try {
 } catch (e) {}
 
 
+export const meta_class_name = 'ziltag-ziltag'
+
 class Ziltag extends Component {
   render() {
     const {
@@ -30,7 +32,7 @@ class Ziltag extends Component {
         style={style}
         className={
           classNames({
-            'ziltag-ziltag': true,
+            [meta_class_name]: true,
             'ziltag-ziltag--activated': ziltag.activated
           })
         }

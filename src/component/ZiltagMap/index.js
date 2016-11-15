@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {Link} from 'react-router'
 import classNames from 'classnames'
 
-import Ziltag from '../Ziltag'
+import Ziltag, {meta_class_name as ziltag_class_name} from '../Ziltag'
 import CoDiv from '../CoDiv'
 import ZiltagPreview from '../ZiltagPreview'
 import ZiltagInput from '../ZiltagInput'
@@ -379,8 +379,13 @@ class ZiltagMap extends Component {
                 Math.pow(point1.x - point2.x, 2) +
                 Math.pow(point1.y - point2.y, 2)
               )
+
               const radius = 10
               return distance < 2 * radius
+            }
+
+            if (e.target.classList.contains(ziltag_class_name)) {
+              return
             }
 
             const radius = 10
@@ -388,6 +393,7 @@ class ZiltagMap extends Component {
             const y_px = e.nativeEvent.offsetY
             const x = x_px / ziltag_map.width
             const y = y_px / ziltag_map.height
+
             if (
               !is_mobile &&
               x_px > radius &&
@@ -395,7 +401,7 @@ class ZiltagMap extends Component {
               y_px > radius &&
               y_px <= ziltag_map.height - radius &&
               !ziltag_map.ziltags.filter(ziltag => is_overlapping(
-                {x: ziltag.x_px, y: ziltag.y_px},
+                {x: ziltag.x * ziltag_map.width, y: ziltag.y * ziltag_map.height},
                 {x: x_px, y: y_px}
               )).length
             ) {
