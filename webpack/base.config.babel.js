@@ -13,14 +13,14 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.css$/, loaders: ['style', 'css', 'postcss'] },
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.(png|jpg|eot)$/, loader: 'url' },
+      { test: /\.css$/, loaders: ['style-loader', 'css-loader', 'postcss-loader'] },
+      { test: /\.json$/, loader: 'json-loader' },
+      { test: /\.(png|jpg|eot)$/, loader: 'url-loader' },
       { test: /\.(ttf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/, loader: 'file-loader' },
       {
         test: /\.jsx?$/,
         exclude:  /(node_modules)/,
-        loader: 'babel' ,
+        loader: 'babel-loader' ,
         query: {
           presets: [['es2015', {loose: true, modules: false}], 'stage-0', 'react']
         }
