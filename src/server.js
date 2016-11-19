@@ -17,8 +17,9 @@ import {ReduxRouter} from 'redux-router'
 import {reduxReactRouter, match} from 'redux-router/server'
 import createHistory from 'history/lib/createMemoryHistory'
 import effects from 'redux-effects'
-import fetch from 'redux-effects-fetch'
+import redux_effects_fetch from 'redux-effects-fetch'
 import outdent from 'outdent'
+import fetch from 'node-fetch'
 
 import reducer from './reducer'
 import routes from './route'
@@ -147,8 +148,20 @@ app.use(async ctx => {
   } else {
     var store = compose(
       reduxReactRouter({routes, createHistory}),
-      applyMiddleware(effects, fetch)
+      applyMiddleware(effects, redux_effects_fetch)
     )(createStore)(reducer)
+
+    const [, page_type, id] = ctx.originalUrl.split('/')
+
+    if (page_type === 'ziltags') {
+      const resp = await fetch(`${API_ADDR}/api/v1/ziltags/${id}`, {
+        agent: new https.Agent({
+          // TODO: use ca instead
+          rejectUnauthorized: false
+        })
+      })
+      var {content: description} = await resp.json()
+    }
 
     store.dispatch(match(ctx.request.originalUrl,
       () => {
@@ -158,12 +171,9 @@ app.use(async ctx => {
           </Provider>
         )
 
-        const [, page_type, id] = ctx.originalUrl.split('/')
-
-        if (page_type == 'ziltags') {
+        if (page_type === 'ziltags') {
           const full_url = ctx.protocol + '://' + ctx.host + ctx.originalUrl
           const title = 'Ziltag'
-          const description = 'Ziltag is a visual tagging plugin that helps you discover and discuss wonderful things.'
 
           var social_media_meta = outdent`
             <meta property="og:type" content="article">
