@@ -2,7 +2,6 @@ version: "2"
 services:
   frontend-ziltag.com:
     build: .
-    image: ziltag/frontend-ziltag.com
 
   ziltag.dev:
     image: ziltag/ziltag.com

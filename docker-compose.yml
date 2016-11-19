@@ -3,7 +3,6 @@ services:
   frontend-ziltag.com:
     container_name: ${CONTAINER_NAME}
     build: .
-    image: ziltag/frontend-ziltag.com
     command: npm run serve
     links:
       - ziltag.dev
