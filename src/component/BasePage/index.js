@@ -60,6 +60,50 @@ class BasePage extends Component {
       var is_iframe = window != window.parent
     } catch (e) {}
 
+    const avatar_component = (
+      <Avatar
+        style={{
+          display: current_user.usr && !is_mobile ? 'inline' : 'none'
+        }}
+        className='ziltag-base-page__avatar'
+        src={current_user.usr && current_user.usr.avatar}
+        onClick={(e) => {
+          activate_avatar_menu()
+          e.stopPropagation()
+        }}
+      />
+    )
+
+    const close_component = is_mobile && (
+      <div
+        style={{
+          visibility: is_iframe ? 'visible' : 'hidden'
+        }}
+        className='ziltag-base-page__close--mobile'
+        onClick={deactivate_ziltag_reader}
+      />
+    )
+
+    const head_component = (
+      <div style={{zIndex: 5}} className='ziltag-base-page__head'>
+        {
+          do {
+            if (current_user.usr) {
+              avatar_component
+            }
+          }
+        }
+        {close_component}
+      </div>
+    )
+
+    const avatar_menu_component = current_user.usr && (
+      <AvatarMenu
+        {...this.props}
+        {...avatar_menu}
+      />
+    )
+
     return (
       <div
         className={
@@ -72,32 +116,8 @@ class BasePage extends Component {
           deactivate_ziltag_input()
         }}
       >
-        <div style={{zIndex: 5}} className='ziltag-base-page__head'>
-          <Logo/>
-          {current_user.usr && <Avatar
-            style={{
-              display: current_user.usr && !is_mobile ? 'inline' : 'none'
-            }}
-            className='ziltag-base-page__avatar'
-            src={current_user.usr.avatar}
-            onClick={(e) => {
-              activate_avatar_menu()
-              e.stopPropagation()
-            }}
-          />}
-          {is_mobile && <div
-            style={{
-              visibility: is_iframe ? 'visible' : 'hidden'
-            }}
-            className='ziltag-base-page__close--mobile'
-            onClick={deactivate_ziltag_reader}
-          >
-          </div>}
-        </div>
-        {current_user.usr && <AvatarMenu
-          {...this.props}
-          {...avatar_menu}
-        />}
+        {head_component}
+        {avatar_menu_component}
         <div className='ziltag-base-page-main'>
           {ziltag_map &&
             <div className='ziltag-base-page-main__col0'>
