@@ -17,7 +17,6 @@ function client_state(state={}, action) {
 function current_user(state={}, action) {
   switch (action.type) {
     case 'CURRENT_USER_FETCHED':
-    case 'CURRENT_USER_SIGNED_IN':
     case 'CURRENT_USER_JOINED':
       return {...action.payload.value, status: 'success'}
     case 'CURRENT_USER_SIGNED_OUT':
@@ -47,6 +46,30 @@ function avatar_menu(state={}, action) {
       return {activated: true}
     case 'DEACTIVATE_AVATAR_MENU':
       return {activated: false}
+    default:
+      return state
+  }
+}
+
+function auth_form(state={}, action) {
+  switch (action.type) {
+    case 'ACTIVATE_AUTH_FORM':
+      return {activated: true, mode: 'log_in'}
+    case 'DEACTIVATE_AUTH_FORM':
+    case 'CURRENT_USER_SIGNED_IN':
+    case 'CURRENT_USER_JOINED':
+      return {activated: false, mode: 'log_in'}
+    case 'FORGOT_PASSWORD_EMAIL_SENT':
+      return {activated: state.activated, mode: 'post_forgot_password'}
+    case 'CURRENT_USER_SIGN_IN_FAILED':
+    case 'CURRENT_USER_JOIN_FAILED':
+      return {...state, error: action.payload.value.error}
+    case 'FORGOT_PASSWORD_EMAIL_NOT_FOUND':
+      return {...state, error: action.payload.error}
+    case 'AUTH_FORM_REFRESH':
+      return {activated: state.activated, mode: state.mode}
+    case 'AUTH_FORM_CHANGE_MODE':
+      return {activated: state.activated, mode: action.payload.mode}
     default:
       return state
   }
@@ -442,6 +465,7 @@ export default combineReducers({
   client_state,
   current_user,
   avatar_menu,
+  auth_form,
   ziltag_maps,
   ziltags,
   co_divs,

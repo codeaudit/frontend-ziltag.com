@@ -4,6 +4,7 @@ import classNames from 'classnames'
 import Logo from '../Logo'
 import Avatar from '../Avatar'
 import AvatarMenu from '../AvatarMenu'
+import AuthForm from '../AuthForm'
 import ZiltagMap from '../ZiltagMap'
 
 
@@ -20,12 +21,20 @@ class BasePage extends Component {
       children,
       current_user,
       avatar_menu,
+      auth_form,
       ziltag_map,
       ziltags,
       activate_avatar_menu,
+      activate_auth_form,
       deactivate_avatar_menu,
+      deactivate_auth_form,
       deactivate_ziltag_input,
       deactivate_ziltag_reader,
+      current_user_sign_in,
+      current_user_join,
+      forgot_password,
+      auth_form_refresh,
+      auth_form_change_mode,
       client_state
     } = this.props
 
@@ -67,7 +76,7 @@ class BasePage extends Component {
         }}
         className='ziltag-base-page__avatar'
         src={current_user.usr && current_user.usr.avatar}
-        onClick={(e) => {
+        onClick={e => {
           activate_avatar_menu()
           e.stopPropagation()
         }}
@@ -90,6 +99,16 @@ class BasePage extends Component {
           do {
             if (current_user.usr) {
               avatar_component
+            } else if (current_user.permissions) {
+              <div
+                className='ziltag-base-page__head-login'
+                onClick={e => {
+                  activate_auth_form()
+                  e.stopPropagation()
+                }}
+              >
+                Log in
+              </div>
             }
           }
         }
@@ -104,6 +123,22 @@ class BasePage extends Component {
       />
     )
 
+    const auth_form_component = auth_form.activated && (
+      <AuthForm
+        className='ziltag-base-page__auth-form'
+        handle_log_in={current_user_sign_in}
+        handle_create_account={current_user_join}
+        handle_forgot_password={forgot_password}
+        handle_refresh={auth_form_refresh}
+        handle_change_mode={auth_form_change_mode}
+        mode={auth_form.mode}
+        error={auth_form.error}
+        onClick={e => {
+          e.stopPropagation()
+        }}
+      />
+    )
+
     return (
       <div
         className={
@@ -113,11 +148,13 @@ class BasePage extends Component {
         }
         onClick={() => {
           deactivate_avatar_menu()
+          deactivate_auth_form()
           deactivate_ziltag_input()
         }}
       >
         {head_component}
         {avatar_menu_component}
+        {auth_form_component}
         <div className='ziltag-base-page-main'>
           {ziltag_map &&
             <div className='ziltag-base-page-main__col0'>

@@ -15,6 +15,11 @@ export function fetch_current_user({ziltag_map_id}) {
 export const activate_avatar_menu = createAction('ACTIVATE_AVATAR_MENU')
 export const deactivate_avatar_menu = createAction('DEACTIVATE_AVATAR_MENU')
 
+export const activate_auth_form = createAction('ACTIVATE_AUTH_FORM')
+export const deactivate_auth_form = createAction('DEACTIVATE_AUTH_FORM')
+export const auth_form_refresh = createAction('AUTH_FORM_REFRESH')
+export const auth_form_change_mode = createAction('AUTH_FORM_CHANGE_MODE')
+
 export const ziltag_map_fetched = createAction('ZILTAG_MAP_FETCHED')
 export const ziltag_map_fetch_failed = createAction('ZILTAG_MAP_FETCH_FAILED')
 

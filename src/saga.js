@@ -170,8 +170,14 @@ function* listen_forgot_password() {
   yield takeEvery('FORGOT_PASSWORD', forgot_password)
 }
 
-function* forgot_password() {
-  const email = yield select(state => state.forgot_password_form.email)
+function* forgot_password(action) {
+  const email = do {
+    if (action.payload.email) {
+      action.payload.email
+    } else {
+      yield select(state => state.forgot_password_form.email)
+    }
+  }
   const {errors} = yield call(() => fetch('/api/v2/password', {
     method: 'POST',
     headers: {
@@ -230,7 +236,9 @@ function* post_sign_out() {
 
 function* post_sign_in() {
   while (true) {
-    yield take('CURRENT_USER_SIGNED_IN')
+    yield race([take('CURRENT_USER_SIGNED_IN'), take('CURRENT_USER_JOINED')])
+    const ziltag_map_id = yield select(state => state.current_ziltag_map_id)
+    yield put(fetch_current_user({ziltag_map_id}))
     window.parent.postMessage({
       type: 'event',
       payload: {type: 'CURRENT_USER_SIGNED_IN'}
