@@ -210,8 +210,8 @@ class ZiltagMap extends Component {
               placeholder='Email'
             />
             <nav>
-              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
-              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Create account</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Log in</div>
               <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -220,12 +220,12 @@ class ZiltagMap extends Component {
                   onClick={join}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Join
+                  Create account
                 </h1>
                 <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
               </div>
               <p>
-                Join means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
+                Create account means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
               </p>
             </footer>
           </ZiltagForm>
@@ -233,7 +233,7 @@ class ZiltagMap extends Component {
           <ZiltagMapDialog>
             <p>
               <strong>
-                Thank you for joining us. A verification email has sent.
+                Thank you for creating account. A verification email has sent.
               </strong>
               <br/>
               Please check your inbox to verify your account. Thank you.
@@ -265,8 +265,8 @@ class ZiltagMap extends Component {
               placeholder='Password'
             />
             <nav>
-              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
-              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Create account</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Log in</div>
               <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -275,7 +275,7 @@ class ZiltagMap extends Component {
                   onClick={sign_in}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Sign In
+                  Log in
                 </h1>
                 <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
               </div>
@@ -298,8 +298,8 @@ class ZiltagMap extends Component {
               placeholder='Email'
             />
             <nav>
-              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
-              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Create account</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Log in</div>
               <div onClick={deactivate_ziltag_input} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -320,8 +320,8 @@ class ZiltagMap extends Component {
               <strong>Oops! You need to have an account to post a tag.</strong>
             </p>
             <nav>
-              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Join</div>
-              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={ziltag_input_join} className='ziltag-ziltag-form__link'>Create account</div>
+              <div onClick={ziltag_input_sign_in} className='ziltag-ziltag-form__link'>Log in</div>
             </nav>
           </ZiltagMapDialog>
         }

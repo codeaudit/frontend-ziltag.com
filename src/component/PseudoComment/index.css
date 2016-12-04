@@ -40,7 +40,7 @@
 .ziltag-pseudo-comment nav {
   position: absolute;
   right: 0;
-  width: 59px;
+  width: 96px;
   height: calc(100% - 30px);
   line-height: 20px;
   border-left: 1px solid black;

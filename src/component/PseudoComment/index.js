@@ -96,8 +96,8 @@ class PseudoComment extends Component {
               placeholder='Password'
             />
             <nav>
-              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link'>Join</div>
-              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Sign In</div>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link'>Create account</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Log in</div>
               <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -106,7 +106,7 @@ class PseudoComment extends Component {
                   onClick={sign_in}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Sign In
+                  Log in
                 </h1>
               <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
             </div>
@@ -140,8 +140,8 @@ class PseudoComment extends Component {
               placeholder='Email'
             />
             <nav>
-              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
-              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Create account</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Log in</div>
               <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -150,12 +150,12 @@ class PseudoComment extends Component {
                   onClick={join}
                   className={'ziltag-ziltag-form__submit'}
                 >
-                  Join
+                  Create account
                 </h1>
               <span className='ziltag-ziltag-form__prompt'>{current_user.prompt}</span>
             </div>
               <p>
-                Join means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
+                Create account means you agree with our <a target='_blank' href='http://blog.ziltag.com/terms/'>Terms</a> and <a target='_blank' href='http://blog.ziltag.com/privacy/'>Privacy Policy</a>.
               </p>
             </footer>
           </ZiltagForm>
@@ -177,8 +177,8 @@ class PseudoComment extends Component {
               placeholder='Email'
             />
             <nav>
-              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Join</div>
-              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Sign In</div>
+              <div onClick={pseudo_comment_join} className='ziltag-ziltag-form__link ziltag-ziltag-form__link--activated'>Create account</div>
+              <div onClick={pseudo_comment_sign_in} className='ziltag-ziltag-form__link'>Log in</div>
               <div onClick={deactivate_pseudo_comment} className='ziltag-ziltag-form__link' type='cancel'>Cancel</div>
             </nav>
             <footer>
@@ -210,13 +210,13 @@ class PseudoComment extends Component {
               className='ziltag-ziltag-form__link'
               onClick={pseudo_comment_join}
             >
-              Join
+              Create account
               </div>
             <div
               className='ziltag-ziltag-form__link'
               onClick={pseudo_comment_sign_in}
             >
-              Sign In
+              Log in
             </div>
             <div
               className='ziltag-ziltag-form__link'

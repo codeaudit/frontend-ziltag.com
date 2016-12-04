@@ -32,7 +32,7 @@ class AvatarMenu extends Component {
               })
             }}
           >
-            Sign Out
+            Log out
           </div>
         </Item>
       </DropDownMenu>
