@@ -95,6 +95,7 @@ class BasePage extends Component {
 
     const head_component = (
       <div style={{zIndex: 5}} className='ziltag-base-page__head'>
+        <Logo/>
         {
           do {
             if (current_user.usr) {
