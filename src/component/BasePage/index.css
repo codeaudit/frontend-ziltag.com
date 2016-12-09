@@ -38,7 +38,8 @@
 }
 
 .ziltag-base-page .ziltag-base-page__avatar, .ziltag-base-page__head-login {
-  position: absolute;
+  position: relative;
+  margin-left: auto;
   right: 24px;
 }
 
