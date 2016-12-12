@@ -28,7 +28,7 @@
 .ziltag-auth-form input {
   display: block;
   width: 206px;
-  margin: 10px auto;
+  margin: 10px 0;
   padding: 0;
   border: 0;
   border-bottom: 2px solid rgb(201, 198, 198);
