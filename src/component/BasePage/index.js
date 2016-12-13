@@ -100,7 +100,7 @@ class BasePage extends Component {
           do {
             if (current_user.usr) {
               avatar_component
-            } else if (current_user.permissions) {
+            } else if (!is_mobile && current_user.permissions) {
               <div
                 className='ziltag-base-page__head-login'
                 onClick={e => {
