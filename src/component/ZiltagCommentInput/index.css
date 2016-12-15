@@ -10,6 +10,7 @@
 .ziltag-ziltag-comment-input textarea {
   width: 540px;
   height: 16px;
+  margin-right: 10px;
   padding: 0;
   font-size: 14px;
   line-height: 20px;
@@ -47,7 +48,6 @@
 }
 
 .ziltag-ziltag-comment-input .ziltag-ziltag-comment-input__post {
-  position: absolute;
-  bottom: 26px;
-  right: 0;
+  margin-top: auto;
+  padding-left: 10px;
 }

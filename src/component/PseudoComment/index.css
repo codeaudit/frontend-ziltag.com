@@ -8,15 +8,19 @@
 }
 
 .ziltag-pseudo-comment__text {
-  width: calc(100% - 60px);
   font-size: 14px;
   line-height: 20px;
   color: rgba(0, 0, 0, .26);
+  overflow: hidden;
 }
 
 .ziltag-pseudo-comment__user-avatar {
   width: 40px;
   height: 40px;
+}
+
+.ziltag-pseudo-comment__main {
+  width: calc(100% - 155px);
 }
 
 .ziltag-pseudo-comment__main strong {
