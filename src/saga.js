@@ -16,6 +16,7 @@ import {
   deactivate_social_media_menu,
   deactivate_ziltag_input,
   clean_ziltag_comment_input,
+  deactivate_auth_form,
   window_resized,
   update_client_state,
   forgot_password_email_sent,
@@ -150,6 +151,7 @@ function* deactivate_previous_state() {
   yield put(deactivate_social_media_menu())
   yield put(deactivate_ziltag_input())
   yield put(clean_ziltag_comment_input())
+  yield put(deactivate_auth_form())
 }
 
 function* listen_reader() {
