@@ -9,6 +9,7 @@ import {createHistory} from 'history'
 import effects from 'redux-effects'
 import fetch from 'redux-effects-fetch'
 import createSagaMiddleware from 'redux-saga'
+import Raven from 'raven-js'
 
 import reducer from './reducer'
 import routes from './route'
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     }
   } else {
+    Raven.config('https://becdaf4ac924436d85f53f84f5997f55@sentry.io/126305').install()
     const store = compose(
       applyMiddleware(effects, fetch, sagaMiddleware),
       reduxReactRouter({routes, createHistory})
