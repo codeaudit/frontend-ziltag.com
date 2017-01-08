@@ -216,7 +216,7 @@ function* dispatch_event() {
     } else if (ziltag_created) {
       message = {
         type: 'event',
-        payload: {type: 'ZILTAG_CREATED'}
+        payload: {type: 'ZILTAG_CREATED', ...ziltag_created.payload.value}
       }
     }
 
