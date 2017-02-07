@@ -34,7 +34,7 @@
 }
 
 .ziltag-ziltag-form__col0 {
-  width: 189px;
+  width: 60%;
 }
 
 .ziltag-ziltag-form__col1 {
@@ -45,7 +45,7 @@
 
 .ziltag-ziltag-form input {
   display: block;
-  width: 158px;
+  width: 100%;
   height: 30px;
   line-height: 30px;
   padding-left: 30px;
@@ -54,6 +54,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, .26);
   margin-bottom: 8px;
   font-size: 12px;
+  box-sizing: border-box;
 }
 
 .ziltag-ziltag-form input[name='name'] {
